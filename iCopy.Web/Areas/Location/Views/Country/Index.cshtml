@@ -1,0 +1,173 @@
+﻿@model iCopy.Web.Models.DataTable<iCopy.Model.Response.Country>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="kt-portlet kt-portlet--mobile">
+    <div class="kt-portlet__head kt-portlet__head--lg">
+        <div class="kt-portlet__head-label">
+            <span class="kt-portlet__head-icon">
+                <i class="kt-font-brand fa fa-map-marker-alt"></i>
+            </span>
+            <h3 class="kt-portlet__head-title">
+                @_sharedLocalizer.CountrySettings
+            </h3>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+            <div class="kt-portlet__head-wrapper">
+                <div class="kt-portlet__head-actions">
+                    <a asp-area="location" asp-controller="country" asp-action="insert" ajax-add="modal-bs" class="btn btn-brand btn-icon-sm">
+                        <i class="la la-plus"></i>
+                        @_sharedLocalizer.AddCountry
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kt-portlet__body">
+        <div class="row">
+            <div class="kt-form kt-form--fit kt-margin-b-20 col-md-12">
+                <div class="row kt-margin-b-20">
+                    <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                        <label>@_sharedLocalizer.Name:</label>
+                        <input type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.Name" data-col-index="0">
+                    </div>
+                    <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                        <label>@_sharedLocalizer.ShortName:</label>
+                        <input type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.ShortName" data-col-index="1">
+                    </div>
+                    <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                        <label>@_sharedLocalizer.PhoneCode:</label>
+                        <input type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.PhoneCode" data-col-index="2">
+                    </div>
+                    <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                        <label>&nbsp;</label>
+                        <div class="btn-group btn-group-toggle col-md-12 p-0" data-toggle="buttons" data-col-index="3">
+                            <label class="btn btn-secondary active">
+                                <input type="radio" name="options" id="option1" autocomplete="off" checked class="form-control"> @_sharedLocalizer.All
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="options" id="option2" autocomplete="off" class="form-control" value="true"> @_sharedLocalizer.Active
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="options" id="option3" autocomplete="off" class="form-control" value="false"> @_sharedLocalizer.Inactive
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-separator kt-separator--md kt-separator--dashed"></div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <button class="btn btn-secondary btn-secondary--icon pull-right ml-3" id="kt_reset">
+                            <span>
+                                <i class="la la-close"></i>
+                                <span>@_sharedLocalizer.Reset</span>
+                            </span>
+                        </button>
+                        <button class="btn btn-brand btn-brand--icon pull-right" id="kt_search">
+                            <span>
+                                <i class="la la-search"></i>
+                                <span>@_sharedLocalizer.Search</span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="table table-striped table-bordered table-hover text-dark no-footer dtr-inline" id="datatable">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>@_sharedLocalizer.Name  </th>
+                    <th>@_sharedLocalizer.ShortName</th>
+                    <th>@_sharedLocalizer.PhoneCode</th>
+                    <th>@_sharedLocalizer.Active</th>
+                    <th>@_sharedLocalizer.Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.data)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.Name</td>
+                        <td>@item.ShortName</td>
+                        <td>@item.PhoneNumberCode</td>
+                        <td>@item.Active</td>
+                        <td></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    var DataTable = {
+        init: function () {
+            var datatable = $("#datatable");
+            datatable.DataTable({
+                responsive: true,
+                deferLoading: '@Model.recordsTotal',
+                processing: true,
+                serverSide: true,
+                searching: false,
+                autoWidth: true,
+                lengthMenu: [10, 15, 25, 50],
+                order: [[1, 'asc']],
+                language: {
+                    'lengthMenu': '_MENU_',
+                },
+                // DOM Layout settings
+                dom: `<'row'<'col-sm-12'tr>>
+			<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
+                ajax: {
+                    url: "",
+                    dataType: 'json'
+                },
+                columns: [
+                    { data: "iD" },
+                    { data: "name" },
+                    { data: 'shortName' },
+                    { data: 'phoneNumberCode' },
+                    { data: 'active' },
+                    { data: 'actions' }
+                ],
+                columnDefs: [
+                    {
+                        targets: 0,
+                        className: 'text-center',
+                    },
+                    {
+                        targets: 4,
+                        orderable: false,
+                        className: 'text-center align-middle',
+                        render: function (data, type, full, meta) {
+                            if (full.active == 'True') {
+                                return `<span class="kt-badge kt-badge--inline kt-badge--success">@_sharedLocalizer.Active</span>`
+                            }
+                            return `<span class="kt-badge kt-badge--inline kt-badge--danger">@_sharedLocalizer.Inactive</span>`
+                        }
+                    },
+                    {
+                        targets: -1,
+                        orderable: false,
+                        className: 'text-center align-middle',
+                        render: function (data, type, full, meta) {
+                            return `
+<a href="/location/country/update/${full.iD}" ajax-add="modal-bs" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0" title="View"><i class="la la-edit"></i></a>
+<a href="/location/country/delete/${full.iD}" ajax-delete class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0" title="View"><i class="la la-trash"></i></a>
+<a href="/location/countr/delete/${full.iD}" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0" title="View"><i class="la la-toggle-on"></i></a>
+`;
+                        }
+                    }
+                ]
+            });
+            return datatable;
+        }
+    }
+
+    $(document).ready(function () {
+        DataTable.init();
+    });
+</script>
