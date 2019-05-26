@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -27,6 +27,7 @@
     <Folder Include="Areas\Language\Views\" />
     <Folder Include="Areas\Location\Data\" />
     <Folder Include="Areas\Location\Models\" />
+    <Folder Include="wwwroot\assets\media\users\" />
   </ItemGroup>
 
 
