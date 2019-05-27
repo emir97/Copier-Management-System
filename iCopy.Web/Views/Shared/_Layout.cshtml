@@ -4,7 +4,7 @@
 <!-- begin::Head -->
 <head>
     <meta charset="utf-8" />
-    <title>Metronic | Dashboard</title>
+    <title>@ViewData["Title"]</title>
     <meta name="description" content="Updates and statistics">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--begin::Fonts -->
@@ -109,44 +109,54 @@
                 $("#" + element.attr('ajax-add') + " .modal-content").html(result);
                 $("#" + element.attr('ajax-add')).modal('show');
             });
-            $(document.body).on('submit', '[ajax-form-add]', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-                var parent = $(this).parent();
-                $.ajax({
-                    url: $(this).attr('action'),
-                    type: $(this).attr('method'),
-                    data: $(this).serialize(),
-                    success: function (result) {
-                        if (result.success) {
-                            $(".modal").modal('hide');
-                            toastr.success(result.message);
+        });
+        $(document.body).on('submit', '[ajax-form-add]', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var parent = $(this).parent();
+            $.ajax({
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (typeof result.success !== "undefined" && result.success) {
+                        $(".modal").modal('hide');
+                        toastr.success(result.message);
+                        return;
+                    }
+                    parent.html(result);
+                }
+            });
+        });
+        $(document.body).on('click', '[ajax-delete]', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var element = $(this);
+            swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function (result) {
+                if (result.value) {
+                    $.get(element.attr('href'), function (response) {
+                        if (response.success) {
+                            toastr.success(response.message);
                             return;
                         }
-                        parent.html(result);
-                    }
-                });
+                        toastr.error(response.message);
+                    });
+                }
             });
-            $(document.body).on('click', '[ajax-delete]', function (e) {
-                e.stopPropagation();
-                e.preventDefault();
-                swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes, delete it!'
-                }).then(function (result) {
-                    if (result.value) {
-                        $.get($(this).attr('href'), function (response) {
-                            if (response.success) {
-                                toastr.success(response.message);
-                                return;
-                            }
-                            toastr.error(response.message);
-                        });
-                    }
-                });
+        });
+        $(document.body).on('click', '[ajax-activate]', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $.get($(this).attr('href'), function (result) {
+                if (result.success) {
+                    toastr.success(result.message);
+                }
             });
         });
     </script>

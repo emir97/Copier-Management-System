@@ -10,5 +10,6 @@ namespace iCopy.Web.Resources
         {
             this.localizer = localizer;
         }
+
     }
 }

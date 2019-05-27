@@ -11,7 +11,7 @@ namespace iCopy.SERVICES.Registers
         {
             services.AddAutoMapper();
             services.AddScoped<ICRUDService<Model.Request.Country, Model.Request.Country, Model.Response.Country, Model.Request.CountrySearch, int>,
-                CRUDService<Database.Country, Model.Request.Country, Model.Request.Country, Model.Response.Country, Model.Request.CountrySearch, int>>();
+                CountryService>();
             return services;
         }
     }

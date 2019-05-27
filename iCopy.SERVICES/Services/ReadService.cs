@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -33,17 +34,17 @@ namespace iCopy.SERVICES.Services
             return mapper.Map<List<TResult>>(await ctx.Set<TModel>().ToListAsync());
         }
 
-        public Task<List<TResult>> GetDataForDataTable()
+        public virtual async Task<Tuple<List<TResult>, int>> GetByParametersAsync(TSearch search, string order, string nameOfColumnOrder, int start, int length)
         {
-            throw new System.NotImplementedException();
+            return new Tuple<List<TResult>, int>(mapper.Map<List<TModel>, List<TResult>>(await ctx.Set<TModel>().Skip(start).Take(length).ToListAsync()), length);
         }
 
-        public virtual async Task<int> GetNumberOfRecords()
+        public virtual async Task<int> GetNumberOfRecordsAsync()
         {
             return await ctx.Set<TModel>().CountAsync();
         }
 
-        public virtual async Task<List<TResult>> TakeRecordsByNumber(int take)
+        public virtual async Task<List<TResult>> TakeRecordsByNumberAsync(int take = 15)
         {
             return mapper.Map<List<TResult>>(await ctx.Set<TModel>().Take(take).ToListAsync());
         }

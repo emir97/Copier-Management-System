@@ -1,81 +1,38 @@
-﻿using iCopy.SERVICES.IServices;
+﻿using System.Threading.Tasks;
+using iCopy.SERVICES.IServices;
 using iCopy.Web.Models;
-using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace iCopy.Web.Controllers
 {
-    public class BaseDataTableCRUDController<TInsert, TUpdate, TResult, TSearch, TPk> : Controller where TSearch : class where TInsert : class, new()
+    public class BaseDataTableCRUDController<TInsert, TUpdate, TResult, TSearch, TPk> : BaseCRUDController<TInsert, TUpdate, TResult, TSearch, TPk> where TSearch : class where TInsert : class, new()
     {
-        protected readonly ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> crudService;
-        private readonly SharedResource _localizer;
-
-        public BaseDataTableCRUDController(ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> crudService, SharedResource _localizer)
+        public BaseDataTableCRUDController(ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> crudService, SharedResource _localizer) : base(crudService, _localizer)
         {
-            this.crudService = crudService;
-            this._localizer = _localizer;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Index()
+        public override async Task<IActionResult> Index()
         {
-            int numberOfRecords = await crudService.GetNumberOfRecords();
+            int numberOfRecords = await crudService.GetNumberOfRecordsAsync();
             DataTable<TResult> model = new DataTable<TResult>()
             {
                 recordsFiltered = numberOfRecords,
                 recordsTotal = numberOfRecords,
-                data = await crudService.TakeRecordsByNumber(15)
+                data = await crudService.TakeRecordsByNumberAsync()
             };
             return View(model);
         }
 
-        [HttpGet]
-        public IActionResult Insert() => PartialView("_Add", new TInsert());
-
-        [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Insert(TInsert model)
+        public async Task<DataTable<TResult>> GetData([FromForm]TSearch Search, [FromForm]DataTableRequest Request)
         {
-            if(ModelState.IsValid)
+            var filteredData = await crudService.GetByParametersAsync(Search, Request.order[0].dir, Request.columns[Request.order[0].column].name, Request.start, Request.length);
+            return new DataTable<TResult>
             {
-                await crudService.InsertAsync(model);
-                return Json(new { success = true, message = _localizer.SuccAdd });
-            }
-            return PartialView("_Add", model);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Update(TPk id)
-        {
-            TResult model = await crudService.GetByIdAsync(id);
-            if (model != null)
-                return PartialView("_Edit", model);
-            return NotFound();
-        }
-
-        [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(TPk id, [FromForm]TUpdate model)
-        {
-            if (ModelState.IsValid)
-            {
-                await crudService.UpdateAsync(id, model);
-                return Json(new { success = true, message = _localizer.SuccUpdate });
-            }
-            return PartialView("_Edit", model);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Delete(TPk id)
-        {
-            try
-            {
-                await crudService.DeleteAsync(id);
-                return Json(new { success = true, message = _localizer.SuccDelete });
-            }
-            catch
-            {
-                return Json(new { success = false, message = _localizer.ErrDelete });
-            }
+                draw = Request.draw,
+                recordsTotal = await crudService.GetNumberOfRecordsAsync(),
+                recordsFiltered = filteredData.Item2,
+                data = filteredData.Item1
+            };
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using iCopy.Database;
 using iCopy.SERVICES.Context;
 using iCopy.SERVICES.IServices;
 using System;
@@ -6,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace iCopy.SERVICES.Services
 {
-    public class CRUDService<TModel, TInsert, TUpdate, TResult, TSearch, TPk> : ReadService<TModel, TResult, TSearch, TPk>, ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> where TModel : class
+    public class CRUDService<TModel, TInsert, TUpdate, TResult, TSearch, TPk> : ReadService<TModel, TResult, TSearch, TPk>, ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> where TModel : BaseEntity
     {
-        private readonly DBContext ctx;
-        private readonly IMapper mapper;
+        protected readonly DBContext ctx;
+        protected readonly IMapper mapper;
         public CRUDService(DBContext ctx, IMapper mapper) : base(ctx, mapper)
         {
             this.ctx = ctx;
             this.mapper = mapper;
         }
 
-        public async Task<TResult> DeleteAsync(TPk id)
+        public virtual async Task<TResult> DeleteAsync(TPk id)
         {
             TModel model = await ctx.Set<TModel>().FindAsync(id);
             ctx.Set<TModel>().Remove(model);
@@ -32,7 +33,7 @@ namespace iCopy.SERVICES.Services
             return mapper.Map<TResult>(model);
         }
 
-        public async Task<TResult> InsertAsync(TInsert entity)
+        public virtual async Task<TResult> InsertAsync(TInsert entity)
         {
             TModel model = mapper.Map<TModel>(entity);
             ctx.Set<TModel>().Add(model);
@@ -48,12 +49,11 @@ namespace iCopy.SERVICES.Services
             return mapper.Map<TResult>(model);
         }
         
-        public async Task<TResult> UpdateAsync(TPk id, TUpdate entity)
+        public virtual async Task<TResult> UpdateAsync(TPk id, TUpdate entity)
         {
             TModel model = await ctx.Set<TModel>().FindAsync(id);
             ctx.Set<TModel>().Attach(model);
             ctx.Set<TModel>().Update(model);
-
             mapper.Map(entity, model);
             try
             {

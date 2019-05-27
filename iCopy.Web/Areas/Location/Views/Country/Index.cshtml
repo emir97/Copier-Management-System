@@ -1,6 +1,7 @@
 ﻿@model iCopy.Web.Models.DataTable<iCopy.Model.Response.Country>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = _sharedLocalizer.CountrySettings;
 }
 
 <div class="kt-portlet kt-portlet--mobile">
@@ -27,30 +28,30 @@
     <div class="kt-portlet__body">
         <div class="row">
             <div class="kt-form kt-form--fit kt-margin-b-20 col-md-12">
-                <div class="row kt-margin-b-20">
+                <div class="row kt-margin-b-20" id="search-parameters">
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>@_sharedLocalizer.Name:</label>
-                        <input type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.Name" data-col-index="0">
+                        <input name="name" id="name" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.Name">
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>@_sharedLocalizer.ShortName:</label>
-                        <input type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.ShortName" data-col-index="1">
+                        <input name="shortname" id="shortname" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.ShortName">
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>@_sharedLocalizer.PhoneCode:</label>
-                        <input type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.PhoneCode" data-col-index="2">
+                        <input name="phonecode" id="phonecode" type="number" class="form-control kt-input" placeholder="@_sharedLocalizer.PhoneCode">
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>&nbsp;</label>
                         <div class="btn-group btn-group-toggle col-md-12 p-0" data-toggle="buttons" data-col-index="3">
                             <label class="btn btn-secondary active">
-                                <input type="radio" name="options" id="option1" autocomplete="off" checked class="form-control"> @_sharedLocalizer.All
+                                <input name="active" id="active" type="radio" autocomplete="off" checked class="form-control" value=""> @_sharedLocalizer.All
                             </label>
                             <label class="btn btn-secondary">
-                                <input type="radio" name="options" id="option2" autocomplete="off" class="form-control" value="true"> @_sharedLocalizer.Active
+                                <input name="active" id="active" type="radio" autocomplete="off" class="form-control" value="true"> @_sharedLocalizer.Active
                             </label>
                             <label class="btn btn-secondary">
-                                <input type="radio" name="options" id="option3" autocomplete="off" class="form-control" value="false"> @_sharedLocalizer.Inactive
+                                <input name="active" id="active" type="radio" autocomplete="off" class="form-control" value="false"> @_sharedLocalizer.Inactive
                             </label>
                         </div>
                     </div>
@@ -58,13 +59,13 @@
                 <div class="kt-separator kt-separator--md kt-separator--dashed"></div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <button class="btn btn-secondary btn-secondary--icon pull-right ml-3" id="kt_reset">
+                        <button class="btn btn-secondary btn-secondary--icon pull-right ml-3" id="datatable-reset">
                             <span>
                                 <i class="la la-close"></i>
                                 <span>@_sharedLocalizer.Reset</span>
                             </span>
                         </button>
-                        <button class="btn btn-brand btn-brand--icon pull-right" id="kt_search">
+                        <button class="btn btn-brand btn-brand--icon pull-right" id="datatable-search">
                             <span>
                                 <i class="la la-search"></i>
                                 <span>@_sharedLocalizer.Search</span>
@@ -113,6 +114,7 @@
                 serverSide: true,
                 searching: false,
                 autoWidth: true,
+                pageLength: 15,
                 lengthMenu: [10, 15, 25, 50],
                 order: [[1, 'asc']],
                 language: {
@@ -122,11 +124,21 @@
                 dom: `<'row'<'col-sm-12'tr>>
 			<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
                 ajax: {
-                    url: "",
-                    dataType: 'json'
+                    url: "/location/country/getdata",
+                    dataType: 'json',
+                    type: 'post',
+                    data: function (searchData) {
+                        searchData.Search = {
+                            Name : $("#name").val(),
+                            ShortName : $("#shortname").val(),
+                            Active : $("#active:checked").val(),
+                            PhoneCode : $("#phonecode").val()
+                        };
+                        return searchData;
+                    }
                 },
                 columns: [
-                    { data: "iD" },
+                    { data: "id" },
                     { data: "name" },
                     { data: 'shortName' },
                     { data: 'phoneNumberCode' },
@@ -136,14 +148,27 @@
                 columnDefs: [
                     {
                         targets: 0,
+                        name: 'ID',
                         className: 'text-center',
+                    },
+                    {
+                        targets: 1,
+                        name: '@nameof(iCopy.Model.Request.Country.Name)'
+                    },
+                    {
+                        targets: 2,
+                        name: '@nameof(iCopy.Model.Request.Country.ShortName)'
+                    },
+                    {
+                        targets: 3,
+                        name: '@nameof(iCopy.Model.Request.Country.PhoneNumberCode)'
                     },
                     {
                         targets: 4,
                         orderable: false,
                         className: 'text-center align-middle',
                         render: function (data, type, full, meta) {
-                            if (full.active == 'True') {
+                            if (full.active == 'True' || full.active == true) {
                                 return `<span class="kt-badge kt-badge--inline kt-badge--success">@_sharedLocalizer.Active</span>`
                             }
                             return `<span class="kt-badge kt-badge--inline kt-badge--danger">@_sharedLocalizer.Inactive</span>`
@@ -155,9 +180,9 @@
                         className: 'text-center align-middle',
                         render: function (data, type, full, meta) {
                             return `
-<a href="/location/country/update/${full.iD}" ajax-add="modal-bs" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-edit"></i></a>
-<a href="/location/country/delete/${full.iD}" ajax-delete class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
-<a href="/location/countr/delete/${full.iD}" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
+<a href="/location/country/update/${full.id}" ajax-add="modal-bs" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-edit"></i></a>
+<a href="/location/country/delete/${full.id}" ajax-delete="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
+<a href="" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
 `;
                         }
                     }
@@ -169,5 +194,14 @@
 
     $(document).ready(function () {
         DataTable.init();
+        $('#datatable-search').on('click', function (e) {
+            e.preventDefault();
+            $("#datatable").DataTable().ajax.reload();
+        });
+        $("#datatable-reset").on('click', function (e) {
+            $("#search-parameters input[type='text']").val('');
+            $("#search-parameters input[type='number']").val('');
+            $("#datatable-search").trigger('click');
+        });
     });
 </script>
