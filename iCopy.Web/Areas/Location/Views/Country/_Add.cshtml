@@ -1,5 +1,4 @@
 ﻿@model iCopy.Model.Request.Country
-@inject SharedResource _localizer
 @{
     Layout = null;
 }
@@ -10,23 +9,23 @@
 <form asp-area="location" asp-controller="country" asp-action="insert" method="post" ajax-modal-form="true" asp-antiforgery="true">
     <div class="modal-body">
         <div class="form-group">
-            <label>@_localizer.Name:</label>
-            <input asp-for="Name" type="text" class="form-control" placeholder="@_localizer.Name">
+            <label>@_sharedLocalizer.Name:</label>
+            <input asp-for="Name" type="text" class="form-control" placeholder="@_sharedLocalizer.Name">
             <span asp-validation-for="Name" class="form-text text-danger"></span>
         </div>
         <div class="form-group">
-            <label>@_localizer.ShortName:</label>
-            <input asp-for="ShortName" type="text" class="form-control" placeholder="@_localizer.ShortName">
+            <label>@_sharedLocalizer.ShortName:</label>
+            <input asp-for="ShortName" type="text" class="form-control" placeholder="@_sharedLocalizer.ShortName">
             <span asp-validation-for="ShortName" class="form-text text-danger"></span>
         </div>
         <div class="form-group">
-            <label>@_localizer.PhoneCode:</label>
-            <input asp-for="PhoneNumberCode" type="number" class="form-control" placeholder="@_localizer.PhoneCode">
+            <label>@_sharedLocalizer.PhoneCode:</label>
+            <input asp-for="PhoneNumberCode" type="number" class="form-control" placeholder="@_sharedLocalizer.PhoneCode">
             <span asp-validation-for="PhoneNumberCode" class="form-text text-danger"></span>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">@_localizer.Close</button>
-        <button type="submit" class="btn btn-primary">@_localizer.SaveChanges</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">@_sharedLocalizer.Close</button>
+        <button type="submit" class="btn btn-primary">@_sharedLocalizer.SaveChanges</button>
     </div>
 </form>

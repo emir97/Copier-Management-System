@@ -1,5 +1,4 @@
 ﻿@model iCopy.Model.Response.City
-@inject SharedResource _localizer
 @{
     Layout = null;
 }
@@ -30,7 +29,7 @@
             <span asp-validation-for="PostalCode" class="form-text text-danger"></span>
         </div>
         <div class="form-group">
-            <label class="col-3 col-form-label">@_localizer.Active:</label>
+            <label class="col-3 col-form-label">@_sharedLocalizer.Active:</label>
             <div class="col-md-12">
                 <span class="kt-switch kt-switch--icon">
                     <label>
@@ -43,8 +42,8 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">@_localizer.Close</button>
-        <button type="submit" class="btn btn-primary">@_localizer.SaveChanges</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">@_sharedLocalizer.Close</button>
+        <button type="submit" class="btn btn-primary">@_sharedLocalizer.SaveChanges</button>
     </div>
 </form>
 <script>
