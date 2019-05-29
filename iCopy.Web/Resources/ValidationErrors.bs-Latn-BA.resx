@@ -120,11 +120,23 @@
   <data name="ErrMaxLenght" xml:space="preserve">
     <value>Maksimalan broj karaktera je 100</value>
   </data>
+  <data name="ErrMinMaxName" xml:space="preserve">
+    <value>Naziv mora imate najmanje 5 karaktera</value>
+  </data>
+  <data name="ErrMinMaxShortName" xml:space="preserve">
+    <value>Skraćeni naziv mora imate najmanje 2 karaktera</value>
+  </data>
+  <data name="ErrNoCountry" xml:space="preserve">
+    <value>Država je obavezna</value>
+  </data>
   <data name="ErrNoName" xml:space="preserve">
     <value>Naziv je obavezan</value>
   </data>
   <data name="ErrNoPhoneNumberCode" xml:space="preserve">
     <value>Pozivni broj države je obavezan</value>
+  </data>
+  <data name="ErrNoPostalCode" xml:space="preserve">
+    <value>Poštanski broj je obavezan</value>
   </data>
   <data name="ErrNoShortName" xml:space="preserve">
     <value>Skraćeni naziv je obavezan</value>

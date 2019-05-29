@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using iCopy.Model.Request;
-using iCopy.Model.Response;
 using iCopy.SERVICES.Context;
 using iCopy.SERVICES.Extensions;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace iCopy.SERVICES.Services
 {
@@ -36,11 +35,11 @@ namespace iCopy.SERVICES.Services
             else if (nameof(Database.Country.PhoneNumberCode) == nameOfColumnOrder)
                 query = query.OrderByAscDesc(x => x.PhoneNumberCode, order);
             else if (nameof(Database.Country.ID) == nameOfColumnOrder)
-                query = query.OrderByAscDesc(x => x.ID, nameOfColumnOrder);
+                query = query.OrderByAscDesc(x => x.ID, order);
 
+            var count = await query.CountAsync();
             query = query.Skip(start).Take(length);
-
-            return new Tuple<List<Model.Response.Country>, int>(mapper.Map<List<Model.Response.Country>>(await query.ToListAsync()), await query.CountAsync());
+            return new Tuple<List<Model.Response.Country>, int>(mapper.Map<List<Model.Response.Country>>(await query.ToListAsync()), count);
         }
     }
 }

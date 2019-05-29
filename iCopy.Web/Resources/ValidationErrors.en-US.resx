@@ -121,16 +121,22 @@
     <value>Maximum number of characters is 100</value>
   </data>
   <data name="ErrMinMaxName" xml:space="preserve">
-    <value>Name must be at least 2 characters</value>
+    <value>Name must be at least 5 characters</value>
   </data>
   <data name="ErrMinMaxShortName" xml:space="preserve">
     <value>Short name must be at least 2 characters</value>
+  </data>
+  <data name="ErrNoCountry" xml:space="preserve">
+    <value>Country is required</value>
   </data>
   <data name="ErrNoName" xml:space="preserve">
     <value>Name is required</value>
   </data>
   <data name="ErrNoPhoneNumberCode" xml:space="preserve">
     <value>Country phone code is required</value>
+  </data>
+  <data name="ErrNoPostalCode" xml:space="preserve">
+    <value>Postal code is required</value>
   </data>
   <data name="ErrNoShortName" xml:space="preserve">
     <value>Short name is required</value>

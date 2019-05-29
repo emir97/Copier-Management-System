@@ -6,10 +6,12 @@ namespace iCopy.SERVICES.Mapper
     {
         public Mapper()
         {
-            CreateMap<Database.City, Model.Response.City>().ReverseMap();
             CreateMap<Database.Country, Model.Response.Country>().ReverseMap();
             CreateMap<Database.Country, Model.Request.Country>().ReverseMap();
             CreateMap<Model.Response.Country, Model.Request.Country>().ReverseMap();
+            CreateMap<Database.City, Model.Response.City>().ReverseMap();
+            CreateMap<Database.City, Model.Request.City>().ReverseMap();
+            CreateMap<Model.Response.City, Model.Request.City>().ReverseMap();
         }
     }
 }

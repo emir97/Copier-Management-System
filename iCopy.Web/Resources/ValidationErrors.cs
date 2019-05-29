@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Localization;
 
-namespace iCopy.Web.Resources
+namespace iCopy.Web
 {
     public class ValidationErrors
     {

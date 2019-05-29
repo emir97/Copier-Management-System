@@ -123,14 +123,29 @@
   <data name="Active" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="AddCity" xml:space="preserve">
+    <value>Add city</value>
+  </data>
   <data name="AddCountry" xml:space="preserve">
     <value>Add country</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>All</value>
   </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ChooseCountry" xml:space="preserve">
+    <value>Choose country</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
+  </data>
+  <data name="CitySettings" xml:space="preserve">
+    <value>City settings</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Close</value>
@@ -144,6 +159,15 @@
   <data name="CountrySettings" xml:space="preserve">
     <value>Country settings</value>
   </data>
+  <data name="EditCity" xml:space="preserve">
+    <value>Edit city</value>
+  </data>
+  <data name="EditCountry" xml:space="preserve">
+    <value>Edit country</value>
+  </data>
+  <data name="ErrChangeStatus" xml:space="preserve">
+    <value>An error occured while trying to change the status</value>
+  </data>
   <data name="ErrDelete" xml:space="preserve">
     <value>An error occured while trying to delete the record</value>
   </data>
@@ -156,8 +180,14 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="PhoneCode" xml:space="preserve">
     <value>Country phone code</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>Postal code</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
@@ -174,10 +204,16 @@
   <data name="SuccAdd" xml:space="preserve">
     <value>Record is successfully added</value>
   </data>
+  <data name="SuccChangeStatus" xml:space="preserve">
+    <value>Status is successfully changed</value>
+  </data>
   <data name="SuccDelete" xml:space="preserve">
     <value>Record is successfully deleted</value>
   </data>
   <data name="SuccUpdate" xml:space="preserve">
     <value>Record is successfully updated</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using iCopy.SERVICES.Context;
+using iCopy.SERVICES.Registers;
+using iCopy.Web.Helper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using iCopy.Web.Helper;
-using iCopy.SERVICES.Registers;
-using iCopy.SERVICES.Context;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Localization;
-using iCopy.Web.Resources;
 
 namespace iCopy.Web
 {
@@ -49,6 +47,7 @@ namespace iCopy.Web
             services.AddDbContext<AuthContext>(x => x.UseSqlServer(Configuration.GetConnectionString("AuthContext")));
             services.AddiCopyServices();
             services.AddScoped<SharedResource>();
+            services.AddScoped<ISelectList, SelectList>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

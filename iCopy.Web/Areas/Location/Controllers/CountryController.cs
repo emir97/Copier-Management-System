@@ -1,6 +1,6 @@
-﻿using iCopy.SERVICES.IServices;
+﻿using AutoMapper;
+using iCopy.SERVICES.IServices;
 using iCopy.Web.Controllers;
-using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Mvc;
 
 namespace iCopy.Web.Areas.Location.Controllers
@@ -9,7 +9,7 @@ namespace iCopy.Web.Areas.Location.Controllers
     public class CountryController : BaseDataTableCRUDController<Model.Request.Country, Model.Request.Country, Model.Response.Country, Model.Request.CountrySearch, int>
     {
         public CountryController(ICRUDService<Model.Request.Country, Model.Request.Country, Model.Response.Country, Model.Request.CountrySearch, int> crudService, 
-            SharedResource _localizer) : base(crudService, _localizer)
+            SharedResource _localizer, IMapper mapper) : base(crudService, _localizer, mapper)
         {
         }
 

@@ -6,9 +6,10 @@ namespace iCopy.Database
     {
         public string Name { get; set; }
         public string ShortName { get; set; }
+        public int PostalCode { get; set; }
 
         [ForeignKey(nameof(Country))]
-        public int CityID { get; set; }
+        public int CountryID { get; set; }
         public Country Country { get; set; }
     }
 }

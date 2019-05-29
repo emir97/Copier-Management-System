@@ -1,4 +1,5 @@
-﻿using iCopy.SERVICES.IServices;
+﻿using AutoMapper;
+using iCopy.SERVICES.IServices;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -8,11 +9,13 @@ namespace iCopy.Web.Controllers
     {
         protected readonly ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> crudService;
         protected readonly SharedResource _localizer;
+        private readonly IMapper mapper;
 
-        public BaseCRUDController(ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> crudService, SharedResource _localizer)
+        public BaseCRUDController(ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> crudService, SharedResource _localizer, IMapper mapper)
         {
             this.crudService = crudService;
             this._localizer = _localizer;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -49,7 +52,7 @@ namespace iCopy.Web.Controllers
                 await crudService.UpdateAsync(id, model);
                 return Json(new { success = true, message = _localizer.SuccUpdate });
             }
-            return PartialView("_Edit", model);
+            return PartialView("_Edit", mapper.Map<TResult>(model));
         }
 
         [HttpGet]
@@ -63,6 +66,20 @@ namespace iCopy.Web.Controllers
             catch
             {
                 return Json(new { success = false, message = _localizer.ErrDelete });
+            }
+        }
+
+        [HttpPost]
+        public virtual async Task<IActionResult> ChangeActiveStatus(TPk id)
+        {
+            try
+            {
+                await crudService.ChangeActiveStatusAsync(id);
+                return Json(new { success = true, message = _localizer.SuccChangeStatus });
+            }
+            catch
+            {
+                return Json(new { success = false, message = _localizer.ErrChangeStatus });
             }
         }
     }

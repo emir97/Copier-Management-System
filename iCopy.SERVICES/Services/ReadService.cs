@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using iCopy.Database;
 using iCopy.SERVICES.Context;
 using iCopy.SERVICES.IServices;
 using Microsoft.EntityFrameworkCore;
 
 namespace iCopy.SERVICES.Services
 {
-    public class ReadService<TModel, TResult, TSearch, TPk> : IReadService<TResult, TSearch, TPk> where TModel : class
+    public class ReadService<TModel, TResult, TSearch, TPk> : IReadService<TResult, TSearch, TPk> where TModel : BaseEntity
     {
         private readonly DBContext ctx;
         private readonly IMapper mapper;
@@ -19,6 +20,12 @@ namespace iCopy.SERVICES.Services
             this.ctx = ctx;
             this.mapper = mapper;
         }
+
+        public virtual async Task<List<TResult>> GetAllActiveAsync()
+        {
+            return mapper.Map<List<TResult>>(await ctx.Set<TModel>().Where(x => x.Active).ToListAsync());
+        }
+
         public virtual async Task<List<TResult>> GetAllAsync()
         {
             return mapper.Map<List<TResult>>(await ctx.Set<TModel>().ToListAsync());

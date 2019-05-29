@@ -23,25 +23,25 @@
                         <span class="kt-menu__link-icon">
                             <i class="fa fa-map-marker-alt"></i>
                         </span>
-                        <span class="kt-menu__link-text">@_localizer.LocationSettings</span>
+                        <span class="kt-menu__link-text">@_sharedLocalizer.LocationSettings</span>
                         <i class="kt-menu__ver-arrow la la-angle-right"></i>
                     </a>
                     <div class="kt-menu__submenu " kt-hidden-height="200" style="display: none; overflow: hidden;">
                         <span class="kt-menu__arrow"></span>
                         <ul class="kt-menu__subnav">
                             <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true">
-                                <span class="kt-menu__link"><span class="kt-menu__link-text">@_localizer.LocationSettings</span></span>
+                                <span class="kt-menu__link"><span class="kt-menu__link-text">@_sharedLocalizer.LocationSettings</span></span>
                             </li>
                             <li class="kt-menu__item " aria-haspopup="true">
                                 <a asp-area="location" asp-controller="country" asp-action="index" class="kt-menu__link ">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
-                                    <span class="kt-menu__link-text">@_localizer.Countries</span>
+                                    <span class="kt-menu__link-text">@_sharedLocalizer.Countries</span>
                                 </a>
                             </li>
                             <li class="kt-menu__item " aria-haspopup="true">
                                 <a asp-area="location" asp-controller="city" asp-action="index" class="kt-menu__link ">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
-                                    <span class="kt-menu__link-text">City</span>
+                                    <span class="kt-menu__link-text">@_sharedLocalizer.City</span>
                                 </a>
                             </li>
                         </ul>

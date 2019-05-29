@@ -123,14 +123,29 @@
   <data name="Active" xml:space="preserve">
     <value>Aktivan</value>
   </data>
+  <data name="AddCity" xml:space="preserve">
+    <value>Dodaj grad</value>
+  </data>
   <data name="AddCountry" xml:space="preserve">
     <value>Dodaj državu</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>Sve</value>
   </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Da li ste sigurni?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Nazad</value>
+  </data>
+  <data name="ChooseCountry" xml:space="preserve">
+    <value>Izaberite državu</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>Grad</value>
+  </data>
+  <data name="CitySettings" xml:space="preserve">
+    <value>Postavke grada</value>
   </data>
   <data name="Close" xml:space="preserve">
     <value>Zatvori</value>
@@ -144,6 +159,15 @@
   <data name="CountrySettings" xml:space="preserve">
     <value>Postavke države</value>
   </data>
+  <data name="EditCity" xml:space="preserve">
+    <value>Izmijeni grad</value>
+  </data>
+  <data name="EditCountry" xml:space="preserve">
+    <value>Izmijeni državu</value>
+  </data>
+  <data name="ErrChangeStatus" xml:space="preserve">
+    <value>Došlo je do greške prilikom izmijene statusa</value>
+  </data>
   <data name="ErrDelete" xml:space="preserve">
     <value>Došlo je do greške prilikom brisanja</value>
   </data>
@@ -156,8 +180,14 @@
   <data name="Name" xml:space="preserve">
     <value>Naziv</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Ne</value>
+  </data>
   <data name="PhoneCode" xml:space="preserve">
     <value>Pozivni broj države</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>Poštanski broj</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Poništi</value>
@@ -174,10 +204,16 @@
   <data name="SuccAdd" xml:space="preserve">
     <value>Uspješno dodan zapis</value>
   </data>
+  <data name="SuccChangeStatus" xml:space="preserve">
+    <value>Status uspješno izmijenjen</value>
+  </data>
   <data name="SuccDelete" xml:space="preserve">
     <value>Zapis uspješno obrisan</value>
   </data>
   <data name="SuccUpdate" xml:space="preserve">
     <value>Zapis uspješno uređen</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Da</value>
   </data>
 </root>

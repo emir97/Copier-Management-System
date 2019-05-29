@@ -17,12 +17,30 @@ namespace iCopy.SERVICES.Services
             this.mapper = mapper;
         }
 
+        public async Task<TResult> ChangeActiveStatusAsync(TPk id)
+        {
+            TModel model = await ctx.Set<TModel>().FindAsync(id);
+            model.Active = !model.Active;
+            try
+            {
+                ctx.Set<TModel>().Update(model);
+                await ctx.SaveChangesAsync();
+                // TODO: Dodati log operaciju
+
+            } catch(Exception e)
+            {
+                //TODO: Dodati log operaciju
+                throw e;
+            }
+            return mapper.Map<TResult>(model);
+        }
+
         public virtual async Task<TResult> DeleteAsync(TPk id)
         {
             TModel model = await ctx.Set<TModel>().FindAsync(id);
-            ctx.Set<TModel>().Remove(model);
             try
             {
+                ctx.Set<TModel>().Remove(model);
                 await ctx.SaveChangesAsync();
                 // TODO: Dodati log u bazu
             } catch(Exception e)
@@ -36,9 +54,9 @@ namespace iCopy.SERVICES.Services
         public virtual async Task<TResult> InsertAsync(TInsert entity)
         {
             TModel model = mapper.Map<TModel>(entity);
-            ctx.Set<TModel>().Add(model);
             try
             {
+                ctx.Set<TModel>().Add(model);
                 await ctx.SaveChangesAsync();
                 // TODO: Dodati log u bazu
             } catch(Exception e)

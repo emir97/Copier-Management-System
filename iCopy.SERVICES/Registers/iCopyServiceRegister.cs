@@ -12,6 +12,9 @@ namespace iCopy.SERVICES.Registers
             services.AddAutoMapper();
             services.AddScoped<ICRUDService<Model.Request.Country, Model.Request.Country, Model.Response.Country, Model.Request.CountrySearch, int>,
                 CountryService>();
+            services.AddScoped<IReadService<Model.Response.Country, Model.Request.CountrySearch, int>, CountryService>();
+            services.AddScoped<ICRUDService<Model.Request.City, Model.Request.City, Model.Response.City, Model.Request.CitySearch, int>,
+                CityService>();
             return services;
         }
     }

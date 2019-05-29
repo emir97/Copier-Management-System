@@ -1,5 +1,6 @@
 ﻿using iCopy.Database;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace iCopy.SERVICES.Context
 {
@@ -15,12 +16,11 @@ namespace iCopy.SERVICES.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Country>()
-                .Property(b => b.CreatedDate)
-                .HasDefaultValueSql("getdate()");
-            modelBuilder.Entity<Country>()
-                .Property(b => b.Active)
-                .HasDefaultValueSql("1");
+            var cascadefks = modelBuilder.Model.GetEntityTypes()
+                .SelectMany(x => x.GetForeignKeys())
+                .Where(x => x.DeleteBehavior == DeleteBehavior.Cascade);
+            foreach (var item in cascadefks)
+                item.DeleteBehavior = DeleteBehavior.Restrict;
         }
     }
 }

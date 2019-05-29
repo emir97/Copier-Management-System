@@ -2,7 +2,7 @@
 
 namespace iCopy.Model.Request
 {
-    public class Country
+    public class City
     {
         [Required(ErrorMessage = "ErrNoName")]
         [MinLength(5, ErrorMessage = "ErrMinMaxName")]
@@ -10,8 +10,10 @@ namespace iCopy.Model.Request
         [Required(ErrorMessage = "ErrNoShortName")]
         [MinLength(2, ErrorMessage = "ErrMinMaxShortName")]
         public string ShortName { get; set; }
-        [Required(ErrorMessage = "ErrNoPhoneNumberCode")]
-        public string PhoneNumberCode { get; set; }
+        [Required(ErrorMessage = "ErrNoPostalCode")]
+        public int PostalCode { get; set; }
+        [Required(ErrorMessage = "ErrNoCountry")]
+        public int CountryID { get; set; }
         public bool Active { get; set; }
     }
 }

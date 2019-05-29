@@ -1,7 +1,7 @@
-﻿@model iCopy.Web.Models.DataTable<iCopy.Model.Response.Country>
+﻿@model iCopy.Web.Models.DataTable<iCopy.Model.Response.City>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = _sharedLocalizer.CountrySettings;
+    ViewData["Title"] = _sharedLocalizer.CitySettings;
 }
 
 <div class="kt-portlet kt-portlet--mobile">
@@ -11,15 +11,15 @@
                 <i class="kt-font-brand fa fa-map-marker-alt"></i>
             </span>
             <h3 class="kt-portlet__head-title">
-                @_sharedLocalizer.CountrySettings
+                @_sharedLocalizer.CitySettings
             </h3>
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-wrapper">
                 <div class="kt-portlet__head-actions">
-                    <a asp-area="location" asp-controller="country" asp-action="insert" ajax-add="modal-bs" class="btn btn-brand btn-icon-sm">
+                    <a asp-area="location" asp-controller="city" asp-action="insert" ajax-add="modal-bs" class="btn btn-brand btn-icon-sm">
                         <i class="la la-plus"></i>
-                        @_sharedLocalizer.AddCountry
+                        @_sharedLocalizer.AddCity
                     </a>
                 </div>
             </div>
@@ -38,8 +38,12 @@
                         <input name="shortname" id="shortname" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.ShortName">
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>@_sharedLocalizer.PhoneCode:</label>
-                        <input name="phonecode" id="phonecode" type="number" class="form-control kt-input" placeholder="@_sharedLocalizer.PhoneCode">
+                        <label>@_sharedLocalizer.Country:</label>
+                        <select name="CountryID" asp-items="@(await _selectList.Countries())" class="form-control kt-select2" id="countries-list"></select>
+                    </div>
+                    <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                        <label>@_sharedLocalizer.PostalCode:</label>
+                        <input name="postalcode" id="postalcode" type="number" class="form-control kt-input" placeholder="@_sharedLocalizer.PostalCode">
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>&nbsp;</label>
@@ -82,7 +86,8 @@
                     <th>#</th>
                     <th>@_sharedLocalizer.Name  </th>
                     <th>@_sharedLocalizer.ShortName</th>
-                    <th>@_sharedLocalizer.PhoneCode</th>
+                    <th>@_sharedLocalizer.Country</th>
+                    <th>@_sharedLocalizer.PostalCode</th>
                     <th>@_sharedLocalizer.Active</th>
                     <th>@_sharedLocalizer.Actions</th>
                 </tr>
@@ -94,7 +99,8 @@
                         <td>@item.ID</td>
                         <td>@item.Name</td>
                         <td>@item.ShortName</td>
-                        <td>@item.PhoneNumberCode</td>
+                        <td>@item.Country.Name</td>
+                        <td>@item.PostalCode</td>
                         <td>@item.Active</td>
                         <td></td>
                     </tr>
@@ -124,15 +130,16 @@
                 dom: `<'row'<'col-sm-12'tr>>
 			<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
                 ajax: {
-                    url: "/location/country/getdata",
+                    url: "/location/city/getdata",
                     dataType: 'json',
                     type: 'post',
                     data: function (searchData) {
                         searchData.Search = {
                             Name : $("#name").val(),
                             ShortName : $("#shortname").val(),
-                            Active : $("#active:checked").val(),
-                            PhoneCode : $("#phonecode").val()
+                            Active: $("#active:checked").val(),
+                            CountryID: $("#countries-list").val(),
+                            PostalCode : $("#postalcode").val()
                         };
                         return searchData;
                     }
@@ -141,7 +148,8 @@
                     { data: "id" },
                     { data: "name" },
                     { data: 'shortName' },
-                    { data: 'phoneNumberCode' },
+                    {data: 'country.name'},
+                    { data: 'postalCode' },
                     { data: 'active' },
                     { data: 'actions' }
                 ],
@@ -153,19 +161,24 @@
                     },
                     {
                         targets: 1,
-                        name: '@nameof(iCopy.Model.Request.Country.Name)'
+                        name: '@nameof(iCopy.Model.Request.City.Name)'
                     },
                     {
                         targets: 2,
-                        name: '@nameof(iCopy.Model.Request.Country.ShortName)'
+                        name: '@nameof(iCopy.Model.Request.City.ShortName)'
                     },
                     {
                         targets: 3,
-                        name: '@nameof(iCopy.Model.Request.Country.PhoneNumberCode)',
-                        className: 'text-center'
+                        name: '@nameof(iCopy.Model.Request.City.CountryID)'
                     },
                     {
                         targets: 4,
+                        name: '@nameof(iCopy.Model.Request.City.PostalCode)',
+                        className: 'text-center',
+                        orderable: false
+                    },
+                    {
+                        targets: 5,
                         orderable: false,
                         className: 'text-center align-middle',
                         render: function (data, type, full, meta) {
@@ -181,9 +194,9 @@
                         className: 'text-center align-middle',
                         render: function (data, type, full, meta) {
                             return `
-<a href="/location/country/update/${full.id}" ajax-add="modal-bs" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-edit"></i></a>
-<a href="/location/country/delete/${full.id}" ajax-delete="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
-<a href="/location/country/changeactivestatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
+<a href="/location/city/update/${full.id}" ajax-add="modal-bs" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-edit"></i></a>
+<a href="/location/city/delete/${full.id}" ajax-delete="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
+<a href="/location/city/changeactivestatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
 `;
                         }
                     }
@@ -203,7 +216,9 @@
             $("#search-parameters input[type='text']").val('');
             $("#search-parameters input[type='number']").val('');
             $("#search-parameters input[type=radio]:first").parent().trigger('click');
+            $('#countries-list').prop('selectedIndex', 0).trigger('change');
             $("#datatable-search").trigger('click');
         });
+        $('#countries-list').select2({width: '100%'});
     });
 </script>

@@ -12,5 +12,6 @@ namespace iCopy.SERVICES.IServices
         Task<Tuple<List<TResult>, int>> GetByParametersAsync(TSearch search, string order, string nameOfColumnOrder, int start, int length);
         Task<int> GetNumberOfRecordsAsync();
         Task<List<TResult>> TakeRecordsByNumberAsync(int take = 15);
+        Task<List<TResult>> GetAllActiveAsync();
     }
 }

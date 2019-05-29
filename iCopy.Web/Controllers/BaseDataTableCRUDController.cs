@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using iCopy.SERVICES.IServices;
 using iCopy.Web.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,8 @@ namespace iCopy.Web.Controllers
 {
     public class BaseDataTableCRUDController<TInsert, TUpdate, TResult, TSearch, TPk> : BaseCRUDController<TInsert, TUpdate, TResult, TSearch, TPk> where TSearch : class where TInsert : class, new()
     {
-        public BaseDataTableCRUDController(ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> crudService, SharedResource _localizer) : base(crudService, _localizer)
+        public BaseDataTableCRUDController(ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> crudService, SharedResource _localizer, IMapper mapper) 
+            : base(crudService, _localizer, mapper)
         {
         }
 
@@ -29,7 +31,7 @@ namespace iCopy.Web.Controllers
             return new DataTable<TResult>
             {
                 draw = Request.draw,
-                recordsTotal = await crudService.GetNumberOfRecordsAsync(),
+                recordsTotal = filteredData.Item2,
                 recordsFiltered = filteredData.Item2,
                 data = filteredData.Item1
             };
