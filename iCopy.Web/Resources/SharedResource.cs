@@ -29,6 +29,8 @@ namespace iCopy.Web
         public string AreYouSure => localizer["AreYouSure"];
         public string Cancel => localizer["Cancel"];
         public string PostalCode => localizer["PostalCode"];
+        public string Bosnian => localizer["Bosnian"];
+        public string EnglishUS => localizer["EnglishUS"];
 
 
         #region SuccMessage
@@ -53,6 +55,7 @@ namespace iCopy.Web
 
         #region City
         public string City => localizer["City"];
+        public string Cities => localizer["Cities"];
         public string CitySettings => localizer["CitySettings"];
         public string AddCity => localizer["AddCity"];
         public string EditCity => localizer["EditCity"];

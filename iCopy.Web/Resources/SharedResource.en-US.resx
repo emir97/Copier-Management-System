@@ -135,11 +135,17 @@
   <data name="AreYouSure" xml:space="preserve">
     <value>Are you sure?</value>
   </data>
+  <data name="Bosnian" xml:space="preserve">
+    <value>Bosnian</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="ChooseCountry" xml:space="preserve">
     <value>Choose country</value>
+  </data>
+  <data name="Cities" xml:space="preserve">
+    <value>Cities</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
@@ -164,6 +170,9 @@
   </data>
   <data name="EditCountry" xml:space="preserve">
     <value>Edit country</value>
+  </data>
+  <data name="EnglishUS" xml:space="preserve">
+    <value>English US</value>
   </data>
   <data name="ErrChangeStatus" xml:space="preserve">
     <value>An error occured while trying to change the status</value>

@@ -135,11 +135,17 @@
   <data name="AreYouSure" xml:space="preserve">
     <value>Da li ste sigurni?</value>
   </data>
+  <data name="Bosnian" xml:space="preserve">
+    <value>Bosanski</value>
+  </data>
   <data name="Cancel" xml:space="preserve">
     <value>Nazad</value>
   </data>
   <data name="ChooseCountry" xml:space="preserve">
     <value>Izaberite državu</value>
+  </data>
+  <data name="Cities" xml:space="preserve">
+    <value>Gradovi</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>Grad</value>
@@ -164,6 +170,9 @@
   </data>
   <data name="EditCountry" xml:space="preserve">
     <value>Izmijeni državu</value>
+  </data>
+  <data name="EnglishUS" xml:space="preserve">
+    <value>Engleski US</value>
   </data>
   <data name="ErrChangeStatus" xml:space="preserve">
     <value>Došlo je do greške prilikom izmijene statusa</value>

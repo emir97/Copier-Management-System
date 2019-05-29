@@ -16,6 +16,18 @@ namespace iCopy.SERVICES.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes()
+        .Where(e => typeof(BaseEntity).IsAssignableFrom(e.ClrType)))
+            {
+                modelBuilder
+                    .Entity(entityType.ClrType)
+                    .Property("CreatedDate")
+                    .HasDefaultValueSql("getutcdate()");
+                modelBuilder
+                    .Entity(entityType.ClrType)
+                    .Property("Active")
+                    .HasDefaultValueSql("1");
+            }
             var cascadefks = modelBuilder.Model.GetEntityTypes()
                 .SelectMany(x => x.GetForeignKeys())
                 .Where(x => x.DeleteBehavior == DeleteBehavior.Cascade);
