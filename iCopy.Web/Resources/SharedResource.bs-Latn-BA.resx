@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About" xml:space="preserve">
+    <value>O nama</value>
+  </data>
   <data name="Actions" xml:space="preserve">
     <value>Akcije</value>
   </data>
@@ -156,6 +159,12 @@
   <data name="Close" xml:space="preserve">
     <value>Zatvori</value>
   </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Kontakt</value>
+  </data>
+  <data name="CopierManagementSystem" xml:space="preserve">
+    <value>Softver za upravljanje kopirnicama</value>
+  </data>
   <data name="Countries" xml:space="preserve">
     <value>Države</value>
   </data>
@@ -183,6 +192,12 @@
   <data name="Inactive" xml:space="preserve">
     <value>Neaktivan</value>
   </data>
+  <data name="LanguageImagePath" xml:space="preserve">
+    <value>assets/media/flags/021-bosnia-and-herzegovina.svg</value>
+  </data>
+  <data name="Legal" xml:space="preserve">
+    <value>Legal</value>
+  </data>
   <data name="LocationSettings" xml:space="preserve">
     <value>Postavke lokacije</value>
   </data>
@@ -197,6 +212,9 @@
   </data>
   <data name="PostalCode" xml:space="preserve">
     <value>Poštanski broj</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Privatnost</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Poništi</value>
@@ -221,6 +239,12 @@
   </data>
   <data name="SuccUpdate" xml:space="preserve">
     <value>Zapis uspješno uređen</value>
+  </data>
+  <data name="Team" xml:space="preserve">
+    <value>Tim</value>
+  </data>
+  <data name="WelcomeToCopierManagementSystem" xml:space="preserve">
+    <value>Dobrodošli u softver za upravljanje kopirnicama</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Da</value>

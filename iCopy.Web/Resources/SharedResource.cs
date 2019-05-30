@@ -31,6 +31,14 @@ namespace iCopy.Web
         public string PostalCode => localizer["PostalCode"];
         public string Bosnian => localizer["Bosnian"];
         public string EnglishUS => localizer["EnglishUS"];
+        public string Privacy => localizer["Privacy"];
+        public string Contact => localizer["Contact"];
+        public string Team => localizer["Team"];
+        public string About => localizer["About"];
+        public string Legal => localizer["Legal"];
+        public string WelcomeToCopierManagementSystem => localizer["WelcomeToCopierManagementSystem"];
+        public string CopierManagementSystem => localizer["CopierManagementSystem"];
+        public string LanguageImagePath => localizer["LanguageImagePath"];
 
 
         #region SuccMessage
