@@ -1,9 +1,8 @@
-﻿using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace iCopy.SERVICES.Context
 {
-    public class AuthContext : DbContext
+    public class AuthContext : DBContext
     {
         public AuthContext(DbContextOptions options) : base(options)
         {

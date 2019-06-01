@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using iCopy.SERVICES.IServices;
+using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

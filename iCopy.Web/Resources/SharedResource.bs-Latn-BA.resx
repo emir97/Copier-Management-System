@@ -189,6 +189,9 @@
   <data name="ErrDelete" xml:space="preserve">
     <value>Došlo je do greške prilikom brisanja</value>
   </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Zaboravili ste šifru</value>
+  </data>
   <data name="Inactive" xml:space="preserve">
     <value>Neaktivan</value>
   </data>
@@ -201,11 +204,17 @@
   <data name="LocationSettings" xml:space="preserve">
     <value>Postavke lokacije</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Prijavi se</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Naziv</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>Ne</value>
+  </data>
+  <data name="OR" xml:space="preserve">
+    <value>Ili</value>
   </data>
   <data name="PhoneCode" xml:space="preserve">
     <value>Pozivni broj države</value>

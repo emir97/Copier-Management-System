@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using iCopy.SERVICES.IServices;
 using iCopy.Web.Controllers;
+using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Mvc;
 
 namespace iCopy.Web.Areas.Location.Controllers

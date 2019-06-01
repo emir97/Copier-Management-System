@@ -189,6 +189,9 @@
   <data name="ErrDelete" xml:space="preserve">
     <value>An error occured while trying to delete the record</value>
   </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot password</value>
+  </data>
   <data name="Inactive" xml:space="preserve">
     <value>Inactive</value>
   </data>
@@ -201,11 +204,17 @@
   <data name="LocationSettings" xml:space="preserve">
     <value>Location settings</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="OR" xml:space="preserve">
+    <value>Or</value>
   </data>
   <data name="PhoneCode" xml:space="preserve">
     <value>Country phone code</value>

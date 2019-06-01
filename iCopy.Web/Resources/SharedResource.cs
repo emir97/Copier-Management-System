@@ -1,72 +1,78 @@
 ﻿using Microsoft.Extensions.Localization;
+using System.Reflection;
 
-namespace iCopy.Web
+namespace iCopy.Web.Resources
 {
     public class SharedResource
     {
-        private readonly IStringLocalizer<SharedResource> localizer;
+        private readonly IStringLocalizer localizer;
 
-        public SharedResource(IStringLocalizer<SharedResource> localizer)
+        public SharedResource(IStringLocalizerFactory localizer)
         {
-            this.localizer = localizer;
+            this.localizer = localizer.Create(nameof(SharedResource), new AssemblyName(typeof(SharedResource).Assembly.FullName).Name);
         }
 
-        public string SaveChanges => localizer["SaveChanges"];
-        public string Close => localizer["Close"];
-        public string Name => localizer["Name"];
-        public string ShortName => localizer["ShortName"];
-        public string PhoneCode => localizer["PhoneCode"];
-        public string Active => localizer["Active"];
-        public string Actions => localizer["Actions"];
-        public string Search => localizer["Search"];
-        public string Reset => localizer["Reset"];
-        public string Inactive => localizer["Inactive"];
-        public string All => localizer["All"];
-        public string LocationSettings => localizer["LocationSettings"];
-        public string Countries => localizer["Countries"];
-        public string Yes => localizer["Yes"];
-        public string No => localizer["No"];
-        public string AreYouSure => localizer["AreYouSure"];
-        public string Cancel => localizer["Cancel"];
-        public string PostalCode => localizer["PostalCode"];
-        public string Bosnian => localizer["Bosnian"];
-        public string EnglishUS => localizer["EnglishUS"];
-        public string Privacy => localizer["Privacy"];
-        public string Contact => localizer["Contact"];
-        public string Team => localizer["Team"];
-        public string About => localizer["About"];
-        public string Legal => localizer["Legal"];
-        public string WelcomeToCopierManagementSystem => localizer["WelcomeToCopierManagementSystem"];
-        public string CopierManagementSystem => localizer["CopierManagementSystem"];
-        public string LanguageImagePath => localizer["LanguageImagePath"];
-
+        public string SaveChanges => localizer[nameof(SaveChanges)];
+        public string Close => localizer[nameof(Close)];
+        public string Name => localizer[nameof(Name)];
+        public string ShortName => localizer[nameof(ShortName)];
+        public string PhoneCode => localizer[nameof(PhoneCode)];
+        public string Active => localizer[nameof(Active)];
+        public string Actions => localizer[nameof(Actions)];
+        public string Search => localizer[nameof(Search)];
+        public string Reset => localizer[nameof(Reset)];
+        public string Inactive => localizer[nameof(Inactive)];
+        public string All => localizer[nameof(All)];
+        public string LocationSettings => localizer[nameof(LocationSettings)];
+        public string Countries => localizer[nameof(Countries)];
+        public string Yes => localizer[nameof(Yes)];
+        public string No => localizer[nameof(No)];
+        public string AreYouSure => localizer[nameof(AreYouSure)];
+        public string Cancel => localizer[nameof(Cancel)];
+        public string PostalCode => localizer[nameof(PostalCode)];
+        public string Bosnian => localizer[nameof(Bosnian)];
+        public string EnglishUS => localizer[nameof(EnglishUS)];
+        public string Privacy => localizer[nameof(Privacy)];
+        public string Contact => localizer[nameof(Contact)];
+        public string Team => localizer[nameof(Team)];
+        public string About => localizer[nameof(About)];
+        public string Legal => localizer[nameof(Legal)];
+        public string WelcomeToCopierManagementSystem => localizer[nameof(WelcomeToCopierManagementSystem)];
+        public string CopierManagementSystem => localizer[nameof(CopierManagementSystem)];
+        public string LanguageImagePath => localizer[nameof(LanguageImagePath)];
+        public string OR => localizer[nameof(OR)];
 
         #region SuccMessage
-        public string SuccUpdate => localizer["SuccUpdate"];
-        public string SuccAdd => localizer["SuccAdd"];
-        public string SuccDelete => localizer["SuccDelete"];
-        public string SuccChangeStatus => localizer["SuccChangeStatus"];
+        public string SuccUpdate => localizer[nameof(SuccUpdate)];
+        public string SuccAdd => localizer[nameof(SuccAdd)];
+        public string SuccDelete => localizer[nameof(SuccDelete)];
+        public string SuccChangeStatus => localizer[nameof(SuccChangeStatus)];
         #endregion
 
         #region ErrorMessage
-        public string ErrDelete => localizer["ErrDelete"];
-        public string ErrChangeStatus => localizer["ErrChangeStatus"];
+        public string ErrDelete => localizer[nameof(ErrDelete)];
+        public string ErrChangeStatus => localizer[nameof(ErrChangeStatus)];
         #endregion
 
         #region Country
-        public string Country => localizer["Country"];
-        public string AddCountry => localizer["AddCountry"];
-        public string CountrySettings => localizer["CountrySettings"];
-        public string EditCountry => localizer["EditCountry"];
-        public string ChooseCountry => localizer["ChooseCountry"];
+        public string Country => localizer[nameof(Country)];
+        public string AddCountry => localizer[nameof(AddCountry)];
+        public string CountrySettings => localizer[nameof(CountrySettings)];
+        public string EditCountry => localizer[nameof(EditCountry)];
+        public string ChooseCountry => localizer[nameof(ChooseCountry)];
         #endregion
 
         #region City
-        public string City => localizer["City"];
-        public string Cities => localizer["Cities"];
-        public string CitySettings => localizer["CitySettings"];
-        public string AddCity => localizer["AddCity"];
-        public string EditCity => localizer["EditCity"];
+        public string City => localizer[nameof(City)];
+        public string Cities => localizer[nameof(Cities)];
+        public string CitySettings => localizer[nameof(CitySettings)];
+        public string AddCity => localizer[nameof(AddCity)];
+        public string EditCity => localizer[nameof(EditCity)];
+        #endregion
+
+        #region Login
+        public string Login => localizer[nameof(Login)];
+        public string ForgotPassword => localizer[nameof(ForgotPassword)];
         #endregion
     }
 }

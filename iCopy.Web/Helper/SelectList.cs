@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using iCopy.Model.Request;
 using iCopy.Model.Response;
 using iCopy.SERVICES.IServices;
+using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace iCopy.Web.Helper

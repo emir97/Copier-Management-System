@@ -2,6 +2,7 @@
 using AutoMapper;
 using iCopy.SERVICES.IServices;
 using iCopy.Web.Models;
+using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Mvc;
 
 namespace iCopy.Web.Controllers
