@@ -1,5 +1,4 @@
-﻿using System;
-using iCopy.SERVICES.Context;
+﻿using iCopy.SERVICES.Context;
 using iCopy.SERVICES.Registers;
 using iCopy.Web.Helper;
 using iCopy.Web.Resources;
@@ -13,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using iCopy.Database;
 
 namespace iCopy.Web
 {
@@ -52,14 +53,14 @@ namespace iCopy.Web
             services.AddScoped<ISelectList, SelectList>();
 
             services.AddAuthentication().AddCookie();
-            services.AddDefaultIdentity<IdentityUser<int>>().AddRoles<IdentityRole<int>>().AddEntityFrameworkStores<AuthContext>();
+            services.AddDefaultIdentity<ApplicationUser>().AddRoles<ApplicationRole>().AddEntityFrameworkStores<AuthContext>();
             services.Configure<AuthenticationOptions>(options =>
-                {
-                    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.DefaultSignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                });
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            });
             services.Configure<CookieAuthenticationOptions>(options =>
             {
                 options.Cookie.IsEssential = true;
@@ -83,7 +84,6 @@ namespace iCopy.Web
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequiredLength = 8;
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

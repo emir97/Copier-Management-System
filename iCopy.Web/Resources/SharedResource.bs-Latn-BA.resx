@@ -216,6 +216,9 @@
   <data name="OR" xml:space="preserve">
     <value>Ili</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Šifa</value>
+  </data>
   <data name="PhoneCode" xml:space="preserve">
     <value>Pozivni broj države</value>
   </data>
@@ -251,6 +254,9 @@
   </data>
   <data name="Team" xml:space="preserve">
     <value>Tim</value>
+  </data>
+  <data name="UsernameOrEmail" xml:space="preserve">
+    <value>Korisničko ime ili email</value>
   </data>
   <data name="WelcomeToCopierManagementSystem" xml:space="preserve">
     <value>Dobrodošli u softver za upravljanje kopirnicama</value>

@@ -216,6 +216,9 @@
   <data name="OR" xml:space="preserve">
     <value>Or</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
   <data name="PhoneCode" xml:space="preserve">
     <value>Country phone code</value>
   </data>
@@ -251,6 +254,9 @@
   </data>
   <data name="Team" xml:space="preserve">
     <value>Team</value>
+  </data>
+  <data name="UsernameOrEmail" xml:space="preserve">
+    <value>Username or email</value>
   </data>
   <data name="WelcomeToCopierManagementSystem" xml:space="preserve">
     <value>Welcome to the copier management system</value>
