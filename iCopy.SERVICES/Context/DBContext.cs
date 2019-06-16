@@ -12,6 +12,9 @@ namespace iCopy.SERVICES.Context
         }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<ProfilePhoto> ProfilePhotos { get; set; }
+        public virtual DbSet<CompanyProfilePhoto> CompanyProfilePhotos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

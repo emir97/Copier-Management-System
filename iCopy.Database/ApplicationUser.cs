@@ -7,5 +7,6 @@ namespace iCopy.Database
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public bool Active { get; set; }
+        public bool ChangePassword { get; set; }
     }
 }

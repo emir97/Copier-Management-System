@@ -12,6 +12,9 @@ namespace iCopy.SERVICES.Mapper
             CreateMap<Database.City, Model.Response.City>().ReverseMap();
             CreateMap<Database.City, Model.Request.City>().ReverseMap();
             CreateMap<Model.Response.City, Model.Request.City>().ReverseMap();
+            CreateMap<Database.Company, Model.Response.Company>().ReverseMap();
+            CreateMap<Database.Company, Model.Request.Company>().ReverseMap();
+            CreateMap<Model.Response.Company, Model.Request.Company>().ReverseMap();
         }
     }
 }
