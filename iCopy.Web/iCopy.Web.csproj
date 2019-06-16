@@ -22,6 +22,8 @@
 
 
   <ItemGroup>
+    <Folder Include="Areas\Administration\Data\" />
+    <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Language\Data\" />
     <Folder Include="Areas\Language\Models\" />
     <Folder Include="Areas\Language\Views\" />
