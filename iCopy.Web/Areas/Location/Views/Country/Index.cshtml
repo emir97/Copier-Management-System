@@ -17,7 +17,7 @@
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-wrapper">
                 <div class="kt-portlet__head-actions">
-                    <a asp-area="location" asp-controller="country" asp-action="insert" ajax-add="modal-bs" class="btn btn-brand btn-icon-sm">
+                    <a href="@Settings.Routes.Country.Insert" ajax-add="modal-bs" class="btn btn-brand btn-icon-sm">
                         <i class="la la-plus"></i>
                         @_sharedLocalizer.AddCountry
                     </a>
@@ -124,7 +124,7 @@
                 dom: `<'row'<'col-sm-12'tr>>
 			<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
                 ajax: {
-                    url: "/location/country/getdata",
+                    url: "@Settings.Routes.Country.GetData",
                     dataType: 'json',
                     type: 'post',
                     data: function (searchData) {
@@ -181,9 +181,9 @@
                         className: 'text-center align-middle',
                         render: function (data, type, full, meta) {
                             return `
-<a href="/location/country/update/${full.id}" ajax-add="modal-bs" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-edit"></i></a>
-<a href="/location/country/delete/${full.id}" ajax-delete="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
-<a href="/location/country/changeactivestatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
+<a href="@Settings.Routes.Country.Update/${full.id}" ajax-add="modal-bs" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-edit"></i></a>
+<a href="@Settings.Routes.Country.Delete/${full.id}" ajax-delete="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
+<a href="@Settings.Routes.Country.ChangeActiveStatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
 `;
                         }
                     }

@@ -7,5 +7,6 @@ namespace iCopy.Web.Helper
     public interface ISelectList
     {
         Task<List<SelectListItem>> Countries(bool includeChooseText = true);
+        Task<List<SelectListItem>> Cities(int? countryId = null, bool includeChooseText = true);
     }
 }

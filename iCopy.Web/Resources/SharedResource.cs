@@ -41,6 +41,12 @@ namespace iCopy.Web.Resources
         public string CopierManagementSystem => localizer[nameof(CopierManagementSystem)];
         public string LanguageImagePath => localizer[nameof(LanguageImagePath)];
         public string OR => localizer[nameof(OR)];
+        public string Address => localizer[nameof(Address)];
+        public string PhoneNumber => localizer[nameof(PhoneNumber)];
+        public string Email => localizer[nameof(Email)];
+        public string ContantAgent => localizer[nameof(ContantAgent)];
+        public string CopierSettings => localizer[nameof(CopierSettings)];
+        public string SystemSettings => localizer[nameof(SystemSettings)];
 
         #region SuccMessage
         public string SuccUpdate => localizer[nameof(SuccUpdate)];
@@ -68,6 +74,12 @@ namespace iCopy.Web.Resources
         public string CitySettings => localizer[nameof(CitySettings)];
         public string AddCity => localizer[nameof(AddCity)];
         public string EditCity => localizer[nameof(EditCity)];
+        public string ChooseCity => localizer[nameof(ChooseCity)];
+        #endregion
+
+        #region Company
+        public string CompanySettings => localizer[nameof(CompanySettings)];
+        public string AddCompany => localizer[nameof(AddCompany)];
         #endregion
 
         #region Login
@@ -75,7 +87,6 @@ namespace iCopy.Web.Resources
         public string ForgotPassword => localizer[nameof(ForgotPassword)];
         public string UsernameOrEmail => localizer[nameof(UsernameOrEmail)];
         public string Password => localizer[nameof(Password)];
-
         #endregion
     }
 }

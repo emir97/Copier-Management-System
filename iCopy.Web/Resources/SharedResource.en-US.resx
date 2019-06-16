@@ -129,8 +129,14 @@
   <data name="AddCity" xml:space="preserve">
     <value>Add city</value>
   </data>
+  <data name="AddCompany" xml:space="preserve">
+    <value>Add company</value>
+  </data>
   <data name="AddCountry" xml:space="preserve">
     <value>Add country</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>All</value>
@@ -143,6 +149,9 @@
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
+  </data>
+  <data name="ChooseCity" xml:space="preserve">
+    <value>Choose city</value>
   </data>
   <data name="ChooseCountry" xml:space="preserve">
     <value>Choose country</value>
@@ -159,11 +168,20 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="CompanySettings" xml:space="preserve">
+    <value>Company settings</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
+  <data name="ContantAgent" xml:space="preserve">
+    <value>Contact agent</value>
+  </data>
   <data name="CopierManagementSystem" xml:space="preserve">
     <value>Copier management system</value>
+  </data>
+  <data name="CopierSettings" xml:space="preserve">
+    <value>Copier settings</value>
   </data>
   <data name="Countries" xml:space="preserve">
     <value>Countries</value>
@@ -179,6 +197,9 @@
   </data>
   <data name="EditCountry" xml:space="preserve">
     <value>Edit country</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
   </data>
   <data name="EnglishUS" xml:space="preserve">
     <value>English US</value>
@@ -222,6 +243,9 @@
   <data name="PhoneCode" xml:space="preserve">
     <value>Country phone code</value>
   </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone number</value>
+  </data>
   <data name="PostalCode" xml:space="preserve">
     <value>Postal code</value>
   </data>
@@ -251,6 +275,9 @@
   </data>
   <data name="SuccUpdate" xml:space="preserve">
     <value>Record is successfully updated</value>
+  </data>
+  <data name="SystemSettings" xml:space="preserve">
+    <value>System settings</value>
   </data>
   <data name="Team" xml:space="preserve">
     <value>Team</value>

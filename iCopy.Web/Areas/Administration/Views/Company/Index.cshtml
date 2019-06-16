@@ -1,7 +1,6 @@
-﻿@model iCopy.Web.Models.DataTable<iCopy.Model.Response.City>
+﻿@model iCopy.Web.Models.DataTable<iCopy.Model.Response.Company>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = _sharedLocalizer.CitySettings;
 }
 
 <div class="kt-portlet kt-portlet--mobile">
@@ -11,15 +10,15 @@
                 <i class="kt-font-brand fa fa-map-marker-alt"></i>
             </span>
             <h3 class="kt-portlet__head-title">
-                @_sharedLocalizer.CitySettings
+                @_sharedLocalizer.CompanySettings
             </h3>
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-wrapper">
                 <div class="kt-portlet__head-actions">
-                    <a href="@Settings.Routes.City.Insert" ajax-add="modal-bs" class="btn btn-brand btn-icon-sm">
+                    <a href="@Settings.Routes.Company.Insert" ajax-add="modal-bs" class="btn btn-brand btn-icon-sm">
                         <i class="la la-plus"></i>
-                        @_sharedLocalizer.AddCity
+                        @_sharedLocalizer.AddCompany
                     </a>
                 </div>
             </div>
@@ -34,16 +33,16 @@
                         <input name="name" id="name" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.Name">
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>@_sharedLocalizer.ShortName:</label>
-                        <input name="shortname" id="shortname" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.ShortName">
+                        <label>@_sharedLocalizer.ContantAgent:</label>
+                        <input name="contactagent" id="contact-agent" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.ContantAgent">
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>@_sharedLocalizer.Country:</label>
                         <select name="CountryID" asp-items="@(await _selectList.Countries())" class="form-control kt-select2" id="countries-list"></select>
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>@_sharedLocalizer.PostalCode:</label>
-                        <input name="postalcode" id="postalcode" type="number" class="form-control kt-input" placeholder="@_sharedLocalizer.PostalCode">
+                        <label>@_sharedLocalizer.City:</label>
+                        <select name="CountryID" asp-items="@(await _selectList.Cities())" class="form-control kt-select2" id="cities-list"></select>
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>&nbsp;</label>
@@ -85,14 +84,15 @@
                 <tr>
                     <th>#</th>
                     <th>@_sharedLocalizer.Name  </th>
-                    <th>@_sharedLocalizer.ShortName</th>
-                    <th>@_sharedLocalizer.Country</th>
-                    <th>@_sharedLocalizer.PostalCode</th>
-                    <th>@_sharedLocalizer.Active</th>
+                    <th>@_sharedLocalizer.City</th>
+                    <th>@_sharedLocalizer.Address</th>
+                    <th>@_sharedLocalizer.ContantAgent</th>
+                    <th>@_sharedLocalizer.PhoneNumber</th>
+                    <th>@_sharedLocalizer.Email</th>
                     <th>@_sharedLocalizer.Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            @*<tbody>
                 @foreach (var item in Model.data)
                 {
                     <tr>
@@ -105,7 +105,7 @@
                         <td></td>
                     </tr>
                 }
-            </tbody>
+            </tbody>*@
         </table>
     </div>
 </div>
@@ -130,7 +130,7 @@
                 dom: `<'row'<'col-sm-12'tr>>
 			<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
                 ajax: {
-                    url: "@Settings.Routes.City.GetData",
+                    url: "@Settings.Routes.Company.GetData",
                     dataType: 'json',
                     type: 'post',
                     data: function (searchData) {
@@ -194,9 +194,9 @@
                         className: 'text-center align-middle',
                         render: function (data, type, full, meta) {
                             return `
-<a href="@Settings.Routes.City.Update/${full.id}" ajax-add="modal-bs" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-edit"></i></a>
-<a href="@Settings.Routes.City.Delete/${full.id}" ajax-delete="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
-<a href="@Settings.Routes.City.ChangeActiveStatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
+<a href="@Settings.Routes.Company.Update/${full.id}" ajax-add="modal-bs" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-edit"></i></a>
+<a href="@Settings.Routes.Company.Delete/${full.id}" ajax-delete="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
+<a href="@Settings.Routes.Company.ChangeActiveStatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
 `;
                         }
                     }
@@ -219,6 +219,6 @@
             $('#countries-list').prop('selectedIndex', 0).trigger('change');
             $("#datatable-search").trigger('click');
         });
-        $('#countries-list').select2({width: '100%'});
+        $('.kt-select2').select2({width: '100%'});
     });
 </script>
