@@ -15,6 +15,7 @@ namespace iCopy.SERVICES.Registers
             services.AddScoped<IReadService<Model.Response.Country, Model.Request.CountrySearch, int>, CountryService>();
             services.AddScoped<ICRUDService<Model.Request.City, Model.Request.City, Model.Response.City, Model.Request.CitySearch, int>,
                 CityService>();
+            services.AddScoped<ICompanyService, CompanyService>();
             return services;
         }
     }
