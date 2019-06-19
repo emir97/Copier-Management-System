@@ -216,6 +216,9 @@
   <data name="Inactive" xml:space="preserve">
     <value>Inactive</value>
   </data>
+  <data name="JIB" xml:space="preserve">
+    <value>JIB</value>
+  </data>
   <data name="LanguageImagePath" xml:space="preserve">
     <value>assets/media/flags/020-flag.svg</value>
   </data>

@@ -9,9 +9,11 @@ namespace iCopy.Database
         public string Jib { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
+        public int ApplicationUserId { get; set; }
 
         [ForeignKey(nameof(City))]
         public int CityId { get; set; }
         public City City { get; set; }
+
     }
 }

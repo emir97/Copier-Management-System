@@ -45,6 +45,10 @@
                         <select name="CountryID" asp-items="@(await _selectList.Cities())" class="form-control kt-select2" id="cities-list"></select>
                     </div>
                     <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                        <label>@_sharedLocalizer.JIB:</label>
+                        <input name="contactagent" id="contact-agent" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.JIB">
+                    </div>
+                    <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                         <label>&nbsp;</label>
                         <div class="btn-group btn-group-toggle col-md-12 p-0" data-toggle="buttons" data-col-index="3">
                             <label class="btn btn-secondary active">
@@ -85,27 +89,28 @@
                     <th>#</th>
                     <th>@_sharedLocalizer.Name  </th>
                     <th>@_sharedLocalizer.City</th>
-                    <th>@_sharedLocalizer.Address</th>
                     <th>@_sharedLocalizer.ContantAgent</th>
                     <th>@_sharedLocalizer.PhoneNumber</th>
                     <th>@_sharedLocalizer.Email</th>
+                    <th>@_sharedLocalizer.Active</th>
                     <th>@_sharedLocalizer.Actions</th>
                 </tr>
             </thead>
-            @*<tbody>
+            <tbody>
                 @foreach (var item in Model.data)
                 {
                     <tr>
                         <td>@item.ID</td>
                         <td>@item.Name</td>
-                        <td>@item.ShortName</td>
-                        <td>@item.Country.Name</td>
-                        <td>@item.PostalCode</td>
+                        <td>@item.City.Name</td>
+                        <td>@item.ContactAgent</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>@item.Email</td>
                         <td>@item.Active</td>
                         <td></td>
                     </tr>
                 }
-            </tbody>*@
+            </tbody>
         </table>
     </div>
 </div>
@@ -136,10 +141,11 @@
                     data: function (searchData) {
                         searchData.Search = {
                             Name : $("#name").val(),
-                            ShortName : $("#shortname").val(),
                             Active: $("#active:checked").val(),
+                            ContactAgent: $("#contact-agent").val(),
                             CountryID: $("#countries-list").val(),
-                            PostalCode : $("#postalcode").val()
+                            CityID: $("#cities-list").val(),
+                            JIB: $("#jib").val()
                         };
                         return searchData;
                     }
@@ -147,9 +153,10 @@
                 columns: [
                     { data: "id" },
                     { data: "name" },
-                    { data: 'shortName' },
-                    {data: 'country.name'},
-                    { data: 'postalCode' },
+                    { data: 'city.name' },
+                    { data: 'contactAgent' },
+                    { data: 'phoneNumber' },
+                    { data: 'email' },
                     { data: 'active' },
                     { data: 'actions' }
                 ],
@@ -157,28 +164,31 @@
                     {
                         targets: 0,
                         name: 'ID',
-                        className: 'text-center',
+                        className: 'text-center'
                     },
                     {
                         targets: 1,
-                        name: '@nameof(iCopy.Model.Request.City.Name)'
+                        name: '@nameof(iCopy.Model.Request.Company.Name)'
                     },
                     {
                         targets: 2,
-                        name: '@nameof(iCopy.Model.Request.City.ShortName)'
+                        name: '@nameof(iCopy.Model.Request.Company.CityId)'
                     },
                     {
                         targets: 3,
-                        name: '@nameof(iCopy.Model.Request.City.CountryID)'
+                        name: '@nameof(iCopy.Model.Request.Company.ContactAgent)'
                     },
                     {
                         targets: 4,
-                        name: '@nameof(iCopy.Model.Request.City.PostalCode)',
-                        className: 'text-center',
-                        orderable: false
+                        name: '@nameof(iCopy.Model.Request.Company.PhoneNumber)'
                     },
                     {
                         targets: 5,
+                        name: '@nameof(iCopy.Model.Request.Company.Email)',
+                        orderable: false
+                    },
+                    {
+                        targets: 6,
                         orderable: false,
                         className: 'text-center align-middle',
                         render: function (data, type, full, meta) {
@@ -194,6 +204,7 @@
                         className: 'text-center align-middle',
                         render: function (data, type, full, meta) {
                             return `
+<a href="@Settings.Routes.Company.Details/${full.id}" ajax-add="modal-bs" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-info-circle"></i></a>
 <a href="@Settings.Routes.Company.Update/${full.id}" ajax-add="modal-bs" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-edit"></i></a>
 <a href="@Settings.Routes.Company.Delete/${full.id}" ajax-delete="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
 <a href="@Settings.Routes.Company.ChangeActiveStatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
@@ -216,7 +227,7 @@
             $("#search-parameters input[type='text']").val('');
             $("#search-parameters input[type='number']").val('');
             $("#search-parameters input[type=radio]:first").parent().trigger('click');
-            $('#countries-list').prop('selectedIndex', 0).trigger('change');
+            $('.select2').prop('selectedIndex', 0).trigger('change');
             $("#datatable-search").trigger('click');
         });
         $('.kt-select2').select2({width: '100%'});

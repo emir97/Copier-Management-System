@@ -4,11 +4,11 @@ namespace iCopy.Web
 {
     public class ValidationErrors
     {
-        private readonly IStringLocalizer<ValidationErrors> localizer;
+        private readonly IStringLocalizer<ValidationErrors> Localizer;
 
-        public ValidationErrors(IStringLocalizer<ValidationErrors> localizer)
+        public ValidationErrors(IStringLocalizer<ValidationErrors> Loclizer)
         {
-            this.localizer = localizer;
+            this.Localizer = Localizer;
         }
 
     }

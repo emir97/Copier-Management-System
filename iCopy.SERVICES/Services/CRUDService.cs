@@ -17,7 +17,7 @@ namespace iCopy.SERVICES.Services
             this.mapper = mapper;
         }
 
-        public async Task<TResult> ChangeActiveStatusAsync(TPk id)
+        public virtual async Task<TResult> ChangeActiveStatusAsync(TPk id)
         {
             TModel model = await ctx.Set<TModel>().FindAsync(id);
             model.Active = !model.Active;

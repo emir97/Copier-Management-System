@@ -30,6 +30,7 @@
                 public static string Delete => "/administration/company/delete";
                 public static string GetData => "/administration/company/getdata";
                 public static string ChangeActiveStatus => "/administration/company/changeactivestatus";
+                public static string Details => "/administration/company/details";
             }
         }
     }

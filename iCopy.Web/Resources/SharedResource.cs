@@ -80,6 +80,7 @@ namespace iCopy.Web.Resources
         #region Company
         public string CompanySettings => localizer[nameof(CompanySettings)];
         public string AddCompany => localizer[nameof(AddCompany)];
+        public string JIB => localizer[nameof(JIB)];
         #endregion
 
         #region Login

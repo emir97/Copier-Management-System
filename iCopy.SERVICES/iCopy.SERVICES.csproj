@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190617154349_minor.cs" />
+    <Compile Remove="Migrations\20190617154349_minor.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="DTO\" />
     <Folder Include="Attributes\" />
   </ItemGroup>

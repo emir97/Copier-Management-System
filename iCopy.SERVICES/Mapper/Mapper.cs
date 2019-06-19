@@ -15,6 +15,9 @@ namespace iCopy.SERVICES.Mapper
             CreateMap<Database.Company, Model.Response.Company>().ReverseMap();
             CreateMap<Database.Company, Model.Request.Company>().ReverseMap();
             CreateMap<Model.Response.Company, Model.Request.Company>().ReverseMap();
+            CreateMap<Database.ApplicationUser, Model.Response.Company>()
+                .ForMember(x => x.ID, y => y.Ignore())
+                .ForMember(x => x.Active, options => options.Ignore());
         }
     }
 }

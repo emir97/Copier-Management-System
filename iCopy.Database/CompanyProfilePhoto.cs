@@ -11,5 +11,7 @@ namespace iCopy.Database
         [ForeignKey(nameof(ProfilePhoto))]
         public int ProfilePhotoId { get; set; }
         public ProfilePhoto ProfilePhoto { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using iCopy.Model.Request;
 using iCopy.SERVICES.IServices;
 using iCopy.Web.Controllers;
 using iCopy.Web.Resources;
@@ -10,11 +9,11 @@ namespace iCopy.Web.Areas.Administration.Controllers
     [Area("Administration")]
     public class CompanyController : BaseDataTableCRUDController<Model.Request.Company, Model.Request.Company, Model.Response.Company, Model.Request.CompanySearch, int>
     {
-        private readonly ICompanyService crudService;
+        private readonly ICompanyService CrudService;
 
-        public CompanyController(ICompanyService crudService, SharedResource _localizer, IMapper mapper) : base(crudService, _localizer, mapper)
+        public CompanyController(ICompanyService CrudService, SharedResource _localizer, IMapper mapper) : base(CrudService, _localizer, mapper)
         {
-            this.crudService = crudService;
+            this.CrudService = CrudService;
         }
     }
 }
