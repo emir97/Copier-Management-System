@@ -47,6 +47,7 @@ namespace iCopy.Web.Resources
         public string ContantAgent => localizer[nameof(ContantAgent)];
         public string CopierSettings => localizer[nameof(CopierSettings)];
         public string SystemSettings => localizer[nameof(SystemSettings)];
+        public string PhoneNumberRegex => localizer[nameof(PhoneNumberRegex)];
 
         #region SuccMessage
         public string SuccUpdate => localizer[nameof(SuccUpdate)];

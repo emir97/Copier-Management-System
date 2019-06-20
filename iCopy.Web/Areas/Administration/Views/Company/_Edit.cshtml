@@ -1,0 +1,77 @@
+﻿@model iCopy.Model.Response.Company
+@{
+    Layout = null;
+}
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">@_sharedLocalizer.EditCity</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+</div>
+<form asp-area="administration" asp-controller="company" asp-action="update" asp-route-id="@ViewContext.RouteData.Values["id"]" method="post" ajax-modal-form="true" asp-antiforgery="true">
+    <div class="modal-body">
+        <div class="form-group row">
+            <div class="col-lg-6">
+                <label asp-for="Name">@_sharedLocalizer.Name:</label>
+                <input asp-for="Name" type="text" class="form-control" placeholder="@_sharedLocalizer.Name">
+                <span asp-validation-for="Name" class="form-text text-danger"></span>
+            </div>
+            <div class="col-lg-6">
+                <label asp-for="Jib">@_sharedLocalizer.JIB</label>
+                <input type="number" asp-for="Jib" class="form-control" placeholder="@_sharedLocalizer.JIB"/>
+                <span asp-validation-for="Jib" class="form-text text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-6">
+                    <label asp-for="ContactAgent"></label>
+                    <input type="text" asp-for="ContactAgent" class="form-control" placeholder="@_sharedLocalizer.ContantAgent" />
+                    <span asp-validation-for="ContactAgent" class="form-text text-danger"></span>
+            </div>
+            <div class="col-lg-6">
+                <label asp-for="PhoneNumber">@_sharedLocalizer.PhoneNumber</label>
+                <input type="number" asp-for="PhoneNumber" class="form-control" placeholder="@_sharedLocalizer.PhoneNumber" />
+                <span asp-validation-for="PhoneNumber" class="form-text text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-6">
+                <label>@_sharedLocalizer.Country</label>
+                <select asp-items="@(await _selectList.Countries())" class="kt-select2" id="countries-list-add"></select>
+            </div>
+            <div class="col-lg-6">
+                <label asp-for="CityId">@_sharedLocalizer.City</label>
+                <select asp-for="CityId" class="kt-select2" id="cities-list-add">
+                    <option value="">@_sharedLocalizer.ChooseCity</option>
+                </select>
+                <span asp-validation-for="CityId" class="form-text text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-6">
+                <label asp-for="Address">@_sharedLocalizer.Address</label>
+                <input type="text" asp-for="Address" class="form-control" placeholder="@_sharedLocalizer.Address"/>
+                <span asp-validation-for="Address" class="form-text text-danger"></span>
+            </div>
+            
+        </div>
+        <div class="form-group">
+            <label class="col-3 col-form-label">@_sharedLocalizer.Active:</label>
+            <div class="col-md-12">
+                <span class="kt-switch kt-switch--icon">
+                    <label>
+                        <input type="checkbox" asp-for="Active">
+                        <span></span>
+                    </label>
+                </span>
+            </div>
+            <span asp-validation-for="Active" class="form-text text-danger"></span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">@_sharedLocalizer.Close</button>
+        <button type="submit" class="btn btn-primary">@_sharedLocalizer.SaveChanges</button>
+    </div>
+</form>
+<script>
+    $('#cities-list-add, #countries-list-add').select2({ width: '100%' });
+    
+</script>

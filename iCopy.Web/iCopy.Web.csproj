@@ -29,6 +29,7 @@
     <Folder Include="Areas\Language\Views\" />
     <Folder Include="Areas\Location\Data\" />
     <Folder Include="Areas\Location\Models\" />
+    <Folder Include="TagHelpers\" />
     <Folder Include="wwwroot\assets\media\users\" />
   </ItemGroup>
 

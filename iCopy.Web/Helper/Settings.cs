@@ -4,6 +4,10 @@
     {
         public static class Routes
         {
+            public static class SelectListItem
+            {
+                public static string Cities => "/selectlistitem/cities";
+            }
             public static class City
             {
                 public static string Index => "/location/city/index";

@@ -12,6 +12,8 @@ namespace iCopy.Model.Request
         public string ShortName { get; set; }
         [Required(ErrorMessage = "ErrNoPhoneNumberCode")]
         public string PhoneNumberCode { get; set; }
+        [Required(ErrorMessage = "ErrNoPhoneNumberRegex")]
+        public string PhoneNumberRegex { get; set; }
         public bool Active { get; set; }
     }
 }

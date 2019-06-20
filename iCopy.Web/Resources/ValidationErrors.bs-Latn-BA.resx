@@ -126,19 +126,40 @@
   <data name="ErrMinMaxShortName" xml:space="preserve">
     <value>Skraćeni naziv mora imate najmanje 2 karaktera</value>
   </data>
+  <data name="ErrNoAddress" xml:space="preserve">
+    <value>Adresa je obavezna</value>
+  </data>
+  <data name="ErrNoCity" xml:space="preserve">
+    <value>Grad je obavezan</value>
+  </data>
+  <data name="ErrNoContactAgent" xml:space="preserve">
+    <value>Kontakt agent je obavezan</value>
+  </data>
   <data name="ErrNoCountry" xml:space="preserve">
     <value>Država je obavezna</value>
+  </data>
+  <data name="ErrNoJIB" xml:space="preserve">
+    <value>JIB je obavezan</value>
   </data>
   <data name="ErrNoName" xml:space="preserve">
     <value>Naziv je obavezan</value>
   </data>
+  <data name="ErrNoPhoneNumber" xml:space="preserve">
+    <value>Broj telefona je obavezan</value>
+  </data>
   <data name="ErrNoPhoneNumberCode" xml:space="preserve">
     <value>Pozivni broj države je obavezan</value>
+  </data>
+  <data name="ErrNoPhoneNumberRegex" xml:space="preserve">
+    <value>Regex za broj telefona je obavezan</value>
   </data>
   <data name="ErrNoPostalCode" xml:space="preserve">
     <value>Poštanski broj je obavezan</value>
   </data>
   <data name="ErrNoShortName" xml:space="preserve">
     <value>Skraćeni naziv je obavezan</value>
+  </data>
+  <data name="ErrTypePhoneNumber" xml:space="preserve">
+    <value>Format telefonskog broja je pogrešan</value>
   </data>
 </root>

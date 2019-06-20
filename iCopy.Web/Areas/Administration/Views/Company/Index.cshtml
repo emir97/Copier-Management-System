@@ -1,6 +1,7 @@
 ﻿@model iCopy.Web.Models.DataTable<iCopy.Model.Response.Company>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = _sharedLocalizer.CompanySettings;
 }
 
 <div class="kt-portlet kt-portlet--mobile">
@@ -205,7 +206,7 @@
                         render: function (data, type, full, meta) {
                             return `
 <a href="@Settings.Routes.Company.Details/${full.id}" ajax-add="modal-bs" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-info-circle"></i></a>
-<a href="@Settings.Routes.Company.Update/${full.id}" ajax-add="modal-bs" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-edit"></i></a>
+<a href="@Settings.Routes.Company.Update/${full.id}" ajax-add="modal-lg" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-edit"></i></a>
 <a href="@Settings.Routes.Company.Delete/${full.id}" ajax-delete="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
 <a href="@Settings.Routes.Company.ChangeActiveStatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
 `;
