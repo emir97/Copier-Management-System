@@ -22,10 +22,10 @@ namespace iCopy.Model.Request
         [MaxLength(100, ErrorMessage = "ErrMaxLength")]
         public string Address { get; set; }
         [Required(ErrorMessage = "ErrNoCity")]
-        public int CityId { get; set; }
+        public int? CityId { get; set; }
+        public bool Active { get; set; }
         public IFormFile File { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Username { get; set; }
+        public Model.Request.ApplicationUser User { get; set; }
+        public Model.Request.ProfilePhoto ProfilePhoto { get; set; }
     }
 }

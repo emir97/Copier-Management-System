@@ -2,7 +2,7 @@
 
 namespace iCopy.Database
 {
-    public class City : BaseEntity
+    public class City : BaseEntity<int>
     {
         public string Name { get; set; }
         public string ShortName { get; set; }

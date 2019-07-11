@@ -2,7 +2,7 @@
 
 namespace iCopy.Database
 {
-    public class Company : BaseEntity
+    public class Company : BaseEntity<int>
     {
         public string Name { get; set; }
         public string ContactAgent { get; set; }

@@ -2,16 +2,11 @@
 
 namespace iCopy.Database
 {
-    public class CompanyProfilePhoto : BaseEntity
+    public class ApplicationUserProfilePhoto : BaseEntity<int>
     {
-        [ForeignKey(nameof(Company))]
-        public int CompanyId { get; set; }
-        public Company Company { get; set; }
-
+        public int ApplicationUserId { get; set; }
         [ForeignKey(nameof(ProfilePhoto))]
         public int ProfilePhotoId { get; set; }
         public ProfilePhoto ProfilePhoto { get; set; }
-
-        public bool IsDeleted { get; set; }
     }
 }

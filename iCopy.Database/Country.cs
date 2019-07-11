@@ -1,6 +1,6 @@
 ﻿namespace iCopy.Database
 {
-    public class Country : BaseEntity
+    public class Country : BaseEntity<int>
     {
         public string Name { get; set; }
         public string ShortName { get; set; }

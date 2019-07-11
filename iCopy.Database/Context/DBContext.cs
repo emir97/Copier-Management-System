@@ -1,8 +1,7 @@
-﻿using iCopy.Database;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace iCopy.SERVICES.Context
+namespace iCopy.Database.Context
 {
     public class DBContext : DbContext
     {
@@ -10,26 +9,30 @@ namespace iCopy.SERVICES.Context
         {
 
         }
+
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<ProfilePhoto> ProfilePhotos { get; set; }
-        public virtual DbSet<CompanyProfilePhoto> CompanyProfilePhotos { get; set; }
+        public virtual DbSet<ApplicationUserProfilePhoto> ApplicationUserProfilePhotos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             foreach (var entityType in modelBuilder.Model.GetEntityTypes()
-        .Where(e => typeof(BaseEntity).IsAssignableFrom(e.ClrType)))
+        .Where(e => typeof(BaseEntity<int>).IsAssignableFrom(e.ClrType)))
             {
                 modelBuilder
                     .Entity(entityType.ClrType)
                     .Property("CreatedDate")
-                    .HasDefaultValueSql("getutcdate()");
+                    .HasDefaultValueSql("getutcdate()")
+                    .ValueGeneratedOnAdd();
                 modelBuilder
                     .Entity(entityType.ClrType)
                     .Property("Active")
-                    .HasDefaultValueSql("1");
+                    .HasDefaultValueSql("1")
+                    .ValueGeneratedOnAdd();
+                modelBuilder.Entity(entityType.ClrType).Property("ModifiedDate").HasDefaultValueSql("getdate()").ValueGeneratedOnUpdate();
             }
             var cascadefks = modelBuilder.Model.GetEntityTypes()
                 .SelectMany(x => x.GetForeignKeys())
@@ -37,5 +40,6 @@ namespace iCopy.SERVICES.Context
             foreach (var item in cascadefks)
                 item.DeleteBehavior = DeleteBehavior.Restrict;
         }
+
     }
 }
