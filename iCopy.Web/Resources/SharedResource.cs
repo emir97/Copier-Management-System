@@ -44,10 +44,19 @@ namespace iCopy.Web.Resources
         public string Address => localizer[nameof(Address)];
         public string PhoneNumber => localizer[nameof(PhoneNumber)];
         public string Email => localizer[nameof(Email)];
-        public string ContantAgent => localizer[nameof(ContantAgent)];
+        public string ContactAgent => localizer[nameof(ContactAgent)];
         public string CopierSettings => localizer[nameof(CopierSettings)];
         public string SystemSettings => localizer[nameof(SystemSettings)];
         public string PhoneNumberRegex => localizer[nameof(PhoneNumberRegex)];
+        public string AccountSettings => localizer[nameof(AccountSettings)];
+        public string Completed => localizer[nameof(Completed)];
+        public string Previous => localizer[nameof(Previous)];
+        public string Submit => localizer[nameof(Submit)];
+        public string NextStep => localizer[nameof(NextStep)];
+        public string Username => localizer[nameof(Username)];
+        public string ProfileImage => localizer[nameof(ProfileImage)];
+        public string DragFilesOrClickToUpload => localizer[nameof(DragFilesOrClickToUpload)];
+        public string Confirm => localizer[nameof(Confirm)];
 
         #region SuccMessage
         public string SuccUpdate => localizer[nameof(SuccUpdate)];
@@ -82,6 +91,7 @@ namespace iCopy.Web.Resources
         public string CompanySettings => localizer[nameof(CompanySettings)];
         public string AddCompany => localizer[nameof(AddCompany)];
         public string JIB => localizer[nameof(JIB)];
+        public string ContactAgentPhoneNumber => localizer[nameof(ContactAgentPhoneNumber)];
         #endregion
 
         #region Login

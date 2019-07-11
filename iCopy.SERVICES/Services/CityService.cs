@@ -1,13 +1,12 @@
-﻿using System;
+﻿using AutoMapper;
+using iCopy.Model.Request;
+using iCopy.Database.Context;
+using iCopy.SERVICES.Extensions;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using iCopy.Model.Request;
-using iCopy.Model.Response;
-using iCopy.SERVICES.Context;
-using iCopy.SERVICES.Extensions;
-using Microsoft.EntityFrameworkCore;
 
 namespace iCopy.SERVICES.Services
 {

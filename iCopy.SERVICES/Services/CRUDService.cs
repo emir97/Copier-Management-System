@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using iCopy.Database;
-using iCopy.SERVICES.Context;
 using iCopy.SERVICES.IServices;
 using System;
 using System.Threading.Tasks;
+using iCopy.Database.Context;
 
 namespace iCopy.SERVICES.Services
 {
-    public class CRUDService<TModel, TInsert, TUpdate, TResult, TSearch, TPk> : ReadService<TModel, TResult, TSearch, TPk>, ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> where TModel : BaseEntity
+    public class CRUDService<TModel, TInsert, TUpdate, TResult, TSearch, TPk> : ReadService<TModel, TResult, TSearch, TPk>, ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> where TModel : BaseEntity<TPk>
     {
         protected readonly DBContext ctx;
         protected readonly IMapper mapper;

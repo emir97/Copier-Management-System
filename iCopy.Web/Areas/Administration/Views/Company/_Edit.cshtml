@@ -11,37 +11,35 @@
         <div class="form-group row">
             <div class="col-lg-6">
                 <label asp-for="Name">@_sharedLocalizer.Name:</label>
-                <input asp-for="Name" type="text" class="form-control" placeholder="@_sharedLocalizer.Name">
+                <input asp-for="Name" type="text" class="form-control" placeholder="@_sharedLocalizer.Name" autocomplete="off">
                 <span asp-validation-for="Name" class="form-text text-danger"></span>
             </div>
             <div class="col-lg-6">
                 <label asp-for="Jib">@_sharedLocalizer.JIB</label>
-                <input type="number" asp-for="Jib" class="form-control" placeholder="@_sharedLocalizer.JIB"/>
+                <input type="number" asp-for="Jib" class="form-control" placeholder="@_sharedLocalizer.JIB" autocomplete="off"/>
                 <span asp-validation-for="Jib" class="form-text text-danger"></span>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-lg-6">
                     <label asp-for="ContactAgent"></label>
-                    <input type="text" asp-for="ContactAgent" class="form-control" placeholder="@_sharedLocalizer.ContantAgent" />
+                    <input type="text" asp-for="ContactAgent" class="form-control" placeholder="@_sharedLocalizer.ContactAgent" autocomplete="off"/>
                     <span asp-validation-for="ContactAgent" class="form-text text-danger"></span>
             </div>
             <div class="col-lg-6">
                 <label asp-for="PhoneNumber">@_sharedLocalizer.PhoneNumber</label>
-                <input type="number" asp-for="PhoneNumber" class="form-control" placeholder="@_sharedLocalizer.PhoneNumber" />
+                <input type="number" asp-for="PhoneNumber" class="form-control" placeholder="@_sharedLocalizer.PhoneNumber" autocomplete="off" />
                 <span asp-validation-for="PhoneNumber" class="form-text text-danger"></span>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-lg-6">
                 <label>@_sharedLocalizer.Country</label>
-                <select asp-items="@(await _selectList.Countries())" class="kt-select2" id="countries-list-add"></select>
+                <select asp-for="City.CountryID" asp-items="@(await _selectList.Countries())" class="kt-select2" id="@nameof(Model.City.CountryID)"></select>
             </div>
             <div class="col-lg-6">
                 <label asp-for="CityId">@_sharedLocalizer.City</label>
-                <select asp-for="CityId" class="kt-select2" id="cities-list-add">
-                    <option value="">@_sharedLocalizer.ChooseCity</option>
-                </select>
+                <select asp-for="CityId" class="kt-select2" id="cities-list-add" asp-items="@(await _selectList.CitiesByCityCountryId(Model.CityId))"></select>
                 <span asp-validation-for="CityId" class="form-text text-danger"></span>
             </div>
         </div>
@@ -72,6 +70,22 @@
     </div>
 </form>
 <script>
-    $('#cities-list-add, #countries-list-add').select2({ width: '100%' });
-    
+    $('#cities-list-add, #@(nameof(Model.City.CountryID))').select2({ width: '100%' });
+    $("#@nameof(Model.City.CountryID)").on('change', function (e) {
+        var select = $("#cities-list-add");
+        $.ajax({
+            url: `@Settings.Routes.SelectList.CitiesByCountry`,
+            data: {
+                id: $("#@nameof(Model.City.CountryID)").val()
+            },
+            type: 'GET',
+            success: function(result) {
+                var items = "";
+                $.each(result, function(index, value) {
+                    items += `<option value='${value.value}'>${value.text}</option>`;
+                });
+                select.html(items);
+            }
+        });
+    });
 </script>

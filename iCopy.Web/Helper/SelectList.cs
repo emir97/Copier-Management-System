@@ -4,7 +4,11 @@ using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
+using AutoMapper;
+using iCopy.Database.Context;
+using Microsoft.EntityFrameworkCore;
 using City = iCopy.Model.Response.City;
 
 namespace iCopy.Web.Helper
@@ -12,37 +16,50 @@ namespace iCopy.Web.Helper
     public class SelectList : ISelectList
     {
         private readonly SharedResource SharedResource;
-        private readonly IReadService<Model.Response.Country, CountrySearch, int> CountryReadService;
-        private readonly IReadService<City, CitySearch, int> CityReadService;
+        private readonly DBContext context;
+        private readonly IMapper mapper;
 
         public SelectList(
             SharedResource SharedResource,
-            IReadService<Model.Response.Country, Model.Request.CountrySearch, int> CountryReadService,
-            IReadService<Model.Response.City, Model.Request.CitySearch, int> CityReadService
+            DBContext context,
+            IMapper mapper
             )
         {
+            this.mapper = mapper;
             this.SharedResource = SharedResource;
-            this.CountryReadService = CountryReadService;
-            this.CityReadService = CityReadService;
+            this.context = context;
         }
         public List<SelectListItem> BaseSelectListItem(bool includeChooseText, string chooseText, IEnumerable<SelectListItem> selectListItems)
         {
             var items = new List<SelectListItem>();
             if (includeChooseText)
                 items.Add(new SelectListItem { Text = chooseText, Value = string.Empty });
-            items.AddRange(selectListItems);
+            if(selectListItems != null)
+                items.AddRange(selectListItems);
             return items;
         }
 
         public async Task<List<SelectListItem>> Countries(bool includeChooseText = true)
         {
-            return BaseSelectListItem(includeChooseText, SharedResource.ChooseCountry, (await CountryReadService.GetAllActiveAsync()).Select(x => new SelectListItem { Text = x.Name, Value = x.ID.ToString() }));
+            return BaseSelectListItem(includeChooseText, SharedResource.ChooseCountry, mapper.Map<List<SelectListItem>>(await context.Countries.Where(x => x.Active).ToListAsync()));
         }
 
-        public async Task<List<SelectListItem>> Cities(int? countryId = null, bool includeChooseText = true)
+        public async Task<List<SelectListItem>> Cities(bool includeChooseText = true)
         {
-            var request = await CityReadService.GetByParametersAsync(new CitySearch() {Active = true, CountryID = countryId});
-            return BaseSelectListItem(includeChooseText, SharedResource.ChooseCity, request.Select(x => new SelectListItem {Text = x.Name, Value = x.ID.ToString()}));
+            return BaseSelectListItem(includeChooseText, SharedResource.ChooseCity, mapper.Map<List<SelectListItem>>(await context.Cities.Where(x => x.Active).ToListAsync()));
+        }
+
+        public async Task<List<SelectListItem>> Cities(int countryId, bool includeChooseText = true)
+        {
+            return BaseSelectListItem(includeChooseText, SharedResource.ChooseCity, mapper.Map<List<SelectListItem>>(await context.Cities.Where(x => x.Active && x.CountryID == countryId).ToListAsync()));
+        }
+
+        public async Task<List<SelectListItem>> CitiesByCityCountryId(int cityId, bool includeChooseText = true)
+        {
+            var countryId = (await context.Cities.FindAsync(cityId))?.CountryID;
+            if(countryId.HasValue)
+                return BaseSelectListItem(includeChooseText, SharedResource.ChooseCity, mapper.Map<List<SelectListItem>>(await context.Cities.Where(x => x.Active && x.CountryID == countryId).ToListAsync()));
+            return BaseSelectListItem(includeChooseText, SharedResource.ChooseCity, null);
         }
     }
 }

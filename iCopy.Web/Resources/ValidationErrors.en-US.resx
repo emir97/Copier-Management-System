@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailWrongFormat" xml:space="preserve">
+    <value>Wrong format of email</value>
+  </data>
   <data name="ErrMaxLenght" xml:space="preserve">
     <value>Maximum number of characters is 100</value>
+  </data>
+  <data name="ErrMinLenghtPassword" xml:space="preserve">
+    <value>Password must be at least 8 characters</value>
   </data>
   <data name="ErrMinMaxName" xml:space="preserve">
     <value>Name must be at least 5 characters</value>
@@ -138,11 +144,17 @@
   <data name="ErrNoCountry" xml:space="preserve">
     <value>Country is required</value>
   </data>
+  <data name="ErrNoEmail" xml:space="preserve">
+    <value>Email is required</value>
+  </data>
   <data name="ErrNoJIB" xml:space="preserve">
     <value>JIB is required</value>
   </data>
   <data name="ErrNoName" xml:space="preserve">
     <value>Name is required</value>
+  </data>
+  <data name="ErrNoPassword" xml:space="preserve">
+    <value>Password is required</value>
   </data>
   <data name="ErrNoPhoneNumber" xml:space="preserve">
     <value>Phone number is required</value>
@@ -158,6 +170,9 @@
   </data>
   <data name="ErrNoShortName" xml:space="preserve">
     <value>Short name is required</value>
+  </data>
+  <data name="ErrNoUsername" xml:space="preserve">
+    <value>Username is required</value>
   </data>
   <data name="ErrTypePhoneNumber" xml:space="preserve">
     <value>Phone number format is incorrect</value>

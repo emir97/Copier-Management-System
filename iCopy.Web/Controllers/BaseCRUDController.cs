@@ -10,7 +10,7 @@ namespace iCopy.Web.Controllers
     {
         protected readonly ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> crudService;
         protected readonly SharedResource _localizer;
-        private readonly IMapper mapper;
+        protected readonly IMapper mapper;
 
         public BaseCRUDController(ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> crudService, SharedResource _localizer, IMapper mapper)
         {
@@ -70,7 +70,7 @@ namespace iCopy.Web.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public virtual async Task<IActionResult> ChangeActiveStatus(TPk id)
         {
             try

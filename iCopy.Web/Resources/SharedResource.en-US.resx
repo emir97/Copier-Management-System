@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="AccountSettings" xml:space="preserve">
+    <value>Account settings</value>
+  </data>
   <data name="Actions" xml:space="preserve">
     <value>Actions</value>
   </data>
@@ -171,11 +174,20 @@
   <data name="CompanySettings" xml:space="preserve">
     <value>Company settings</value>
   </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
-  <data name="ContantAgent" xml:space="preserve">
+  <data name="ContactAgent" xml:space="preserve">
     <value>Contact agent</value>
+  </data>
+  <data name="ContactAgentPhoneNumber" xml:space="preserve">
+    <value>Contact agent phone number</value>
   </data>
   <data name="CopierManagementSystem" xml:space="preserve">
     <value>Copier management system</value>
@@ -191,6 +203,9 @@
   </data>
   <data name="CountrySettings" xml:space="preserve">
     <value>Country settings</value>
+  </data>
+  <data name="DragFilesOrClickToUpload" xml:space="preserve">
+    <value>Drop files here or click to upload</value>
   </data>
   <data name="EditCity" xml:space="preserve">
     <value>Edit city</value>
@@ -234,6 +249,9 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="NextStep" xml:space="preserve">
+    <value>Next step</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
@@ -255,8 +273,14 @@
   <data name="PostalCode" xml:space="preserve">
     <value>Postal code</value>
   </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
   <data name="Privacy" xml:space="preserve">
     <value>Privacy</value>
+  </data>
+  <data name="ProfileImage" xml:space="preserve">
+    <value>Profile photo</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
@@ -269,6 +293,9 @@
   </data>
   <data name="ShortName" xml:space="preserve">
     <value>Short name</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
   </data>
   <data name="SuccAdd" xml:space="preserve">
     <value>Record is successfully added</value>
@@ -287,6 +314,9 @@
   </data>
   <data name="Team" xml:space="preserve">
     <value>Team</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
   </data>
   <data name="UsernameOrEmail" xml:space="preserve">
     <value>Username or email</value>

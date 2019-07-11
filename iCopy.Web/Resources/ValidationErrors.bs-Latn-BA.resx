@@ -117,14 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailWrongFormat" xml:space="preserve">
+    <value>Neispravan format email-a</value>
+  </data>
   <data name="ErrMaxLenght" xml:space="preserve">
     <value>Maksimalan broj karaktera je 100</value>
+  </data>
+  <data name="ErrMinLenghtPassword" xml:space="preserve">
+    <value>Šifra mora imati najmanje 8 karaktera</value>
   </data>
   <data name="ErrMinMaxName" xml:space="preserve">
     <value>Naziv mora imate najmanje 5 karaktera</value>
   </data>
   <data name="ErrMinMaxShortName" xml:space="preserve">
-    <value>Skraćeni naziv mora imate najmanje 2 karaktera</value>
+    <value>Skraćeni naziv mora imati najmanje 2 karaktera</value>
   </data>
   <data name="ErrNoAddress" xml:space="preserve">
     <value>Adresa je obavezna</value>
@@ -138,11 +144,17 @@
   <data name="ErrNoCountry" xml:space="preserve">
     <value>Država je obavezna</value>
   </data>
+  <data name="ErrNoEmail" xml:space="preserve">
+    <value>Email je obavezan</value>
+  </data>
   <data name="ErrNoJIB" xml:space="preserve">
     <value>JIB je obavezan</value>
   </data>
   <data name="ErrNoName" xml:space="preserve">
     <value>Naziv je obavezan</value>
+  </data>
+  <data name="ErrNoPassword" xml:space="preserve">
+    <value>Šifra je obavezna</value>
   </data>
   <data name="ErrNoPhoneNumber" xml:space="preserve">
     <value>Broj telefona je obavezan</value>
@@ -158,6 +170,9 @@
   </data>
   <data name="ErrNoShortName" xml:space="preserve">
     <value>Skraćeni naziv je obavezan</value>
+  </data>
+  <data name="ErrNoUsername" xml:space="preserve">
+    <value>Korisničko ime je obavezno</value>
   </data>
   <data name="ErrTypePhoneNumber" xml:space="preserve">
     <value>Format telefonskog broja je pogrešan</value>

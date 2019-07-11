@@ -17,7 +17,8 @@ namespace iCopy.Web.Controllers
 
         public async Task<List<SelectListItem>> Cities(int? id)
         {
-            return await SelectList.Cities(id);
+            if (id.HasValue) return await SelectList.Cities(id.Value);
+            return await SelectList.Cities();
         }
     }
 }

@@ -4,10 +4,6 @@
     {
         public static class Routes
         {
-            public static class SelectListItem
-            {
-                public static string Cities => "/selectlistitem/cities";
-            }
             public static class City
             {
                 public static string Index => "/location/city/index";
@@ -35,6 +31,16 @@
                 public static string GetData => "/administration/company/getdata";
                 public static string ChangeActiveStatus => "/administration/company/changeactivestatus";
                 public static string Details => "/administration/company/details";
+            }
+            public static class SelectList
+            {
+                public static string Cities => "/selectlist/cities";
+                public static string CitiesByCountry => "/selectlist/CitiesByCountry";
+            }
+            public static class Upload
+            {
+                public static string UploadProfileImage => "/upload/UploadProfileImage";
+                public static string RemoveUploadedProfileImage => "/upload/RemoveUploadedProfileImage";
             }
         }
     }

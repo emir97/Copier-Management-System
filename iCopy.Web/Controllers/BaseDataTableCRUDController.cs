@@ -26,7 +26,7 @@ namespace iCopy.Web.Controllers
             return View(model);
         }
 
-        public async Task<DataTable<TResult>> GetData([FromForm]TSearch Search, [FromForm]DataTableRequest Request)
+        public virtual async Task<DataTable<TResult>> GetData([FromForm]TSearch Search, [FromForm]DataTableRequest Request)
         {
             var filteredData = await crudService.GetByParametersAsync(Search, Request.order[0].dir, Request.columns[Request.order[0].column].name, Request.start, Request.length);
             return new DataTable<TResult>

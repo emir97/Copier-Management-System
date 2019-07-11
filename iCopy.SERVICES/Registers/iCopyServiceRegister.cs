@@ -2,6 +2,7 @@
 using iCopy.Model.Request;
 using iCopy.SERVICES.IServices;
 using iCopy.SERVICES.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace iCopy.SERVICES.Registers
@@ -18,6 +19,9 @@ namespace iCopy.SERVICES.Registers
             services.AddScoped<ICRUDService<Model.Request.City, Model.Request.City, Model.Response.City, Model.Request.CitySearch, int>,
                 CityService>();
             services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IProfilePhotoService, ProfilePhotoService>();
+            services.AddScoped<IUserValidator<Database.ApplicationUser>, UserValidator<Database.ApplicationUser>>();
             return services;
         }
     }

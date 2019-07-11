@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>O nama</value>
   </data>
+  <data name="AccountSettings" xml:space="preserve">
+    <value>Postavke korisničkog računa</value>
+  </data>
   <data name="Actions" xml:space="preserve">
     <value>Akcije</value>
   </data>
@@ -171,11 +174,20 @@
   <data name="CompanySettings" xml:space="preserve">
     <value>Postavke kompanije</value>
   </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Završeno</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Potvrdi</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Kontakt</value>
   </data>
-  <data name="ContantAgent" xml:space="preserve">
+  <data name="ContactAgent" xml:space="preserve">
     <value>Kontakt osoba</value>
+  </data>
+  <data name="ContactAgentPhoneNumber" xml:space="preserve">
+    <value>Broj telefona kontakt osobe</value>
   </data>
   <data name="CopierManagementSystem" xml:space="preserve">
     <value>Softver za upravljanje kopirnicama</value>
@@ -191,6 +203,9 @@
   </data>
   <data name="CountrySettings" xml:space="preserve">
     <value>Postavke države</value>
+  </data>
+  <data name="DragFilesOrClickToUpload" xml:space="preserve">
+    <value>Ispusti datoteku ili klikni za prenos datoteke</value>
   </data>
   <data name="EditCity" xml:space="preserve">
     <value>Izmijeni grad</value>
@@ -234,6 +249,9 @@
   <data name="Name" xml:space="preserve">
     <value>Naziv</value>
   </data>
+  <data name="NextStep" xml:space="preserve">
+    <value>Idući korak</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>Ne</value>
   </data>
@@ -255,8 +273,14 @@
   <data name="PostalCode" xml:space="preserve">
     <value>Poštanski broj</value>
   </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Nazad</value>
+  </data>
   <data name="Privacy" xml:space="preserve">
     <value>Privatnost</value>
+  </data>
+  <data name="ProfileImage" xml:space="preserve">
+    <value>Slika profila</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Poništi</value>
@@ -269,6 +293,9 @@
   </data>
   <data name="ShortName" xml:space="preserve">
     <value>Skraćeni naziv</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Sačuvaj</value>
   </data>
   <data name="SuccAdd" xml:space="preserve">
     <value>Uspješno dodan zapis</value>
@@ -287,6 +314,9 @@
   </data>
   <data name="Team" xml:space="preserve">
     <value>Tim</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Korisničko ime</value>
   </data>
   <data name="UsernameOrEmail" xml:space="preserve">
     <value>Korisničko ime ili email</value>

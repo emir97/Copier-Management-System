@@ -1,16 +1,16 @@
-﻿using System;
+﻿using AutoMapper;
+using iCopy.Database;
+using iCopy.SERVICES.IServices;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
-using iCopy.Database;
-using iCopy.SERVICES.Context;
-using iCopy.SERVICES.IServices;
-using Microsoft.EntityFrameworkCore;
+using iCopy.Database.Context;
 
 namespace iCopy.SERVICES.Services
 {
-    public class ReadService<TModel, TResult, TSearch, TPk> : IReadService<TResult, TSearch, TPk> where TModel : BaseEntity
+    public class ReadService<TModel, TResult, TSearch, TPk> : IReadService<TResult, TSearch, TPk> where TModel : BaseEntity<TPk>
     {
         private readonly DBContext ctx;
         private readonly IMapper mapper;

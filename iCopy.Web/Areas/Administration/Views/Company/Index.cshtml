@@ -17,7 +17,7 @@
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-wrapper">
                 <div class="kt-portlet__head-actions">
-                    <a href="@Settings.Routes.Company.Insert" ajax-add="modal-bs" class="btn btn-brand btn-icon-sm">
+                    <a href="@Settings.Routes.Company.Insert" class="btn btn-brand btn-icon-sm">
                         <i class="la la-plus"></i>
                         @_sharedLocalizer.AddCompany
                     </a>
@@ -28,39 +28,43 @@
     <div class="kt-portlet__body">
         <div class="row">
             <div class="kt-form kt-form--fit kt-margin-b-20 col-md-12">
-                <div class="row kt-margin-b-20" id="search-parameters">
-                    <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>@_sharedLocalizer.Name:</label>
-                        <input name="name" id="name" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.Name">
+                <div id="search-parameters">
+                    <div class="row kt-margin-b-20">
+                        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                            <label>@_sharedLocalizer.Name:</label>
+                            <input name="name" id="name" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.Name">
+                        </div>
+                        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                            <label>@_sharedLocalizer.ContactAgent:</label>
+                            <input name="contactagent" id="contact-agent" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.ContactAgent">
+                        </div>
+                        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                            <label>@_sharedLocalizer.Country:</label>
+                            <select name="CountryID" asp-items="@(await _selectList.Countries())" class="form-control kt-select2" id="countries-list"></select>
+                        </div>
+                        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                            <label>@_sharedLocalizer.City:</label>
+                            <select name="CountryID" asp-items="@(await _selectList.Cities())" class="form-control kt-select2" id="cities-list"></select>
+                        </div>
                     </div>
-                    <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>@_sharedLocalizer.ContantAgent:</label>
-                        <input name="contactagent" id="contact-agent" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.ContantAgent">
-                    </div>
-                    <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>@_sharedLocalizer.Country:</label>
-                        <select name="CountryID" asp-items="@(await _selectList.Countries())" class="form-control kt-select2" id="countries-list"></select>
-                    </div>
-                    <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>@_sharedLocalizer.City:</label>
-                        <select name="CountryID" asp-items="@(await _selectList.Cities())" class="form-control kt-select2" id="cities-list"></select>
-                    </div>
-                    <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>@_sharedLocalizer.JIB:</label>
-                        <input name="contactagent" id="contact-agent" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.JIB">
-                    </div>
-                    <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                        <label>&nbsp;</label>
-                        <div class="btn-group btn-group-toggle col-md-12 p-0" data-toggle="buttons" data-col-index="3">
-                            <label class="btn btn-secondary active">
-                                <input name="active" id="active" type="radio" autocomplete="off" checked class="form-control" value=""> @_sharedLocalizer.All
-                            </label>
-                            <label class="btn btn-secondary">
-                                <input name="active" id="active" type="radio" autocomplete="off" class="form-control" value="true"> @_sharedLocalizer.Active
-                            </label>
-                            <label class="btn btn-secondary">
-                                <input name="active" id="active" type="radio" autocomplete="off" class="form-control" value="false"> @_sharedLocalizer.Inactive
-                            </label>
+                    <div class="row kt-margin-b-20">
+                        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                            <label>@_sharedLocalizer.JIB:</label>
+                            <input name="contactagent" id="contact-agent" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.JIB">
+                        </div>
+                        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                            <label>&nbsp;</label>
+                            <div class="btn-group btn-group-toggle col-md-12 p-0" data-toggle="buttons" data-col-index="3">
+                                <label class="btn btn-secondary active">
+                                    <input name="active" id="active" type="radio" autocomplete="off" checked class="form-control" value=""> @_sharedLocalizer.All
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input name="active" id="active" type="radio" autocomplete="off" class="form-control" value="true"> @_sharedLocalizer.Active
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input name="active" id="active" type="radio" autocomplete="off" class="form-control" value="false"> @_sharedLocalizer.Inactive
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -90,7 +94,7 @@
                     <th>#</th>
                     <th>@_sharedLocalizer.Name  </th>
                     <th>@_sharedLocalizer.City</th>
-                    <th>@_sharedLocalizer.ContantAgent</th>
+                    <th>@_sharedLocalizer.ContactAgent</th>
                     <th>@_sharedLocalizer.PhoneNumber</th>
                     <th>@_sharedLocalizer.Email</th>
                     <th>@_sharedLocalizer.Active</th>
@@ -185,7 +189,7 @@
                     },
                     {
                         targets: 5,
-                        name: '@nameof(iCopy.Model.Request.Company.Email)',
+                        name: '@nameof(iCopy.Model.Request.ApplicationUser.Email)',
                         orderable: false
                     },
                     {

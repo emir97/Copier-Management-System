@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using iCopy.Model.Request;
-using iCopy.SERVICES.Context;
 using iCopy.SERVICES.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using iCopy.Database.Context;
 
 namespace iCopy.SERVICES.Services
 {

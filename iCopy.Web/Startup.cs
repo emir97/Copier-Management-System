@@ -1,4 +1,5 @@
-﻿using iCopy.SERVICES.Context;
+﻿using iCopy.Database;
+using iCopy.Model.Options;
 using iCopy.SERVICES.Registers;
 using iCopy.Web.Helper;
 using iCopy.Web.Resources;
@@ -13,7 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using iCopy.Database;
+using iCopy.Database.Context;
+using DBContext = iCopy.Database.Context.DBContext;
 
 namespace iCopy.Web
 {
@@ -48,9 +50,11 @@ namespace iCopy.Web
             services.ConfigureLocalization();
             services.AddDbContext<DBContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DBContext")));
             services.AddDbContext<AuthContext>(x => x.UseSqlServer(Configuration.GetConnectionString("AuthContext")));
+            services.AddSession();
             services.AddiCopyServices();
             services.AddScoped<SharedResource>();
             services.AddScoped<ISelectList, SelectList>();
+            services.AddSingleton<ProfilePhotoOptions>(Configuration.GetSection("Files:ProfilePhoto").Get<ProfilePhotoOptions>());
 
             services.AddAuthentication().AddCookie();
             services.AddDefaultIdentity<ApplicationUser>().AddRoles<ApplicationRole>().AddEntityFrameworkStores<AuthContext>();
@@ -74,15 +78,31 @@ namespace iCopy.Web
             services.Configure<IdentityOptions>(options =>
             {
                 options.SignIn.RequireConfirmedEmail = true;
+
                 options.Lockout.AllowedForNewUsers = true;
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromHours(2);
                 options.Lockout.MaxFailedAccessAttempts = 5;
+
                 options.User.RequireUniqueEmail = true;
+
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireUppercase = true;
                 options.Password.RequireNonAlphanumeric = true;
-                options.Password.RequiredLength = 8;
+                options.Password.RequiredLength = 8;    
+
+                options.Tokens.AuthenticatorIssuer = "";
+                options.Tokens.AuthenticatorTokenProvider = "";
+            });
+            services.Configure<SessionOptions>(options =>
+            {
+                options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+                options.Cookie.HttpOnly = true;
+            });
+            services.Configure<PasswordHasherOptions>(options =>
+            {
+                options.CompatibilityMode = PasswordHasherCompatibilityMode.IdentityV3;
+                options.IterationCount = 100000;
             });
         }
 
@@ -103,6 +123,7 @@ namespace iCopy.Web
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseRequestLocalization();
+            app.UseSession();
             app.UseAuthentication();
             app.UseMvc(routes =>
             {
