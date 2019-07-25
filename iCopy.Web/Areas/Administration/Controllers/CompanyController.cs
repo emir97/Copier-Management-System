@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using iCopy.Model.Request;
@@ -7,7 +9,9 @@ using iCopy.SERVICES.IServices;
 using iCopy.Web.Controllers;
 using iCopy.Web.Helper;
 using iCopy.Web.Resources;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 
 namespace iCopy.Web.Areas.Administration.Controllers
 {
@@ -48,7 +52,8 @@ namespace iCopy.Web.Areas.Administration.Controllers
                 }
             }
 
-            return View(model);
+            Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            return Json(ModelState.Where(x => x.Value.Errors.Count > 0).ToDictionary(x => x.Key, x => x.Value.Errors.Select(y => y.ErrorMessage)));
         }
     }
 }

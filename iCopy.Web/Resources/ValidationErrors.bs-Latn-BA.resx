@@ -177,4 +177,13 @@
   <data name="ErrTypePhoneNumber" xml:space="preserve">
     <value>Format telefonskog broja je pogrešan</value>
   </data>
+  <data name="ErrUniqueEmail" xml:space="preserve">
+    <value>Email je zauzet</value>
+  </data>
+  <data name="ErrUniquePhoneNumber" xml:space="preserve">
+    <value>Broj telefona je zauzet</value>
+  </data>
+  <data name="ErrUniqueUsername" xml:space="preserve">
+    <value>Korisničko ime je zauzeto</value>
+  </data>
 </root>

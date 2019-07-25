@@ -122,11 +122,13 @@ namespace iCopy.SERVICES.Services
             {
                 Model.Response.ApplicationUser user = await UserService.InsertAsync(mapper.Map<Model.Request.ApplicationUser>(entity.User), Model.Enum.Enum.Roles.Company);
                 model.ApplicationUserId = user.ID;
-                entity.ProfilePhoto.ApplicationUserId = user.ID;
                 ctx.Companies.Add(model);
                 await ctx.SaveChangesAsync();
                 if (entity.ProfilePhoto != null)
+                {
+                    entity.ProfilePhoto.ApplicationUserId = user.ID;
                     await ProfilePhotoService.InsertAsync(entity.ProfilePhoto);
+                }
             }
             catch (Exception e)
             {

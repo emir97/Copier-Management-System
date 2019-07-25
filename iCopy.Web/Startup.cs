@@ -1,4 +1,5 @@
 ﻿using iCopy.Database;
+using iCopy.Database.Context;
 using iCopy.Model.Options;
 using iCopy.SERVICES.Registers;
 using iCopy.Web.Helper;
@@ -14,7 +15,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using iCopy.Database.Context;
 using DBContext = iCopy.Database.Context.DBContext;
 
 namespace iCopy.Web

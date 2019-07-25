@@ -4,7 +4,6 @@ using iCopy.SERVICES.IServices;
 using iCopy.Web.Controllers;
 using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection;
 
 namespace iCopy.Web.Areas.Location.Controllers
 {

@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using System.Security.Claims;
+using AutoMapper;
 using iCopy.SERVICES.IServices;
 using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Mvc;
@@ -70,7 +72,7 @@ namespace iCopy.Web.Controllers
             }
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost]
         public virtual async Task<IActionResult> ChangeActiveStatus(TPk id)
         {
             try

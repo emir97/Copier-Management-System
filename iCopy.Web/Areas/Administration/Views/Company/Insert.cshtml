@@ -161,12 +161,12 @@
 <script>
     "use strict";
     // Class definition
+    var wizardEl;
+    var formEl;
+    var validator;
+    var wizard;
     var KTWizard2 = function () {
         // Base elements
-        var wizardEl;
-        var formEl;
-        var validator;
-        var wizard;
 
         // Private functions
         var initWizard = function () {
@@ -194,34 +194,33 @@
                 // Validation rules
                 rules: {
                     //= Step 1
-                    Name: {
+                    '@(nameof(iCopy.Model.Request.Company.Name))': {
                         required: true
                     },
-                    Jib: {
+                    '@(nameof(iCopy.Model.Request.Company.Jib))' : {
                         required: true
                     },
-                    ContactAgent: {
+                    '@(nameof(iCopy.Model.Request.Company.ContactAgent))': {
                         required: true
                     },
-                    emaul: {
-                        required: true,
-                        email: true
+                    '@(nameof(iCopy.Model.Request.Company.PhoneNumber))': {
+                        required: true
+                    },
+                    '@(nameof(iCopy.Model.Request.Company.Address))': {
+                        required: true
                     },
 
                     //= Step 2
-                    address1: {
+                    'User.Username': {
                         required: true
                     },
-                    postcode: {
+                    'User.Email': {
                         required: true
                     },
-                    city: {
+                    'User.PhoneNumber': {
                         required: true
                     },
-                    state: {
-                        required: true
-                    },
-                    country: {
+                    'User.Password': {
                         required: true
                     }
                 },
@@ -252,9 +251,8 @@
                 e.preventDefault();
 
                 if (validator.form()) {
-                    console.log(formEl);    
                     // See: src\js\framework\base\app.js
-                    //KTApp.progress(btn);
+                    KTApp.progress(btn);
                     KTApp.block(formEl);
                     // See: http://malsup.com/jquery/form/#ajaxSubmit
                     formEl.ajaxSubmit({
@@ -262,13 +260,25 @@
                             KTApp.unprogress(btn);
                             KTApp.unblock(formEl);
                             swal.fire({
-                                "title": "",
-                                "text": "The application has been successfully submitted!",
-                                "type": "success",
-                                "confirmButtonClass": "btn btn-secondary"
-                            }).then(function(data) {
-                                windows.location.replace('@Settings.Routes.Company.Index');
-                            });
+                                title: "",
+                                text: "@_sharedLocalizer.SuccAdd",
+                                type: "success",
+                                confirmButtonClass: "btn btn-secondary",
+                                allowOutsideClick: false
+                            }).then(function (data) {
+                                window.location.replace('@Settings.Routes.Company.Index');
+                            }); 
+                        }, 
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            KTApp.unprogress(btn);
+                            KTApp.unblock(formEl);
+                            for (var key in XMLHttpRequest.responseJSON) {
+                                if (key != null) {
+                                    let error = {};
+                                    error[key] = XMLHttpRequest.responseJSON[key][0];
+                                    validator.showErrors(error);
+                                }
+                            }
                         }
                     });
                 }
@@ -282,6 +292,7 @@
                 initWizard();
                 initValidation();
                 initSubmit();
+                console.log(validator);
             }
         };
     }();

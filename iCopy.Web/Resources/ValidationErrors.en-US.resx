@@ -177,4 +177,13 @@
   <data name="ErrTypePhoneNumber" xml:space="preserve">
     <value>Phone number format is incorrect</value>
   </data>
+  <data name="ErrUniqueEmail" xml:space="preserve">
+    <value>Email is not available</value>
+  </data>
+  <data name="ErrUniquePhoneNumber" xml:space="preserve">
+    <value>Phone number is not available</value>
+  </data>
+  <data name="ErrUniqueUsername" xml:space="preserve">
+    <value>Username is not available</value>
+  </data>
 </root>
