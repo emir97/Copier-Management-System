@@ -38,7 +38,10 @@ namespace iCopy.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services
-                .AddMvc()
+                .AddMvc(options =>
+                {
+                    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+                })
                 .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization(options =>
                 {
@@ -53,11 +56,12 @@ namespace iCopy.Web
             services.AddSession();
             services.AddiCopyServices();
             services.AddScoped<SharedResource>();
+            services.AddScoped<ValidationErrors>();
             services.AddScoped<ISelectList, SelectList>();
             services.AddSingleton<ProfilePhotoOptions>(Configuration.GetSection("Files:ProfilePhoto").Get<ProfilePhotoOptions>());
 
             services.AddAuthentication().AddCookie();
-            services.AddDefaultIdentity<ApplicationUser>().AddRoles<ApplicationRole>().AddEntityFrameworkStores<AuthContext>();
+            services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<AuthContext>().AddDefaultTokenProviders();
             services.Configure<AuthenticationOptions>(options =>
             {
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;

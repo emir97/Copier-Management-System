@@ -189,11 +189,17 @@
   <data name="ContactAgentPhoneNumber" xml:space="preserve">
     <value>Broj telefona kontakt osobe</value>
   </data>
+  <data name="ContactEmail" xml:space="preserve">
+    <value>Kontakt email</value>
+  </data>
   <data name="CopierManagementSystem" xml:space="preserve">
     <value>Softver za upravljanje kopirnicama</value>
   </data>
   <data name="CopierSettings" xml:space="preserve">
     <value>Postavke kopirnica</value>
+  </data>
+  <data name="CorrectErrorBeforeGoToNextStep" xml:space="preserve">
+    <value>Ispravite greške prije nego nastavite na idući korak</value>
   </data>
   <data name="Countries" xml:space="preserve">
     <value>Države</value>
@@ -260,6 +266,9 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Šifa</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>Potvrda šifre</value>
   </data>
   <data name="PhoneCode" xml:space="preserve">
     <value>Pozivni broj države</value>

@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /iCopy.SERVICES/Migrations/
+/iCopy.Database/Migrations

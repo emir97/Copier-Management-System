@@ -120,17 +120,32 @@
   <data name="EmailWrongFormat" xml:space="preserve">
     <value>Wrong format of email</value>
   </data>
+  <data name="ErrEnterTheSameValueAgain" xml:space="preserve">
+    <value>Enter the same value again</value>
+  </data>
+  <data name="ErrEnterValidNumber" xml:space="preserve">
+    <value>Enter a valid number</value>
+  </data>
   <data name="ErrMaxLenght" xml:space="preserve">
     <value>Maximum number of characters is 100</value>
   </data>
+  <data name="ErrMaxNumberOfCharacters" xml:space="preserve">
+    <value>Maximum number of characters is {0}</value>
+  </data>
   <data name="ErrMinLenghtPassword" xml:space="preserve">
     <value>Password must be at least 8 characters</value>
+  </data>
+  <data name="ErrMinLenghtPasswordConfirm" xml:space="preserve">
+    <value>Password confirm must be at least 8 characters</value>
   </data>
   <data name="ErrMinMaxName" xml:space="preserve">
     <value>Name must be at least 5 characters</value>
   </data>
   <data name="ErrMinMaxShortName" xml:space="preserve">
     <value>Short name must be at least 2 characters</value>
+  </data>
+  <data name="ErrMinNumberOfCharacters" xml:space="preserve">
+    <value>Minimum number of characters is {0}</value>
   </data>
   <data name="ErrNoAddress" xml:space="preserve">
     <value>Address is required</value>
@@ -156,6 +171,9 @@
   <data name="ErrNoPassword" xml:space="preserve">
     <value>Password is required</value>
   </data>
+  <data name="ErrNoPasswordConfirm" xml:space="preserve">
+    <value>Password confirm is required</value>
+  </data>
   <data name="ErrNoPhoneNumber" xml:space="preserve">
     <value>Phone number is required</value>
   </data>
@@ -171,8 +189,14 @@
   <data name="ErrNoShortName" xml:space="preserve">
     <value>Short name is required</value>
   </data>
+  <data name="ErrNotSamePasswordConfirm" xml:space="preserve">
+    <value>Passwords are not match</value>
+  </data>
   <data name="ErrNoUsername" xml:space="preserve">
     <value>Username is required</value>
+  </data>
+  <data name="ErrThisFieldIsRequired" xml:space="preserve">
+    <value>This field is required</value>
   </data>
   <data name="ErrTypePhoneNumber" xml:space="preserve">
     <value>Phone number format is incorrect</value>

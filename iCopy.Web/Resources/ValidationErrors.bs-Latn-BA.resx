@@ -120,17 +120,32 @@
   <data name="EmailWrongFormat" xml:space="preserve">
     <value>Neispravan format email-a</value>
   </data>
+  <data name="ErrEnterTheSameValueAgain" xml:space="preserve">
+    <value>Unesite istu vrijednost ponovo</value>
+  </data>
+  <data name="ErrEnterValidNumber" xml:space="preserve">
+    <value>Unesite ispravan broj</value>
+  </data>
   <data name="ErrMaxLenght" xml:space="preserve">
     <value>Maksimalan broj karaktera je 100</value>
   </data>
+  <data name="ErrMaxNumberOfCharacters" xml:space="preserve">
+    <value>Maksimalan broj karaktera je {0}</value>
+  </data>
   <data name="ErrMinLenghtPassword" xml:space="preserve">
     <value>Šifra mora imati najmanje 8 karaktera</value>
+  </data>
+  <data name="ErrMinLenghtPasswordConfirm" xml:space="preserve">
+    <value>Potvrda šifre mora imati najmanje 8 karaktera</value>
   </data>
   <data name="ErrMinMaxName" xml:space="preserve">
     <value>Naziv mora imate najmanje 5 karaktera</value>
   </data>
   <data name="ErrMinMaxShortName" xml:space="preserve">
     <value>Skraćeni naziv mora imati najmanje 2 karaktera</value>
+  </data>
+  <data name="ErrMinNumberOfCharacters" xml:space="preserve">
+    <value>Minimalan broj karaktera je {0}</value>
   </data>
   <data name="ErrNoAddress" xml:space="preserve">
     <value>Adresa je obavezna</value>
@@ -156,6 +171,9 @@
   <data name="ErrNoPassword" xml:space="preserve">
     <value>Šifra je obavezna</value>
   </data>
+  <data name="ErrNoPasswordConfirm" xml:space="preserve">
+    <value>Potvrda šifre je obavezna</value>
+  </data>
   <data name="ErrNoPhoneNumber" xml:space="preserve">
     <value>Broj telefona je obavezan</value>
   </data>
@@ -171,8 +189,14 @@
   <data name="ErrNoShortName" xml:space="preserve">
     <value>Skraćeni naziv je obavezan</value>
   </data>
+  <data name="ErrNotSamePasswordConfirm" xml:space="preserve">
+    <value>Šifre se ne poklapaju</value>
+  </data>
   <data name="ErrNoUsername" xml:space="preserve">
     <value>Korisničko ime je obavezno</value>
+  </data>
+  <data name="ErrThisFieldIsRequired" xml:space="preserve">
+    <value>Ovo polje je obavezno</value>
   </data>
   <data name="ErrTypePhoneNumber" xml:space="preserve">
     <value>Format telefonskog broja je pogrešan</value>

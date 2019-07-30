@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using iCopy.Model.Request;
 using iCopy.SERVICES.Attributes;
 using iCopy.SERVICES.IServices;
@@ -11,7 +7,8 @@ using iCopy.Web.Helper;
 using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
+using System;
+using System.Threading.Tasks;
 
 namespace iCopy.Web.Areas.Administration.Controllers
 {
@@ -29,31 +26,20 @@ namespace iCopy.Web.Areas.Administration.Controllers
             this.CrudService = CrudService;
         }
 
-        [HttpGet]
-        public override IActionResult Insert()
-        {
-            return View(new Model.Request.Company());
-        }
-
-        [HttpPost, ValidateAntiForgeryToken, Transaction]
+        [HttpPost, Transaction, AutoValidateModelState]
         public override async Task<IActionResult> Insert(Company model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    model.ProfilePhoto = PhotoSession;
-                    await CrudService.InsertAsync(model);
-                    return Ok();
-                }
-                catch(Exception e)
-                {
-                    return Json(new {success = false, error = e.Message});
-                }
+                model.ProfilePhoto = PhotoSession;
+                await CrudService.InsertAsync(model);
+                TempData["success"] = _localizer.SuccAdd;
+                return Ok();
             }
-
-            Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            return Json(ModelState.Where(x => x.Value.Errors.Count > 0).ToDictionary(x => x.Key, x => x.Value.Errors.Select(y => y.ErrorMessage)));
+            catch(Exception e)
+            {
+                return Json(new {success = false, error = e.Message});
+            }
         }
     }
 }

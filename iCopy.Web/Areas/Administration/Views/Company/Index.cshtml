@@ -3,7 +3,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = _sharedLocalizer.CompanySettings;
 }
-
+@if(TempData["success"] != null)
+{
+    <div class="alert alert-solid-success alert-bold" role="alert">
+        <div class="alert-text">@TempData["success"]</div>
+        <div class="alert-close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"><i class="la la-close"></i></span>
+            </button>
+        </div>
+    </div>
+}
 <div class="kt-portlet kt-portlet--mobile">
     <div class="kt-portlet__head kt-portlet__head--lg">
         <div class="kt-portlet__head-label">
@@ -96,7 +106,7 @@
                     <th>@_sharedLocalizer.City</th>
                     <th>@_sharedLocalizer.ContactAgent</th>
                     <th>@_sharedLocalizer.PhoneNumber</th>
-                    <th>@_sharedLocalizer.Email</th>
+                    <th>@_sharedLocalizer.ContactEmail</th>
                     <th>@_sharedLocalizer.Active</th>
                     <th>@_sharedLocalizer.Actions</th>
                 </tr>
@@ -142,7 +152,7 @@
                 ajax: {
                     url: "@Settings.Routes.Company.GetData",
                     dataType: 'json',
-                    type: 'post',
+                    type: 'POST',
                     data: function (searchData) {
                         searchData.Search = {
                             Name : $("#name").val(),
@@ -189,7 +199,7 @@
                     },
                     {
                         targets: 5,
-                        name: '@nameof(iCopy.Model.Request.ApplicationUser.Email)',
+                        name: '@nameof(iCopy.Model.Request.Company.Email)',
                         orderable: false
                     },
                     {

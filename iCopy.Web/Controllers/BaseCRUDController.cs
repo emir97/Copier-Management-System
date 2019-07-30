@@ -1,10 +1,10 @@
-﻿using System.Linq;
-using System.Security.Claims;
-using AutoMapper;
+﻿using AutoMapper;
 using iCopy.SERVICES.IServices;
 using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using AutoMapper.Configuration.Annotations;
+using iCopy.SERVICES.Attributes;
 
 namespace iCopy.Web.Controllers
 {
@@ -25,9 +25,9 @@ namespace iCopy.Web.Controllers
         public virtual async Task<IActionResult> Index() => View(await crudService.TakeRecordsByNumberAsync());
 
         [HttpGet]
-        public virtual IActionResult Insert() => PartialView("_Add", new TInsert());
+        public virtual IActionResult Insert() => View(new TInsert());
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, Transaction]
         public virtual async Task<IActionResult> Insert(TInsert model)
         {
             if (ModelState.IsValid)
@@ -35,7 +35,7 @@ namespace iCopy.Web.Controllers
                 await crudService.InsertAsync(model);
                 return Json(new { success = true, message = _localizer.SuccAdd });
             }
-            return PartialView("_Add", model);
+            return View(model);
         }
 
         [HttpGet]
@@ -43,11 +43,11 @@ namespace iCopy.Web.Controllers
         {
             TResult model = await crudService.GetByIdAsync(id);
             if (model != null)
-                return PartialView("_Edit", model);
+                return View(model);
             return NotFound();
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, Transaction]
         public virtual async Task<IActionResult> Update(TPk id, [FromForm]TUpdate model)
         {
             if (ModelState.IsValid)
@@ -55,10 +55,10 @@ namespace iCopy.Web.Controllers
                 await crudService.UpdateAsync(id, model);
                 return Json(new { success = true, message = _localizer.SuccUpdate });
             }
-            return PartialView("_Edit", mapper.Map<TResult>(model));
+            return View(mapper.Map<TResult>(model));
         }
 
-        [HttpGet]
+        [HttpGet, Transaction]
         public virtual async Task<IActionResult> Delete(TPk id)
         {
             try
@@ -72,7 +72,7 @@ namespace iCopy.Web.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost, IgnoreAntiforgeryToken]
         public virtual async Task<IActionResult> ChangeActiveStatus(TPk id)
         {
             try

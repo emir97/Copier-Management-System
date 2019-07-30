@@ -29,6 +29,7 @@ namespace iCopy.Web.Controllers
             this.hostingEnvironment = hostingEnvironment;
         }
 
+        [HttpPost]
         public async Task<IActionResult> UploadProfileImage(IFormFile file)
         {
             if(FileSession != null && System.IO.File.Exists(FileSession.Path))
@@ -81,7 +82,7 @@ namespace iCopy.Web.Controllers
             return Ok();
         }
 
-        
+        [HttpGet]
         public Task<OkResult> RemoveUploadedProfileImage()
         {
             if (FileSession != null && System.IO.File.Exists(FileSession.Path))

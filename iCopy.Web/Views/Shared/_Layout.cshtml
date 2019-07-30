@@ -228,6 +228,14 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         };
+        jQuery.extend(jQuery.validator.messages, {
+            required: "@_validationErrors.ErrThisFieldIsRequired",
+            email: "@_validationErrors.EmailWrongFormat",
+            number: "@_validationErrors.ErrEnterValidNumber",
+            equalTo: "@_validationErrors.ErrEnterTheSameValueAgain",
+            maxlength: jQuery.validator.format("@_validationErrors.ErrMaxNumberOfCharacters"),
+            minlength: jQuery.validator.format("@_validationErrors.ErrMinNumberOfCharacters")
+        });
     </script>
 </body>
 <!-- end::Body -->

@@ -189,11 +189,17 @@
   <data name="ContactAgentPhoneNumber" xml:space="preserve">
     <value>Contact agent phone number</value>
   </data>
+  <data name="ContactEmail" xml:space="preserve">
+    <value>Contact email</value>
+  </data>
   <data name="CopierManagementSystem" xml:space="preserve">
     <value>Copier management system</value>
   </data>
   <data name="CopierSettings" xml:space="preserve">
     <value>Copier settings</value>
+  </data>
+  <data name="CorrectErrorBeforeGoToNextStep" xml:space="preserve">
+    <value>Correct errors before go to the next step</value>
   </data>
   <data name="Countries" xml:space="preserve">
     <value>Countries</value>
@@ -218,6 +224,15 @@
   </data>
   <data name="EnglishUS" xml:space="preserve">
     <value>English US</value>
+  </data>
+  <data name="EnterTheSameValueAgain" xml:space="preserve">
+    <value>Enter the same value again</value>
+  </data>
+  <data name="EnterValidEmailAddress" xml:space="preserve">
+    <value>Enter a valid email address</value>
+  </data>
+  <data name="EnterValidNumber" xml:space="preserve">
+    <value>Enter a valid number</value>
   </data>
   <data name="ErrChangeStatus" xml:space="preserve">
     <value>An error occured while trying to change the status</value>
@@ -260,6 +275,9 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>Password confirm</value>
   </data>
   <data name="PhoneCode" xml:space="preserve">
     <value>Country phone code</value>
@@ -314,6 +332,9 @@
   </data>
   <data name="Team" xml:space="preserve">
     <value>Team</value>
+  </data>
+  <data name="ThisFieldIsRequired" xml:space="preserve">
+    <value>This field is required</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>

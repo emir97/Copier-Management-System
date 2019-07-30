@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Threading.Tasks;
 using AutoMapper;
 using iCopy.SERVICES.IServices;
 using iCopy.Web.Models;
@@ -13,7 +14,7 @@ namespace iCopy.Web.Controllers
             : base(crudService, _localizer, mapper)
         {
         }
-
+        [HttpGet]
         public override async Task<IActionResult> Index()
         {
             int numberOfRecords = await crudService.GetNumberOfRecordsAsync();
@@ -26,6 +27,7 @@ namespace iCopy.Web.Controllers
             return View(model);
         }
 
+        [HttpPost, IgnoreAntiforgeryToken]
         public virtual async Task<DataTable<TResult>> GetData([FromForm]TSearch Search, [FromForm]DataTableRequest Request)
         {
             var filteredData = await crudService.GetByParametersAsync(Search, Request.order[0].dir, Request.columns[Request.order[0].column].name, Request.start, Request.length);

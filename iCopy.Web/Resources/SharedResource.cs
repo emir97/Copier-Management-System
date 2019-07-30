@@ -57,7 +57,10 @@ namespace iCopy.Web.Resources
         public string ProfileImage => localizer[nameof(ProfileImage)];
         public string DragFilesOrClickToUpload => localizer[nameof(DragFilesOrClickToUpload)];
         public string Confirm => localizer[nameof(Confirm)];
-
+        public string PasswordConfirm => localizer[nameof(PasswordConfirm)];
+        public string CorrectErrorBeforeGoToNextStep => localizer[nameof(CorrectErrorBeforeGoToNextStep)];
+        public string ContactEmail => localizer[nameof(ContactEmail)];
+       
         #region SuccMessage
         public string SuccUpdate => localizer[nameof(SuccUpdate)];
         public string SuccAdd => localizer[nameof(SuccAdd)];
