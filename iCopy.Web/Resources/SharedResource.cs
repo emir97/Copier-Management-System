@@ -60,6 +60,9 @@ namespace iCopy.Web.Resources
         public string PasswordConfirm => localizer[nameof(PasswordConfirm)];
         public string CorrectErrorBeforeGoToNextStep => localizer[nameof(CorrectErrorBeforeGoToNextStep)];
         public string ContactEmail => localizer[nameof(ContactEmail)];
+        public string Details => localizer[nameof(Details)];
+        public string CompanyDetails => localizer[nameof(CompanyDetails)];
+        public string AccountDetails => localizer[nameof(AccountDetails)];
        
         #region SuccMessage
         public string SuccUpdate => localizer[nameof(SuccUpdate)];

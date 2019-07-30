@@ -2,12 +2,13 @@
 using iCopy.Database;
 using iCopy.SERVICES.IServices;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using iCopy.Database.Context;
 
 namespace iCopy.SERVICES.Services
 {
-    public class CRUDService<TModel, TInsert, TUpdate, TResult, TSearch, TPk> : ReadService<TModel, TResult, TSearch, TPk>, ICRUDService<TInsert, TUpdate, TResult, TSearch, TPk> where TModel : BaseEntity<TPk>
+    public class CRUDService<TModel, TInsert, TUpdate, TResult, TSearch, TKey> : ReadService<TModel, TResult, TSearch, TKey>, ICRUDService<TInsert, TUpdate, TResult, TSearch, TKey> where TModel : BaseEntity<TKey>
     {
         protected readonly DBContext ctx;
         protected readonly IMapper mapper;
@@ -17,7 +18,7 @@ namespace iCopy.SERVICES.Services
             this.mapper = mapper;
         }
 
-        public virtual async Task<TResult> ChangeActiveStatusAsync(TPk id)
+        public virtual async Task<TResult> ChangeActiveStatusAsync(TKey id)
         {
             TModel model = await ctx.Set<TModel>().FindAsync(id);
             model.Active = !model.Active;
@@ -35,7 +36,7 @@ namespace iCopy.SERVICES.Services
             return mapper.Map<TResult>(model);
         }
 
-        public virtual async Task<TResult> DeleteAsync(TPk id)
+        public virtual async Task<TResult> DeleteAsync(TKey id)
         {
             TModel model = await ctx.Set<TModel>().FindAsync(id);
             try
@@ -67,7 +68,7 @@ namespace iCopy.SERVICES.Services
             return mapper.Map<TResult>(model);
         }
         
-        public virtual async Task<TResult> UpdateAsync(TPk id, TUpdate entity)
+        public virtual async Task<TResult> UpdateAsync(TKey id, TUpdate entity)
         {
             TModel model = await ctx.Set<TModel>().FindAsync(id);
             ctx.Set<TModel>().Attach(model);
@@ -84,5 +85,6 @@ namespace iCopy.SERVICES.Services
 
             return mapper.Map<TResult>(model);
         }
+        
     }
 }

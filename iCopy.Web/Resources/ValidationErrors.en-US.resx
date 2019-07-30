@@ -156,6 +156,9 @@
   <data name="ErrNoContactAgent" xml:space="preserve">
     <value>Contact agent is required</value>
   </data>
+  <data name="ErrNoContactEmail" xml:space="preserve">
+    <value>Contact email is required</value>
+  </data>
   <data name="ErrNoCountry" xml:space="preserve">
     <value>Country is required</value>
   </data>

@@ -156,6 +156,9 @@
   <data name="ErrNoContactAgent" xml:space="preserve">
     <value>Kontakt agent je obavezan</value>
   </data>
+  <data name="ErrNoContactEmail" xml:space="preserve">
+    <value>Kontakt email je obavezan</value>
+  </data>
   <data name="ErrNoCountry" xml:space="preserve">
     <value>Država je obavezna</value>
   </data>
