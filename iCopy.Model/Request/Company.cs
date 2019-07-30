@@ -18,6 +18,10 @@ namespace iCopy.Model.Request
         [DataType(DataType.PhoneNumber, ErrorMessage = "ErrTypePhoneNumber")]
         [MaxLength(100, ErrorMessage = "ErrMaxLength")]
         public string PhoneNumber { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "ErrNoContactEmail")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "EmailWrongFormat")]
+        [MaxLength(100, ErrorMessage = "ErrMaxLength")]
+        public string Email { get; set; }
         [Required(ErrorMessage = "ErrNoAddress")]
         [MaxLength(100, ErrorMessage = "ErrMaxLength")]
         public string Address { get; set; }
