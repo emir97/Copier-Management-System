@@ -5,8 +5,8 @@ namespace iCopy.Database
 {
     public class ApplicationUserRole : IdentityUserRole<int>
     {
-        public ApplicationRole ApplicationRole { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
+        public ApplicationRole Role { get; set; }
+        public ApplicationUser User { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public bool Active { get; set; }

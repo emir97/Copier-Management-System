@@ -8,6 +8,7 @@ namespace iCopy.Database
         public string ContactAgent { get; set; }
         public string Jib { get; set; }
         public string PhoneNumber { get; set; }
+        public string Email { get; set; }
         public string Address { get; set; }
         public int ApplicationUserId { get; set; }
 

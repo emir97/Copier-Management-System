@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace iCopy.Database.Context
 {
@@ -25,6 +25,9 @@ namespace iCopy.Database.Context
             }
             builder.Entity<ApplicationUser>().Property(x => x.ChangePassword).HasDefaultValue(true).HasDefaultValueSql("1").ValueGeneratedOnAdd();
             builder.Entity<ApplicationUser>().Property(x => x.LockoutEnabled).HasDefaultValue(true).HasDefaultValueSql("1").ValueGeneratedOnAdd();
+            builder.Entity<ApplicationUser>().Property(x => x.SecurityStamp).HasDefaultValue(Guid.NewGuid().ToString()).ValueGeneratedOnAddOrUpdate();
+            builder.Entity<ApplicationUserRole>().HasOne(x => x.User).WithMany(x => x.UserRoles).HasForeignKey(x => x.UserId);
+            builder.Entity<ApplicationUserRole>().HasOne(x => x.Role).WithMany(x => x.UserRoles).HasForeignKey(x => x.RoleId);
         }
     }
 }
