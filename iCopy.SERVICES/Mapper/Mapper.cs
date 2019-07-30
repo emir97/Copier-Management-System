@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace iCopy.SERVICES.Mapper
@@ -16,12 +17,6 @@ namespace iCopy.SERVICES.Mapper
             CreateMap<Database.Company, Model.Response.Company>().ReverseMap();
             CreateMap<Database.Company, Model.Request.Company>().ReverseMap();
             CreateMap<Model.Response.Company, Model.Request.Company>().ReverseMap();
-            CreateMap<Database.ApplicationUser, Model.Response.Company>()
-                .ForMember(x => x.Email, opt => opt.MapFrom(prop => prop.Email))
-                .ForMember(x => x.PhoneNumber, opt => opt.MapFrom(y => y.PhoneNumber))
-                .ReverseMap()
-                .ForAllOtherMembers(opt => opt.Ignore());
-            CreateMap<Model.Request.Company, Model.Request.ApplicationUser>().ReverseMap();
             CreateMap<Database.Country, SelectListItem>()
                 .ForMember(x => x.Text, y => y.MapFrom( c => c.Name))
                 .ForMember(x => x.Value, y => y.MapFrom<string>(c => c.ID.ToString()))
@@ -35,7 +30,8 @@ namespace iCopy.SERVICES.Mapper
             CreateMap<Database.ApplicationUser, Model.Request.ApplicationUser>()
                 .ReverseMap()
                 .ForMember(x => x.NormalizedUserName, opt => opt.MapFrom(y => y.Username.ToUpper()))
-                .ForMember(x => x.NormalizedEmail, opt => opt.MapFrom(y => y.Email.ToUpper()));
+                .ForMember(x => x.NormalizedEmail, opt => opt.MapFrom(y => y.Email.ToUpper()))
+                .ForMember(x => x.SecurityStamp, opt => Guid.NewGuid().ToString());
             CreateMap<Database.ApplicationUser, Model.Response.ApplicationUser>().ReverseMap();
         }
     }

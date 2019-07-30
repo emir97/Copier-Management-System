@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using iCopy.Database.Context;
 using iCopy.Model.Request;
 using iCopy.Model.Response;
-using iCopy.Database.Context;
 using iCopy.SERVICES.IServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ApplicationUser = iCopy.Database.ApplicationUser;
 using Enum = iCopy.Model.Enum.Enum;
 
 namespace iCopy.SERVICES.Services
@@ -20,21 +19,15 @@ namespace iCopy.SERVICES.Services
         private readonly IMapper mapper;
         private readonly AuthContext context;
         private readonly IPasswordHasher<Database.ApplicationUser> PasswordHasher;
-        private readonly IUserValidator<Database.ApplicationUser> UserValidator;
-        private readonly UserManager<Database.ApplicationUser> UserManager;
 
         public UserService(
-            AuthContext ctx, 
-            IMapper mapper, 
-            IPasswordHasher<Database.ApplicationUser> PasswordHasher,
-            IUserValidator<Database.ApplicationUser> UserValidator,
-            UserManager<Database.ApplicationUser> UserManager)
+            AuthContext ctx,
+            IMapper mapper,
+            IPasswordHasher<Database.ApplicationUser> PasswordHasher)
         {
             this.mapper = mapper;
             this.context = ctx;
             this.PasswordHasher = PasswordHasher;
-            this.UserValidator = UserValidator;
-            this.UserManager = UserManager;
         }
 
         public Task<LoginResult> Login(Login login)
@@ -85,34 +78,27 @@ namespace iCopy.SERVICES.Services
             return mapper.Map<Model.Response.ApplicationUser>(model);
         }
 
-        public async Task<Model.Response.ApplicationUser> InsertAsync(Model.Request.ApplicationUser user, params Enum.Roles[]  roles) 
+        public async Task<Model.Response.ApplicationUser> InsertAsync(Model.Request.ApplicationUser user, params Enum.Roles[] roles)
         {
-            UserValidator<Database.ApplicationUser> aa = new UserValidator<ApplicationUser>();
             Database.ApplicationUser model = mapper.Map<Database.ApplicationUser>(user);
-            using (IDbContextTransaction transaction = context.Database.CurrentTransaction ?? await context.Database.BeginTransactionAsync())
+            try
             {
-                try
+                model.PasswordHash = PasswordHasher.HashPassword(model, user.Password);
+                context.Users.Add(model);
+                await context.SaveChangesAsync();
+                foreach (var item in roles)
                 {
-                    IdentityResult result = await UserValidator.ValidateAsync(UserManager, model);
-                    model.PasswordHash = PasswordHasher.HashPassword(model, user.Password);
-                    context.Users.Add(model);
+                    Database.ApplicationRole role = await context.Roles.FirstOrDefaultAsync(x => x.Name == item.ToString());
+                    context.Add(new Database.ApplicationUserRole() { RoleId = role.Id, UserId = model.Id });
                     await context.SaveChangesAsync();
-                    foreach (var item in roles)
-                    {
-                        Database.ApplicationRole role = await context.Roles.FirstOrDefaultAsync(x => x.Name == item.ToString());
-                        context.Add(new Database.ApplicationUserRole() {RoleId = role.Id, UserId = model.Id});
-                        await context.SaveChangesAsync();
-                    }
+                }
 
-                    transaction.Commit();
-                    // TODO: Dodati log operaciju
-                }
-                catch (Exception e)
-                {
-                    transaction.Rollback();
-                    // TODO Dodati log operaciju
-                    throw e;
-                }
+                // TODO: Dodati log operaciju
+            }
+            catch (Exception e)
+            {
+                // TODO Dodati log operaciju
+                throw e;
             }
             return mapper.Map<Model.Response.ApplicationUser>(model);
         }
