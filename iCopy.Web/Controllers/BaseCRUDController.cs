@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
+using iCopy.SERVICES.Attributes;
 using iCopy.SERVICES.IServices;
 using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using AutoMapper.Configuration.Annotations;
-using iCopy.SERVICES.Attributes;
 
 namespace iCopy.Web.Controllers
 {
