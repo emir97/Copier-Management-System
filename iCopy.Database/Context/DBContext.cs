@@ -13,6 +13,7 @@ namespace iCopy.Database.Context
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<Copier> Copiers { get; set; }
         public virtual DbSet<ProfilePhoto> ProfilePhotos { get; set; }
         public virtual DbSet<ApplicationUserProfilePhoto> ApplicationUserProfilePhotos { get; set; }
 
