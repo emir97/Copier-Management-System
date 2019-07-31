@@ -11627,7 +11627,7 @@ body {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  color: #646c9a; }
+  /*color: #646c9a;*/ }
 
 router-outlet {
   display: none; }
