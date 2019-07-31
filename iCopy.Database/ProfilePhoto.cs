@@ -5,6 +5,7 @@ namespace iCopy.Database
     public class ProfilePhoto : BaseEntity<int>
     {
         public string Path { get; set; }
+        public string FileSystemPath { get; set; }
         public Int64 SizeInBytes { get; set; }
         public string Name { get; set; }
         public string Extension { get; set; }

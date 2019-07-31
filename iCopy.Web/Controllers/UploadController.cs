@@ -39,6 +39,7 @@ namespace iCopy.Web.Controllers
                 string filename = Guid.NewGuid().ToString();
                 while (System.IO.File.Exists(Path.Combine(hostingEnvironment.WebRootPath, "Uploads", profilePhotoOptions.Path, filename, Path.GetExtension(file.FileName))))
                     filename = Guid.NewGuid().ToString();
+                string url = Path.Combine("Uploads", profilePhotoOptions.Path, filename, Path.GetExtension(file.FileName));
                 string path = Path.Combine(hostingEnvironment.WebRootPath, "Uploads", profilePhotoOptions.Path, filename + Path.GetExtension(file.FileName));
                 if (file.Length > profilePhotoOptions.MaxSize)
                     return StatusCode(StatusCodes.Status413RequestEntityTooLarge);
@@ -55,7 +56,8 @@ namespace iCopy.Web.Controllers
 
                 FileSession = new Model.Request.ProfilePhoto()
                 {
-                    Path = path,
+                    Path = url,
+                    FileSystemPath = path,
                     Extension = Path.GetExtension(file.FileName),
                     Name = filename,
                     XResolution = image.HorizontalResolution,

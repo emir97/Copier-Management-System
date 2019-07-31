@@ -26,7 +26,7 @@ namespace iCopy.SERVICES.Services
                 ctx.ProfilePhotos.Add(model);
                 await ctx.SaveChangesAsync();
 
-                if (await ctx.ApplicationUserProfilePhotos.AnyAsync(x => x.Active))
+                if (await ctx.ApplicationUserProfilePhotos.AnyAsync(x => x.Active && x.ApplicationUserId == entity.ApplicationUserId))
                 {
                     var activeApplicationUserProfilePhoto = await ctx.ApplicationUserProfilePhotos.SingleOrDefaultAsync(x => x.Active);
                     activeApplicationUserProfilePhoto.Active = false;
