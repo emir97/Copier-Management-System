@@ -31,7 +31,10 @@ namespace iCopy.SERVICES.Services
 
         public override async Task<Model.Response.Company> GetByIdAsync(int id)
         {
-            return mapper.Map<Model.Response.Company>(await ctx.Companies.Include(x => x.City).ThenInclude(x => x.Country).FirstOrDefaultAsync(x => x.ID == id));
+            Model.Response.Company company = mapper.Map<Model.Response.Company>(await ctx.Companies.Include(x => x.City).ThenInclude(x => x.Country).FirstOrDefaultAsync(x => x.ID == id));
+            company.User = mapper.Map<Model.Response.ApplicationUser>(await auth.Users.FindAsync(company.ApplicationUserId));
+            company.ProfilePhoto = await ProfilePhotoService.GetByApplicationUserId(company.ApplicationUserId);
+            return company;
         }
 
         public override async Task<List<Model.Response.Company>> TakeRecordsByNumberAsync(int take = 15)
@@ -78,21 +81,11 @@ namespace iCopy.SERVICES.Services
             Database.Company company = await ctx.Companies.FindAsync(id);
             try
             {
-                IEnumerable<Database.ApplicationUserProfilePhoto> companyProfile = await ctx.ApplicationUserProfilePhotos.Where(x => x.ApplicationUserId == company.ApplicationUserId).ToListAsync();
-                IEnumerable<Database.ProfilePhoto> profilePhotos = await ctx.ProfilePhotos.Where(x => companyProfile.Any(y => y.ProfilePhotoId == x.ID)).ToListAsync();
-                if (companyProfile != null)
-                {
-                    ctx.ApplicationUserProfilePhotos.RemoveRange(companyProfile);
-                    await ctx.SaveChangesAsync();
-                }
-
-                if (profilePhotos != null)
-                {
-                    ctx.ProfilePhotos.RemoveRange(profilePhotos);
-                    await ctx.SaveChangesAsync();
-                }
                 ctx.Companies.Remove(company);
                 await ctx.SaveChangesAsync();
+
+                await ProfilePhotoService.DeleteByApplicationUserIdAsync(company.ApplicationUserId);
+
                 await UserService.DeleteAsync(company.ApplicationUserId);
                 // TODO: Dodati log operaciju
             }

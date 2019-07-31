@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>O nama</value>
   </data>
+  <data name="AccountDetails" xml:space="preserve">
+    <value>Detalji korisničkog računa</value>
+  </data>
   <data name="AccountSettings" xml:space="preserve">
     <value>Postavke korisničkog računa</value>
   </data>
@@ -171,6 +174,9 @@
   <data name="Close" xml:space="preserve">
     <value>Zatvori</value>
   </data>
+  <data name="CompanyDetails" xml:space="preserve">
+    <value>Detalji kompanije</value>
+  </data>
   <data name="CompanySettings" xml:space="preserve">
     <value>Postavke kompanije</value>
   </data>
@@ -209,6 +215,9 @@
   </data>
   <data name="CountrySettings" xml:space="preserve">
     <value>Postavke države</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detalji</value>
   </data>
   <data name="DragFilesOrClickToUpload" xml:space="preserve">
     <value>Ispusti datoteku ili klikni za prenos datoteke</value>
