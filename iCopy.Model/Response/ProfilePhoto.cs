@@ -5,6 +5,7 @@ namespace iCopy.Model.Response
     public class ProfilePhoto
     {
         public string Path { get; set; }
+        public string FileSystemPath { get; set; }
         public Int64 SizeInBytes { get; set; }
         public string Name { get; set; }
         public string Extension { get; set; }

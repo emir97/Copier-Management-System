@@ -37,9 +37,9 @@ namespace iCopy.Web.Controllers
             if(file != null)
             {
                 string filename = Guid.NewGuid().ToString();
-                while (System.IO.File.Exists(Path.Combine(hostingEnvironment.WebRootPath, "Uploads", profilePhotoOptions.Path, filename, Path.GetExtension(file.FileName))))
+                while (System.IO.File.Exists(Path.Combine(hostingEnvironment.WebRootPath, "Uploads", profilePhotoOptions.Path, $"{filename}{Path.GetExtension(file.FileName)}")))
                     filename = Guid.NewGuid().ToString();
-                string url = Path.Combine("Uploads", profilePhotoOptions.Path, filename, Path.GetExtension(file.FileName));
+                string url = Path.Combine("Uploads", profilePhotoOptions.Path, $"{filename}{Path.GetExtension(file.FileName)}");
                 string path = Path.Combine(hostingEnvironment.WebRootPath, "Uploads", profilePhotoOptions.Path, filename + Path.GetExtension(file.FileName));
                 if (file.Length > profilePhotoOptions.MaxSize)
                     return StatusCode(StatusCodes.Status413RequestEntityTooLarge);
