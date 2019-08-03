@@ -30,7 +30,7 @@ namespace iCopy.Model.Request
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "ErrNoCity")]
-        public int CityId { get; set; }
+        public int? CityId { get; set; }
 
         [Required(ErrorMessage = "ErrNoCompany")]
         public int CompanyId { get; set; }

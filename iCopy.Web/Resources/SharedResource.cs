@@ -99,10 +99,13 @@ namespace iCopy.Web.Resources
         #endregion
 
         #region Company
+        public string Company => localizer[nameof(Company)];
         public string CompanySettings => localizer[nameof(CompanySettings)];
         public string AddCompany => localizer[nameof(AddCompany)];
         public string JIB => localizer[nameof(JIB)];
         public string ContactAgentPhoneNumber => localizer[nameof(ContactAgentPhoneNumber)];
+        public string ChooseCompany => localizer[nameof(ChooseCompany)];
+
         #endregion
 
         #region Copier

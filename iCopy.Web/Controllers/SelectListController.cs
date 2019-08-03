@@ -24,5 +24,10 @@ namespace iCopy.Web.Controllers
         {
             return await SelectList.Cities(id);
         }
+
+        public async Task<List<SelectListItem>> Companies()
+        {
+            return await SelectList.Companies();
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace iCopy.Web.Areas.Administration.Controllers
     [Area(Strings.Area.Administration)]
     public class CopierController : BaseDataTableCRUDController<Model.Request.Copier, Model.Request.Copier, Model.Response.Copier, Model.Request.CopierSearch, int>
     {
-        private readonly ICopierService crudService;
+        private new readonly ICopierService crudService;
 
         private Model.Request.ProfilePhoto PhotoSession => HttpContext.Session.Get<Model.Request.ProfilePhoto>(Session.Keys.Upload.ProfileImage);
 
@@ -30,6 +30,7 @@ namespace iCopy.Web.Areas.Administration.Controllers
             try
             {
                 model.ProfilePhoto = PhotoSession;
+                model.CompanyId = 1;
                 await crudService.InsertAsync(model);
                 TempData["success"] = _localizer.SuccAdd;
                 return Ok();
