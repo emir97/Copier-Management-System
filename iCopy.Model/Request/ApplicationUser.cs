@@ -22,7 +22,7 @@ namespace iCopy.Model.Request
         [Required(AllowEmptyStrings = false, ErrorMessage = "ErrNoPassword")]
         [MaxLength(100, ErrorMessage = "ErrMaxLength")]
         [MinLength(8, ErrorMessage = "ErrMinLenghtPassword")]
-        [PasswordPolicy(ErrorMessage = "asdad")]
+        [PasswordPolicy(ErrorMessage = "ErrPasswordPolicy")]
         public string Password { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "ErrNoPasswordConfirm")]
         [MaxLength(100, ErrorMessage = "ErrMaxLength")]

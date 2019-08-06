@@ -66,6 +66,16 @@ namespace iCopy.Web.Resources
         public string EmailConfirmed => localizer[nameof(EmailConfirmed)];
         public string EmailNotConfirmed => localizer[nameof(EmailNotConfirmed)];
         public string LockoutEnd => localizer[nameof(LockoutEnd)];
+        public string Update => localizer[nameof(Update)];
+        public string ChangePassword => localizer[nameof(ChangePassword)];
+        public string CurrentPassword => localizer[nameof(CurrentPassword)];
+        public string NewPassword => localizer[nameof(NewPassword)];
+        public string ChangeYourPassword => localizer[nameof(ChangeYourPassword)];
+        public string SuccPasswordUpdated => localizer[nameof(SuccPasswordUpdated)];
+        public string Settings => localizer[nameof(Settings)];
+        public string TwoFactorEnabled => localizer[nameof(TwoFactorEnabled)];
+        public string PhoneNumberConfirmed => localizer[nameof(PhoneNumberConfirmed)];
+        public string PhoneNumberNotConfirmed => localizer[nameof(PhoneNumberNotConfirmed)];
        
         #region SuccMessage
         public string SuccUpdate => localizer[nameof(SuccUpdate)];
@@ -101,6 +111,7 @@ namespace iCopy.Web.Resources
         public string AddCompany => localizer[nameof(AddCompany)];
         public string JIB => localizer[nameof(JIB)];
         public string ContactAgentPhoneNumber => localizer[nameof(ContactAgentPhoneNumber)];
+        public string UpdateCompanyDetails => localizer[nameof(UpdateCompanyDetails)];
         #endregion
 
         #region Login

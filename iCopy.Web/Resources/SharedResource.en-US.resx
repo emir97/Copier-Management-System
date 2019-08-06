@@ -156,6 +156,12 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="ChangeYourPassword" xml:space="preserve">
+    <value>Change your password</value>
+  </data>
   <data name="ChooseCity" xml:space="preserve">
     <value>Choose city</value>
   </data>
@@ -215,6 +221,9 @@
   </data>
   <data name="CountrySettings" xml:space="preserve">
     <value>Country settings</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Current password</value>
   </data>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
@@ -282,6 +291,9 @@
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
   <data name="NextStep" xml:space="preserve">
     <value>Next step</value>
   </data>
@@ -302,6 +314,12 @@
   </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Phone number</value>
+  </data>
+  <data name="PhoneNumberConfirmed" xml:space="preserve">
+    <value>Phone number confirmed</value>
+  </data>
+  <data name="PhoneNumberNotConfirmed" xml:space="preserve">
+    <value>Phone number not confirmed</value>
   </data>
   <data name="PhoneNumberRegex" xml:space="preserve">
     <value>Phone number regex</value>
@@ -327,6 +345,9 @@
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="ShortName" xml:space="preserve">
     <value>Short name</value>
   </data>
@@ -342,6 +363,9 @@
   <data name="SuccDelete" xml:space="preserve">
     <value>Record is successfully deleted</value>
   </data>
+  <data name="SuccPasswordUpdated" xml:space="preserve">
+    <value>Password successfully updated</value>
+  </data>
   <data name="SuccUpdate" xml:space="preserve">
     <value>Record is successfully updated</value>
   </data>
@@ -353,6 +377,15 @@
   </data>
   <data name="ThisFieldIsRequired" xml:space="preserve">
     <value>This field is required</value>
+  </data>
+  <data name="TwoFactorEnabled" xml:space="preserve">
+    <value>Two factor enabled</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpdateCompanyDetails" xml:space="preserve">
+    <value>Update company details</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>

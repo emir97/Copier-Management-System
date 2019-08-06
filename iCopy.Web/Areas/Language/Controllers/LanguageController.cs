@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace iCopy.Web.Areas.Language.Controllers
 {
-    [Area("Language")]
+    [Area(Strings.Area.Language)]
     public class LanguageController : Controller
     {
         public IActionResult Change(string culture, string redirectUrl)

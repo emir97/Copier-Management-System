@@ -1,91 +1,326 @@
 ﻿@model iCopy.Model.Response.Company
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = _sharedLocalizer.UpdateCompanyDetails;
+    var currentUrl = Context.Request.Path.ToString();
 }
-<div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">@_sharedLocalizer.EditCity</h5>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+@if (TempData["success"] != null)
+{
+    <div class="alert alert-solid-success alert-bold" role="alert">
+        <div class="alert-text">@TempData["success"]</div>
+        <div class="alert-close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"><i class="la la-close"></i></span>
+            </button>
+        </div>
+    </div>
+}
+<div class="kt-portlet kt-portlet--tabs">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-toolbar">
+            <ul class="nav nav-tabs nav-tabs-space-xl nav-tabs-line nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#kt_apps_user_edit_tab_1" role="tab" aria-selected="true">
+                        <i class="fa fa-hotel"></i>@_sharedLocalizer.CompanySettings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#kt_apps_user_edit_tab_2" role="tab" aria-selected="false">
+                        <i class="fa fa-user"></i> @_sharedLocalizer.AccountSettings
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#change_password" role="tab" aria-selected="false">
+                        <i class="fa fa-user-shield"></i>@_sharedLocalizer.ChangePassword
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="kt-portlet__body">
+        <div class="tab-content">
+            <div class="tab-pane active" id="kt_apps_user_edit_tab_1" role="tabpanel">
+
+                <form asp-area="Administration" asp-controller="Company" asp-action="Update" asp-route-id="@ViewContext.RouteData.Values["id"]" id="update-company-form">
+                    <div class="kt-form kt-form--label-right">
+                        <div class="kt-form__body">
+                            <div class="kt-section kt-section--first">
+                                <div class="kt-section__body">
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.Name</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <input class="form-control" type="text" asp-for="Name" placeholder="@_sharedLocalizer.Name">
+                                            <span asp-validation-for="Name" class="form-text text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.JIB</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <input class="form-control" type="number" asp-for="Jib" placeholder="@_sharedLocalizer.JIB">
+                                            <span asp-validation-for="Jib" class="form-text text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.ContactAgent</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <input class="form-control" type="text" asp-for="ContactAgent" placeholder="@_sharedLocalizer.ContactAgent">
+                                            <span asp-validation-for="ContactAgent" class="form-text text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.ContactAgentPhoneNumber</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text"><i class="la la-phone"></i></span></div>
+                                                <input type="number" class="form-control" asp-for="PhoneNumber" placeholder="@_sharedLocalizer.ContactAgentPhoneNumber">
+                                                <span asp-validation-for="PhoneNumber" class="form-text text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.ContactEmail</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text"><i class="la la-at"></i></span></div>
+                                                <input type="email" class="form-control" asp-for="Email" placeholder="@_sharedLocalizer.ContactEmail">
+                                                <span asp-validation-for="Email" class="form-text text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.Country</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <div class="input-group">
+                                                <select class="form-control kt-select2" asp-items="@(await _selectList.Countries())" asp-for="City.CountryID"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.City</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <div class="input-group">
+                                                <select class="form-control kt-select2" asp-items="@(await _selectList.Cities(Model.City.CountryID))" asp-for="CityId"></select>
+                                                <span asp-validation-for="CityId" class="form-text text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.Address</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" asp-for="Address" placeholder="@_sharedLocalizer.Address" />
+                                                <span asp-validation-for="Address" class="form-text text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-last row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.Active</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <div class="kt-checkbox-list">
+                                                <label class="kt-checkbox">
+                                                    <input type="checkbox" asp-for="Active">
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-separator kt-separator--space-lg kt-separator--fit kt-separator--border-solid"></div>
+                        <div class="kt-form__actions">
+                            <div class="row">
+                                <div class="col-xl-3"></div>
+                                <div class="col-lg-9 col-xl-6">
+                                    <button type="submit" class="btn btn-label-brand btn-bold">@_sharedLocalizer.SaveChanges</button>
+                                    <button type="reset" class="btn btn-clean btn-bold">@_sharedLocalizer.Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane" id="kt_apps_user_edit_tab_2" role="tabpanel">
+                <div class="kt-form kt-form--label-right">
+                    <form asp-area="Administration" asp-controller="User" asp-action="Update" asp-route-id="@Model.User.ID" asp-route-returnUrl="">
+                        <div class="kt-form__body">
+                            <div class="kt-section kt-section--first">
+                                <div class="kt-section__body">
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.Username</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <input class="form-control" type="text" asp-for="User.Username" placeholder="@_sharedLocalizer.Username">
+                                            <span asp-validation-for="User.Username" class="form-text text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.Email</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <div class="input-group">
+                                                <input type="email" class="form-control" asp-for="User.Email" placeholder="@_sharedLocalizer.Email">
+                                                <span asp-validation-for="User.Email" class="form-text text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.PhoneNumber</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <div class="input-group">
+                                                <input type="email" class="form-control" asp-for="User.PhoneNumber" placeholder="@_sharedLocalizer.PhoneNumber">
+                                                <span asp-validation-for="User.PhoneNumber" class="form-text text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.Settings</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <div class="kt-checkbox-inline">
+                                                <label class="kt-checkbox">
+                                                    <input type="checkbox" asp-for="User.TwoFactorEnabled"> @_sharedLocalizer.TwoFactorEnabled
+                                                    <span></span>
+                                                </label>
+                                                <label class="kt-checkbox">
+                                                    <input type="checkbox" asp-for="User.Active"> @_sharedLocalizer.Active
+                                                    <span></span>
+                                                </label>
+                                                <label class="kt-checkbox">
+                                                    <input type="checkbox" asp-for="User.ChangePassword"> @_sharedLocalizer.ChangePassword
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label"></label>
+                                        <div class="col-lg-9 col-xl-6 col-lg-offset-3">
+                                            <div class="kt-checkbox-inline">
+                                                @if (Model.User.EmailConfirmed)
+                                                {
+                                                    <span class="kt-badge kt-badge--inline kt-badge--success">@_sharedLocalizer.EmailConfirmed</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="kt-badge kt-badge--inline kt-badge--danger">@_sharedLocalizer.EmailNotConfirmed</span>
+                                                }
+                                                @if (Model.User.PhoneNumberConfirmed)
+                                                {
+                                                    <span class="kt-badge kt-badge--inline kt-badge--success">@_sharedLocalizer.PhoneNumberConfirmed</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="kt-badge kt-badge--inline kt-badge--danger">@_sharedLocalizer.PhoneNumberNotConfirmed</span>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-separator kt-separator--space-lg kt-separator--fit kt-separator--border-solid"></div>
+                        <div class="kt-form__actions">
+                            <div class="row">
+                                <div class="col-xl-3"></div>
+                                <div class="col-lg-9 col-xl-6">
+                                    <button type="submit" class="btn btn-label-brand btn-bold">@_sharedLocalizer.SaveChanges</button>
+                                    <button type="reset" class="btn btn-clean btn-bold">@_sharedLocalizer.Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="tab-pane" id="change_password" role="tabpanel">
+                <div class="kt-form kt-form--label-right">
+                    <form asp-area="Administration" asp-controller="User" asp-action="UpdatePassword" asp-route-id="@Model.User.ID">
+                        <div class="kt-form__body">
+                            <div class="kt-section kt-section--first">
+                                <div class="kt-section__body">
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.CurrentPassword</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <input type="password" class="form-control" placeholder="@_sharedLocalizer.CurrentPassword">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.NewPassword</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <input type="password" class="form-control" placeholder="@_sharedLocalizer.NewPassword">
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-last row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.PasswordConfirm</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <input type="password" class="form-control" placeholder="@_sharedLocalizer.PasswordConfirm">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-separator kt-separator--space-lg kt-separator--fit kt-separator--border-solid"></div>
+                        <div class="kt-form__actions">
+                            <div class="row">
+                                <div class="col-xl-3"></div>
+                                <div class="col-lg-9 col-xl-6">
+                                    <button type="submit" class="btn btn-label-brand btn-bold">@_sharedLocalizer.SaveChanges</button>
+                                    <button type="reset" class="btn btn-clean btn-bold">@_sharedLocalizer.Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<form asp-area="administration" asp-controller="company" asp-action="update" asp-route-id="@ViewContext.RouteData.Values["id"]" method="post" ajax-modal-form="true" asp-antiforgery="true">
-    <div class="modal-body">
-        <div class="form-group row">
-            <div class="col-lg-6">
-                <label asp-for="Name">@_sharedLocalizer.Name:</label>
-                <input asp-for="Name" type="text" class="form-control" placeholder="@_sharedLocalizer.Name" autocomplete="off">
-                <span asp-validation-for="Name" class="form-text text-danger"></span>
-            </div>
-            <div class="col-lg-6">
-                <label asp-for="Jib">@_sharedLocalizer.JIB</label>
-                <input type="number" asp-for="Jib" class="form-control" placeholder="@_sharedLocalizer.JIB" autocomplete="off"/>
-                <span asp-validation-for="Jib" class="form-text text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-lg-6">
-                    <label asp-for="ContactAgent"></label>
-                    <input type="text" asp-for="ContactAgent" class="form-control" placeholder="@_sharedLocalizer.ContactAgent" autocomplete="off"/>
-                    <span asp-validation-for="ContactAgent" class="form-text text-danger"></span>
-            </div>
-            <div class="col-lg-6">
-                <label asp-for="PhoneNumber">@_sharedLocalizer.PhoneNumber</label>
-                <input type="number" asp-for="PhoneNumber" class="form-control" placeholder="@_sharedLocalizer.PhoneNumber" autocomplete="off" />
-                <span asp-validation-for="PhoneNumber" class="form-text text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-lg-6">
-                <label>@_sharedLocalizer.Country</label>
-                <select asp-for="City.CountryID" asp-items="@(await _selectList.Countries())" class="kt-select2" id="@nameof(Model.City.CountryID)"></select>
-            </div>
-            <div class="col-lg-6">
-                <label asp-for="CityId">@_sharedLocalizer.City</label>
-                <select asp-for="CityId" class="kt-select2" id="cities-list-add" asp-items="@(await _selectList.CitiesByCityCountryId(Model.CityId))"></select>
-                <span asp-validation-for="CityId" class="form-text text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-lg-6">
-                <label asp-for="Address">@_sharedLocalizer.Address</label>
-                <input type="text" asp-for="Address" class="form-control" placeholder="@_sharedLocalizer.Address"/>
-                <span asp-validation-for="Address" class="form-text text-danger"></span>
-            </div>
-            
-        </div>
-        <div class="form-group">
-            <label class="col-3 col-form-label">@_sharedLocalizer.Active:</label>
-            <div class="col-md-12">
-                <span class="kt-switch kt-switch--icon">
-                    <label>
-                        <input type="checkbox" asp-for="Active">
-                        <span></span>
-                    </label>
-                </span>
-            </div>
-            <span asp-validation-for="Active" class="form-text text-danger"></span>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">@_sharedLocalizer.Close</button>
-        <button type="submit" class="btn btn-primary">@_sharedLocalizer.SaveChanges</button>
-    </div>
-</form>
 <script>
-    $('#cities-list-add, #@(nameof(Model.City.CountryID))').select2({ width: '100%' });
-    $("#@nameof(Model.City.CountryID)").on('change', function (e) {
-        var select = $("#cities-list-add");
-        $.ajax({
-            url: `@Settings.Routes.SelectList.CitiesByCountry`,
-            data: {
-                id: $("#@nameof(Model.City.CountryID)").val()
+    var validatorCompanyForm = $("#update-company-form").validate({
+        ignore: ":hidden",
+        // Validation rules
+        rules: {
+            //= Step 1
+            '@(nameof(iCopy.Model.Request.Company.Name))': {
+                required: true,
+                maxlength: 100
             },
-            type: 'GET',
-            success: function(result) {
-                var items = "";
-                $.each(result, function(index, value) {
-                    items += `<option value='${value.value}'>${value.text}</option>`;
-                });
-                select.html(items);
+            '@(nameof(iCopy.Model.Request.Company.Jib))': {
+                required: true,
+                number: true
+            },
+            '@(nameof(iCopy.Model.Request.Company.ContactAgent))': {
+                required: true,
+                maxlength: 100
+            },
+            '@(nameof(iCopy.Model.Request.Company.PhoneNumber))': {
+                required: true,
+                number: true
+            },
+            '@(nameof(iCopy.Model.Request.Company.Email))': {
+                required: true,
+                email: true,
+                maxlength: 100
+            },
+            '@(nameof(iCopy.Model.Request.Company.Address))': {
+                required: true,
+                maxlength: 100
+            },
+            '@(nameof(iCopy.Model.Request.Company.CityId))': {
+                required: true
             }
-        });
+        },
+        // Display error
+        invalidHandler: function(event, validator) {
+            KTUtil.scrollTop();
+
+            swal.fire({
+                title: "",
+                html: "@_sharedLocalizer.CorrectErrorBeforeGoToNextStep",
+                type: "error",
+                confirmButtonClass: "btn btn-secondary"
+            });
+        }
+    });
+    $(document).ready(function() {
+        $('.kt-select').select2();
     });
 </script>

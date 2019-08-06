@@ -76,8 +76,11 @@
                                     <div class="col-xl-6">
                                         <div class="form-group">
                                             <label asp-for="PhoneNumber">@_sharedLocalizer.ContactAgentPhoneNumber</label>
-                                            <input type="number" class="form-control" asp-for="PhoneNumber" placeholder="@_sharedLocalizer.PhoneNumber" />
-                                            <span asp-validation-for="PhoneNumber" class="form-text text-danger"></span>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend"><span class="input-group-text"><i class="la la-phone"></i></span></div>
+                                                <input type="number" class="form-control" asp-for="PhoneNumber" placeholder="@_sharedLocalizer.PhoneNumber" />
+                                                <span asp-validation-for="PhoneNumber" class="form-text text-danger"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

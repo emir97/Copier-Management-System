@@ -156,6 +156,12 @@
   <data name="Cancel" xml:space="preserve">
     <value>Nazad</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Izmijeni šifru</value>
+  </data>
+  <data name="ChangeYourPassword" xml:space="preserve">
+    <value>Izmijeni šifru</value>
+  </data>
   <data name="ChooseCity" xml:space="preserve">
     <value>Izaberite grad</value>
   </data>
@@ -216,6 +222,9 @@
   <data name="CountrySettings" xml:space="preserve">
     <value>Postavke države</value>
   </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Trenutna šifra</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Detalji</value>
   </data>
@@ -273,6 +282,9 @@
   <data name="Name" xml:space="preserve">
     <value>Naziv</value>
   </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nova šifra</value>
+  </data>
   <data name="NextStep" xml:space="preserve">
     <value>Idući korak</value>
   </data>
@@ -293,6 +305,12 @@
   </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Broj telefona</value>
+  </data>
+  <data name="PhoneNumberConfirmed" xml:space="preserve">
+    <value>Broj telefona verifikovan</value>
+  </data>
+  <data name="PhoneNumberNotConfirmed" xml:space="preserve">
+    <value>Broj telefona nije verifikovan</value>
   </data>
   <data name="PhoneNumberRegex" xml:space="preserve">
     <value>Regex broja telefona</value>
@@ -318,6 +336,9 @@
   <data name="Search" xml:space="preserve">
     <value>Traži</value>
   </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Postavke</value>
+  </data>
   <data name="ShortName" xml:space="preserve">
     <value>Skraćeni naziv</value>
   </data>
@@ -333,6 +354,9 @@
   <data name="SuccDelete" xml:space="preserve">
     <value>Zapis uspješno obrisan</value>
   </data>
+  <data name="SuccPasswordUpdated" xml:space="preserve">
+    <value>Šifra uspješno ažurirana</value>
+  </data>
   <data name="SuccUpdate" xml:space="preserve">
     <value>Zapis uspješno uređen</value>
   </data>
@@ -341,6 +365,15 @@
   </data>
   <data name="Team" xml:space="preserve">
     <value>Tim</value>
+  </data>
+  <data name="TwoFactorEnabled" xml:space="preserve">
+    <value>Uključena dvostruka autentifikacija</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Izmijeni</value>
+  </data>
+  <data name="UpdateCompanyDetails" xml:space="preserve">
+    <value>Uredi detalje kompanije</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Korisničko ime</value>

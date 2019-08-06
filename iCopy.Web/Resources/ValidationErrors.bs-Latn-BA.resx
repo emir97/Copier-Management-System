@@ -198,6 +198,9 @@
   <data name="ErrNoUsername" xml:space="preserve">
     <value>Korisničko ime je obavezno</value>
   </data>
+  <data name="ErrPasswordPolicy" xml:space="preserve">
+    <value>Šifra mora sadržavati barem jedan broj, malo slovo, veliko slovo i specijalni karakter</value>
+  </data>
   <data name="ErrThisFieldIsRequired" xml:space="preserve">
     <value>Ovo polje je obavezno</value>
   </data>

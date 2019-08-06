@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ApplicationUser = iCopy.Model.Response.ApplicationUser;
 using Enum = iCopy.Model.Enum.Enum;
 
 namespace iCopy.SERVICES.Services
@@ -101,6 +102,14 @@ namespace iCopy.SERVICES.Services
                 throw e;
             }
             return mapper.Map<Model.Response.ApplicationUser>(model);
+        }
+
+        public async Task<Model.Response.ApplicationUser> UpdatePassword(int applicationUserId, ChangePassword password)
+        {
+            Database.ApplicationUser user = await context.Users.FindAsync(applicationUserId);
+            user.PasswordHash = PasswordHasher.HashPassword(user, password.NewPassword);
+            await context.SaveChangesAsync();
+            return mapper.Map<Model.Response.ApplicationUser>(user);
         }
     }
 

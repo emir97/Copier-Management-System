@@ -14,8 +14,7 @@ namespace iCopy.Model.Attributes
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var PasswordOptions = validationContext.GetService<IOptions<PasswordOptions>>().Value;
-
-            if ((PasswordOptions.RequireDigit && !value.ToString().Any(char.IsDigit)) ||
+            if (value == null || (PasswordOptions.RequireDigit && !value.ToString().Any(char.IsDigit)) ||
                 (PasswordOptions.RequireLowercase && !value.ToString().Any(char.IsLower)) ||
                 (PasswordOptions.RequireUppercase && !value.ToString().Any(char.IsUpper)) ||
                 PasswordOptions.RequireNonAlphanumeric && value.ToString().All(char.IsLetterOrDigit)

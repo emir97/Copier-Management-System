@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 /iCopy.SERVICES/Migrations/
 /iCopy.Database/Migrations
+/iCopy.Web/ScaffoldingReadMe.txt

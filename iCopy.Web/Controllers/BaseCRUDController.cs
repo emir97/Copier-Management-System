@@ -54,7 +54,7 @@ namespace iCopy.Web.Controllers
                 await crudService.UpdateAsync(id, model);
                 return Json(new { success = true, message = _localizer.SuccUpdate });
             }
-            return View(mapper.Map<TResult>(model));
+            return View(await crudService.GetByIdAsync(id));
         }
 
         [HttpGet, Transaction]

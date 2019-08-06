@@ -198,6 +198,9 @@
   <data name="ErrNoUsername" xml:space="preserve">
     <value>Username is required</value>
   </data>
+  <data name="ErrPasswordPolicy" xml:space="preserve">
+    <value>Password must contain at least one number, lowercase letter, uppercase letter and special character</value>
+  </data>
   <data name="ErrThisFieldIsRequired" xml:space="preserve">
     <value>This field is required</value>
   </data>

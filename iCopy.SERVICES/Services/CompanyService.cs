@@ -99,6 +99,7 @@ namespace iCopy.SERVICES.Services
         }
 
         public override async Task<Model.Response.Company> InsertAsync(Model.Request.Company entity)
+
         {
             Database.Company model = mapper.Map<Database.Company>(entity);
             try
