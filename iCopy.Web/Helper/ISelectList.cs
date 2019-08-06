@@ -10,5 +10,7 @@ namespace iCopy.Web.Helper
         Task<List<SelectListItem>> Cities(bool includeChooseText = true);
         Task<List<SelectListItem>> Cities(int countryId, bool includeChooseText = true);
         Task<List<SelectListItem>> CitiesByCityCountryId(int cityId, bool includeChooseText = true);
+        Task<List<SelectListItem>> Companies(bool includeChooseText = true);
+
     }
 }

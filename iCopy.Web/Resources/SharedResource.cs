@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Localization;
+using System;
 using System.Reflection;
 
 namespace iCopy.Web.Resources
@@ -62,6 +63,7 @@ namespace iCopy.Web.Resources
         public string ContactEmail => localizer[nameof(ContactEmail)];
         public string Details => localizer[nameof(Details)];
         public string CompanyDetails => localizer[nameof(CompanyDetails)];
+        public string CopierDetails => localizer[nameof(CopierDetails)];
         public string AccountDetails => localizer[nameof(AccountDetails)];
         public string EmailConfirmed => localizer[nameof(EmailConfirmed)];
         public string EmailNotConfirmed => localizer[nameof(EmailNotConfirmed)];
@@ -107,11 +109,22 @@ namespace iCopy.Web.Resources
         #endregion
 
         #region Company
+        public string Company => localizer[nameof(Company)];
         public string CompanySettings => localizer[nameof(CompanySettings)];
         public string AddCompany => localizer[nameof(AddCompany)];
         public string JIB => localizer[nameof(JIB)];
         public string ContactAgentPhoneNumber => localizer[nameof(ContactAgentPhoneNumber)];
         public string UpdateCompanyDetails => localizer[nameof(UpdateCompanyDetails)];
+        public string ChooseCompany => localizer[nameof(ChooseCompany)];
+
+        #endregion
+
+        #region Copier
+        public string Description => localizer[nameof(Description)];
+        public string StartWorkingTime => localizer[nameof(StartWorkingTime)];
+        public string EndWorkingTime => localizer[nameof(EndWorkingTime)];
+        public string Url => localizer[nameof(Url)];
+        public string AddCopier => localizer[nameof(AddCopier)];
         #endregion
 
         #region Login

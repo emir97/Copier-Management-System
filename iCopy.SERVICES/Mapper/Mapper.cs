@@ -17,12 +17,21 @@ namespace iCopy.SERVICES.Mapper
             CreateMap<Database.Company, Model.Response.Company>().ReverseMap();
             CreateMap<Database.Company, Model.Request.Company>().ReverseMap();
             CreateMap<Model.Response.Company, Model.Request.Company>().ReverseMap();
+            CreateMap<Database.Copier, Model.Response.Copier>().ReverseMap();
+            CreateMap<Database.Copier, Model.Request.Copier>().ReverseMap();
+            CreateMap<Model.Response.Copier, Model.Request.Copier>().ReverseMap();
+
+            CreateMap<Model.Response.Company, Model.Request.Company>().ReverseMap();
             CreateMap<Database.Country, SelectListItem>()
-                .ForMember(x => x.Text, y => y.MapFrom( c => c.Name))
+                .ForMember(x => x.Text, y => y.MapFrom(c => c.Name))
                 .ForMember(x => x.Value, y => y.MapFrom<string>(c => c.ID.ToString()))
                 .ReverseMap();
             CreateMap<Database.City, SelectListItem>()
-                .ForMember(x => x.Text, y => y.MapFrom( c => c.Name))
+                .ForMember(x => x.Text, y => y.MapFrom(c => c.Name))
+                .ForMember(x => x.Value, y => y.MapFrom(c => c.ID.ToString()))
+                .ReverseMap();
+            CreateMap<Database.Company, SelectListItem>()
+                .ForMember(x => x.Text, y => y.MapFrom(c => c.Name))
                 .ForMember(x => x.Value, y => y.MapFrom(c => c.ID.ToString()))
                 .ReverseMap();
             CreateMap<Database.ProfilePhoto, Model.Response.ProfilePhoto>().ReverseMap();

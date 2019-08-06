@@ -19,6 +19,7 @@ namespace iCopy.SERVICES.Registers
             services.AddScoped<ICRUDService<Model.Request.City, Model.Request.City, Model.Response.City, Model.Request.CitySearch, int>,
                 CityService>();
             services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<ICopierService, CopierService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProfilePhotoService, ProfilePhotoService>();
             services.AddScoped<IUserValidator<Database.ApplicationUser>, UserValidator<Database.ApplicationUser>>();

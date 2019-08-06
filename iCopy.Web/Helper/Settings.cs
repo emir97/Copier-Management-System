@@ -32,6 +32,16 @@
                 public static string ChangeActiveStatus => "/administration/company/changeactivestatus";
                 public static string Details => "/administration/company/details";
             }
+            public static class Copier
+            {
+                public static string Index => "/administration/copier/index";
+                public static string Insert => "/administration/copier/insert";
+                public static string Update => "/administration/copier/update";
+                public static string Delete => "/administration/copier/delete";
+                public static string GetData => "/administration/copier/getdata";
+                public static string ChangeActiveStatus => "/administration/copier/changeactivestatus";
+                public static string Details => "/administration/copier/details";
+            }
             public static class SelectList
             {
                 public static string Cities => "/selectlist/cities";
