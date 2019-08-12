@@ -33,6 +33,7 @@ namespace iCopy.Web.Areas.Administration.Controllers
                 model.ProfilePhoto = PhotoSession;
                 await CrudService.InsertAsync(model);
                 TempData["success"] = _localizer.SuccAdd;
+                HttpContext.Session.Remove(Session.Keys.Upload.ProfileImage);
                 return Ok();
             }
             catch(Exception e)
@@ -52,6 +53,14 @@ namespace iCopy.Web.Areas.Administration.Controllers
             }
 
             return View(await CrudService.GetByIdAsync(id));
+        }
+
+        [HttpGet]
+        public override Task<IActionResult> Update(int id)
+        {
+            if(HttpContext.Session.Get(Session.Keys.Upload.ProfileImage) != null)
+                HttpContext.Session.Remove(Session.Keys.Upload.ProfileImage);
+            return base.Update(id);
         }
     }
 }

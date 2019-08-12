@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Current password is not correct" xml:space="preserve">
+    <value>Trenutna šifra je neispravna</value>
+  </data>
+  <data name="Email is already is use" xml:space="preserve">
+    <value>Email se koristi</value>
+  </data>
   <data name="EmailWrongFormat" xml:space="preserve">
     <value>Neispravan format email-a</value>
   </data>
@@ -153,6 +159,9 @@
   <data name="ErrNoCity" xml:space="preserve">
     <value>Grad je obavezan</value>
   </data>
+  <data name="ErrNoConfirmPassword" xml:space="preserve">
+    <value>Potvrda šifre je obavezna</value>
+  </data>
   <data name="ErrNoContactAgent" xml:space="preserve">
     <value>Kontakt agent je obavezan</value>
   </data>
@@ -162,6 +171,9 @@
   <data name="ErrNoCountry" xml:space="preserve">
     <value>Država je obavezna</value>
   </data>
+  <data name="ErrNoCurrentPassword" xml:space="preserve">
+    <value>Trenutna šifra je obavezna</value>
+  </data>
   <data name="ErrNoEmail" xml:space="preserve">
     <value>Email je obavezan</value>
   </data>
@@ -170,6 +182,9 @@
   </data>
   <data name="ErrNoName" xml:space="preserve">
     <value>Naziv je obavezan</value>
+  </data>
+  <data name="ErrNoNewPassword" xml:space="preserve">
+    <value>Nova šifra je obavezna</value>
   </data>
   <data name="ErrNoPassword" xml:space="preserve">
     <value>Šifra je obavezna</value>
@@ -215,5 +230,11 @@
   </data>
   <data name="ErrUniqueUsername" xml:space="preserve">
     <value>Korisničko ime je zauzeto</value>
+  </data>
+  <data name="Phone number is already is use" xml:space="preserve">
+    <value>Broj telefona se koristi</value>
+  </data>
+  <data name="Username is already in use" xml:space="preserve">
+    <value>Username se koristi</value>
   </data>
 </root>

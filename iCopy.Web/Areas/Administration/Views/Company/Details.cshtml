@@ -71,7 +71,7 @@
         <div class="tab-pane" id="account_details" role="tabpanel">
             <div class="row">
                 <div class="col-md-4">
-                    <img src="@(Url.Content(Model?.ProfilePhoto?.Path ?? "~/assets/media/users/default_user.png"))"/>
+                    <img src="~/@(Model?.ProfilePhoto?.Path ?? Settings.Defaults.Photo.ProfilePhoto)"/>
                 </div>
                 <div class="col-md-8 pl-5">
                     <div class="form-group">
@@ -96,6 +96,14 @@
                     else
                     {
                         <span class="kt-badge kt-badge--inline kt-badge--danger">@_sharedLocalizer.EmailNotConfirmed</span>
+                    }
+                    @if (Model.User.PhoneNumberConfirmed)
+                    {
+                        <span class="kt-badge kt-badge--inline kt-badge--success">@_sharedLocalizer.PhoneNumberConfirmed</span>
+                    }
+                    else
+                    {
+                        <span class="kt-badge kt-badge--inline kt-badge--danger">@_sharedLocalizer.PhoneNumberNotConfirmed</span>
                     }
                 </div>
             </div>

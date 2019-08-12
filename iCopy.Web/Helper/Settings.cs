@@ -42,6 +42,11 @@
                 public static string ChangeActiveStatus => "/administration/copier/changeactivestatus";
                 public static string Details => "/administration/copier/details";
             }
+            public static class User
+            {
+                public static string Update => "/administration/user/update";
+                public static string UpdatePassword => "/administration/user/updatepassword";
+            }
             public static class SelectList
             {
                 public static string Cities => "/selectlist/cities";
@@ -51,6 +56,13 @@
             {
                 public static string UploadProfileImage => "/upload/UploadProfileImage";
                 public static string RemoveUploadedProfileImage => "/upload/RemoveUploadedProfileImage";
+            }
+        }
+        public static class Defaults
+        {
+            public static class Photo
+            {
+                public static string ProfilePhoto => "assets/media/users/default_user.png";
             }
         }
     }

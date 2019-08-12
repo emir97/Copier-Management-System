@@ -159,6 +159,9 @@
   <data name="ChangePassword" xml:space="preserve">
     <value>Change password</value>
   </data>
+  <data name="ChangeProfileImage" xml:space="preserve">
+    <value>Change profile image</value>
+  </data>
   <data name="ChangeYourPassword" xml:space="preserve">
     <value>Change your password</value>
   </data>
@@ -264,6 +267,12 @@
   <data name="ErrDelete" xml:space="preserve">
     <value>An error occured while trying to delete the record</value>
   </data>
+  <data name="ErrUpdatePassword" xml:space="preserve">
+    <value>An error occured while trying to update password</value>
+  </data>
+  <data name="ErrUserUpdate" xml:space="preserve">
+    <value>An error occured while trying to update user</value>
+  </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Forgot password</value>
   </data>
@@ -368,6 +377,9 @@
   </data>
   <data name="SuccUpdate" xml:space="preserve">
     <value>Record is successfully updated</value>
+  </data>
+  <data name="SuccUserUpdate" xml:space="preserve">
+    <value>User data successfully updated</value>
   </data>
   <data name="SystemSettings" xml:space="preserve">
     <value>System settings</value>

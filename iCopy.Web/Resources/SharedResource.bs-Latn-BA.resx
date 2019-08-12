@@ -159,6 +159,9 @@
   <data name="ChangePassword" xml:space="preserve">
     <value>Izmijeni šifru</value>
   </data>
+  <data name="ChangeProfileImage" xml:space="preserve">
+    <value>Uredi sliku profila</value>
+  </data>
   <data name="ChangeYourPassword" xml:space="preserve">
     <value>Izmijeni šifru</value>
   </data>
@@ -254,6 +257,12 @@
   </data>
   <data name="ErrDelete" xml:space="preserve">
     <value>Došlo je do greške prilikom brisanja</value>
+  </data>
+  <data name="ErrUpdatePassword" xml:space="preserve">
+    <value>Dogodila se greška prilikom izmjene šifre</value>
+  </data>
+  <data name="ErrUserUpdate" xml:space="preserve">
+    <value>Došlo je do greške priliko uređivanja podataka o korisniku</value>
   </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Zaboravili ste šifru</value>
@@ -359,6 +368,9 @@
   </data>
   <data name="SuccUpdate" xml:space="preserve">
     <value>Zapis uspješno uređen</value>
+  </data>
+  <data name="SuccUserUpdate" xml:space="preserve">
+    <value>Korisnički podaci uspješno ažurirani</value>
   </data>
   <data name="SystemSettings" xml:space="preserve">
     <value>Postavke sistema</value>

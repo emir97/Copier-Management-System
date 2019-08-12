@@ -36,11 +36,12 @@ namespace iCopy.SERVICES.Mapper
                 .ReverseMap();
             CreateMap<Database.ProfilePhoto, Model.Response.ProfilePhoto>().ReverseMap();
             CreateMap<Database.ProfilePhoto, Model.Request.ProfilePhoto>().ReverseMap();
-            CreateMap<Database.ApplicationUser, Model.Request.ApplicationUser>()
+            CreateMap<Database.ApplicationUser, Model.Request.ApplicationUserInsert>()
                 .ReverseMap()
                 .ForMember(x => x.NormalizedUserName, opt => opt.MapFrom(y => y.Username.ToUpper()))
                 .ForMember(x => x.NormalizedEmail, opt => opt.MapFrom(y => y.Email.ToUpper()))
                 .ForMember(x => x.SecurityStamp, opt => Guid.NewGuid().ToString());
+            CreateMap<Database.ApplicationUser, Model.Request.ApplicationUserUpdate>().ReverseMap();
             CreateMap<Database.ApplicationUser, Model.Response.ApplicationUser>().ReverseMap();
         }
     }

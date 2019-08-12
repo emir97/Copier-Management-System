@@ -3,7 +3,7 @@ using iCopy.Model.Attributes;
 
 namespace iCopy.Model.Request
 {
-    public class ApplicationUser
+    public class ApplicationUserInsert
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "ErrNoEmail")]
         [DataType(DataType.EmailAddress, ErrorMessage = "EmailWrongFormat")]
@@ -30,6 +30,5 @@ namespace iCopy.Model.Request
         [Compare(nameof(Password), ErrorMessage = "ErrNotSamePasswordConfirm")]
         [PasswordPolicy(ErrorMessage = "asdasd")]
         public string PasswordConfirm { get; set; }
-        public bool Active { get; set; }
     }
 }

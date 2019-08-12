@@ -12,9 +12,14 @@ namespace iCopy.SERVICES.Attributes
         {
             Controller controller = context.Controller as Controller;
             if (context.ModelState.IsValid)
+            {
                 await next();
-            controller.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            context.Result = new JsonResult(context.ModelState.Where(x => x.Value.Errors.Count > 0).ToDictionary(x => x.Key, x => x.Value.Errors.Select(y => y.ErrorMessage)));
+            }
+            else
+            {
+                controller.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                context.Result = new JsonResult(context.ModelState.Where(x => x.Value.Errors.Count > 0).ToDictionary(x => x.Key, x => x.Value.Errors.Select(y => y.ErrorMessage)));
+            }
         }
     }
 }

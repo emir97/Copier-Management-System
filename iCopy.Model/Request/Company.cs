@@ -28,8 +28,7 @@ namespace iCopy.Model.Request
         [Required(ErrorMessage = "ErrNoCity")]
         public int? CityId { get; set; }
         public bool Active { get; set; }
-        public IFormFile File { get; set; }
-        public Model.Request.ApplicationUser User { get; set; }
+        public Model.Request.ApplicationUserInsert User { get; set; }
         public Model.Request.ProfilePhoto ProfilePhoto { get; set; }
     }
 }

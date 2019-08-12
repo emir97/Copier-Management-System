@@ -10,7 +10,8 @@ using iCopy.Database.Context;
 
 namespace iCopy.SERVICES.Services
 {
-    public class ReadService<TModel, TResult, TSearch, TPk> : IReadService<TResult, TSearch, TPk> where TModel : BaseEntity<TPk>
+    public class ReadService<TModel, TResult, TSearch, TKey> : IReadService<TResult, TSearch, TKey> 
+        where TModel : BaseEntity<TKey>
     {
         private readonly DBContext ctx;
         private readonly IMapper mapper;
@@ -31,7 +32,7 @@ namespace iCopy.SERVICES.Services
             return mapper.Map<List<TResult>>(await ctx.Set<TModel>().ToListAsync());
         }
 
-        public virtual async Task<TResult> GetByIdAsync(TPk id)
+        public virtual async Task<TResult> GetByIdAsync(TKey id)
         {
             return mapper.Map<TResult>(await ctx.Set<TModel>().FindAsync(id));
         }

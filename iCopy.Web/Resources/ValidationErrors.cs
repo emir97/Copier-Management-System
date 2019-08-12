@@ -21,5 +21,11 @@ namespace iCopy.Web
         public string ErrMinNumberOfCharacters => localizer[nameof(ErrMinNumberOfCharacters)];
 
         #endregion
+
+
+        public string LocalizedString(string value)
+        {
+            return localizer[value];
+        }
     }
 }

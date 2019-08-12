@@ -104,7 +104,7 @@ namespace iCopy.SERVICES.Services
             Database.Company model = mapper.Map<Database.Company>(entity);
             try
             {
-                Model.Response.ApplicationUser user = await UserService.InsertAsync(mapper.Map<Model.Request.ApplicationUser>(entity.User), Model.Enum.Enum.Roles.Company);
+                Model.Response.ApplicationUser user = await UserService.InsertAsync(entity.User, Model.Enum.Enum.Roles.Company);
                 model.ApplicationUserId = user.ID;
                 ctx.Companies.Add(model);
                 await ctx.SaveChangesAsync();

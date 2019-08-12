@@ -36,7 +36,7 @@ namespace iCopy.Model.Request
         public int CompanyId { get; set; }
 
         public bool Active { get; set; }
-        public Model.Request.ApplicationUser User { get; set; }
+        public Model.Request.ApplicationUserInsert User { get; set; }
         public Model.Request.ProfilePhoto ProfilePhoto { get; set; }
     }
 }

@@ -13,6 +13,12 @@ namespace iCopy.Web.Resources
             this.localizer = localizer.Create(nameof(SharedResource), new AssemblyName(typeof(SharedResource).Assembly.FullName).Name);
         }
 
+        public string LocalizedString(string key)
+        {
+            return localizer[key];
+
+        }
+
         public string SaveChanges => localizer[nameof(SaveChanges)];
         public string Close => localizer[nameof(Close)];
         public string Name => localizer[nameof(Name)];
@@ -78,7 +84,11 @@ namespace iCopy.Web.Resources
         public string TwoFactorEnabled => localizer[nameof(TwoFactorEnabled)];
         public string PhoneNumberConfirmed => localizer[nameof(PhoneNumberConfirmed)];
         public string PhoneNumberNotConfirmed => localizer[nameof(PhoneNumberNotConfirmed)];
-       
+        public string ChangeProfileImage => localizer[nameof(ChangeProfileImage)];
+        public string SuccUserUpdate => localizer[nameof(SuccUserUpdate)];
+        public string ErrUpdatePassword => localizer[nameof(ErrUpdatePassword)];
+        public string ErrUserUpdate => localizer[nameof(ErrUserUpdate)];
+
         #region SuccMessage
         public string SuccUpdate => localizer[nameof(SuccUpdate)];
         public string SuccAdd => localizer[nameof(SuccAdd)];

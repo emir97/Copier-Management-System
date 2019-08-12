@@ -103,7 +103,7 @@ namespace iCopy.SERVICES.Services
             Database.Copier model = mapper.Map<Database.Copier>(entity);
             try
             {
-                Model.Response.ApplicationUser user = await UserService.InsertAsync(mapper.Map<Model.Request.ApplicationUser>(entity.User), Model.Enum.Enum.Roles.Copier);
+                Model.Response.ApplicationUser user = await UserService.InsertAsync(entity.User, Model.Enum.Enum.Roles.Copier);
                 model.ApplicationUserId = user.ID;
                 ctx.Copiers.Add(model);
                 await ctx.SaveChangesAsync();

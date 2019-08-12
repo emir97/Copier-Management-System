@@ -34,13 +34,13 @@
                                 <span class="kt-menu__link"><span class="kt-menu__link-text">@_sharedLocalizer.LocationSettings</span></span>
                             </li>
                             <li class="kt-menu__item " aria-haspopup="true">
-                                <a asp-area="location" asp-controller="country" asp-action="index" class="kt-menu__link ">
+                                <a href="@Settings.Routes.Country.Index" class="kt-menu__link ">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
                                     <span class="kt-menu__link-text">@_sharedLocalizer.Countries</span>
                                 </a>
                             </li>
                             <li class="kt-menu__item " aria-haspopup="true">
-                                <a asp-area="location" asp-controller="city" asp-action="index" class="kt-menu__link ">
+                                <a href="@Settings.Routes.City.Index" class="kt-menu__link ">
                                     <i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i>
                                     <span class="kt-menu__link-text">@_sharedLocalizer.Cities</span>
                                 </a>
@@ -49,13 +49,13 @@
                     </div>
                 </li>
                 <li class="kt-menu__item" aria-haspopup="true">
-                    <a asp-area="administration" asp-controller="Company" asp-action="Index" class="kt-menu__link ">
+                    <a href="@Settings.Routes.Company.Index" class="kt-menu__link ">
                         <span class="kt-menu__link-icon"><i class="fa fa-hotel"></i></span>
                         <span class="kt-menu__link-text">@_sharedLocalizer.CompanySettings</span>
                     </a>
                 </li>
                 <li class="kt-menu__item" aria-haspopup="true">
-                    <a asp-area="administration" asp-controller="Copier" asp-action="Index" class="kt-menu__link ">
+                    <a href="@Settings.Routes.Copier.Index" class="kt-menu__link ">
                         <span class="kt-menu__link-icon"><i class="fa fa-copy"></i></span>
                         <span class="kt-menu__link-text">@_sharedLocalizer.CopierSettings</span>
                     </a>

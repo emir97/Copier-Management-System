@@ -9,13 +9,15 @@ using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
+using iCopy.SERVICES.Exceptions;
 using ApplicationUser = iCopy.Model.Response.ApplicationUser;
 using Enum = iCopy.Model.Enum.Enum;
 
 namespace iCopy.SERVICES.Services
 {
-    public class UserService : IUserService
+    public class UserService : AuthService<Database.ApplicationUser, Model.Request.ApplicationUserInsert, Model.Request.ApplicationUserUpdate, Model.Response.ApplicationUser, Model.Request.ApplicationUserSearch, int>, IUserService
     {
         private readonly IMapper mapper;
         private readonly AuthContext context;
@@ -24,7 +26,7 @@ namespace iCopy.SERVICES.Services
         public UserService(
             AuthContext ctx,
             IMapper mapper,
-            IPasswordHasher<Database.ApplicationUser> PasswordHasher)
+            IPasswordHasher<Database.ApplicationUser> PasswordHasher) : base(ctx, mapper)
         {
             this.mapper = mapper;
             this.context = ctx;
@@ -36,50 +38,7 @@ namespace iCopy.SERVICES.Services
             throw new System.NotImplementedException();
         }
 
-        public virtual async Task<Model.Response.ApplicationUser> DeleteAsync(int id)
-        {
-            Database.ApplicationUser model = await context.Users.FindAsync(id);
-            List<Database.ApplicationUserClaim> claims = await context.UserClaims.Where(x => x.UserId == model.Id).ToListAsync();
-            List<Database.ApplicationUserRole> roles = await context.UserRoles.Where(x => x.UserId == model.Id).ToListAsync();
-            List<IdentityUserLogin<int>> logins = await context.UserLogins.Where(x => x.UserId == model.Id).ToListAsync();
-            List<IdentityUserToken<int>> tokens = await context.UserTokens.Where(x => x.UserId == model.Id).ToListAsync();
-            using (IDbContextTransaction transaction = await context.Database.BeginTransactionAsync())
-            {
-                try
-                {
-                    if (tokens != null)
-                    {
-                        context.UserTokens.RemoveRange(tokens);
-                        await context.SaveChangesAsync();
-                    }
-                    if (logins != null)
-                    {
-                        context.UserLogins.RemoveRange(logins);
-                        await context.SaveChangesAsync();
-                    }
-                    if (claims != null)
-                    {
-                        context.UserClaims.RemoveRange(claims);
-                        await context.SaveChangesAsync();
-                    }
-                    context.UserRoles.RemoveRange(roles);
-                    await context.SaveChangesAsync();
-                    context.Users.Remove(model);
-                    await context.SaveChangesAsync();
-                    transaction.Commit();
-                }
-                // TODO: Dodati log u bazu
-                catch (Exception e)
-                {
-                    transaction.Rollback();
-                    //  TODO: Dodati log u bazu
-                    throw e;
-                }
-            }
-            return mapper.Map<Model.Response.ApplicationUser>(model);
-        }
-
-        public async Task<Model.Response.ApplicationUser> InsertAsync(Model.Request.ApplicationUser user, params Enum.Roles[] roles)
+        public async Task<Model.Response.ApplicationUser> InsertAsync(Model.Request.ApplicationUserInsert user, params Enum.Roles[] roles)
         {
             Database.ApplicationUser model = mapper.Map<Database.ApplicationUser>(user);
             try
@@ -107,9 +66,61 @@ namespace iCopy.SERVICES.Services
         public async Task<Model.Response.ApplicationUser> UpdatePassword(int applicationUserId, ChangePassword password)
         {
             Database.ApplicationUser user = await context.Users.FindAsync(applicationUserId);
+            if(PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, password.CurrentPassword) != PasswordVerificationResult.Success)
+                throw new ModelStateException(nameof(password.CurrentPassword), "Current password is not correct");
             user.PasswordHash = PasswordHasher.HashPassword(user, password.NewPassword);
-            await context.SaveChangesAsync();
+            try
+            {
+                await context.SaveChangesAsync();
+                // TODO: Dodati log
+            }
+            catch (Exception e)
+            {
+                // TODO: Dodati log
+                throw e;
+            }   
             return mapper.Map<Model.Response.ApplicationUser>(user);
+        }
+
+        public override async Task<ApplicationUser> UpdateAsync(int id, Model.Request.ApplicationUserUpdate entity)
+        {
+            Database.ApplicationUser user = await context.Users.FindAsync(id);
+            if (user.UserName != entity.Username && await CheckUsernameUnique(id, entity.Username))
+                throw new ModelStateException(nameof(Database.ApplicationUser.UserName), "Username is already in use");
+            if (user.Email != entity.Email && await CheckEmailUnique(id, entity.Email)) 
+                throw  new ModelStateException(nameof(Database.ApplicationUser.Email), "Email is already is use");
+            if(user.PhoneNumber != entity.PhoneNumber && await CheckPhoneNumberUnique(id, entity.PhoneNumber))
+                throw new ModelStateException(nameof(Database.ApplicationUser.Email), "Phone number is already is use");
+            context.Users.Attach(user);
+            mapper.Map(entity, user);
+            context.Users.Update(user);
+            try
+            {
+                await context.SaveChangesAsync();
+                // TODO: Dodati log
+            }
+            catch (Exception e)
+            {
+                //TODO: Dodati log
+                throw e;
+            }
+
+            return mapper.Map<Model.Response.ApplicationUser>(user);
+        }
+
+        private Task<bool> CheckUsernameUnique(int id, string username)
+        {
+            return context.Users.AnyAsync(x => x.UserName == username && x.Id != id);
+        }
+
+        private Task<bool> CheckEmailUnique(int id, string email)
+        {
+            return context.Users.AnyAsync(x => x.Email == email && x.Id != id);
+        }
+
+        private Task<bool> CheckPhoneNumberUnique(int id, string phoneNumber)
+        {
+            return context.Users.AnyAsync(x => x.PhoneNumber == phoneNumber && x.Id != id);
         }
     }
 
