@@ -88,6 +88,7 @@ namespace iCopy.Web.Resources
         public string SuccUserUpdate => localizer[nameof(SuccUserUpdate)];
         public string ErrUpdatePassword => localizer[nameof(ErrUpdatePassword)];
         public string ErrUserUpdate => localizer[nameof(ErrUserUpdate)];
+        public string ErrUpdate => localizer[nameof(ErrUpdate)];
 
         #region SuccMessage
         public string SuccUpdate => localizer[nameof(SuccUpdate)];

@@ -267,6 +267,9 @@
   <data name="ErrDelete" xml:space="preserve">
     <value>An error occured while trying to delete the record</value>
   </data>
+  <data name="ErrUpdate" xml:space="preserve">
+    <value>An error occured while trying to update the record</value>
+  </data>
   <data name="ErrUpdatePassword" xml:space="preserve">
     <value>An error occured while trying to update password</value>
   </data>

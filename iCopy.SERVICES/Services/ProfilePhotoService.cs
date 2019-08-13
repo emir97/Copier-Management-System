@@ -19,20 +19,19 @@ namespace iCopy.SERVICES.Services
 
         public override async Task<ProfilePhoto> InsertAsync(Model.Request.ProfilePhoto entity)
         {
-            Database.ProfilePhoto model = mapper.Map<Database.ProfilePhoto>(entity);
-
             try
             {
-                ctx.ProfilePhotos.Add(model);
-                await ctx.SaveChangesAsync();
 
                 if (await ctx.ApplicationUserProfilePhotos.AnyAsync(x => x.Active && x.ApplicationUserId == entity.ApplicationUserId))
                 {
-                    var activeApplicationUserProfilePhoto = await ctx.ApplicationUserProfilePhotos.SingleOrDefaultAsync(x => x.Active);
+                    var activeApplicationUserProfilePhoto = await ctx.ApplicationUserProfilePhotos.SingleOrDefaultAsync(x => x.Active && x.ApplicationUserId == entity.ApplicationUserId);
                     activeApplicationUserProfilePhoto.Active = false;
                     ctx.Entry<ApplicationUserProfilePhoto>(activeApplicationUserProfilePhoto).State = EntityState.Modified;
                     await ctx.SaveChangesAsync();
                 }
+
+                Model.Response.ProfilePhoto model = await base.InsertAsync(entity);
+
                 var aplicationUserProfilePhoto = new ApplicationUserProfilePhoto()
                 {
                     ApplicationUserId = entity.ApplicationUserId,
@@ -41,6 +40,8 @@ namespace iCopy.SERVICES.Services
                 ctx.ApplicationUserProfilePhotos.Add(aplicationUserProfilePhoto);
                 await ctx.SaveChangesAsync();
                 // TODO: Dodati log operaciju
+
+                return model;
             }
             catch (Exception e)
             {
@@ -50,7 +51,6 @@ namespace iCopy.SERVICES.Services
                 throw e;
             }
 
-            return mapper.Map<Model.Response.ProfilePhoto>(model);
         }
 
         public async Task<Model.Response.ProfilePhoto> GetByApplicationUserId(int applicationUserId)
@@ -86,6 +86,18 @@ namespace iCopy.SERVICES.Services
             }
 
             return false;
+        }
+
+        public override async Task<ProfilePhoto> UpdateAsync(int id, Model.Request.ProfilePhoto entity)
+        {
+            try
+            {
+               return await InsertAsync(entity);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

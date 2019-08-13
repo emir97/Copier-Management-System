@@ -36,6 +36,13 @@
     <Folder Include="Areas\User\Views\" />
     <Folder Include="TagHelpers\" />
     <Folder Include="wwwroot\assets\media\users\" />
+    <Folder Include="wwwroot\assets\vendors\general\summernote\built\base\core\" />
+    <Folder Include="wwwroot\assets\vendors\general\summernote\built\base\editing\" />
+    <Folder Include="wwwroot\assets\vendors\general\summernote\built\base\module\" />
+    <Folder Include="wwwroot\assets\vendors\general\summernote\built\bs3\" />
+    <Folder Include="wwwroot\assets\vendors\general\summernote\built\bs4\" />
+    <Folder Include="wwwroot\assets\vendors\general\summernote\built\lite\ui\" />
+    <Folder Include="wwwroot\Uploads\ProfilePhotos\" />
   </ItemGroup>
 
 

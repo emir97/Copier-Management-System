@@ -57,6 +57,15 @@
 
             </ul>
         </div>
+        <div class="kt-portlet__head-toolbar">
+            <div class="kt-portlet__head-wrapper">
+                <a href="@Settings.Routes.Company.Index" class="btn btn-clean btn-icon-sm">
+                    <i class="la la-long-arrow-left"></i>
+                    Back
+                </a>
+                &nbsp;
+            </div>
+        </div>
     </div>
     <div class="kt-portlet__body">
         <div class="tab-content">
@@ -181,7 +190,6 @@
             <div class="tab-pane" id="kt_apps_user_edit_tab_2" role="tabpanel">
                 <div class="kt-form kt-form--label-right">
                     <form asp-area="administration" asp-controller="user" asp-action="update" asp-route-id="@Model.ApplicationUserId" asp-antiforgery="true" id="update-user-form">
-                       <input type="hidden" name="Active" value="false"/>
                         <div class="kt-form__body">
                             <div class="kt-section kt-section--first">
                                 <div class="kt-section__body">
@@ -212,15 +220,18 @@
                                         <div class="col-lg-9 col-xl-6">
                                             <div class="kt-checkbox-inline">
                                                 <label class="kt-checkbox">
-                                                    <input type="checkbox" name="TwoFactorEnabled"> @_sharedLocalizer.TwoFactorEnabled
+                                                    <input type="checkbox" name="TwoFactorEnabled" value="true" @(Model.User.TwoFactorEnabled ? $"checked='checked" : string.Empty)> @_sharedLocalizer.TwoFactorEnabled
+                                                    <input type="hidden" name="TwoFactorEnabled" value="false"/>
                                                     <span></span>
                                                 </label>
                                                 <label class="kt-checkbox">
-                                                    <input type="checkbox" name="Active"> @_sharedLocalizer.Active
+                                                    <input type="checkbox" name="Active" value="true" @(Model.User.Active ? $"checked='checked'" : string.Empty)/> @_sharedLocalizer.Active
+                                                    <input type="hidden" name="Active" value="false" />
                                                     <span></span>
                                                 </label>
                                                 <label class="kt-checkbox">
-                                                    <input type="checkbox" name="ChangePassword"> @_sharedLocalizer.ChangePassword
+                                                    <input type="checkbox" name="ChangePassword" value="true" @(Model.User.ChangePassword ? $"checked='checked'" : string.Empty)> @_sharedLocalizer.ChangePassword
+                                                    <input type="hidden" name="ChangePassword" value="false" />
                                                     <span></span>
                                                 </label>
                                             </div>

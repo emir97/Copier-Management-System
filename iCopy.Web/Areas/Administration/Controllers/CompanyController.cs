@@ -19,7 +19,7 @@ namespace iCopy.Web.Areas.Administration.Controllers
         private readonly ICompanyService CrudService;
 
         private Model.Request.ProfilePhoto PhotoSession => HttpContext.Session.Get<Model.Request.ProfilePhoto>(Session.Keys.Upload.ProfileImage);
-        
+
         public CompanyController(ICompanyService CrudService, SharedResource _localizer, IMapper mapper) : base(CrudService, _localizer, mapper)
         {
             this.CrudService = CrudService;
@@ -36,31 +36,40 @@ namespace iCopy.Web.Areas.Administration.Controllers
                 HttpContext.Session.Remove(Session.Keys.Upload.ProfileImage);
                 return Ok();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return Json(new {success = false, error = e.Message});
+                return Json(new { success = false, error = e.Message });
             }
-        }
-        
-        [HttpPost, Transaction]
-        public override async Task<IActionResult> Update(int id, [FromForm]Company model)
-        {
-            if (ModelState.IsValid)
-            {
-                await CrudService.UpdateAsync(id, model);
-                TempData["success"] = _localizer.SuccUpdate;
-                return RedirectToAction(nameof(Update));
-            }
-
-            return View(await CrudService.GetByIdAsync(id));
         }
 
         [HttpGet]
         public override Task<IActionResult> Update(int id)
         {
-            if(HttpContext.Session.Get(Session.Keys.Upload.ProfileImage) != null)
+            if (HttpContext.Session.Get(Session.Keys.Upload.ProfileImage) != null)
                 HttpContext.Session.Remove(Session.Keys.Upload.ProfileImage);
             return base.Update(id);
+        }
+
+        [HttpPost, Transaction]
+        public override async Task<IActionResult> Update(int id, [FromForm]Company model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    model.ProfilePhoto = PhotoSession;
+                    await CrudService.UpdateAsync(id, model);
+                    TempData["success"] = _localizer.SuccUpdate;
+                    return RedirectToAction(nameof(Update));
+
+                }
+                catch
+                {
+                    TempData["error"] = _localizer.ErrUpdate;
+                }
+            }
+
+            return View(await CrudService.GetByIdAsync(id));
         }
     }
 }

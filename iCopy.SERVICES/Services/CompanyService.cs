@@ -6,8 +6,10 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using iCopy.Database.Context;
+using Company = iCopy.Model.Response.Company;
 
 namespace iCopy.SERVICES.Services
 {
@@ -106,13 +108,14 @@ namespace iCopy.SERVICES.Services
             {
                 Model.Response.ApplicationUser user = await UserService.InsertAsync(entity.User, Model.Enum.Enum.Roles.Company);
                 model.ApplicationUserId = user.ID;
-                ctx.Companies.Add(model);
-                await ctx.SaveChangesAsync();
                 if (entity.ProfilePhoto != null)
                 {
                     entity.ProfilePhoto.ApplicationUserId = user.ID;
                     await ProfilePhotoService.InsertAsync(entity.ProfilePhoto);
                 }
+
+                ctx.Companies.Add(model);
+                await ctx.SaveChangesAsync();
                 // TODO: Dodati log operaciju
             }
             catch (Exception e)
@@ -122,6 +125,26 @@ namespace iCopy.SERVICES.Services
             }
 
             return mapper.Map<Model.Response.Company>(model);
+        }
+
+        public override async Task<Company> UpdateAsync(int id, Model.Request.Company entity)
+        {
+            try
+            {
+                Model.Response.Company company = await base.UpdateAsync(id, entity);
+                if (entity.ProfilePhoto != null)
+                {
+                    entity.ProfilePhoto.ApplicationUserId = company.ApplicationUserId;
+                    await ProfilePhotoService.InsertAsync(entity.ProfilePhoto);
+                }
+                // TODO: Dodati Log
+                return company;
+            }
+            catch (Exception e)
+            {
+                // TODO: Dodati log
+                throw e;
+            }
         }
     }
 }

@@ -4,7 +4,6 @@ namespace iCopy.Model.Request
 {
     public class ProfilePhoto
     {
-        public int ID { get; set; }
         public bool Active { get; set; }
         public int ApplicationUserId { get; set; }
         public string Path { get; set; }
