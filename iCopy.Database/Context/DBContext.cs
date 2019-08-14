@@ -16,6 +16,8 @@ namespace iCopy.Database.Context
         public virtual DbSet<Copier> Copiers { get; set; }
         public virtual DbSet<ProfilePhoto> ProfilePhotos { get; set; }
         public virtual DbSet<ApplicationUserProfilePhoto> ApplicationUserProfilePhotos { get; set; }
+        public virtual DbSet<Person> Persons { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -348,6 +348,9 @@
   <data name="ProfileImage" xml:space="preserve">
     <value>Profile photo</value>
   </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Registration</value>
+  </data>
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
@@ -362,6 +365,9 @@
   </data>
   <data name="ShortName" xml:space="preserve">
     <value>Short name</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Sign Up</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>

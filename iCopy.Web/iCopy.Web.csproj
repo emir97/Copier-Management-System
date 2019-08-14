@@ -8,9 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Language\Data\**" />
+    <Compile Remove="Areas\Language\Models\**" />
     <Compile Remove="Resources\Country\**" />
+    <Content Remove="Areas\Language\Data\**" />
+    <Content Remove="Areas\Language\Models\**" />
     <Content Remove="Resources\Country\**" />
+    <EmbeddedResource Remove="Areas\Language\Data\**" />
+    <EmbeddedResource Remove="Areas\Language\Models\**" />
     <EmbeddedResource Remove="Resources\Country\**" />
+    <None Remove="Areas\Language\Data\**" />
+    <None Remove="Areas\Language\Models\**" />
     <None Remove="Resources\Country\**" />
   </ItemGroup>
 
@@ -26,8 +34,6 @@
   <ItemGroup>
     <Folder Include="Areas\Administration\Data\" />
     <Folder Include="Areas\Administration\Models\" />
-    <Folder Include="Areas\Language\Data\" />
-    <Folder Include="Areas\Language\Models\" />
     <Folder Include="Areas\Language\Views\" />
     <Folder Include="Areas\Location\Data\" />
     <Folder Include="Areas\Location\Models\" />

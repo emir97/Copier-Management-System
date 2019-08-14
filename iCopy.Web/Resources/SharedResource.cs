@@ -143,6 +143,9 @@ namespace iCopy.Web.Resources
         public string ForgotPassword => localizer[nameof(ForgotPassword)];
         public string UsernameOrEmail => localizer[nameof(UsernameOrEmail)];
         public string Password => localizer[nameof(Password)];
+        public string SignUp => localizer[nameof(SignUp)];
+        public string Registration => localizer[nameof(Registration)];
+
         #endregion
     }
 }

@@ -8,6 +8,7 @@
             public const string Location = "Location";
             public const string Language = "Language";
             public const string User = "User";
+            public const string Auth = "Auth";
         }
     }
 }
