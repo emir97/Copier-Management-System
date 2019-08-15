@@ -20,8 +20,20 @@ namespace iCopy.SERVICES.Mapper
             CreateMap<Database.Copier, Model.Response.Copier>().ReverseMap();
             CreateMap<Database.Copier, Model.Request.Copier>().ReverseMap();
             CreateMap<Model.Response.Copier, Model.Request.Copier>().ReverseMap();
-
             CreateMap<Model.Response.Company, Model.Request.Company>().ReverseMap();
+            CreateMap<Database.Person, Model.Request.Person>().ReverseMap();
+            CreateMap<Database.Client, Model.Request.Client>().ReverseMap();
+            CreateMap<Database.ProfilePhoto, Model.Response.ProfilePhoto>().ReverseMap();
+            CreateMap<Database.ProfilePhoto, Model.Request.ProfilePhoto>().ReverseMap();
+            CreateMap<Database.ApplicationUser, Model.Request.ApplicationUserInsert>()
+                .ReverseMap()
+                .ForMember(x => x.NormalizedUserName, opt => opt.MapFrom(y => y.Username.ToUpper()))
+                .ForMember(x => x.NormalizedEmail, opt => opt.MapFrom(y => y.Email.ToUpper()))
+                .ForMember(x => x.SecurityStamp, opt => Guid.NewGuid().ToString());
+            CreateMap<Database.ApplicationUser, Model.Request.ApplicationUserUpdate>().ReverseMap();
+            CreateMap<Database.ApplicationUser, Model.Response.ApplicationUser>().ReverseMap();
+
+            #region SELECT LISTS
             CreateMap<Database.Country, SelectListItem>()
                 .ForMember(x => x.Text, y => y.MapFrom(c => c.Name))
                 .ForMember(x => x.Value, y => y.MapFrom<string>(c => c.ID.ToString()))
@@ -34,15 +46,8 @@ namespace iCopy.SERVICES.Mapper
                 .ForMember(x => x.Text, y => y.MapFrom(c => c.Name))
                 .ForMember(x => x.Value, y => y.MapFrom(c => c.ID.ToString()))
                 .ReverseMap();
-            CreateMap<Database.ProfilePhoto, Model.Response.ProfilePhoto>().ReverseMap();
-            CreateMap<Database.ProfilePhoto, Model.Request.ProfilePhoto>().ReverseMap();
-            CreateMap<Database.ApplicationUser, Model.Request.ApplicationUserInsert>()
-                .ReverseMap()
-                .ForMember(x => x.NormalizedUserName, opt => opt.MapFrom(y => y.Username.ToUpper()))
-                .ForMember(x => x.NormalizedEmail, opt => opt.MapFrom(y => y.Email.ToUpper()))
-                .ForMember(x => x.SecurityStamp, opt => Guid.NewGuid().ToString());
-            CreateMap<Database.ApplicationUser, Model.Request.ApplicationUserUpdate>().ReverseMap();
-            CreateMap<Database.ApplicationUser, Model.Response.ApplicationUser>().ReverseMap();
+            #endregion
+
         }
     }
 }

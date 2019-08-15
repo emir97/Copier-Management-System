@@ -57,6 +57,10 @@
                 public static string UploadProfileImage => "/upload/UploadProfileImage";
                 public static string RemoveUploadedProfileImage => "/upload/RemoveUploadedProfileImage";
             }
+            public static class SignUp
+            {
+                public static string Index => "/auth/signup/index";
+            }
         }
         public static class Defaults
         {

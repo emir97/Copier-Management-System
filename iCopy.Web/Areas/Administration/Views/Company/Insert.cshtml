@@ -272,7 +272,6 @@
                 // Display error
                 invalidHandler: function (event, validator) {
                     KTUtil.scrollTop();
-
                     swal.fire({
                         title: "",
                         html: "@_sharedLocalizer.CorrectErrorBeforeGoToNextStep",
@@ -289,7 +288,7 @@
             btn.on('click', function (e) {
                 e.preventDefault();
 
-                if (validator.form()) {
+                if (validator.form()){
                     // See: src\js\framework\base\app.js
                     KTApp.progress(btn);
                     KTApp.block(formEl);
@@ -311,12 +310,22 @@
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             KTApp.unprogress(btn);
                             KTApp.unblock(formEl);
-                            for (var key in XMLHttpRequest.responseJSON) {
-                                if (key != null) {
-                                    let error = {};
-                                    error[key] = XMLHttpRequest.responseJSON[key][0];
-                                    validator.showErrors(error);
+                            if (XMLHttpRequest.status == 400) {
+                                for (var key in XMLHttpRequest.responseJSON) {
+                                    if (key != null) {
+                                        let error = {};
+                                        error[key] = XMLHttpRequest.responseJSON[key][0];
+                                        validator.showErrors(error);
+                                    }
                                 }
+                            } else {
+                                swal.fire({
+                                    title: "",
+                                    html: "@_sharedLocalizer.ErrAdd",
+                                    type: "error",
+                                    confirmButtonClass: "btn btn-secondary",
+                                    allowOutsideClick: false
+                                });
                             }
                         }
                     });

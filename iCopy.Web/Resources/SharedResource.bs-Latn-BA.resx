@@ -252,6 +252,9 @@
   <data name="EnglishUS" xml:space="preserve">
     <value>Engleski US</value>
   </data>
+  <data name="ErrAdd" xml:space="preserve">
+    <value>Došlo je greške prilikom pokušaja dodavanja zapisa</value>
+  </data>
   <data name="ErrChangeStatus" xml:space="preserve">
     <value>Došlo je do greške prilikom izmijene statusa</value>
   </data>
@@ -339,6 +342,9 @@
   <data name="ProfileImage" xml:space="preserve">
     <value>Slika profila</value>
   </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Registracija</value>
+  </data>
   <data name="Reset" xml:space="preserve">
     <value>Poništi</value>
   </data>
@@ -353,6 +359,9 @@
   </data>
   <data name="ShortName" xml:space="preserve">
     <value>Skraćeni naziv</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Registruj se</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Sačuvaj</value>
