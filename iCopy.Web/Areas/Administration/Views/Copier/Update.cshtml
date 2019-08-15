@@ -1,7 +1,7 @@
-﻿@model iCopy.Model.Response.Company
+﻿@model iCopy.Model.Response.Copier
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = _sharedLocalizer.UpdateCompanyDetails;
+    ViewData["Title"] = _sharedLocalizer.UpdateCopierDetails;
 }
 @section styles{
     <link href="https://unpkg.com/croppie/croppie.css" rel="stylesheet" />
@@ -12,7 +12,7 @@
 }
 
 <div id="alert-messages">
-    @if(TempData["success"] != null)
+    @if (TempData["success"] != null)
     {
         <div class="alert alert-solid-success alert-bold" role="alert">
             <div class="alert-text">@TempData["success"]</div>
@@ -23,7 +23,7 @@
             </div>
         </div>
     }
-    @if(TempData["error"] != null)
+    @if (TempData["error"] != null)
     {
         <div class="alert alert-solid-danger alert-bold" role="alert" id="alert-danger">
             <div class="alert-text">@TempData["error"]</div>
@@ -41,7 +41,7 @@
             <ul class="nav nav-tabs nav-tabs-space-xl nav-tabs-line nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#kt_apps_user_edit_tab_1" role="tab" aria-selected="true">
-                        <i class="fa fa-hotel"></i>@_sharedLocalizer.CompanySettings
+                        <i class="fa fa-hotel"></i>@_sharedLocalizer.CopierSettings
                     </a>
                 </li>
                 <li class="nav-item">
@@ -59,8 +59,8 @@
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-wrapper">
-                <a href="@Settings.Routes.Company.Index" class="btn btn-clean btn-icon-sm">
-                    <i class="la la-long-arrow-left"></i>c
+                <a href="@Settings.Routes.Copier.Index" class="btn btn-clean btn-icon-sm">
+                    <i class="la la-long-arrow-left"></i>
                     Back
                 </a>
                 &nbsp;
@@ -70,29 +70,11 @@
     <div class="kt-portlet__body">
         <div class="tab-content">
             <div class="tab-pane active" id="kt_apps_user_edit_tab_1" role="tabpanel">
-                <form asp-area="Administration" asp-controller="Company" asp-action="Update" asp-route-id="@Model.ID" asp-antiforgery="true" id="update-company-form">
+                <form asp-area="Administration" asp-controller="Copier" asp-action="Update" asp-route-id="@Model.ID" asp-antiforgery="true" id="update-copier-form">
                     <div class="kt-form kt-form--label-right">
                         <div class="kt-form__body">
                             <div class="kt-section kt-section--first">
                                 <div class="kt-section__body">
-                                    <div class="form-group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.ProfileImage</label>
-                                        <div class="col-lg-9 col-xl-6">
-                                            <div class="kt-avatar kt-avatar--outline kt-avatar--circle-" id="kt_apps_user_add_avatar">
-                                                <div class="kt-avatar__holder" style="background-image: url(&quot;/@(Model?.ProfilePhoto?.Path?.Replace("\\", "/") ?? Settings.Defaults.Photo.ProfilePhoto)&quot;);"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.ChangeProfileImage</label>
-                                        <div class="col-lg-9 col-xl-6">
-                                            <div class="kt-dropzone m-dropzone--success" action="@Settings.Routes.Upload.UploadProfileImage" id="dropzone">
-                                                <div class="kt-dropzone__msg dz-message needsclick">
-                                                    <h5 class="kt-dropzone__msg-title">@_sharedLocalizer.DragFilesOrClickToUpload</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="form-group row">
                                         <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.Name</label>
                                         <div class="col-lg-9 col-xl-6">
@@ -101,37 +83,31 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.JIB</label>
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.Description</label>
                                         <div class="col-lg-9 col-xl-6">
-                                            <input class="form-control" type="number" asp-for="Jib" placeholder="@_sharedLocalizer.JIB">
-                                            <span asp-validation-for="Jib" class="form-text text-danger"></span>
+                                            <input class="form-control" type="text" asp-for="Description" placeholder="@_sharedLocalizer.Description">
+                                            <span asp-validation-for="Description" class="form-text text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.ContactAgent</label>
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.StartWorkingTime</label>
                                         <div class="col-lg-9 col-xl-6">
-                                            <input class="form-control" type="text" asp-for="ContactAgent" placeholder="@_sharedLocalizer.ContactAgent">
-                                            <span asp-validation-for="ContactAgent" class="form-text text-danger"></span>
+                                            <input class="form-control" type="text" asp-for="StartWorkingTime" placeholder="@_sharedLocalizer.StartWorkingTime">
+                                            <span asp-validation-for="StartWorkingTime" class="form-text text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.ContactAgentPhoneNumber</label>
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.EndWorkingTime</label>
                                         <div class="col-lg-9 col-xl-6">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend"><span class="input-group-text"><i class="la la-phone"></i></span></div>
-                                                <input type="number" class="form-control" asp-for="PhoneNumber" placeholder="@_sharedLocalizer.ContactAgentPhoneNumber">
-                                                <span asp-validation-for="PhoneNumber" class="form-text text-danger"></span>
-                                            </div>
+                                            <input class="form-control" type="text" asp-for="EndWorkingTime" placeholder="@_sharedLocalizer.EndWorkingTime">
+                                            <span asp-validation-for="EndWorkingTime" class="form-text text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.ContactEmail</label>
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.Url</label>
                                         <div class="col-lg-9 col-xl-6">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend"><span class="input-group-text"><i class="la la-at"></i></span></div>
-                                                <input type="email" class="form-control" asp-for="Email" placeholder="@_sharedLocalizer.ContactEmail">
-                                                <span asp-validation-for="Email" class="form-text text-danger"></span>
-                                            </div>
+                                            <input type="text" class="form-control" asp-for="Url" placeholder="@_sharedLocalizer.Url">
+                                            <span asp-validation-for="Url" class="form-text text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -148,15 +124,6 @@
                                             <div class="input-group">
                                                 <select class="form-control kt-select2" asp-items="@(await _selectList.Cities(Model.City.CountryID))" asp-for="CityId"></select>
                                                 <span asp-validation-for="CityId" class="form-text text-danger"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.Address</label>
-                                        <div class="col-lg-9 col-xl-6">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" asp-for="Address" placeholder="@_sharedLocalizer.Address" />
-                                                <span asp-validation-for="Address" class="form-text text-danger"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -221,11 +188,11 @@
                                             <div class="kt-checkbox-inline">
                                                 <label class="kt-checkbox">
                                                     <input type="checkbox" name="TwoFactorEnabled" value="true" @(Model.User.TwoFactorEnabled ? $"checked='checked" : string.Empty)> @_sharedLocalizer.TwoFactorEnabled
-                                                    <input type="hidden" name="TwoFactorEnabled" value="false"/>
+                                                    <input type="hidden" name="TwoFactorEnabled" value="false" />
                                                     <span></span>
                                                 </label>
                                                 <label class="kt-checkbox">
-                                                    <input type="checkbox" name="Active" value="true" @(Model.User.Active ? $"checked='checked'" : string.Empty)/> @_sharedLocalizer.Active
+                                                    <input type="checkbox" name="Active" value="true" @(Model.User.Active ? $"checked='checked'" : string.Empty) /> @_sharedLocalizer.Active
                                                     <input type="hidden" name="Active" value="false" />
                                                     <span></span>
                                                 </label>
@@ -328,37 +295,33 @@
     </div>
 </div>
 <script>
-    @*var validatorCompanyForm = $("#update-company-form").validate({
+    @*var validatorCopierForm = $("#update-copier-form").validate({
         ignore: ":hidden",
         // Validation rules
         rules: {
             //= Step 1
-            '@(nameof(iCopy.Model.Request.Company.Name))': {
+            '@(nameof(iCopy.Model.Request.Copier.Name))': {
                 required: true,
                 maxlength: 100
             },
-            '@(nameof(iCopy.Model.Request.Company.Jib))': {
+            '@(nameof(iCopy.Model.Request.Copier.Description))': {
                 required: true,
                 number: true
             },
-            '@(nameof(iCopy.Model.Request.Company.ContactAgent))': {
+            '@(nameof(iCopy.Model.Request.Copier.StartWorkingTime))': {
                 required: true,
                 maxlength: 100
             },
-            '@(nameof(iCopy.Model.Request.Company.PhoneNumber))': {
+            '@(nameof(iCopy.Model.Request.Copier.EndWorkingTime))': {
                 required: true,
                 number: true
             },
-            '@(nameof(iCopy.Model.Request.Company.Email))': {
+            '@(nameof(iCopy.Model.Request.Copier.Url))': {
                 required: true,
                 email: true,
                 maxlength: 100
             },
-            '@(nameof(iCopy.Model.Request.Company.Address))': {
-                required: true,
-                maxlength: 100
-            },
-            '@(nameof(iCopy.Model.Request.Company.CityId))': {
+            '@(nameof(iCopy.Model.Request.Copier.CityId))': {
                 required: true
             }
         },

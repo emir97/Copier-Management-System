@@ -136,6 +136,8 @@ namespace iCopy.Web.Resources
         public string EndWorkingTime => localizer[nameof(EndWorkingTime)];
         public string Url => localizer[nameof(Url)];
         public string AddCopier => localizer[nameof(AddCopier)];
+        public string UpdateCopierDetails => localizer[nameof(UpdateCopierDetails)];
+        public string ChooseCopier => localizer[nameof(ChooseCopier)];
         #endregion
 
         #region Login

@@ -32,7 +32,9 @@ namespace iCopy.SERVICES.Services
 
         public override async Task<Model.Response.Copier> GetByIdAsync(int id)
         {
-            return mapper.Map<Model.Response.Copier>(await ctx.Copiers.Include(x => x.City).ThenInclude(x => x.Country).FirstOrDefaultAsync(x => x.ID == id));
+            Model.Response.Copier copier = mapper.Map<Model.Response.Copier>(await ctx.Copiers.Include(x => x.City).ThenInclude(x => x.Country).FirstOrDefaultAsync(x => x.ID == id));
+            copier.User = mapper.Map<Model.Response.ApplicationUser>(await auth.Users.FindAsync(copier.ApplicationUserId));
+            return copier;
         }
 
         public override async Task<List<Model.Response.Copier>> TakeRecordsByNumberAsync(int take = 15)
@@ -121,6 +123,21 @@ namespace iCopy.SERVICES.Services
             }
 
             return mapper.Map<Model.Response.Copier>(model);
+        }
+
+        public override async Task<Model.Response.Copier> UpdateAsync(int id, Model.Request.Copier entity)
+        {
+            try
+            {
+                Model.Response.Copier copier = await base.UpdateAsync(id, entity);
+                // TODO: Dodati Log
+                return copier;
+            }
+            catch (Exception e)
+            {
+                // TODO: Dodati log
+                throw e;
+            }
         }
     }
 }

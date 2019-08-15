@@ -40,5 +40,25 @@ namespace iCopy.Web.Areas.Administration.Controllers
                 return Json(new { success = false, error = e.Message });
             }
         }
+
+        [HttpPost, Transaction]
+        public override async Task<IActionResult> Update(int id, [FromForm]Copier model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await crudService.UpdateAsync(id, model);
+                    TempData["success"] = _localizer.SuccUpdate;
+                    return RedirectToAction(nameof(Update));
+                }
+                catch
+                {
+                    TempData["error"] = _localizer.ErrUpdate;
+                }
+            }
+
+            return View(await crudService.GetByIdAsync(id));
+        }
     }
 }

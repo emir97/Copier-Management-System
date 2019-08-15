@@ -27,5 +27,9 @@ namespace iCopy.Model.Response
         public int CompanyId { get; set; }
 
         public Company Company { get; set; }
+
+        public ApplicationUser User { get; set; }
+
+        public int ApplicationUserId { get; set; }
     }
 }
