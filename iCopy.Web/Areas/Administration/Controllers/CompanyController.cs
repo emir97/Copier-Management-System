@@ -8,6 +8,7 @@ using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace iCopy.Web.Areas.Administration.Controllers
@@ -38,7 +39,7 @@ namespace iCopy.Web.Areas.Administration.Controllers
             }
             catch (Exception e)
             {
-                return Json(new { success = false, error = e.Message });
+                return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
 

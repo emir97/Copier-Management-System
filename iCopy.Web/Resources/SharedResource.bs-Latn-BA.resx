@@ -252,6 +252,9 @@
   <data name="EnglishUS" xml:space="preserve">
     <value>Engleski US</value>
   </data>
+  <data name="ErrAdd" xml:space="preserve">
+    <value>Došlo je greške prilikom pokušaja dodavanja zapisa</value>
+  </data>
   <data name="ErrChangeStatus" xml:space="preserve">
     <value>Došlo je do greške prilikom izmijene statusa</value>
   </data>

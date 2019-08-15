@@ -261,6 +261,9 @@
   <data name="EnterValidNumber" xml:space="preserve">
     <value>Enter a valid number</value>
   </data>
+  <data name="ErrAdd" xml:space="preserve">
+    <value>An error occured while trying to insert record</value>
+  </data>
   <data name="ErrChangeStatus" xml:space="preserve">
     <value>An error occured while trying to change the status</value>
   </data>
