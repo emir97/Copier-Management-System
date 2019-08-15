@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using iCopy.Database;
+using iCopy.Database.Context;
 using iCopy.SERVICES.IServices;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using iCopy.Database.Context;
 
 namespace iCopy.SERVICES.Services
 {

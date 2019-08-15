@@ -13,69 +13,7 @@
             <h3>@_sharedLocalizer.SignUp</h3>
         </div>
         <!--begin::Form-->
-        <div class="kt-grid  kt-wizard-v2 kt-wizard-v2--white" id="kt_wizard_v2" data-ktwizard-state="step-first">
-            <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v2__wrapper">
-                <!--begin: Form Wizard Form-->
-                <form asp-area="administration" asp-controller="company" asp-action="insert" asp-antiforgery="true" class="kt-form" id="kt_form">
-                    <!--begin: Form Wizard Step 1-->
-                    <div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
-                        <div class="kt-heading kt-heading--md">@_sharedLocalizer.CompanySettings</div>
-                        <div class="kt-form__section kt-form__section--first">
-                            <div class="kt-wizard-v2__form">
-                                <div class="form-group">
-                                    <label>@_sharedLocalizer.Name</label>
-                                    <input type="text"  class="form-control" placeholder="@_sharedLocalizer.Name" />
-                                    <span  class="form-text text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label>@_sharedLocalizer.JIB</label>
-                                    <input type="number" class="form-control"  placeholder="@_sharedLocalizer.JIB" />
-                                    <span  class="form-text text-danger"></span>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <!--end: Form Wizard Step 1-->
-                    <!--begin: Form Wizard Step 2-->
-                    <div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-                        <div class="kt-heading kt-heading--md">@_sharedLocalizer.AccountSettings</div>
-                        <div class="kt-form__section kt-form__section--first">
-                            <div class="kt-wizard-v2__form">
-                                
-                                <div class="form-group">
-                                    <label a>@_sharedLocalizer.Username</label>
-                                    <input type="text" class="form-control"  placeholder="@_sharedLocalizer.Username" autocomplete="off">
-                                    <span class="form-text text-danger" ></span>
-                                </div>
-                                <div class="form-group">
-                                    <label >@_sharedLocalizer.Email</label>
-                                    <input type="email" class="form-control"  placeholder="@_sharedLocalizer.Email" autocomplete="off">
-                                    <span class="form-text text-danger"></span>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <!--end: Form Wizard Step 2-->
-                    <!--begin: Form Actions -->
-                    <div class="kt-form__actions">
-                        <div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
-                            @_sharedLocalizer.Previous
-                        </div>
-                        <div class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit">
-                            @_sharedLocalizer.Submit
-                        </div>
-                        <div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
-                            @_sharedLocalizer.NextStep
-                        </div>
-                    </div>
-                    <!--end: Form Actions -->
-                </form>
-                <!--end: Form Wizard Form-->
-            </div>
-        </div>
-        <!--end::Form-->
+        
     </div>
     <!--end::Signin-->
 </div>

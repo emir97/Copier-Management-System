@@ -19,8 +19,9 @@ namespace iCopy.Web.Areas.Auth.Controllers
             this.UserService = userService;
             this.AuthenticationService = authenticationService;
         }
+
         [HttpGet]
-        public IActionResult Login() => View();
+        public IActionResult Index() => View();
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(Login login)
