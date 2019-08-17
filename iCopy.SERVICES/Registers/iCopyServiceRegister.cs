@@ -20,6 +20,7 @@ namespace iCopy.SERVICES.Registers
                 CityService>();
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<ICopierService, CopierService>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProfilePhotoService, ProfilePhotoService>();
             services.AddScoped<IClientService, ClientService>();
