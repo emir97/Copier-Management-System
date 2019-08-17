@@ -126,6 +126,9 @@
   <data name="EmailWrongFormat" xml:space="preserve">
     <value>Wrong format of email</value>
   </data>
+  <data name="ErrDateWrongFormat" xml:space="preserve">
+    <value>Format of date is invalid</value>
+  </data>
   <data name="ErrEnterTheSameValueAgain" xml:space="preserve">
     <value>Enter the same value again</value>
   </data>
@@ -156,6 +159,9 @@
   <data name="ErrNoAddress" xml:space="preserve">
     <value>Address is required</value>
   </data>
+  <data name="ErrNoBirthDate" xml:space="preserve">
+    <value>Date of birth is required</value>
+  </data>
   <data name="ErrNoCity" xml:space="preserve">
     <value>City is required</value>
   </data>
@@ -177,8 +183,17 @@
   <data name="ErrNoEmail" xml:space="preserve">
     <value>Email is required</value>
   </data>
+  <data name="ErrNoFirstName" xml:space="preserve">
+    <value>Firstname is required</value>
+  </data>
+  <data name="ErrNoGender" xml:space="preserve">
+    <value>Gender is required</value>
+  </data>
   <data name="ErrNoJIB" xml:space="preserve">
     <value>JIB is required</value>
+  </data>
+  <data name="ErrNoLastName" xml:space="preserve">
+    <value>Lastname is required</value>
   </data>
   <data name="ErrNoName" xml:space="preserve">
     <value>Name is required</value>

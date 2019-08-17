@@ -126,6 +126,9 @@
   <data name="EmailWrongFormat" xml:space="preserve">
     <value>Neispravan format email-a</value>
   </data>
+  <data name="ErrDateWrongFormat" xml:space="preserve">
+    <value>Pogrešan format datuma</value>
+  </data>
   <data name="ErrEnterTheSameValueAgain" xml:space="preserve">
     <value>Unesite istu vrijednost ponovo</value>
   </data>
@@ -156,6 +159,9 @@
   <data name="ErrNoAddress" xml:space="preserve">
     <value>Adresa je obavezna</value>
   </data>
+  <data name="ErrNoBirthDate" xml:space="preserve">
+    <value>Datum rođenja je obavezan</value>
+  </data>
   <data name="ErrNoCity" xml:space="preserve">
     <value>Grad je obavezan</value>
   </data>
@@ -177,8 +183,17 @@
   <data name="ErrNoEmail" xml:space="preserve">
     <value>Email je obavezan</value>
   </data>
+  <data name="ErrNoFirstName" xml:space="preserve">
+    <value>Ime je obavezno</value>
+  </data>
+  <data name="ErrNoGender" xml:space="preserve">
+    <value>Spol je obavezan</value>
+  </data>
   <data name="ErrNoJIB" xml:space="preserve">
     <value>JIB je obavezan</value>
+  </data>
+  <data name="ErrNoLastName" xml:space="preserve">
+    <value>Prezime je obavezno</value>
   </data>
   <data name="ErrNoName" xml:space="preserve">
     <value>Naziv je obavezan</value>

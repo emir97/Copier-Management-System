@@ -191,9 +191,9 @@
             });
             // Validation before going to next page
             wizard.on('beforeNext', function (wizardObj) {
-                if (validator.form() !== true) {
-                    wizardObj.stop(); // don't go to the next step
-                }
+                //if (validator.form() !== true) {
+                //    wizardObj.stop(); // don't go to the next step
+                //}
             });
             // Change event
             wizard.on('change', function (wizard) {
@@ -273,7 +273,7 @@
             btn.on('click', function (e) {
                 e.preventDefault();
 
-                if (validator.form()){
+                if (/*validator.form()*/true){
                     // See: src\js\framework\base\app.js
                     KTApp.progress(btn);
                     KTApp.block(formEl);
@@ -303,6 +303,7 @@
                                         validator.showErrors(error);
                                     }
                                 }
+                                wizard.goFirst();
                             } else {
                                 swal.fire({
                                     title: "",
@@ -369,8 +370,7 @@
         $(".kt-select2").select2({ width: '100%' });
         $("#Person_BirthDate").datepicker({
             todayHighlight: !0,
-            orientation: "bottom left",
-            format: "dd.mm.yyyy"
+            orientation: "bottom left"
         });
     });
 </script>

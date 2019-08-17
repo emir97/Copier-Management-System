@@ -23,6 +23,7 @@ namespace iCopy.SERVICES.Registers
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProfilePhotoService, ProfilePhotoService>();
             services.AddScoped<IClientService, ClientService>();
+            services.AddScoped<IPersonService, PersonService>();
             return services;
         }
     }

@@ -18,12 +18,12 @@ namespace iCopy.Web.Areas.Auth.Controllers
         }
         [HttpGet]
         public Task<ViewResult> Index() => Task.FromResult(View(new Model.Request.Client()));
-        [HttpPost, AutoValidateModelState]
+        [HttpPost, Transaction, AutoValidateModelState]
         public async Task<IActionResult> Index([FromForm] Model.Request.Client client)
         {
             try
             {
-
+                await ClientService.InsertAsync(client);
             }
             catch (Exception e)
             {
