@@ -12,7 +12,6 @@ namespace iCopy.Model.Request
         [Required(AllowEmptyStrings = false, ErrorMessage = "ErrNoLastName")]
         [MaxLength(100, ErrorMessage = "ErrMaxLength")]
         public string LastName { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessage = "ErrNoMiddleName")]
         [MaxLength(100, ErrorMessage = "ErrMaxLength")]
         public string MiddleName { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "ErrNoGender")]

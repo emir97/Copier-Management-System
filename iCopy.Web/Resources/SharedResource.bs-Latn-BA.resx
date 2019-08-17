@@ -150,6 +150,12 @@
   <data name="AreYouSure" xml:space="preserve">
     <value>Da li ste sigurni?</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Nazad</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Datum rođenja</value>
+  </data>
   <data name="Bosnian" xml:space="preserve">
     <value>Bosanski</value>
   </data>
@@ -170,6 +176,9 @@
   </data>
   <data name="ChooseCountry" xml:space="preserve">
     <value>Izaberite državu</value>
+  </data>
+  <data name="ChooseGender" xml:space="preserve">
+    <value>Izaberite spol</value>
   </data>
   <data name="Cities" xml:space="preserve">
     <value>Gradovi</value>
@@ -270,8 +279,14 @@
   <data name="ErrUserUpdate" xml:space="preserve">
     <value>Došlo je do greške priliko uređivanja podataka o korisniku</value>
   </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Ime</value>
+  </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Zaboravili ste šifru</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Spol</value>
   </data>
   <data name="Inactive" xml:space="preserve">
     <value>Neaktivan</value>
@@ -281,6 +296,9 @@
   </data>
   <data name="LanguageImagePath" xml:space="preserve">
     <value>assets/media/flags/021-bosnia-and-herzegovina.svg</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Prezime</value>
   </data>
   <data name="Legal" xml:space="preserve">
     <value>Legal</value>
@@ -293,6 +311,9 @@
   </data>
   <data name="Login" xml:space="preserve">
     <value>Prijavi se</value>
+  </data>
+  <data name="MiddleName" xml:space="preserve">
+    <value>Nadimak</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Naziv</value>

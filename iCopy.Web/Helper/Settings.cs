@@ -4,6 +4,7 @@
     {
         public static class Routes
         {
+
             public static class City
             {
                 public static string Index => "/location/city/index";
@@ -60,6 +61,10 @@
             public static class SignUp
             {
                 public static string Index => "/auth/signup/index";
+            }
+            public static class Login
+            {
+                public static string Index => "/auth/login/index";
             }
         }
         public static class Defaults

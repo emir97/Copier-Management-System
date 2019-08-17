@@ -90,6 +90,7 @@ namespace iCopy.Web.Resources
         public string ErrUserUpdate => localizer[nameof(ErrUserUpdate)];
         public string ErrUpdate => localizer[nameof(ErrUpdate)];
         public string ErrAdd => localizer[nameof(ErrAdd)];
+        public string Back => localizer[nameof(Back)];
 
         #region SuccMessage
         public string SuccUpdate => localizer[nameof(SuccUpdate)];
@@ -148,6 +149,16 @@ namespace iCopy.Web.Resources
         public string Password => localizer[nameof(Password)];
         public string SignUp => localizer[nameof(SignUp)];
         public string Registration => localizer[nameof(Registration)];
+
+        #endregion
+
+        #region Person
+        public string FirstName => localizer[nameof(FirstName)];
+        public string LastName => localizer[nameof(LastName)];
+        public string MiddleName => localizer[nameof(MiddleName)];
+        public string Gender => localizer[nameof(Gender)];
+        public string BirthDate => localizer[nameof(BirthDate)];
+        public string ChooseGender => localizer[nameof(ChooseGender)];
 
         #endregion
     }

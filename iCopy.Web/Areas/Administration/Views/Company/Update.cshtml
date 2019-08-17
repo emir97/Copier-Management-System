@@ -60,8 +60,8 @@
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-wrapper">
                 <a href="@Settings.Routes.Company.Index" class="btn btn-clean btn-icon-sm">
-                    <i class="la la-long-arrow-left"></i>c
-                    Back
+                    <i class="la la-long-arrow-left"></i>
+                    @_sharedLocalizer.Back
                 </a>
                 &nbsp;
             </div>
@@ -566,6 +566,7 @@
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
+                $("#alert-messages").html('');
                 for (let key in xhr.responseJSON) {
                     if (key != null) {
                         $("#alert-messages").append(

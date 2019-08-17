@@ -18,11 +18,14 @@
         });
     </script>
     <!--end::Fonts -->
-    <!--begin::Page Custom Styles(used by this page) -->
-    <link href="~/assets/css/login.css" rel="stylesheet" type="text/css" />
     <!--end::Page Custom Styles -->
+    <link href="~/assets/vendors/global/vendors.bundle.css" rel="stylesheet" type="text/css" />
     <link href="~/assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Layout Skins -->
+    <!--begin::Page Custom Styles(used by this page) -->
+    <link href="~/assets/css/login.css" rel="stylesheet" type="text/css" />
+    <!--end::Page Custom Styles(used by this page) -->
+    @RenderSection("styles", false)
     <link rel="shortcut icon" href="~/assets/media/logos/icopy.png" />
 </head>
 
@@ -86,12 +89,12 @@
             }
         };
     </script>
-
     <!-- end::Global Config -->
     <!--begin::Global Theme Bundle(used by all pages) -->
     <script src="~/assets/vendors/global/vendors.bundle.js"></script>
     <script src="~/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
     <!--end::Global Theme Bundle -->
+    @RenderSection("scripts", false)
 </body>
 <!-- end::Body -->
 </html>
