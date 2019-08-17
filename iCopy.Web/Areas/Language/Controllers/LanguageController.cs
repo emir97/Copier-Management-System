@@ -3,20 +3,24 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 using System.Linq;
+using Microsoft.Extensions.Primitives;
 
 namespace iCopy.Web.Areas.Language.Controllers
 {
     [Area(Strings.Area.Language)]
     public class LanguageController : Controller
     {
-        public IActionResult Change(string culture, string redirectUrl)
+        public IActionResult Change(string culture)
         {
             if (!string.IsNullOrWhiteSpace(culture) && Localization.SupportedCultures.Any(x => x.Name == culture))
             {
                 CultureInfo.GetCultures(CultureTypes.SpecificCultures);
                 Response.Cookies.SetCultureInfoCookie(new RequestCulture(culture));
             }
-            return Url.IsLocalUrl(redirectUrl) ? LocalRedirect(redirectUrl) : LocalRedirect("~/");
+
+            if (Request.Headers["Referer"] != StringValues.Empty)
+                return Redirect(Request.Headers["Referer"]);
+            return LocalRedirect("~/");
         }
     }
 }

@@ -11,20 +11,24 @@ namespace iCopy.SERVICES.Mapper
             CreateMap<Database.Country, Model.Response.Country>().ReverseMap();
             CreateMap<Database.Country, Model.Request.Country>().ReverseMap();
             CreateMap<Model.Response.Country, Model.Request.Country>().ReverseMap();
+
             CreateMap<Database.City, Model.Response.City>().ReverseMap();
             CreateMap<Database.City, Model.Request.City>().ReverseMap();
             CreateMap<Model.Response.City, Model.Request.City>().ReverseMap();
+
             CreateMap<Database.Company, Model.Response.Company>().ReverseMap();
             CreateMap<Database.Company, Model.Request.Company>().ReverseMap();
             CreateMap<Model.Response.Company, Model.Request.Company>().ReverseMap();
+
             CreateMap<Database.Copier, Model.Response.Copier>().ReverseMap();
             CreateMap<Database.Copier, Model.Request.Copier>().ReverseMap();
             CreateMap<Model.Response.Copier, Model.Request.Copier>().ReverseMap();
-            CreateMap<Model.Response.Company, Model.Request.Company>().ReverseMap();
+
             CreateMap<Database.Person, Model.Request.Person>().ReverseMap();
-            CreateMap<Database.Client, Model.Request.Client>().ReverseMap();
+
             CreateMap<Database.ProfilePhoto, Model.Response.ProfilePhoto>().ReverseMap();
             CreateMap<Database.ProfilePhoto, Model.Request.ProfilePhoto>().ReverseMap();
+
             CreateMap<Database.ApplicationUser, Model.Request.ApplicationUserInsert>()
                 .ReverseMap()
                 .ForMember(x => x.NormalizedUserName, opt => opt.MapFrom(y => y.Username.ToUpper()))
@@ -32,6 +36,9 @@ namespace iCopy.SERVICES.Mapper
                 .ForMember(x => x.SecurityStamp, opt => Guid.NewGuid().ToString());
             CreateMap<Database.ApplicationUser, Model.Request.ApplicationUserUpdate>().ReverseMap();
             CreateMap<Database.ApplicationUser, Model.Response.ApplicationUser>().ReverseMap();
+
+            CreateMap<Database.Client, Model.Response.Client>().ReverseMap();
+            CreateMap<Database.Client, Model.Request.Client>().ReverseMap();
 
             #region SELECT LISTS
             CreateMap<Database.Country, SelectListItem>()

@@ -148,5 +148,15 @@ namespace iCopy.Web.Resources
         public string Registration => localizer[nameof(Registration)];
 
         #endregion
+
+        #region Person
+        public string FirstName => localizer[nameof(FirstName)];
+        public string LastName => localizer[nameof(LastName)];
+        public string MiddleName => localizer[nameof(MiddleName)];
+        public string Gender => localizer[nameof(Gender)];
+        public string BirthDate => localizer[nameof(BirthDate)];
+        public string ChooseGender => localizer[nameof(ChooseGender)];
+
+        #endregion
     }
 }

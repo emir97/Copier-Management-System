@@ -57,6 +57,7 @@ namespace iCopy.Web
             services.AddiCopyServices();
             services.AddScoped<SharedResource>();
             services.AddScoped<ValidationErrors>();
+            services.AddScoped<Constants>();
             services.AddScoped<ISelectList, SelectList>();
             services.AddSingleton<ProfilePhotoOptions>(Configuration.GetSection("Files:ProfilePhoto").Get<ProfilePhotoOptions>());
 

@@ -1,35 +1,36 @@
-﻿using iCopy.Model.Request;
-using iCopy.SERVICES.IServices;
-using iCopy.Web.Resources;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Threading.Tasks;
+﻿using System;
 using AutoMapper;
 using iCopy.Database.Context;
+using iCopy.Web.Resources;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using City = iCopy.Model.Response.City;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Converters;
 
 namespace iCopy.Web.Helper
 {
     public class SelectList : ISelectList
     {
         private readonly SharedResource SharedResource;
+        private readonly Constants constants;
         private readonly DBContext context;
         private readonly IMapper mapper;
 
         public SelectList(
             SharedResource SharedResource,
+            Constants constants,
             DBContext context,
             IMapper mapper
             )
         {
             this.mapper = mapper;
             this.SharedResource = SharedResource;
+            this.constants = constants;
             this.context = context;
         }
-        public List<SelectListItem> BaseSelectListItem(bool includeChooseText, string chooseText, IEnumerable<SelectListItem> selectListItems)
+        public IEnumerable<SelectListItem> BaseSelectListItem(bool includeChooseText, string chooseText, IEnumerable<SelectListItem> selectListItems)
         {
             var items = new List<SelectListItem>();
             if (includeChooseText)
@@ -39,22 +40,22 @@ namespace iCopy.Web.Helper
             return items;
         }
 
-        public async Task<List<SelectListItem>> Countries(bool includeChooseText = true)
+        public async Task<IEnumerable<SelectListItem>> Countries(bool includeChooseText = true)
         {
             return BaseSelectListItem(includeChooseText, SharedResource.ChooseCountry, mapper.Map<List<SelectListItem>>(await context.Countries.Where(x => x.Active).ToListAsync()));
         }
 
-        public async Task<List<SelectListItem>> Cities(bool includeChooseText = true)
+        public async Task<IEnumerable<SelectListItem>> Cities(bool includeChooseText = true)
         {
             return BaseSelectListItem(includeChooseText, SharedResource.ChooseCity, mapper.Map<List<SelectListItem>>(await context.Cities.Where(x => x.Active).ToListAsync()));
         }
 
-        public async Task<List<SelectListItem>> Cities(int countryId, bool includeChooseText = true)
+        public async Task<IEnumerable<SelectListItem>> Cities(int countryId, bool includeChooseText = true)
         {
             return BaseSelectListItem(includeChooseText, SharedResource.ChooseCity, mapper.Map<List<SelectListItem>>(await context.Cities.Where(x => x.Active && x.CountryID == countryId).ToListAsync()));
         }
 
-        public async Task<List<SelectListItem>> CitiesByCityCountryId(int cityId, bool includeChooseText = true)
+        public async Task<IEnumerable<SelectListItem>> CitiesByCityCountryId(int cityId, bool includeChooseText = true)
         {
             var countryId = (await context.Cities.FindAsync(cityId))?.CountryID;
             if(countryId.HasValue)
@@ -62,9 +63,16 @@ namespace iCopy.Web.Helper
             return BaseSelectListItem(includeChooseText, SharedResource.ChooseCity, null);
         }
 
-        public async Task<List<SelectListItem>> Companies(bool includeChooseText = true)
+        public async Task<IEnumerable<SelectListItem>> Companies(bool includeChooseText = true)
         {
             return BaseSelectListItem(includeChooseText, SharedResource.ChooseCompany, mapper.Map<List<SelectListItem>>(await context.Companies.Where(x => x.Active).ToListAsync()));
+        }
+
+        public Task<IEnumerable<SelectListItem>> Genders(bool includeChooseText = true)
+        {
+            return Task.FromResult(BaseSelectListItem(includeChooseText, SharedResource.ChooseGender, constants.Genders.Zip(
+                Enum.GetNames(typeof(Database.Gender)),
+                (s, s1) => new SelectListItem(s, s1))));
         }
     }
 }

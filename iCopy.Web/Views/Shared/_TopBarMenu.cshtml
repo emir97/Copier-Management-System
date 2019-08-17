@@ -1,7 +1,4 @@
-﻿@{
-    var currentURL = Context.Request?.Path.Value ?? "~/";
-}
-<!-- begin:: Header -->
+﻿<!-- begin:: Header -->
 <div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed ">
     <!-- begin:: Header Menu -->
     <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
@@ -320,13 +317,13 @@
             <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround">
                 <ul class="kt-nav kt-margin-t-10 kt-margin-b-10">
                     <li class="kt-nav__item kt-nav__item--active">
-                        <a asp-area="language" asp-controller="language" asp-action="change" asp-route-culture="bs-Latn-BA" asp-route-redirectUrl="@currentURL" class="kt-nav__link">
+                        <a asp-area="language" asp-controller="language" asp-action="change" asp-route-culture="bs-Latn-BA" class="kt-nav__link">
                             <span class="kt-nav__link-icon"><img src="~/assets/media/flags/021-bosnia-and-herzegovina.svg" alt="" /></span>
                             <span class="kt-nav__link-text">@_sharedLocalizer.Bosnian</span>
                         </a>
                     </li>
                     <li class="kt-nav__item">
-                        <a asp-area="language" asp-controller="language" asp-action="change" asp-route-culture="en-US" asp-route-redirectUrl="@currentURL" class="kt-nav__link">
+                        <a asp-area="language" asp-controller="language" asp-action="change" asp-route-culture="en-US" class="kt-nav__link">
                             <span class="kt-nav__link-icon"><img src="~/assets/media/flags/020-flag.svg" alt="" /></span>
                             <span class="kt-nav__link-text">@_sharedLocalizer.EnglishUS</span>
                         </a>

@@ -15,17 +15,17 @@ namespace iCopy.Web.Controllers
             this.SelectList = SelectList;
         }
 
-        public async Task<List<SelectListItem>> Cities()
+        public async Task<IEnumerable<SelectListItem>> Cities()
         {
             return await SelectList.Cities();
         }
 
-        public async Task<List<SelectListItem>> CitiesByCountry(int id)
+        public async Task<IEnumerable<SelectListItem>> CitiesByCountry(int id)
         {
             return await SelectList.Cities(id);
         }
 
-        public async Task<List<SelectListItem>> Companies()
+        public async Task<IEnumerable<SelectListItem>> Companies()
         {
             return await SelectList.Companies();
         }

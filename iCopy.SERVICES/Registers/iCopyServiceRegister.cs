@@ -22,7 +22,7 @@ namespace iCopy.SERVICES.Registers
             services.AddScoped<ICopierService, CopierService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IProfilePhotoService, ProfilePhotoService>();
-            services.AddScoped<IUserValidator<Database.ApplicationUser>, UserValidator<Database.ApplicationUser>>();
+            services.AddScoped<IClientService, ClientService>();
             return services;
         }
     }
