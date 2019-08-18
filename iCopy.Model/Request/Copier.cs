@@ -9,7 +9,6 @@ namespace iCopy.Model.Request
         [MaxLength(100, ErrorMessage = "ErrMaxLength")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "ErrNoDescription")]
         [MaxLength(300, ErrorMessage = "ErrMaxLength")]
         public string Description { get; set; }
 
@@ -21,7 +20,6 @@ namespace iCopy.Model.Request
         [DataType(DataType.Time)]
         public TimeSpan EndWorkingTime { get; set; }
 
-        [Required(ErrorMessage = "ErrNoUrl")]
         [MaxLength(100, ErrorMessage = "ErrMaxLength")]
         public string Url { get; set; }
 
