@@ -6,7 +6,7 @@ namespace iCopy.Model.Response
 {
     public class Employee
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public bool Active { get; set; }
         public int PersonId { get; set; }
         public Person Person { get; set; }

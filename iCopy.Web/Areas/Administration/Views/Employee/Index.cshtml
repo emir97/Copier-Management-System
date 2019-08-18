@@ -57,9 +57,9 @@
                             <input name="BirthDate" id="birth-date" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.BirthDate">
                         </div>
                         @*<div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-            <label>@_sharedLocalizer.Copier</label>
-            <input name="CopierName" id="copier-name" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.Copier."> FIXAT
-        </div>*@
+                            <label>@_sharedLocalizer.Copier</label>
+                            <input name="CopierName" id="copier-name" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.Copier">
+                        </div>*@
 
                     </div>
                     <div class="row kt-margin-b-20">
@@ -107,7 +107,7 @@
                     <th>@_sharedLocalizer.LastName</th>
                     <th>@_sharedLocalizer.Gender</th>
                     <th>@_sharedLocalizer.BirthDate</th>
-                    <th>@_sharedLocalizer.Copier</th> 
+                    <th>@_sharedLocalizer.Copier</th>
                     <th>@_sharedLocalizer.Active</th>
                     <th>@_sharedLocalizer.Actions</th>
                 </tr>
@@ -159,7 +159,7 @@
                             FirstName: $("#first-name").val(),
                             LastName: $("#last-name").val(),
                             Gender: $("#gender").val(),
-                            Active: $("#active:checked").val(),                            
+                            Active: $("#active:checked").val(),
                         };
                         return searchData;
                     }

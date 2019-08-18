@@ -10,7 +10,7 @@ namespace iCopy.Database
         [ForeignKey(nameof(Person))]
         public int PersonId { get; set; }
         public Person Person { get; set; }
-        public int Password { get; set; }
+        public string Password { get; set; }
         [ForeignKey(nameof(Copier))]
         public int CopierId { get; set; }
         public Copier Copier { get; set; }
