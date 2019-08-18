@@ -225,6 +225,9 @@
   <data name="CorrectErrorBeforeGoToNextStep" xml:space="preserve">
     <value>Ispravite greške prije nego nastavite na idući korak</value>
   </data>
+  <data name="CorrectTheErrors" xml:space="preserve">
+    <value>Ispravite greške</value>
+  </data>
   <data name="Countries" xml:space="preserve">
     <value>Države</value>
   </data>
@@ -398,6 +401,9 @@
   </data>
   <data name="SuccPasswordUpdated" xml:space="preserve">
     <value>Šifra uspješno ažurirana</value>
+  </data>
+  <data name="SuccRegister" xml:space="preserve">
+    <value>Registracija je uspješno završena potvrdite svoj email kako bi nastavili dalje</value>
   </data>
   <data name="SuccUpdate" xml:space="preserve">
     <value>Zapis uspješno uređen</value>

@@ -225,6 +225,9 @@
   <data name="CorrectErrorBeforeGoToNextStep" xml:space="preserve">
     <value>Correct errors before go to the next step</value>
   </data>
+  <data name="CorrectTheErrors" xml:space="preserve">
+    <value>Correct the errors</value>
+  </data>
   <data name="Countries" xml:space="preserve">
     <value>Countries</value>
   </data>
@@ -407,6 +410,9 @@
   </data>
   <data name="SuccPasswordUpdated" xml:space="preserve">
     <value>Password successfully updated</value>
+  </data>
+  <data name="SuccRegister" xml:space="preserve">
+    <value>Registration successfully completed, confirm your email to continue</value>
   </data>
   <data name="SuccUpdate" xml:space="preserve">
     <value>Record is successfully updated</value>

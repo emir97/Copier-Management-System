@@ -91,6 +91,8 @@ namespace iCopy.Web.Resources
         public string ErrUpdate => localizer[nameof(ErrUpdate)];
         public string ErrAdd => localizer[nameof(ErrAdd)];
         public string Back => localizer[nameof(Back)];
+        public string CorrectTheErrors => localizer[nameof(CorrectTheErrors)];
+        public string SuccRegister => localizer[nameof(SuccRegister)];
 
         #region SuccMessage
         public string SuccUpdate => localizer[nameof(SuccUpdate)];

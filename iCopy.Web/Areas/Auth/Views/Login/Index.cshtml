@@ -17,6 +17,28 @@
         <div class="kt-login__title">
             <h3>@_sharedLocalizer.Login</h3>
         </div>
+        @if(TempData["success"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <div class="alert-text">@TempData["success"]</div>
+                <div class="alert-close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="la la-close"></i></span>
+                    </button>
+                </div>
+            </div>
+        }
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                <div class="alert-text">@TempData["error"]</div>
+                <div class="alert-close">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true"><i class="la la-close"></i></span>
+                    </button>
+                </div>
+            </div>
+        }
         <!--begin::Form-->
         <form class="kt-form" asp-controller="login" asp-action="index" asp-antiforgery="true" method="post">
             <div class="form-group">
