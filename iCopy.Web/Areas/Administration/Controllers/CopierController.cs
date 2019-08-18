@@ -31,7 +31,6 @@ namespace iCopy.Web.Areas.Administration.Controllers
             try
             {
                 model.ProfilePhoto = PhotoSession;
-                model.CompanyId = 1;
                 await crudService.InsertAsync(model);
                 TempData["success"] = _localizer.SuccAdd;
                 return Ok();
@@ -42,6 +41,14 @@ namespace iCopy.Web.Areas.Administration.Controllers
             }
         }
 
+        [HttpGet]
+        public override Task<IActionResult> Update(int id)
+        {
+            if (HttpContext.Session.Get(Session.Keys.Upload.ProfileImage) != null)
+                HttpContext.Session.Remove(Session.Keys.Upload.ProfileImage);
+            return base.Update(id);
+        }
+
         [HttpPost, Transaction]
         public override async Task<IActionResult> Update(int id, [FromForm]Copier model)
         {
@@ -49,6 +56,7 @@ namespace iCopy.Web.Areas.Administration.Controllers
             {
                 try
                 {
+                    model.ProfilePhoto = PhotoSession;
                     await crudService.UpdateAsync(id, model);
                     TempData["success"] = _localizer.SuccUpdate;
                     return RedirectToAction(nameof(Update));
