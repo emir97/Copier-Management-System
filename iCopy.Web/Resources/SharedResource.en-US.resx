@@ -138,8 +138,14 @@
   <data name="AddCompany" xml:space="preserve">
     <value>Add company</value>
   </data>
+  <data name="AddCopier" xml:space="preserve">
+    <value>Add copier</value>
+  </data>
   <data name="AddCountry" xml:space="preserve">
     <value>Add country</value>
+  </data>
+  <data name="AddEmployee" xml:space="preserve">
+    <value>Add employee</value>
   </data>
   <data name="Address" xml:space="preserve">
     <value>Address</value>
@@ -173,6 +179,9 @@
   </data>
   <data name="ChooseCity" xml:space="preserve">
     <value>Choose city</value>
+  </data>
+  <data name="ChooseCopier" xml:space="preserve">
+    <value>Choose copier</value>
   </data>
   <data name="ChooseCountry" xml:space="preserve">
     <value>Choose country</value>
@@ -216,6 +225,9 @@
   <data name="ContactEmail" xml:space="preserve">
     <value>Contact email</value>
   </data>
+  <data name="Copier" xml:space="preserve">
+    <value>Copier</value>
+  </data>
   <data name="CopierManagementSystem" xml:space="preserve">
     <value>Copier management system</value>
   </data>
@@ -237,6 +249,9 @@
   <data name="CurrentPassword" xml:space="preserve">
     <value>Current password</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
@@ -257,6 +272,12 @@
   </data>
   <data name="EmailNotConfirmed" xml:space="preserve">
     <value>Email is not confirmed</value>
+  </data>
+  <data name="EmployeeSettings" xml:space="preserve">
+    <value>Employee settings</value>
+  </data>
+  <data name="EndWorkingTime" xml:space="preserve">
+    <value>End working time</value>
   </data>
   <data name="EnglishUS" xml:space="preserve">
     <value>English US</value>
@@ -393,6 +414,9 @@
   <data name="SignUp" xml:space="preserve">
     <value>Sign Up</value>
   </data>
+  <data name="StartWorkingTime" xml:space="preserve">
+    <value>Start working time</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
@@ -431,6 +455,12 @@
   </data>
   <data name="UpdateCompanyDetails" xml:space="preserve">
     <value>Update company details</value>
+  </data>
+  <data name="UpdateCopierDetails" xml:space="preserve">
+    <value>Update copier details</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Url</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>

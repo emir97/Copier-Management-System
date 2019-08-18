@@ -9,6 +9,7 @@ namespace iCopy.Model.Request
     {
         [Required(ErrorMessage = "ErrNoPerson")]
         public int? PersonId { get; set; }
+        public Person Person { get; set; }
         [Required(ErrorMessage = "ErrNoCopier")]
         public int? CopierId { get; set; }
         [Required(ErrorMessage = "ErrNoPassword")]

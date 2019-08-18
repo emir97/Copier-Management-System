@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using iCopy.Database.Context;
 using iCopy.Model.Request;
+using iCopy.Model.Response;
 using iCopy.SERVICES.Extensions;
 using iCopy.SERVICES.IServices;
 using Microsoft.EntityFrameworkCore;
@@ -45,24 +46,22 @@ namespace iCopy.SERVICES.Services
 
         public override async Task<Tuple<List<Model.Response.Copier>, int>> GetByParametersAsync(CopierSearch search, string order, string nameOfColumnOrder, int start, int length)
         {
-            var query = ctx.Copiers
-                .Include(x => x.City)
-                .AsQueryable();
-            if (search.Active != null)
-                query = query.Where(x => x.Active == search.Active);
-            if (search.CityID!= null)
+            var query = ctx.Copiers.Include(x => x.City).ThenInclude(x => x.Country).AsQueryable();
+            if (search.CityID != null)
                 query = query.Where(x => x.CityId == search.CityID);
             if (search.CountryID != null)
                 query = query.Where(x => x.City.CountryID == search.CountryID);
-     
-            if (nameof(Database.Copier.ID) == nameOfColumnOrder)
+            if (search.Active != null)
+                query = query.Where(x => x.Active == search.Active);
+            if (!string.IsNullOrWhiteSpace(search.Name))
+                query = query.Where(x => x.Name.Contains(search.Name));
+
+            if (nameOfColumnOrder == nameof(Database.Copier.ID))
                 query = query.OrderByAscDesc(x => x.ID, order);
-            else if (nameof(Database.Copier.Name) == nameOfColumnOrder)
+            else if (nameOfColumnOrder == nameof(Database.Copier.Name))
                 query = query.OrderByAscDesc(x => x.Name, order);
-            else if (nameof(Database.Copier.PhoneNumber) == nameOfColumnOrder)
-                query = query.OrderByAscDesc(x => x.PhoneNumber, order);
-            else if (nameof(Database.Copier.CityId) == nameOfColumnOrder)
-                query = query.OrderByAscDesc(x => x.City.Name, order);
+            else if(nameOfColumnOrder == nameof(Database.Copier.CityId))
+                query = query.OrderByAscDesc(x => x.CityId, order);
 
             var data = mapper.Map<List<Model.Response.Copier>>(await query.Skip(start).Take(length).ToListAsync());
             return new Tuple<List<Model.Response.Copier>, int>(data, await query.CountAsync());

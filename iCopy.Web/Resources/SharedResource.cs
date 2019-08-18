@@ -53,6 +53,7 @@ namespace iCopy.Web.Resources
         public string Email => localizer[nameof(Email)];
         public string ContactAgent => localizer[nameof(ContactAgent)];
         public string CopierSettings => localizer[nameof(CopierSettings)];
+        public string EmployeeSettings => localizer[nameof(EmployeeSettings)];
         public string SystemSettings => localizer[nameof(SystemSettings)];
         public string PhoneNumberRegex => localizer[nameof(PhoneNumberRegex)];
         public string AccountSettings => localizer[nameof(AccountSettings)];
@@ -70,6 +71,7 @@ namespace iCopy.Web.Resources
         public string Details => localizer[nameof(Details)];
         public string CompanyDetails => localizer[nameof(CompanyDetails)];
         public string CopierDetails => localizer[nameof(CopierDetails)];
+        public string EmployeeDetails => localizer[nameof(EmployeeDetails)];
         public string AccountDetails => localizer[nameof(AccountDetails)];
         public string EmailConfirmed => localizer[nameof(EmailConfirmed)];
         public string EmailNotConfirmed => localizer[nameof(EmailNotConfirmed)];
@@ -133,6 +135,7 @@ namespace iCopy.Web.Resources
         #endregion
 
         #region Copier
+        public string Copier => localizer[nameof(Copier)];
         public string Description => localizer[nameof(Description)];
         public string StartWorkingTime => localizer[nameof(StartWorkingTime)];
         public string EndWorkingTime => localizer[nameof(EndWorkingTime)];
@@ -160,6 +163,10 @@ namespace iCopy.Web.Resources
         public string BirthDate => localizer[nameof(BirthDate)];
         public string ChooseGender => localizer[nameof(ChooseGender)];
 
+        #endregion
+
+        #region Employee
+        public string AddEmployee => localizer[nameof(AddEmployee)];
         #endregion
     }
 }

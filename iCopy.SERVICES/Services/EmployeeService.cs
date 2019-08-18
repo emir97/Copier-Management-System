@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
 using iCopy.Database.Context;
+using iCopy.Model.Request;
+using iCopy.Model.Response;
+using iCopy.SERVICES.Exceptions;
 using iCopy.SERVICES.IServices;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,18 +19,40 @@ namespace iCopy.SERVICES.Services
         private readonly AuthContext auth;
         private readonly IUserService UserService;
         private readonly IProfilePhotoService ProfilePhotoService;
+        private readonly IPasswordHasher<Database.ApplicationUser> PasswordHasher;
 
         public EmployeeService(DBContext ctx,
             IMapper mapper,
             AuthContext auth,
             IUserService UserService,
-            IProfilePhotoService ProfilePhotoService) : base(ctx, mapper)
+            IProfilePhotoService ProfilePhotoService,
+            IPasswordHasher<Database.ApplicationUser> PasswordHasher) : base(ctx, mapper)
         {
             this.auth = auth;
             this.UserService = UserService;
             this.ProfilePhotoService = ProfilePhotoService;
+            this.PasswordHasher = PasswordHasher;
         }
-        
+
+        public async Task<Model.Response.ApplicationUser> UpdatePassword(int applicationUserId, ChangePassword password)
+        {
+            Database.ApplicationUser user = await auth.Users.FindAsync(applicationUserId);
+            if (PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, password.CurrentPassword) != PasswordVerificationResult.Success)
+                throw new ModelStateException(nameof(password.CurrentPassword), "Current password is not correct");
+            user.PasswordHash = PasswordHasher.HashPassword(user, password.NewPassword);
+            try
+            {
+                await auth.SaveChangesAsync();
+                // TODO: Dodati log
+            }
+            catch (Exception e)
+            {
+                // TODO: Dodati log
+                throw e;
+            }
+            return mapper.Map<Model.Response.ApplicationUser>(user);
+        }
+
         public override async Task<Model.Response.Employee> GetByIdAsync(int id)
         {
             Model.Response.Employee employee = mapper.Map<Model.Response.Employee>(await ctx.Employees.Include(x => x.CopierId).FirstOrDefaultAsync(x => x.ID == id));
@@ -103,6 +129,16 @@ namespace iCopy.SERVICES.Services
             }
 
             return mapper.Map<Model.Response.Employee>(employee);
+        }
+
+        public override async Task<List<Model.Response.Employee>> TakeRecordsByNumberAsync(int take = 15)
+        {
+            List<Model.Response.Employee> employee = mapper.Map<List<Model.Response.Employee>>(await ctx.Employees.Include(x => x.Person).Include(x => x.Copier).Take(take).ToListAsync());
+            employee.ForEach(x => {
+                x.User = mapper.Map<Model.Response.ApplicationUser>(auth.Users.Find(x.ApplicationUserId));
+                x.ProfilePhoto = mapper.Map<Model.Response.ProfilePhoto>(ctx.ApplicationUserProfilePhotos.FirstOrDefault(y => y.ApplicationUserId == x.ApplicationUserId && y.Active)?.ProfilePhoto);
+                } );
+            return employee;
         }
     }
 }

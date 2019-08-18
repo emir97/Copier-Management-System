@@ -43,6 +43,16 @@
                 public static string ChangeActiveStatus => "/administration/copier/changeactivestatus";
                 public static string Details => "/administration/copier/details";
             }
+            public static class Employee
+            {
+                public static string Index => "/administration/employee/index";
+                public static string Insert => "/administration/employee/insert";
+                public static string Update => "/administration/employee/update";
+                public static string Delete => "/administration/employee/delete";
+                public static string GetData => "/administration/employee/getdata";
+                public static string ChangeActiveStatus => "/administration/employee/changeactivestatus";
+                public static string Details => "/administration/employee/details";
+            }
             public static class User
             {
                 public static string Update => "/administration/user/update";

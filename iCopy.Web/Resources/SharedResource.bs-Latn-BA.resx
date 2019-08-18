@@ -138,8 +138,14 @@
   <data name="AddCompany" xml:space="preserve">
     <value>Dodaj kompaniju</value>
   </data>
+  <data name="AddCopier" xml:space="preserve">
+    <value>Dodaj kopirnicu</value>
+  </data>
   <data name="AddCountry" xml:space="preserve">
     <value>Dodaj državu</value>
+  </data>
+  <data name="AddEmployee" xml:space="preserve">
+    <value>Dodaj zaposlenika</value>
   </data>
   <data name="Address" xml:space="preserve">
     <value>Adresa</value>
@@ -173,6 +179,9 @@
   </data>
   <data name="ChooseCity" xml:space="preserve">
     <value>Izaberite grad</value>
+  </data>
+  <data name="ChooseCopier" xml:space="preserve">
+    <value>Odaberi kopirnicu</value>
   </data>
   <data name="ChooseCountry" xml:space="preserve">
     <value>Izaberite državu</value>
@@ -216,6 +225,9 @@
   <data name="ContactEmail" xml:space="preserve">
     <value>Kontakt email</value>
   </data>
+  <data name="Copier" xml:space="preserve">
+    <value>Kopirnica</value>
+  </data>
   <data name="CopierManagementSystem" xml:space="preserve">
     <value>Softver za upravljanje kopirnicama</value>
   </data>
@@ -237,6 +249,9 @@
   <data name="CurrentPassword" xml:space="preserve">
     <value>Trenutna šifra</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Opis</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Detalji</value>
   </data>
@@ -257,6 +272,9 @@
   </data>
   <data name="EmailNotConfirmed" xml:space="preserve">
     <value>Email nije verifikovan</value>
+  </data>
+  <data name="EndWorkingTime" xml:space="preserve">
+    <value>Kraj radnog vremena</value>
   </data>
   <data name="EnglishUS" xml:space="preserve">
     <value>Engleski US</value>
@@ -384,6 +402,9 @@
   <data name="SignUp" xml:space="preserve">
     <value>Registruj se</value>
   </data>
+  <data name="StartWorkingTime" xml:space="preserve">
+    <value>Početak radnog vremena</value>
+  </data>
   <data name="Submit" xml:space="preserve">
     <value>Sačuvaj</value>
   </data>
@@ -419,6 +440,12 @@
   </data>
   <data name="UpdateCompanyDetails" xml:space="preserve">
     <value>Uredi detalje kompanije</value>
+  </data>
+  <data name="UpdateCopierDetails" xml:space="preserve">
+    <value>Izmijeni detalje kopirnice</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>Link</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Korisničko ime</value>

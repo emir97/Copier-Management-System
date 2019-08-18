@@ -1,7 +1,7 @@
-﻿@model iCopy.Web.Models.DataTable<iCopy.Model.Response.Copier>
+﻿@model iCopy.Web.Models.DataTable<iCopy.Model.Response.Employee>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = _sharedLocalizer.CopierSettings;
+    ViewData["Title"] = _sharedLocalizer.EmployeeSettings;
 }
 @if (TempData["success"] != null)
 {
@@ -21,15 +21,15 @@
                 <i class="kt-font-brand fa fa-map-marker-alt"></i>
             </span>
             <h3 class="kt-portlet__head-title">
-                @_sharedLocalizer.CopierSettings
+                @_sharedLocalizer.EmployeeSettings
             </h3>
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-wrapper">
                 <div class="kt-portlet__head-actions">
-                    <a href="@Settings.Routes.Copier.Insert" class="btn btn-brand btn-icon-sm">
+                    <a href="@Settings.Routes.Employee.Insert" class="btn btn-brand btn-icon-sm">
                         <i class="la la-plus"></i>
-                        @_sharedLocalizer.AddCopier
+                        @_sharedLocalizer.AddEmployee
                     </a>
                 </div>
             </div>
@@ -41,17 +41,26 @@
                 <div id="search-parameters">
                     <div class="row kt-margin-b-20">
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                            <label>@_sharedLocalizer.Name:</label>
-                            <input name="name" id="name" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.Name">
+                            <label>@_sharedLocalizer.FirstName:</label>
+                            <input name="FirstName" id="first-name" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.FirstName">
                         </div>
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                            <label>@_sharedLocalizer.Country:</label>
-                            <select name="CountryID" asp-items="@(await _selectList.Countries())" class="form-control kt-select2" id="countries-list"></select>
+                            <label>@_sharedLocalizer.LastName:</label>
+                            <input name="LastName" id="last-name" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.LastName">
                         </div>
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                            <label>@_sharedLocalizer.City:</label>
-                            <select name="CountryID" asp-items="@(await _selectList.Cities())" class="form-control kt-select2" id="cities-list"></select>
+                            <label>@_sharedLocalizer.Gender:</label>
+                            <input name="Gender" id="gender" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.Gender">
                         </div>
+                        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                            <label>@_sharedLocalizer.BirthDate:</label>
+                            <input name="BirthDate" id="birth-date" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.BirthDate">
+                        </div>
+                        @*<div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+            <label>@_sharedLocalizer.Copier</label>
+            <input name="CopierName" id="copier-name" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.Copier."> FIXAT
+        </div>*@
+
                     </div>
                     <div class="row kt-margin-b-20">
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
@@ -94,11 +103,11 @@
             <thead class="thead-dark">
                 <tr>
                     <th>#</th>
-                    <th>@_sharedLocalizer.Name  </th>
-                    <th>@_sharedLocalizer.City</th>
-                    <th>@_sharedLocalizer.StartWorkingTime</th>
-                    <th>@_sharedLocalizer.EndWorkingTime</th>
-                    <th>@_sharedLocalizer.PhoneNumber</th>
+                    <th>@_sharedLocalizer.FirstName  </th>
+                    <th>@_sharedLocalizer.LastName</th>
+                    <th>@_sharedLocalizer.Gender</th>
+                    <th>@_sharedLocalizer.BirthDate</th>
+                    <th>@_sharedLocalizer.Copier</th> 
                     <th>@_sharedLocalizer.Active</th>
                     <th>@_sharedLocalizer.Actions</th>
                 </tr>
@@ -106,16 +115,16 @@
             <tbody>
                 @foreach (var item in Model.data)
                 {
-                <tr>
-                    <td>@item.ID</td>
-                    <td>@item.Name</td>
-                    <td>@item.City.Name</td>
-                    <td>@item.StartWorkingTime</td>
-                    <td>@item.EndWorkingTime</td>
-                    <td>@item.PhoneNumber</td>
-                    <td>@item.Active</td>
-                    <td></td>
-                </tr>
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.Person.FirstName</td>
+                        <td>@item.Person.LastName</td>
+                        <td>@item.Person.Gender</td>
+                        <td>@item.Person.BirthDate</td>
+                        <td>@item.Copier.Name</td>
+                        <td>@item.Active</td>
+                        <td></td>
+                    </tr>
                 }
             </tbody>
         </table>
@@ -142,26 +151,26 @@
                 dom: `<'row'<'col-sm-12'tr>>
 			<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
                 ajax: {
-                    url: "@Settings.Routes.Copier.GetData",
+                    url: "@Settings.Routes.Employee.GetData",
                     dataType: 'json',
                     type: 'POST',
                     data: function (searchData) {
                         searchData.Search = {
-                            Name : $("#name").val(),
-                            Active: $("#active:checked").val(),
-                            CountryID: $("#countries-list").val(),
-                            CityID: $("#cities-list").val(),
+                            FirstName: $("#first-name").val(),
+                            LastName: $("#last-name").val(),
+                            Gender: $("#gender").val(),
+                            Active: $("#active:checked").val(),                            
                         };
                         return searchData;
                     }
                 },
                 columns: [
                     { data: "id" },
-                    { data: "name" },
-                    { data: 'city.name' },
-                    { data: 'startWorkingTime' },
-                    { data: 'endWorkingTime' },
-                    { data: 'phoneNumber' },
+                    { data: "first-name" },
+                    { data: 'last-name' },
+                    { data: 'gender' },
+                    { data: 'birth-date' },
+                    { data: 'copier-name' },
                     { data: 'active' },
                     { data: 'actions' }
                 ],
@@ -173,25 +182,23 @@
                     },
                     {
                         targets: 1,
-                        name: '@nameof(iCopy.Model.Request.Copier.Name)'
+                        name: '@nameof(iCopy.Model.Request.Employee.Person.FirstName)'
                     },
                     {
                         targets: 2,
-                        name: '@nameof(iCopy.Model.Request.Copier.CityId)'
+                        name: '@nameof(iCopy.Model.Request.Employee.Person.LastName)'
                     },
                     {
                         targets: 3,
-                        name: '@nameof(iCopy.Model.Request.Copier.StartWorkingTime)',
-                        orderable: false
+                        name: '@nameof(iCopy.Model.Request.Person.Gender)'
                     },
                     {
                         targets: 4,
-                        name: '@nameof(iCopy.Model.Request.Copier.EndWorkingTime)',
-                        orderable: false
+                        name: '@nameof(iCopy.Model.Request.Person.BirthDate)'
                     },
                     {
                         targets: 5,
-                        name: '@nameof(iCopy.Model.Request.Copier.PhoneNumber)',
+                        name: '@nameof(iCopy.Model.Request.Copier.Name)',
                         orderable: false
                     },
                     {
@@ -211,15 +218,15 @@
                         className: 'text-center align-middle',
                         render: function (data, type, full, meta) {
                             return `
-<a href="@Settings.Routes.Copier.Details/${full.id}" ajax-add="modal-lg" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-info-circle"></i></a>
-<a href="@Settings.Routes.Copier.Delete/${full.id}" ajax-delete="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
-<a href="@Settings.Routes.Copier.ChangeActiveStatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
+<a href="@Settings.Routes.Employee.Details/${full.id}" ajax-add="modal-lg" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-info-circle"></i></a>
+<a href="@Settings.Routes.Employee.Delete/${full.id}" ajax-delete="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
+<a href="@Settings.Routes.Employee.ChangeActiveStatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
 <span class="dropdown">
                             <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="dropdown" aria-expanded="true">
                               <i class="la la-ellipsis-h"></i>
                             </a>
                              <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="@Settings.Routes.Copier.Update/${full.id}"><i class="la la-edit"></i> @_sharedLocalizer.Update</a>
+                                <a class="dropdown-item" href="@Settings.Routes.Employee.Update/${full.id}"><i class="la la-edit"></i> @_sharedLocalizer.Update</a>
                             </div>
                         </span>
 `;

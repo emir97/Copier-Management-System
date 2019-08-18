@@ -252,4 +252,7 @@
   <data name="Username is already in use" xml:space="preserve">
     <value>Username se koristi</value>
   </data>
+  <data name="EmployeeSettings" xml:space="preserve">
+    <value>Postavke zaposlenika</value>
+  </data>
 </root>
