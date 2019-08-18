@@ -76,6 +76,9 @@
         </div>
         <div class="tab-pane" id="account_details" role="tabpanel">
             <div class="row">
+                <div class="col-md-4">
+                    <img src="~/@(Model?.ProfilePhoto?.Path ?? Settings.Defaults.Photo.ProfilePhoto)" />
+                </div>
                 <div class="col-md-8 pl-5">
                     <div class="form-group">
                         <label>@_sharedLocalizer.Username</label>
@@ -85,7 +88,7 @@
                         <label>@_sharedLocalizer.Email</label>
                         <input class="form-control" type="text" disabled asp-for="User.Email" />
                     </div>
-                    @if (Model.Company.User.LockoutEnd.HasValue)
+                    @if (Model.User.LockoutEnd.HasValue)
                     {
                         <div class="form-group">
                             <label>@_sharedLocalizer.LockoutEnd</label>

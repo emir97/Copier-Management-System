@@ -87,5 +87,6 @@ namespace iCopy.Web.Controllers
         }
         [HttpGet]
         public virtual async Task<IActionResult> Details(TKey id) => View(await crudService.GetByIdAsync(id));
+        
     }
 }

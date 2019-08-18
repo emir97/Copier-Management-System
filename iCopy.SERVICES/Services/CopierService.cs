@@ -35,6 +35,7 @@ namespace iCopy.SERVICES.Services
         {
             Model.Response.Copier copier = mapper.Map<Model.Response.Copier>(await ctx.Copiers.Include(x => x.City).ThenInclude(x => x.Country).FirstOrDefaultAsync(x => x.ID == id));
             copier.User = mapper.Map<Model.Response.ApplicationUser>(await auth.Users.FindAsync(copier.ApplicationUserId));
+            copier.ProfilePhoto = mapper.Map<Model.Response.ProfilePhoto>((await ctx.ApplicationUserProfilePhotos.FirstOrDefaultAsync(x => x.ApplicationUserId == copier.ApplicationUserId && x.Active))?.ProfilePhoto);
             return copier;
         }
 
@@ -129,6 +130,11 @@ namespace iCopy.SERVICES.Services
             try
             {
                 Model.Response.Copier copier = await base.UpdateAsync(id, entity);
+                if (entity.ProfilePhoto != null)
+                {
+                    entity.ProfilePhoto.ApplicationUserId = copier.ApplicationUserId;
+                    await ProfilePhotoService.InsertAsync(entity.ProfilePhoto);
+                }
                 // TODO: Dodati Log
                 return copier;
             }

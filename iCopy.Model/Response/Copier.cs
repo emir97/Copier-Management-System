@@ -30,6 +30,8 @@ namespace iCopy.Model.Response
 
         public ApplicationUser User { get; set; }
 
+        public ProfilePhoto ProfilePhoto { get; set; }
+
         public int ApplicationUserId { get; set; }
     }
 }
