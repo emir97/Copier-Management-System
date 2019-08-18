@@ -23,7 +23,6 @@ namespace iCopy.SERVICES.Mapper
             CreateMap<Database.Employee, Model.Response.Employee>().ReverseMap();
             CreateMap<Database.Employee, Model.Request.Employee>().ReverseMap();
             CreateMap<Model.Response.Employee, Model.Request.Employee>().ReverseMap();         
-            CreateMap<Model.Response.Company, Model.Request.Company>().ReverseMap();
             CreateMap<Database.Person, Model.Request.Person>().ReverseMap();
             CreateMap<Database.Person, Model.Response.Person>().ReverseMap();
             CreateMap<Model.Request.Person, Model.Response.Person>().ReverseMap();
