@@ -21,6 +21,7 @@ namespace iCopy.Model.Request
         public TimeSpan EndWorkingTime { get; set; }
 
         [MaxLength(100, ErrorMessage = "ErrMaxLength")]
+        [DataType(DataType.Url, ErrorMessage = "ErrUrl")]
         public string Url { get; set; }
 
         [Required(ErrorMessage = "ErrNoPhoneNumber")]
