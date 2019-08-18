@@ -33,7 +33,11 @@ namespace iCopy.SERVICES.Mapper
                 .ForMember(x => x.NormalizedUserName, opt => opt.MapFrom(y => y.Username.ToUpper()))
                 .ForMember(x => x.NormalizedEmail, opt => opt.MapFrom(y => y.Email.ToUpper()))
                 .ForMember(x => x.SecurityStamp, opt => Guid.NewGuid().ToString());
-            CreateMap<Database.ApplicationUser, Model.Request.ApplicationUserUpdate>().ReverseMap();
+            CreateMap<Database.ApplicationUser, Model.Request.ApplicationUserUpdate>()
+                .ReverseMap()
+                .ForMember(x => x.NormalizedUserName, opt => opt.MapFrom(y => y.Username.ToUpper()))
+                .ForMember(x => x.NormalizedEmail, opt => opt.MapFrom(y => y.Email.ToUpper()))
+                .ForMember(x => x.SecurityStamp, opt => Guid.NewGuid().ToString());
             CreateMap<Database.ApplicationUser, Model.Response.ApplicationUser>().ReverseMap();
 
             #region SELECT LISTS
