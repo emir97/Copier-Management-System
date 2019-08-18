@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using iCopy.Model.Attributes;
 
 namespace iCopy.Model.Request
 {
@@ -18,6 +19,7 @@ namespace iCopy.Model.Request
 
         [Required(ErrorMessage = "ErrNoEndWorkingTime")]
         [DataType(DataType.Time)]
+        [GreaterThanOrEqualTimeSpan(nameof(StartWorkingTime), ErrorMessage = "ErrEndTimeLessThenStartTime")]
         public TimeSpan EndWorkingTime { get; set; }
 
         [MaxLength(100, ErrorMessage = "ErrMaxLength")]

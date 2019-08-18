@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 
 namespace iCopy.Model.Attributes
@@ -19,7 +20,7 @@ namespace iCopy.Model.Attributes
                 (PasswordOptions.RequireUppercase && !value.ToString().Any(char.IsUpper)) ||
                 PasswordOptions.RequireNonAlphanumeric && value.ToString().All(char.IsLetterOrDigit)
                 && PasswordOptions.RequiredLength > value.ToString().Length)
-                return new ValidationResult(ErrorMessage);
+                return new ValidationResult(string.Format((IFormatProvider)CultureInfo.CurrentCulture, ErrorMessageString));
             return ValidationResult.Success;
         }
     }

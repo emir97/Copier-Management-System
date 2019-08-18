@@ -20,24 +20,17 @@ namespace iCopy.Model.Attributes
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             AuthContext context = validationContext.GetService<AuthContext>();
-            IStringLocalizerFactory factory = validationContext.GetService<IStringLocalizerFactory>();
-            IStringLocalizer localizer = factory.Create("ValidationErrors", "iCopy.Web");
-            if (Type == null) throw new ArgumentNullException("Type in unique attribute is null");
+            if (Type == null) return new ValidationResult(string.Format((IFormatProvider)CultureInfo.CurrentCulture, "UnknownProperty"));
             if (value != null)
             {
                 if (Type == Username && context.Users.Any(x => x.UserName == value.ToString()))
-                    return new ValidationResult(ErrorMessageString);
+                    return new ValidationResult(string.Format((IFormatProvider)CultureInfo.CurrentCulture, ErrorMessageString));
                 if (Type == PhoneNumber && context.Users.Any(x => x.PhoneNumber == value.ToString()))
-                    return new ValidationResult(ErrorMessageString);
+                    return new ValidationResult(string.Format((IFormatProvider)CultureInfo.CurrentCulture, ErrorMessageString));
                 if (Type == Email && context.Users.Any(x => x.Email == value.ToString()))
-                    return new ValidationResult(ErrorMessageString);
+                    return new ValidationResult(string.Format((IFormatProvider)CultureInfo.CurrentCulture, ErrorMessageString));
             }
             return null;
-        }
-
-        public override string FormatErrorMessage(string name)
-        {
-            return string.Format((IFormatProvider)CultureInfo.CurrentCulture, this.ErrorMessageString, (object)name);
         }
 
         public const string Username = "USERNAME";
