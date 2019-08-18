@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace iCopy.Model.Response
+﻿namespace iCopy.Model.Response
 {
     public class Employee
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public bool Active { get; set; }
         public int PersonId { get; set; }
         public Person Person { get; set; }
