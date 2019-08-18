@@ -120,6 +120,14 @@
                         <div class="kt-form__section kt-form__section--first">
                             <div class="kt-wizard-v2__form">
                                 <div class="form-group">
+                                    <label>@_sharedLocalizer.ProfileImage</label>
+                                    <div class="kt-dropzone m-dropzone--success" action="@Settings.Routes.Upload.UploadProfileImage" id="dropzone">
+                                        <div class="kt-dropzone__msg dz-message needsclick">
+                                            <h5 class="kt-dropzone__msg-title">@_sharedLocalizer.DragFilesOrClickToUpload</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label asp-for="User.Username">@_sharedLocalizer.Username</label>
                                     <input type="text" class="form-control" asp-for="User.Username" placeholder="@_sharedLocalizer.Username" autocomplete="off">
                                     <span class="form-text text-danger" asp-validation-for="User.Username"></span>
@@ -235,6 +243,9 @@
                     '@(nameof(iCopy.Model.Request.Copier.CityId))': {
                         required: true
                     },
+                    '@(nameof(iCopy.Model.Request.Copier.CompanyId))': {
+                        required: true
+                    }
                     //= Step 2
                     'User.Username': {
                         required: true,
