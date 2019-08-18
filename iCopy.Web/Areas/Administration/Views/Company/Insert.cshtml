@@ -318,7 +318,12 @@
                                         validator.showErrors(error);
                                     }
                                 }
-                                wizard.goFirst();
+                                swal.fire({
+                                    title: "",
+                                    html: "@_sharedLocalizer.CorrectTheErrors",
+                                    type: "error",
+                                    confirmButtonClass: "btn btn-secondary"
+                                });
                             } else {
                                 swal.fire({
                                     title: "",

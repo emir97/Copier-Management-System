@@ -191,9 +191,9 @@
             });
             // Validation before going to next page
             wizard.on('beforeNext', function (wizardObj) {
-                //if (validator.form() !== true) {
-                //    wizardObj.stop(); // don't go to the next step
-                //}
+                if (validator.form() !== true) {
+                    wizardObj.stop(); // don't go to the next step
+                }
             });
             // Change event
             wizard.on('change', function (wizard) {
@@ -207,14 +207,7 @@
                 ignore: ":hidden",
                     // Validation rules
                 rules: {
-                    'Person.FirstName': {
-                        required: true,
-                        maxlength: 100
-                    },
-                    'Person.LastName': {
-                        required: true,
-                        maxlength: 100
-                    },
+                    
                     'Person.Gender': {
                         required: true
                     },
@@ -273,24 +266,26 @@
             btn.on('click', function (e) {
                 e.preventDefault();
 
-                if (/*validator.form()*/true){
+                if (validator.form()){
                     // See: src\js\framework\base\app.js
                     KTApp.progress(btn);
                     KTApp.block(formEl);
                     // See: http://malsup.com/jquery/form/#ajaxSubmit
                     formEl.ajaxSubmit({
-                        success: function () {
-                            KTApp.unprogress(btn);
-                            KTApp.unblock(formEl);
-                            swal.fire({
-                                title: "",
-                                html: "asdasd",
-                                type: "success",
-                                confirmButtonClass: "btn btn-secondary",
-                                allowOutsideClick: false
-                            }).then(function (data) {
-                                window.location.replace('@Settings.Routes.Login.Index');
-                            });
+                        success: function (result) {
+                            if (result.success) {
+                                KTApp.unprogress(btn);
+                                KTApp.unblock(formEl);
+                                swal.fire({
+                                    title: "",
+                                    html: result.message,
+                                    type: "success",
+                                    confirmButtonClass: "btn btn-secondary",
+                                    allowOutsideClick: false
+                                }).then(function (data) {
+                                    window.location.replace('@Settings.Routes.Login.Index');
+                                });
+                            }
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                             KTApp.unprogress(btn);
@@ -300,10 +295,16 @@
                                     if (key != null) {
                                         let error = {};
                                         error[key] = XMLHttpRequest.responseJSON[key][0];
+                                        console.log(error);
                                         validator.showErrors(error);
                                     }
                                 }
-                                wizard.goFirst();
+                                swal.fire({
+                                    title: "",
+                                    html: "@_sharedLocalizer.CorrectTheErrors",
+                                    type: "error",
+                                    confirmButtonClass: "btn btn-secondary"
+                                });
                             } else {
                                 swal.fire({
                                     title: "",

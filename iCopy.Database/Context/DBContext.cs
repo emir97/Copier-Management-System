@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace iCopy.Database.Context
@@ -43,6 +44,10 @@ namespace iCopy.Database.Context
                 .Where(x => x.DeleteBehavior == DeleteBehavior.Cascade);
             foreach (var item in cascadefks)
                 item.DeleteBehavior = DeleteBehavior.Restrict;
+            modelBuilder
+                .Entity<Person>()
+                .Property(x => x.Gender)
+                .HasConversion(x => x.ToString(), x => (Gender) Enum.Parse(typeof(Gender), x));
         }
 
     }
