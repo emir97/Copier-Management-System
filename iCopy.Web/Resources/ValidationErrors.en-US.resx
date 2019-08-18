@@ -246,6 +246,9 @@
   <data name="ErrUniqueUsername" xml:space="preserve">
     <value>Username is not available</value>
   </data>
+  <data name="ErrUrl" xml:space="preserve">
+    <value>Wrong url</value>
+  </data>
   <data name="Phone number is already is use" xml:space="preserve">
     <value>Phone number is already is use</value>
   </data>

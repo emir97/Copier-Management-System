@@ -23,6 +23,7 @@ namespace iCopy.Model.Request
 
         [Required(ErrorMessage = "ErrNoUrl")]
         [MaxLength(100, ErrorMessage = "ErrMaxLength")]
+        [DataType(DataType.Url, ErrorMessage = "ErrUrl")]
         public string Url { get; set; }
 
         [Required(ErrorMessage = "ErrNoPhoneNumber")]

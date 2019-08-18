@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="PhoneNumber">@_sharedLocalizer.PhoneNumber</label>
-                                    <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="@_sharedLocalizer.PhoneNumber" />
+                                    <input type="number" class="form-control" asp-for="PhoneNumber" placeholder="@_sharedLocalizer.PhoneNumber" />
                                     <span asp-validation-for="PhoneNumber" class="form-text text-danger"></span>
                                 </div>
                                 <div class="row">
@@ -97,7 +97,7 @@
                                         <div class="form-group">
                                             <label asp-for="CityId">@_sharedLocalizer.City</label>
                                             <select asp-items="@(await _selectList.CitiesByCityCountryId(Model.CityId ?? 0))" asp-for="CityId" class="form-control kt-select2"></select>
-                                            <span asp-validation-for="PhoneNumber" class="form-text text-danger"></span>
+                                            <span asp-validation-for="CityId" class="form-text text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
