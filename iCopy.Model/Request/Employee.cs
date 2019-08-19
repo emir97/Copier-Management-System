@@ -7,11 +7,11 @@ namespace iCopy.Model.Request
 {
     public class Employee
     {
-        [Required(ErrorMessage = "ErrNoPerson")]
         public int? PersonId { get; set; }
         public Person Person { get; set; }
         [Required(ErrorMessage = "ErrNoCopier")]
         public int? CopierId { get; set; }
+        public Copier Copier { get; set; }
         [Required(ErrorMessage = "ErrNoPassword")]
         public int Password { get; set; }
         public bool Active { get; set; }

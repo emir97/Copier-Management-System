@@ -5,6 +5,7 @@ using iCopy.SERVICES.IServices;
 using iCopy.Web.Controllers;
 using iCopy.Web.Helper;
 using iCopy.Web.Resources;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -39,6 +40,14 @@ namespace iCopy.Web.Areas.Administration.Controllers
             }
         }
 
+        [HttpGet]
+        public override Task<IActionResult> Update(int id)
+        {
+            if (HttpContext.Session.Get(Session.Keys.Upload.ProfileImage) != null)
+                HttpContext.Session.Remove(Session.Keys.Upload.ProfileImage);
+            return base.Update(id);
+        }
+
         [HttpPost, Transaction]
         public override async Task<IActionResult> Update(int id, [FromForm]Employee model)
         {
@@ -46,16 +55,16 @@ namespace iCopy.Web.Areas.Administration.Controllers
             {
                 try
                 {
+                    model.ProfilePhoto = PhotoSession;
                     await crudService.UpdateAsync(id, model);
                     TempData["success"] = _localizer.SuccUpdate;
                     return RedirectToAction(nameof(Update));
                 }
-                catch
+                catch(Exception e)
                 {
                     TempData["error"] = _localizer.ErrUpdate;
                 }
             }
-
             return View(await crudService.GetByIdAsync(id));
         }
     }

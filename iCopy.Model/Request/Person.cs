@@ -18,7 +18,7 @@ namespace iCopy.Model.Request
         [Required(AllowEmptyStrings = false, ErrorMessage = "ErrNoGender")]
         public Gender Gender { get; set; }
         [Required(ErrorMessage = "ErrNoCity")]
-        public int CityId { get; set; }
+        public int? CityId { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "ErrNoAddress")]
         [MaxLength(100, ErrorMessage = "ErrMaxLength")]
         public string Address { get; set; }

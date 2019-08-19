@@ -169,6 +169,7 @@ namespace iCopy.Web.Resources
 
         #region Employee
         public string AddEmployee => localizer[nameof(AddEmployee)];
+        public string UpdateEmployeeDetails => localizer[nameof(UpdateEmployeeDetails)];
         #endregion
     }
 }
