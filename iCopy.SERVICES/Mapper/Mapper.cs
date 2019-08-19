@@ -29,7 +29,7 @@ namespace iCopy.SERVICES.Mapper
             CreateMap<Model.Response.Employee, Model.Request.Employee>().ReverseMap();  
             
             CreateMap<Database.Person, Model.Request.Person>().ReverseMap();
-            CreateMap<Database.Person, Model.Response.Person>().ReverseMap();
+            CreateMap<Database.Person, Model.Response.Person>().ForMember(x => x.Gender, x => x.MapFrom(y => y.Gender.ToString())).ReverseMap();
             CreateMap<Model.Request.Person, Model.Response.Person>().ReverseMap();
 
             CreateMap<Database.Client, Model.Request.Client>().ReverseMap();
@@ -59,6 +59,10 @@ namespace iCopy.SERVICES.Mapper
                 .ForMember(x => x.Value, y => y.MapFrom(c => c.ID.ToString()))
                 .ReverseMap();
             CreateMap<Database.Company, SelectListItem>()
+                .ForMember(x => x.Text, y => y.MapFrom(c => c.Name))
+                .ForMember(x => x.Value, y => y.MapFrom(c => c.ID.ToString()))
+                .ReverseMap();
+            CreateMap<Database.Copier, SelectListItem>()
                 .ForMember(x => x.Text, y => y.MapFrom(c => c.Name))
                 .ForMember(x => x.Value, y => y.MapFrom(c => c.ID.ToString()))
                 .ReverseMap();

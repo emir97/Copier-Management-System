@@ -55,6 +55,16 @@ namespace iCopy.Web.Helper
             return BaseSelectListItem(includeChooseText, SharedResource.ChooseCity, mapper.Map<List<SelectListItem>>(await context.Cities.Where(x => x.Active && x.CountryID == countryId).ToListAsync()));
         }
 
+        public async Task<IEnumerable<SelectListItem>> Copiers(int companyId, bool includeChooseText = true)
+        {
+            return BaseSelectListItem(includeChooseText, SharedResource.ChooseCopier, mapper.Map<List<SelectListItem>>(await context.Copiers.Where(x => x.Active && x.CompanyId == companyId).ToListAsync()));
+        }
+
+        public async Task<IEnumerable<SelectListItem>> Copiers(bool includeChooseText = true)
+        {
+            return BaseSelectListItem(includeChooseText, SharedResource.ChooseCopier, mapper.Map<List<SelectListItem>>(await context.Copiers.Where(x => x.Active).ToListAsync()));
+        }
+
         public async Task<IEnumerable<SelectListItem>> CitiesByCityCountryId(int cityId, bool includeChooseText = true)
         {
             var countryId = (await context.Cities.FindAsync(cityId))?.CountryID;

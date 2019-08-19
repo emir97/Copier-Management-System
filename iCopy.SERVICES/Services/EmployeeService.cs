@@ -3,6 +3,7 @@ using iCopy.Database.Context;
 using iCopy.Model.Request;
 using iCopy.Model.Response;
 using iCopy.SERVICES.Exceptions;
+using iCopy.SERVICES.Extensions;
 using iCopy.SERVICES.IServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -55,8 +56,9 @@ namespace iCopy.SERVICES.Services
 
         public override async Task<Model.Response.Employee> GetByIdAsync(int id)
         {
-            Model.Response.Employee employee = mapper.Map<Model.Response.Employee>(await ctx.Employees.Include(x => x.CopierId).FirstOrDefaultAsync(x => x.ID == id));
+            Model.Response.Employee employee = mapper.Map<Model.Response.Employee>(await ctx.Employees.Include(x => x.Copier).Include(x => x.Person).ThenInclude(x => x.City).FirstOrDefaultAsync(x => x.ID == id));
             employee.User = mapper.Map<Model.Response.ApplicationUser>(await auth.Users.FindAsync(employee.ApplicationUserId));
+            employee.ProfilePhoto = await ProfilePhotoService.GetByApplicationUserId(employee.ApplicationUserId);
             return employee;
         }
 
@@ -89,6 +91,11 @@ namespace iCopy.SERVICES.Services
             try
             {
                 Model.Response.Employee employee = await base.UpdateAsync(id, entity);
+                if (entity.ProfilePhoto != null)
+                {
+                    entity.ProfilePhoto.ApplicationUserId = employee.ApplicationUserId;
+                    await ProfilePhotoService.InsertAsync(entity.ProfilePhoto);
+                }
                 // TODO: Dodati Log
                 return employee;
             }
@@ -136,6 +143,37 @@ namespace iCopy.SERVICES.Services
             List<Model.Response.Employee> employee = mapper.Map<List<Model.Response.Employee>>(await ctx.Employees.Include(x => x.Person).Include(x => x.Copier).Take(take).ToListAsync());
             employee.ForEach(x => x.User = mapper.Map<Model.Response.ApplicationUser>(auth.Users.Find(x.ApplicationUserId)));
             return employee;
+        }
+
+        public override async Task<Tuple<List<Model.Response.Employee>, int>> GetByParametersAsync(EmployeeSearch search, string order, string nameOfColumnOrder, int start, int length)
+        {
+            var query = ctx.Employees.Include(x => x.Copier).ThenInclude(x => x.Company).Include(x => x.Person.City).ThenInclude(x => x.Country).AsQueryable();
+            if (search.CopierId != null)
+                query = query.Where(x => x.Person.CityId == search.CityId);
+            if (search.CityId != null)
+                query = query.Where(x => x.Person.CityId == search.CityId);
+            if (search.CountryId != null)
+                query = query.Where(x => x.Person.City.CountryID == search.CountryId);
+            if (search.CompanyId != null)
+                query = query.Where(x => x.Copier.CompanyId == search.CompanyId);
+            if (search.Gender != null)
+                query = query.Where(x => x.Person.Gender == search.Gender);
+            if (!string.IsNullOrWhiteSpace(search.FirstName))
+                query = query.Where(x => x.Person.FirstName.Contains(search.FirstName));
+            if (!string.IsNullOrWhiteSpace(search.LastName))
+                query = query.Where(x => x.Person.LastName.Contains(search.LastName));
+            if (search.Active != null)
+                query = query.Where(x => x.Active == search.Active);
+
+            if (nameOfColumnOrder == nameof(Database.Employee.ID))
+                query = query.OrderByAscDesc(x => x.ID, order);
+            else if (nameOfColumnOrder == nameof(Database.Employee.Person.FirstName))
+                query = query.OrderByAscDesc(x => x.Person.FirstName, order);
+            else if (nameOfColumnOrder == nameof(Database.Employee.Person.LastName))
+                query = query.OrderByAscDesc(x => x.Person.LastName, order);
+
+            var data = mapper.Map<List<Model.Response.Employee>>(await query.Skip(start).Take(length).ToListAsync());
+            return new Tuple<List<Model.Response.Employee>, int>(data, await query.CountAsync());
         }
     }
 }

@@ -166,11 +166,11 @@
                 },
                 columns: [
                     { data: "id" },
-                    { data: "first-name" },
-                    { data: 'last-name' },
-                    { data: 'gender' },
-                    { data: 'birth-date' },
-                    { data: 'copier-name' },
+                    { data: "person.firstName" },
+                    { data: 'person.lastName' },
+                    { data: 'person.gender' },
+                    { data: 'person.birthDate' },
+                    { data: 'copier.name' },
                     { data: 'active' },
                     { data: 'actions' }
                 ],
@@ -190,11 +190,13 @@
                     },
                     {
                         targets: 3,
-                        name: '@nameof(iCopy.Model.Request.Person.Gender)'
+                        name: '@nameof(iCopy.Model.Request.Person.Gender)',
+                        orderable: false
                     },
                     {
                         targets: 4,
-                        name: '@nameof(iCopy.Model.Request.Person.BirthDate)'
+                        name: '@nameof(iCopy.Model.Request.Person.BirthDate)',
+                        orderable: false
                     },
                     {
                         targets: 5,
