@@ -35,7 +35,7 @@ namespace iCopy.SERVICES.Services
         {
             Model.Response.Copier copier = mapper.Map<Model.Response.Copier>(await ctx.Copiers.Include(x => x.City).ThenInclude(x => x.Country).FirstOrDefaultAsync(x => x.ID == id));
             copier.User = mapper.Map<Model.Response.ApplicationUser>(await auth.Users.FindAsync(copier.ApplicationUserId));
-            copier.ProfilePhoto = mapper.Map<Model.Response.ProfilePhoto>((await ctx.ApplicationUserProfilePhotos.FirstOrDefaultAsync(x => x.ApplicationUserId == copier.ApplicationUserId && x.Active))?.ProfilePhoto);
+            copier.ProfilePhoto = mapper.Map<Model.Response.ProfilePhoto>((await ctx.ApplicationUserProfilePhotos.Include(x => x.ProfilePhoto).FirstOrDefaultAsync(x => x.ApplicationUserId == copier.ApplicationUserId && x.Active))?.ProfilePhoto);
             return copier;
         }
 

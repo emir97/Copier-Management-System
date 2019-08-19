@@ -141,11 +141,7 @@ namespace iCopy.SERVICES.Services
         public override async Task<List<Model.Response.Employee>> TakeRecordsByNumberAsync(int take = 15)
         {
             List<Model.Response.Employee> employee = mapper.Map<List<Model.Response.Employee>>(await ctx.Employees.Include(x => x.Person).Include(x => x.Copier).Take(take).ToListAsync());
-            employee.ForEach(x =>
-            {
-                x.User = mapper.Map<Model.Response.ApplicationUser>(auth.Users.Find(x.ApplicationUserId));
-                x.ProfilePhoto = mapper.Map<Model.Response.ProfilePhoto>(ctx.ApplicationUserProfilePhotos.FirstOrDefault(y => y.ApplicationUserId == x.ApplicationUserId && y.Active)?.ProfilePhoto);
-            });
+            employee.ForEach(x => x.User = mapper.Map<Model.Response.ApplicationUser>(auth.Users.Find(x.ApplicationUserId)));
             return employee;
         }
 
