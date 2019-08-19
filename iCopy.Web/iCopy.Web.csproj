@@ -53,6 +53,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\iCopy.ExternalServices\iCopy.ExternalServices.csproj" />
     <ProjectReference Include="..\iCopy.SERVICES\iCopy.SERVICES.csproj" />
   </ItemGroup>
 

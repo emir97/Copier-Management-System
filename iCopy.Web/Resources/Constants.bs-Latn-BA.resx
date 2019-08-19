@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailActivationAccountBody" xml:space="preserve">
+    <value>Link za verifikaciju korisničkog računa je &lt;a href="{0}"&gt;{0}&lt;/a&gt;. U slučaju da ne možete pristupiti kopirajte {0} u url.</value>
+  </data>
+  <data name="EmailActivationAccountSubject" xml:space="preserve">
+    <value>Mail za verifikaciju korisničkog računa</value>
+  </data>
   <data name="Genders" xml:space="preserve">
     <value>Muški;Ženski</value>
   </data>

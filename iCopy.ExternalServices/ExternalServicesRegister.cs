@@ -1,4 +1,4 @@
-﻿using MailKit;
+﻿using iCopy.ExternalServices.Mail;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace iCopy.ExternalServices

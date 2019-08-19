@@ -15,6 +15,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using iCopy.ExternalServices;
+using iCopy.Web.Options;
 using DBContext = iCopy.Database.Context.DBContext;
 
 namespace iCopy.Web
@@ -55,11 +57,13 @@ namespace iCopy.Web
             services.AddDbContext<AuthContext>(x => x.UseSqlServer(Configuration.GetConnectionString("AuthContext")));
             services.AddSession();
             services.AddiCopyServices();
+            services.AddExternalServices();
             services.AddScoped<SharedResource>();
             services.AddScoped<ValidationErrors>();
             services.AddScoped<Constants>();
             services.AddScoped<ISelectList, SelectList>();
             services.AddSingleton<ProfilePhotoOptions>(Configuration.GetSection("Files:ProfilePhoto").Get<ProfilePhotoOptions>());
+            services.AddSingleton<EmailServerNoReplyOptions>(Configuration.GetSection("EmailServers:no-reply").Get<EmailServerNoReplyOptions>());
 
             services.AddAuthentication().AddCookie();
             services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<AuthContext>().AddDefaultTokenProviders();

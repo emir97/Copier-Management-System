@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EmailActivationAccountBody" xml:space="preserve">
+    <value>The account verification link is &lt;a href="{0}"&gt; {0} &lt;/a&gt;. If you are unable to access, copy {0} in the URL.</value>
+  </data>
+  <data name="EmailActivationAccountSubject" xml:space="preserve">
+    <value>Mail for verification user account</value>
+  </data>
   <data name="Genders" xml:space="preserve">
     <value>Male;Female</value>
   </data>

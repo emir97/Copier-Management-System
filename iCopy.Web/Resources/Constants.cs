@@ -20,5 +20,14 @@ namespace iCopy.Web.Resources
                 return data;
             }
         }
+
+        public string EmailActivationAccountSubject()
+        {
+            return localizer[nameof(EmailActivationAccountSubject)];
+        }
+        public string EmailActivationAccountBody(string link)
+        {
+            return localizer[nameof(EmailActivationAccountBody), link];
+        }
     }
 }
