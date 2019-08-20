@@ -1,5 +1,5 @@
-﻿using System.Net.Mail;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using iCopy.ExternalServices.Model;
 
 namespace iCopy.ExternalServices.Mail
 {

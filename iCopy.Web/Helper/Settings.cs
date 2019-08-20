@@ -71,6 +71,7 @@
             public static class SignUp
             {
                 public static string Index => "/auth/signup/index";
+                public static string ActivateAcount => "/auth/signup/activateaccount";
             }
             public static class Login
             {

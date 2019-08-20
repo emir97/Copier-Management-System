@@ -6,7 +6,7 @@ using System;
 namespace iCopy.Database.Context
 {
     public class AuthContext : IdentityDbContext<ApplicationUser, ApplicationRole, int, ApplicationUserClaim,
-        ApplicationUserRole, IdentityUserLogin<int>, ApplicationRoleClaim, IdentityUserToken<int>>
+        ApplicationUserRole, IdentityUserLogin<int>, ApplicationRoleClaim, ApplicationUserUserToken>
     {
         public AuthContext(DbContextOptions<AuthContext> options) : base(options)
         {
@@ -28,6 +28,7 @@ namespace iCopy.Database.Context
             builder.Entity<ApplicationUser>().Property(x => x.SecurityStamp).HasDefaultValue(Guid.NewGuid().ToString()).ValueGeneratedOnAddOrUpdate();
             builder.Entity<ApplicationUserRole>().HasOne(x => x.User).WithMany(x => x.UserRoles).HasForeignKey(x => x.UserId);
             builder.Entity<ApplicationUserRole>().HasOne(x => x.Role).WithMany(x => x.UserRoles).HasForeignKey(x => x.RoleId);
+            builder.Entity<ApplicationUserUserToken>().Property(x => x.TokenType).HasConversion(x => x.ToString(), x => (TokenType) Enum.Parse(typeof(TokenType), x));
         }
     }
 }

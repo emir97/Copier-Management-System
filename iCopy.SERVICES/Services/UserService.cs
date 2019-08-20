@@ -10,7 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Security.Policy;
 using System.Threading.Tasks;
+using iCopy.Database;
 using iCopy.SERVICES.Exceptions;
 using ApplicationUser = iCopy.Model.Response.ApplicationUser;
 using Enum = iCopy.Model.Enum.Enum;
@@ -22,15 +24,18 @@ namespace iCopy.SERVICES.Services
         private readonly IMapper mapper;
         private readonly AuthContext context;
         private readonly IPasswordHasher<Database.ApplicationUser> PasswordHasher;
+        private readonly UserManager<Database.ApplicationUser> UserManager;
 
         public UserService(
             AuthContext ctx,
             IMapper mapper,
-            IPasswordHasher<Database.ApplicationUser> PasswordHasher) : base(ctx, mapper)
+            IPasswordHasher<Database.ApplicationUser> PasswordHasher,
+            UserManager<Database.ApplicationUser> UserManager) : base(ctx, mapper)
         {
             this.mapper = mapper;
             this.context = ctx;
             this.PasswordHasher = PasswordHasher;
+            this.UserManager = UserManager;
         }
 
         public Task<LoginResult> Login(Login login)
@@ -80,6 +85,20 @@ namespace iCopy.SERVICES.Services
                 throw e;
             }   
             return mapper.Map<Model.Response.ApplicationUser>(user);
+        }
+
+        public async Task<string> GenerateAccountActivationToken(int applicationUserId)
+        {
+            Database.ApplicationUser user = await context.Users.FindAsync(applicationUserId);
+            string token = await UserManager.GenerateEmailConfirmationTokenAsync(user);
+            context.UserTokens.Add(new Database.ApplicationUserUserToken()
+            {
+                TokenType = TokenType.AccountActivation,
+                UserId = user.Id,
+                Value = token
+            });
+            await context.SaveChangesAsync();
+            return token;
         }
 
         public override async Task<ApplicationUser> UpdateAsync(int id, Model.Request.ApplicationUserUpdate entity)
