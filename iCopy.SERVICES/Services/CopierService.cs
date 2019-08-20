@@ -41,17 +41,19 @@ namespace iCopy.SERVICES.Services
 
         public override async Task<List<Model.Response.Copier>> TakeRecordsByNumberAsync(int take = 15)
         {
-            List<Model.Response.Copier> items = mapper.Map<List<Model.Response.Copier>>(await ctx.Copiers.Include(x => x.City).ToListAsync());
+            List<Model.Response.Copier> items = mapper.Map<List<Model.Response.Copier>>(await ctx.Copiers.Include(x => x.Company).Include(x => x.City).ThenInclude(x => x.Country).ToListAsync());
             return items;
         }
 
         public override async Task<Tuple<List<Model.Response.Copier>, int>> GetByParametersAsync(CopierSearch search, string order, string nameOfColumnOrder, int start, int length)
         {
-            var query = ctx.Copiers.Include(x => x.City).ThenInclude(x => x.Country).AsQueryable();
+            var query = ctx.Copiers.Include(x => x.Company).Include(x => x.City).ThenInclude(x => x.Country).AsQueryable();
             if (search.CityID != null)
                 query = query.Where(x => x.CityId == search.CityID);
             if (search.CountryID != null)
                 query = query.Where(x => x.City.CountryID == search.CountryID);
+            if (search.CompanyID != null)
+                query = query.Where(x => x.CompanyId == search.CompanyID);
             if (search.Active != null)
                 query = query.Where(x => x.Active == search.Active);
             if (!string.IsNullOrWhiteSpace(search.Name))
