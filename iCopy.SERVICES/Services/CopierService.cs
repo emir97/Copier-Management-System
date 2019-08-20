@@ -33,7 +33,7 @@ namespace iCopy.SERVICES.Services
 
         public override async Task<Model.Response.Copier> GetByIdAsync(int id)
         {
-            Model.Response.Copier copier = mapper.Map<Model.Response.Copier>(await ctx.Copiers.Include(x => x.City).ThenInclude(x => x.Country).FirstOrDefaultAsync(x => x.ID == id));
+            Model.Response.Copier copier = mapper.Map<Model.Response.Copier>(await ctx.Copiers.Include(x => x.City).ThenInclude(x => x.Country).Include(x => x.Company).FirstOrDefaultAsync(x => x.ID == id));
             copier.User = mapper.Map<Model.Response.ApplicationUser>(await auth.Users.FindAsync(copier.ApplicationUserId));
             copier.ProfilePhoto = mapper.Map<Model.Response.ProfilePhoto>((await ctx.ApplicationUserProfilePhotos.Include(x => x.ProfilePhoto).FirstOrDefaultAsync(x => x.ApplicationUserId == copier.ApplicationUserId && x.Active))?.ProfilePhoto);
             return copier;

@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                             <label>@_sharedLocalizer.Company:</label>
-                            <select name="CompanyID" asp-items="@(await _selectList.Companies())" class="form-control kt-select2" id="cities-list"></select>
+                            <select name="CompanyID" asp-items="@(await _selectList.Companies())" class="form-control kt-select2" id="CompanyID"></select>
                         </div>
                     </div>
                     <div class="row kt-margin-b-20">
@@ -98,7 +98,8 @@
             <thead class="thead-dark">
                 <tr>
                     <th>#</th>
-                    <th>@_sharedLocalizer.Name  </th>
+                    <th>@_sharedLocalizer.Name</th>
+                    <th>@_sharedLocalizer.Company</th>
                     <th>@_sharedLocalizer.City</th>
                     <th>@_sharedLocalizer.StartWorkingTime</th>
                     <th>@_sharedLocalizer.EndWorkingTime</th>
@@ -113,6 +114,7 @@
                 <tr>
                     <td>@item.ID</td>
                     <td>@item.Name</td>
+                    <td>@item.Company.Name</td>
                     <td>@item.City.Name</td>
                     <td>@item.StartWorkingTime</td>
                     <td>@item.EndWorkingTime</td>
@@ -155,6 +157,7 @@
                             Active: $("#active:checked").val(),
                             CountryID: $("#countries-list").val(),
                             CityID: $("#cities-list").val(),
+                            CompanyID: $("#CompanyID").val()
                         };
                         return searchData;
                     }
@@ -162,8 +165,9 @@
                 columns: [
                     { data: "id" },
                     { data: "name" },
+                    { data: "company.name"},
                     { data: 'city.name' },
-                    { data: 'country.name' },
+                    { data: 'startWorkingTime' },
                     { data: 'endWorkingTime' },
                     { data: 'phoneNumber' },
                     { data: 'active' },
@@ -181,25 +185,29 @@
                     },
                     {
                         targets: 2,
-                        name: '@nameof(iCopy.Model.Request.Copier.CityId)'
+                        name: '@nameof(iCopy.Model.Response.Copier.Company)'
                     },
                     {
                         targets: 3,
+                        name: '@nameof(iCopy.Model.Request.Copier.CityId)'
+                    },
+                    {
+                        targets: 4,
                         name: '@nameof(iCopy.Model.Request.Copier.StartWorkingTime)',
                         orderable: false
                     },
                     {
-                        targets: 4,
+                        targets: 5,
                         name: '@nameof(iCopy.Model.Request.Copier.EndWorkingTime)',
                         orderable: false
                     },
                     {
-                        targets: 5,
+                        targets: 6,
                         name: '@nameof(iCopy.Model.Request.Copier.PhoneNumber)',
                         orderable: false
                     },
                     {
-                        targets: 6,
+                        targets: 7,
                         orderable: false,
                         className: 'text-center align-middle',
                         render: function (data, type, full, meta) {
@@ -245,7 +253,7 @@
             $("#search-parameters input[type='text']").val('');
             $("#search-parameters input[type='number']").val('');
             $("#search-parameters input[type=radio]:first").parent().trigger('click');
-            $('.select2').prop('selectedIndex', 0).trigger('change');
+            $('.kt-select2').prop('selectedIndex', 0).trigger('change');
             $("#datatable-search").trigger('click');
         });
         $('.kt-select2').select2({width: '100%'});
