@@ -9,6 +9,7 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using iCopy.Web.Models;
 using Microsoft.Extensions.Localization;
 
 namespace iCopy.Web.Areas.Administration.Controllers
@@ -25,6 +26,19 @@ namespace iCopy.Web.Areas.Administration.Controllers
             this.CrudService = CrudService;
             this._localizer = _localizer;
             this._validationErrors = _validationErrors;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            int numberOfRecords = await CrudService.GetNumberOfRecordsAsync();
+            DataTable<Model.Response.ApplicationUser> model = new DataTable<Model.Response.ApplicationUser>()
+            {
+                recordsFiltered = numberOfRecords,
+                recordsTotal = numberOfRecords,
+                data = await CrudService.TakeRecordsByNumberAsync()
+            };
+            return View(model);
         }
 
         [HttpPost, Transaction, AutoValidateModelState]
@@ -67,6 +81,19 @@ namespace iCopy.Web.Areas.Administration.Controllers
 
             Response.StatusCode = (int)HttpStatusCode.BadRequest;
             return Json(ModelState.Where(x => x.Value.Errors.Count > 0).ToDictionary(x => x.Key, x => x.Value.Errors.Select(y => y.ErrorMessage)));
+        }
+
+        [HttpPost, IgnoreAntiforgeryToken]
+        public virtual async Task<DataTable<Model.Response.ApplicationUser>> GetData([FromForm]Model.Request.ApplicationUserSearch Search, [FromForm]DataTableRequest Request)
+        {
+            var filteredData = await CrudService.GetByParametersAsync(Search, Request.order[0].dir, Request.columns[Request.order[0].column].name, Request.start, Request.length);
+            return new DataTable<Model.Response.ApplicationUser>
+            {
+                draw = Request.draw,
+                recordsTotal = filteredData.Item2,
+                recordsFiltered = filteredData.Item2,
+                data = filteredData.Item1
+            };
         }
     }
 }

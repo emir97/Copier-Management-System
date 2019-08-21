@@ -100,5 +100,10 @@ namespace iCopy.SERVICES.Services
         {
             return mapper.Map<List<TResult>>(await context.Set<TModel>().Take(take).ToListAsync());
         }
+
+        public virtual async Task<Tuple<List<TResult>, int>> GetByParametersAsync(TSearch search, string order, string nameOfColumnOrder, int start, int length)
+        {
+            return new Tuple<List<TResult>, int>(mapper.Map<List<TModel>, List<TResult>>(await context.Set<TModel>().Skip(start).Take(length).ToListAsync()), length);
+        }
     }
 }

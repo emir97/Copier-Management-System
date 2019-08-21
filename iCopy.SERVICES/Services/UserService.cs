@@ -14,6 +14,7 @@ using System.Security.Policy;
 using System.Threading.Tasks;
 using iCopy.Database;
 using iCopy.SERVICES.Exceptions;
+using iCopy.SERVICES.Extensions;
 using ApplicationUser = iCopy.Model.Response.ApplicationUser;
 using Enum = iCopy.Model.Enum.Enum;
 
@@ -140,6 +141,26 @@ namespace iCopy.SERVICES.Services
         private Task<bool> CheckPhoneNumberUnique(int id, string phoneNumber)
         {
             return context.Users.AnyAsync(x => x.PhoneNumber == phoneNumber && x.Id != id);
+        }
+
+        public override async Task<Tuple<List<Model.Response.ApplicationUser>, int>> GetByParametersAsync(ApplicationUserSearch search, string order, string nameOfColumnOrder, int start, int length)
+        {
+            var query = context.Users.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(search.Username))
+                query = query.Where(x => x.UserName.Contains(search.Username));
+            if (!string.IsNullOrWhiteSpace(search.Email))
+                query = query.Where(x => x.Email.Contains(search.Email));
+            if (search.Active != null)
+                query = query.Where(x => x.Active == search.Active);
+
+            if (nameOfColumnOrder == nameof(Database.ApplicationUser.UserName))
+                query = query.OrderByAscDesc(x => x.UserName, order);
+            else if (nameOfColumnOrder == nameof(Database.ApplicationUser.Email))
+                query = query.OrderByAscDesc(x => x.Email, order);
+            else if (nameOfColumnOrder == nameof(Database.ApplicationUser.PhoneNumber))
+                query = query.OrderByAscDesc(x => x.PhoneNumber, order);
+
+            return new Tuple<List<Model.Response.ApplicationUser>, int>(mapper.Map<List<Model.Response.ApplicationUser>>(await query.Skip(start).Take(length).ToListAsync()), await query.CountAsync());
         }
     }
 

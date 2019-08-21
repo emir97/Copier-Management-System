@@ -258,6 +258,9 @@
   <data name="Details" xml:space="preserve">
     <value>Detalji</value>
   </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Isključeno</value>
+  </data>
   <data name="DragFilesOrClickToUpload" xml:space="preserve">
     <value>Ispusti datoteku ili klikni za prenos datoteke</value>
   </data>
@@ -275,6 +278,9 @@
   </data>
   <data name="EmailNotConfirmed" xml:space="preserve">
     <value>Email nije verifikovan</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Uključeno</value>
   </data>
   <data name="EndWorkingTime" xml:space="preserve">
     <value>Kraj radnog vremena</value>
@@ -458,6 +464,9 @@
   </data>
   <data name="UsernameOrEmail" xml:space="preserve">
     <value>Korisničko ime ili email</value>
+  </data>
+  <data name="UserSettings" xml:space="preserve">
+    <value>Postavke korisnika</value>
   </data>
   <data name="WelcomeToCopierManagementSystem" xml:space="preserve">
     <value>Dobrodošli u softver za upravljanje kopirnicama</value>

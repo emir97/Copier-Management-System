@@ -258,6 +258,9 @@
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>Disabled</value>
+  </data>
   <data name="DragFilesOrClickToUpload" xml:space="preserve">
     <value>Drop files here or click to upload</value>
   </data>
@@ -278,6 +281,9 @@
   </data>
   <data name="EmployeeSettings" xml:space="preserve">
     <value>Employee settings</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Enabled</value>
   </data>
   <data name="EndWorkingTime" xml:space="preserve">
     <value>End working time</value>
@@ -473,6 +479,9 @@
   </data>
   <data name="UsernameOrEmail" xml:space="preserve">
     <value>Username or email</value>
+  </data>
+  <data name="UserSettings" xml:space="preserve">
+    <value>User settings</value>
   </data>
   <data name="WelcomeToCopierManagementSystem" xml:space="preserve">
     <value>Welcome to the copier management system</value>

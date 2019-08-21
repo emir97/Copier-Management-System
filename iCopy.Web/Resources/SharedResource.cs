@@ -171,5 +171,13 @@ namespace iCopy.Web.Resources
         public string AddEmployee => localizer[nameof(AddEmployee)];
         public string UpdateEmployeeDetails => localizer[nameof(UpdateEmployeeDetails)];
         #endregion
+
+        #region User
+
+        public string UserSettings => localizer[nameof(UserSettings)];
+        public string Enabled => localizer[nameof(Enabled)];
+        public string Disabled => localizer[nameof(Disabled)];
+
+        #endregion
     }
 }
