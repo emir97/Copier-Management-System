@@ -49,20 +49,19 @@
                             <input name="LastName" id="last-name" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.LastName">
                         </div>
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                            <label>@_sharedLocalizer.Gender:</label>
-                            <input name="Gender" id="gender" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.Gender">
+                            <label>@_sharedLocalizer.Company:</label>
+                            <select name="CompanyId" id="CompanyId" asp-items="@(await _selectList.Companies())" class="form-control kt-select2"></select>
                         </div>
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                            <label>@_sharedLocalizer.BirthDate:</label>
-                            <input name="BirthDate" id="birth-date" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.BirthDate">
+                            <label>@_sharedLocalizer.Copier:</label>
+                            <select name="CopierId" id="CopierId" class="form-control kt-select2" asp-items="@(await _selectList.Copiers(0))"></select>
                         </div>
-                        @*<div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                            <label>@_sharedLocalizer.Copier</label>
-                            <input name="CopierName" id="copier-name" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.Copier">
-                        </div>*@
-
                     </div>
                     <div class="row kt-margin-b-20">
+                        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                            <label>@_sharedLocalizer.Gender:</label>
+                            <select name="Gender" id="Gender" asp-items="@(await _selectList.Genders())" class="form-control kt-select2"></select>
+                        </div>
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                             <label>&nbsp;</label>
                             <div class="btn-group btn-group-toggle col-md-12 p-0" data-toggle="buttons" data-col-index="3">
@@ -158,8 +157,10 @@
                         searchData.Search = {
                             FirstName: $("#first-name").val(),
                             LastName: $("#last-name").val(),
-                            Gender: $("#gender").val(),
+                            CopierId: $("#CopierId").val(),
                             Active: $("#active:checked").val(),
+                            CompanyId: $("#CompanyId").val(),
+                            Gender: $("#Gender").val()
                         };
                         return searchData;
                     }
@@ -240,6 +241,32 @@
         }
     }
 
+    var ChangeEvents = {
+        GetCities: function () {
+            $("#CompanyId").on('change', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '@Settings.Routes.SelectList.CopiersByCompanyId',
+                    type: 'GET',
+                    data: {
+                        id: $("#CompanyId").val()
+                    },
+                    success: function (result) {
+                        var options = "";
+                        $.each(result,
+                            (index, value) => {
+                                options += `<option value='${value.value}'>${value.text}</option>`;
+                            });
+                        $("#CopierId").html(options);
+                    }
+                });
+            });
+        },
+        init: function () {
+            this.GetCities();
+        }
+    }
+
     $(document).ready(function () {
         DataTable.init();
         $('#datatable-search').on('click', function (e) {
@@ -250,9 +277,10 @@
             $("#search-parameters input[type='text']").val('');
             $("#search-parameters input[type='number']").val('');
             $("#search-parameters input[type=radio]:first").parent().trigger('click');
-            $('.select2').prop('selectedIndex', 0).trigger('change');
+            $('select').prop('selectedIndex', 0).trigger('change');
             $("#datatable-search").trigger('click');
         });
-        $('.kt-select2').select2({width: '100%'});
+        $('.kt-select2').select2({ width: '100%' });
+        ChangeEvents.init();
     });
 </script>

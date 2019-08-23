@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                             <label>@_sharedLocalizer.City:</label>
-                            <select name="CountryID" asp-items="@(await _selectList.Cities())" class="form-control kt-select2" id="cities-list"></select>
+                            <select name="CountryID" asp-items="@(await _selectList.Cities(0))" class="form-control kt-select2" id="cities-list"></select>
                         </div>
                     </div>
                     <div class="row kt-margin-b-20">
@@ -239,6 +239,32 @@
         }
     }
 
+    var ChangeEvents = {
+        GetCities: function () {
+            $("#countries-list").on('change', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: '@Settings.Routes.SelectList.CitiesByCountry',
+                    type: 'GET',
+                    data: {
+                        id: $("#countries-list").val()
+                    },
+                    success: function (result) {
+                        var options = "";
+                        $.each(result,
+                            (index, value) => {
+                                options += `<option value='${value.value}'>${value.text}</option>`;
+                            });
+                        $("#cities-list").html(options);
+                    }
+                });
+            });
+        },
+        init: function () {
+            this.GetCities();
+        }
+    }
+
     $(document).ready(function () {
         DataTable.init();
         $('#datatable-search').on('click', function (e) {
@@ -252,6 +278,7 @@
             $('.select2').prop('selectedIndex', 0).trigger('change');
             $("#datatable-search").trigger('click');
         });
-        $('.kt-select2').select2({width: '100%'});
+        $('.kt-select2').select2({ width: '100%' });
+        ChangeEvents.init();
     });
 </script>

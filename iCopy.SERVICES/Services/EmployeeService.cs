@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using iCopy.Database.Context;
 using iCopy.Model.Request;
-using iCopy.Model.Response;
 using iCopy.SERVICES.Exceptions;
 using iCopy.SERVICES.Extensions;
 using iCopy.SERVICES.IServices;
@@ -10,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace iCopy.SERVICES.Services
@@ -149,11 +147,7 @@ namespace iCopy.SERVICES.Services
         {
             var query = ctx.Employees.Include(x => x.Copier).ThenInclude(x => x.Company).Include(x => x.Person.City).ThenInclude(x => x.Country).AsQueryable();
             if (search.CopierId != null)
-                query = query.Where(x => x.Person.CityId == search.CityId);
-            if (search.CityId != null)
-                query = query.Where(x => x.Person.CityId == search.CityId);
-            if (search.CountryId != null)
-                query = query.Where(x => x.Person.City.CountryID == search.CountryId);
+                query = query.Where(x => x.Person.CityId == search.CopierId);
             if (search.CompanyId != null)
                 query = query.Where(x => x.Copier.CompanyId == search.CompanyId);
             if (search.Gender != null)

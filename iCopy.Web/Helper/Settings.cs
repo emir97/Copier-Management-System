@@ -64,6 +64,7 @@
             {
                 public static string Cities => "/selectlist/cities";
                 public static string CitiesByCountry => "/selectlist/CitiesByCountry";
+                public static string CopiersByCompanyId => "/selectlist/copiersbycompanyid";
             }
             public static class Upload
             {

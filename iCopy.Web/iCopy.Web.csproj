@@ -8,17 +8,33 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Administration\Data\**" />
+    <Compile Remove="Areas\Administration\Models\**" />
     <Compile Remove="Areas\Language\Data\**" />
     <Compile Remove="Areas\Language\Models\**" />
+    <Compile Remove="Areas\Location\Data\**" />
+    <Compile Remove="Areas\Location\Models\**" />
     <Compile Remove="Resources\Country\**" />
+    <Content Remove="Areas\Administration\Data\**" />
+    <Content Remove="Areas\Administration\Models\**" />
     <Content Remove="Areas\Language\Data\**" />
     <Content Remove="Areas\Language\Models\**" />
+    <Content Remove="Areas\Location\Data\**" />
+    <Content Remove="Areas\Location\Models\**" />
     <Content Remove="Resources\Country\**" />
+    <EmbeddedResource Remove="Areas\Administration\Data\**" />
+    <EmbeddedResource Remove="Areas\Administration\Models\**" />
     <EmbeddedResource Remove="Areas\Language\Data\**" />
     <EmbeddedResource Remove="Areas\Language\Models\**" />
+    <EmbeddedResource Remove="Areas\Location\Data\**" />
+    <EmbeddedResource Remove="Areas\Location\Models\**" />
     <EmbeddedResource Remove="Resources\Country\**" />
+    <None Remove="Areas\Administration\Data\**" />
+    <None Remove="Areas\Administration\Models\**" />
     <None Remove="Areas\Language\Data\**" />
     <None Remove="Areas\Language\Models\**" />
+    <None Remove="Areas\Location\Data\**" />
+    <None Remove="Areas\Location\Models\**" />
     <None Remove="Resources\Country\**" />
   </ItemGroup>
 
@@ -32,11 +48,7 @@
 
 
   <ItemGroup>
-    <Folder Include="Areas\Administration\Data\" />
-    <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Language\Views\" />
-    <Folder Include="Areas\Location\Data\" />
-    <Folder Include="Areas\Location\Models\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="Areas\User\Views\" />

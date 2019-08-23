@@ -29,5 +29,9 @@ namespace iCopy.Web.Controllers
         {
             return await SelectList.Companies();
         }
+        public async Task<IEnumerable<SelectListItem>> CopiersByCompanyId(int id)
+        {
+            return await SelectList.Copiers(id);
+        }
     }
 }
