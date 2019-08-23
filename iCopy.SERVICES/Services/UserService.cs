@@ -162,6 +162,25 @@ namespace iCopy.SERVICES.Services
 
             return new Tuple<List<Model.Response.ApplicationUser>, int>(mapper.Map<List<Model.Response.ApplicationUser>>(await query.Skip(start).Take(length).ToListAsync()), await query.CountAsync());
         }
+
+        public virtual async Task<Model.Response.ApplicationUser> ChangeActiveStatusAsync(int id)
+        {
+            Database.ApplicationUser model = await context.Users.FindAsync(id);
+            model.Active = !model.Active;
+            try
+            {
+                context.Users.Update(model);
+                await context.SaveChangesAsync();
+                // TODO: Dodati log operaciju
+
+            }
+            catch (Exception e)
+            {
+                //TODO: Dodati log operaciju
+                throw e;
+            }
+            return mapper.Map<Model.Response.ApplicationUser>(model);
+        }
     }
 
 }

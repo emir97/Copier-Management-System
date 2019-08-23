@@ -56,9 +56,11 @@
             public static class User
             {
                 public static string Index => "/administration/user/index";
+                public static string ChangeActiveStatus => "/administration/user/changeactivestatus";
                 public static string GetData => "/administration/user/getdata";
                 public static string Update => "/administration/user/update";
                 public static string UpdatePassword => "/administration/user/updatepassword";
+                public static string Details => "/administration/user/details";
             }
             public static class SelectList
             {

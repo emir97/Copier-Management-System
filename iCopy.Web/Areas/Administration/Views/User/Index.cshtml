@@ -171,7 +171,7 @@
                         className: 'text-center align-middle',
                         orderable: false,
                         render: function (data, type, full, meta) {
-                            if (full.active == 'True' || full.active == true) {
+                            if (full.TwoFactorEnabled == 'True' || full.TwoFactorEnabled == true) {
                                 return `<span class="kt-badge kt-badge--inline kt-badge--success">@_sharedLocalizer.Enabled</span>`
                             }
                             return `<span class="kt-badge kt-badge--inline kt-badge--danger">@_sharedLocalizer.Disabled</span>`
@@ -194,14 +194,14 @@
                         className: 'text-center align-middle',
                         render: function (data, type, full, meta) {
                             return `
-<a href="@Settings.Routes.Employee.Details/${full.id}" ajax-add="modal-lg" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-info-circle"></i></a>
-<a href="@Settings.Routes.Employee.ChangeActiveStatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
+<a href="@Settings.Routes.User.Details/${full.id}" ajax-add="modal-lg" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-info-circle"></i></a>
+<a href="@Settings.Routes.User.ChangeActiveStatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
 <span class="dropdown">
                             <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="dropdown" aria-expanded="true">
                               <i class="la la-ellipsis-h"></i>
                             </a>
                              <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="@Settings.Routes.Employee.Update/${full.id}"><i class="la la-edit"></i> @_sharedLocalizer.Update</a>
+                                <a class="dropdown-item" href="@Settings.Routes.User.Update/${full.id}"><i class="la la-edit"></i> @_sharedLocalizer.Update</a>
                             </div>
                         </span>
 `;

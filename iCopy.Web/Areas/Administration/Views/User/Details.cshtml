@@ -1,4 +1,4 @@
-﻿@model iCopy.Model.Response.Employee
+﻿@model iCopy.Model.Response.ApplicationUser
 @{
     Layout = null;
 }
@@ -7,31 +7,46 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
-
     <div class="row">
-        <div class="form-group">
+        <div class="form-group col-md-6">
             <label>@_sharedLocalizer.Username</label>
-            <input class="form-control" type="text" disabled asp-for="User.Username" />
+            <input class="form-control" type="text" disabled asp-for="Username" />
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-6">
             <label>@_sharedLocalizer.Email</label>
-            <input class="form-control" type="text" disabled asp-for="User.Email" />
+            <input class="form-control" type="text" disabled asp-for="Email" />
         </div>
-        @if (Model.User.LockoutEnd.HasValue)
+        <div class="form-group col-md-6">
+            <label>@_sharedLocalizer.PhoneNumber</label>
+            <input class="form-control" type="text" disabled asp-for="PhoneNumber" />
+        </div>
+        @if (Model.LockoutEnd.HasValue)
         {
             <div class="form-group">
                 <label>@_sharedLocalizer.LockoutEnd</label>
-                <input class="form-control" type="text" disabled asp-for="User.LockoutEnd" />
+                <input class="form-control" type="text" disabled asp-for="LockoutEnd" />
             </div>
-
-            @if (Model.User.EmailConfirmed)
+        }
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            @if (Model.EmailConfirmed)
             {
-                <span class="kt-badge kt-badge--inline kt-badge--success">@_sharedLocalizer.EmailConfirmed</span>
+                <div class="col-md-1"><span class="kt-badge kt-badge--inline kt-badge--success">@_sharedLocalizer.EmailConfirmed</span></div>
             }
             else
             {
                 <span class="kt-badge kt-badge--inline kt-badge--danger">@_sharedLocalizer.EmailNotConfirmed</span>
-            }}
+            }
+            @if (Model.PhoneNumberConfirmed)
+            {
+                <span class="kt-badge kt-badge--inline kt-badge--success">@_sharedLocalizer.PhoneNumberConfirmed</span>
+            }
+            else
+            {
+                <span class="kt-badge kt-badge--inline kt-badge--danger">@_sharedLocalizer.PhoneNumberNotConfirmed</span>
+            }
+        </div>
     </div>
 </div>
 <div class="modal-footer">

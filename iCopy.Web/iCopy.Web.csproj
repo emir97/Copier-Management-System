@@ -14,6 +14,8 @@
     <Compile Remove="Areas\Language\Models\**" />
     <Compile Remove="Areas\Location\Data\**" />
     <Compile Remove="Areas\Location\Models\**" />
+    <Compile Remove="Areas\User\Data\**" />
+    <Compile Remove="Areas\User\Models\**" />
     <Compile Remove="Resources\Country\**" />
     <Content Remove="Areas\Administration\Data\**" />
     <Content Remove="Areas\Administration\Models\**" />
@@ -21,6 +23,8 @@
     <Content Remove="Areas\Language\Models\**" />
     <Content Remove="Areas\Location\Data\**" />
     <Content Remove="Areas\Location\Models\**" />
+    <Content Remove="Areas\User\Data\**" />
+    <Content Remove="Areas\User\Models\**" />
     <Content Remove="Resources\Country\**" />
     <EmbeddedResource Remove="Areas\Administration\Data\**" />
     <EmbeddedResource Remove="Areas\Administration\Models\**" />
@@ -28,6 +32,8 @@
     <EmbeddedResource Remove="Areas\Language\Models\**" />
     <EmbeddedResource Remove="Areas\Location\Data\**" />
     <EmbeddedResource Remove="Areas\Location\Models\**" />
+    <EmbeddedResource Remove="Areas\User\Data\**" />
+    <EmbeddedResource Remove="Areas\User\Models\**" />
     <EmbeddedResource Remove="Resources\Country\**" />
     <None Remove="Areas\Administration\Data\**" />
     <None Remove="Areas\Administration\Models\**" />
@@ -35,6 +41,8 @@
     <None Remove="Areas\Language\Models\**" />
     <None Remove="Areas\Location\Data\**" />
     <None Remove="Areas\Location\Models\**" />
+    <None Remove="Areas\User\Data\**" />
+    <None Remove="Areas\User\Models\**" />
     <None Remove="Resources\Country\**" />
   </ItemGroup>
 
@@ -49,8 +57,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Language\Views\" />
-    <Folder Include="Areas\User\Data\" />
-    <Folder Include="Areas\User\Models\" />
     <Folder Include="Areas\User\Views\" />
     <Folder Include="TagHelpers\" />
     <Folder Include="wwwroot\assets\media\users\" />

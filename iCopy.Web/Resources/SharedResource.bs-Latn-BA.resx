@@ -180,6 +180,9 @@
   <data name="ChooseCity" xml:space="preserve">
     <value>Izaberite grad</value>
   </data>
+  <data name="ChooseCompany" xml:space="preserve">
+    <value>Izaberite kompaniju</value>
+  </data>
   <data name="ChooseCopier" xml:space="preserve">
     <value>Odaberi kopirnicu</value>
   </data>

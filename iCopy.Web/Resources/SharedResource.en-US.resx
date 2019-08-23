@@ -180,6 +180,9 @@
   <data name="ChooseCity" xml:space="preserve">
     <value>Choose city</value>
   </data>
+  <data name="ChooseCompany" xml:space="preserve">
+    <value>Choose company</value>
+  </data>
   <data name="ChooseCopier" xml:space="preserve">
     <value>Choose copier</value>
   </data>

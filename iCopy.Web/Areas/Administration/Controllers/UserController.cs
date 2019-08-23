@@ -41,6 +41,15 @@ namespace iCopy.Web.Areas.Administration.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Update(int id)
+        {
+            Model.Response.ApplicationUser model = await CrudService.GetByIdAsync(id);
+            if (model != null)
+                return View(model);
+            return NotFound();
+        }
+
         [HttpPost, Transaction, AutoValidateModelState]
         public async Task<IActionResult> UpdatePassword(int id, [FromForm] Model.Request.ChangePassword model)
         {
@@ -84,7 +93,7 @@ namespace iCopy.Web.Areas.Administration.Controllers
         }
 
         [HttpPost, IgnoreAntiforgeryToken]
-        public virtual async Task<DataTable<Model.Response.ApplicationUser>> GetData([FromForm]Model.Request.ApplicationUserSearch Search, [FromForm]DataTableRequest Request)
+        public async Task<DataTable<Model.Response.ApplicationUser>> GetData([FromForm]Model.Request.ApplicationUserSearch Search, [FromForm]DataTableRequest Request)
         {
             var filteredData = await CrudService.GetByParametersAsync(Search, Request.order[0].dir, Request.columns[Request.order[0].column].name, Request.start, Request.length);
             return new DataTable<Model.Response.ApplicationUser>
@@ -94,6 +103,23 @@ namespace iCopy.Web.Areas.Administration.Controllers
                 recordsFiltered = filteredData.Item2,
                 data = filteredData.Item1
             };
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id) => View(await CrudService.GetByIdAsync(id));
+
+        [HttpPost, IgnoreAntiforgeryToken]
+        public virtual async Task<IActionResult> ChangeActiveStatus(int id)
+        {
+            try
+            {
+                await CrudService.ChangeActiveStatusAsync(id);
+                return Json(new { success = true, message = _localizer.SuccChangeStatus });
+            }
+            catch
+            {
+                return Json(new { success = false, message = _localizer.ErrChangeStatus });
+            }
         }
     }
 }
