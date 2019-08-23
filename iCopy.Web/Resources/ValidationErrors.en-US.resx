@@ -249,6 +249,9 @@
   <data name="ErrUrl" xml:space="preserve">
     <value>Wrong url</value>
   </data>
+  <data name="ErrUsernamePolicy" xml:space="preserve">
+    <value>Username must contain only letters, numbers, dot and underscore</value>
+  </data>
   <data name="Phone number is already is use" xml:space="preserve">
     <value>Phone number is already is use</value>
   </data>

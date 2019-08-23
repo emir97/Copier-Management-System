@@ -250,12 +250,15 @@
     <value>Broj telefona se koristi</value>
   </data>
   <data name="Username is already in use" xml:space="preserve">
-    <value>Username se koristi</value>
+    <value>Korisničko ime se koristi</value>
   </data>
   <data name="EmployeeSettings" xml:space="preserve">
     <value>Postavke zaposlenika</value>
   </data>
   <data name="ErrUrl" xml:space="preserve">
     <value>Pogrešan link</value>
+  </data>
+  <data name="ErrUsernamePolicy" xml:space="preserve">
+    <value>Korisničko ime može sadržavati samo slova, brojeve, donju crtu i tačku</value>
   </data>
 </root>

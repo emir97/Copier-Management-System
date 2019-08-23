@@ -13,6 +13,7 @@ namespace iCopy.Model.Request
         [Required(AllowEmptyStrings = false, ErrorMessage = "ErrNoUsername")]
         [MaxLength(100, ErrorMessage = "ErrMaxLength")]
         [Unique(Type = UniqueAttribute.Username, ErrorMessage = "ErrUniqueUsername")]
+        [UsernamePolicy(ErrorMessage = "ErrUsernamePolicy")]
         public string Username { get; set; }
         [Required(ErrorMessage = "ErrNoPhoneNumber")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "ErrTypePhoneNumber")]
