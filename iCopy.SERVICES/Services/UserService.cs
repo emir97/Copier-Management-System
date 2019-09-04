@@ -1,20 +1,18 @@
 ﻿using AutoMapper;
+using iCopy.Database;
 using iCopy.Database.Context;
 using iCopy.Model.Request;
 using iCopy.Model.Response;
+using iCopy.SERVICES.Exceptions;
+using iCopy.SERVICES.Extensions;
 using iCopy.SERVICES.IServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Reflection.Metadata;
-using System.Security.Policy;
 using System.Threading.Tasks;
-using iCopy.Database;
-using iCopy.SERVICES.Exceptions;
-using iCopy.SERVICES.Extensions;
 using ApplicationUser = iCopy.Model.Response.ApplicationUser;
 using Enum = iCopy.Model.Enum.Enum;
 
@@ -26,10 +24,14 @@ namespace iCopy.SERVICES.Services
         private readonly AuthContext context;
         private readonly IPasswordHasher<Database.ApplicationUser> PasswordHasher;
         private readonly UserManager<Database.ApplicationUser> UserManager;
+        private readonly DBContext database;
+        private readonly IUserClaimsPrincipalFactory<Database.ApplicationUser> ClaimsPrincipalFactory;
 
         public UserService(
             AuthContext ctx,
+            DBContext database,
             IMapper mapper,
+            IUserClaimsPrincipalFactory<Database.ApplicationUser> ClaimsPrincipalFactory,
             IPasswordHasher<Database.ApplicationUser> PasswordHasher,
             UserManager<Database.ApplicationUser> UserManager) : base(ctx, mapper)
         {
@@ -37,11 +39,32 @@ namespace iCopy.SERVICES.Services
             this.context = ctx;
             this.PasswordHasher = PasswordHasher;
             this.UserManager = UserManager;
+            this.database = database;
+            this.ClaimsPrincipalFactory = ClaimsPrincipalFactory;
         }
 
         public Task<LoginResult> Login(Login login)
         {
-            throw new System.NotImplementedException();
+            Database.ApplicationUser user = context.Users.SingleOrDefault(x => x.UserName == login.Username || x.Email == login.Username);
+            if (user == null)
+                throw new ModelStateException(nameof(login), string.Format((IFormatProvider)CultureInfo.CurrentCulture, "User is not active"));
+            if (!user.Active && user.LockoutEnd < DateTime.Now)
+                throw new ModelStateException(nameof(login), "User is not active");
+            if (PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, login.Password) != PasswordVerificationResult.Success)
+                throw new ModelStateException(nameof(login), "Wrong password");
+
+            ClaimsPrincipalFactory.CreateAsync(user);
+
+
+            return null;
+            //var claims = new List<Claim>
+            //{
+            //    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            //    new Claim(ClaimTypes.Email, user.Email),
+            //    new Claim(ClaimTypes.AuthenticationMethod, CookieAuthenticationDefaults.AuthenticationScheme),
+            //    new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
+            //    new Claim(ClaimTypes.UserData, )
+            //}
         }
 
         public async Task<Model.Response.ApplicationUser> InsertAsync(Model.Request.ApplicationUserInsert user, params Enum.Roles[] roles)
