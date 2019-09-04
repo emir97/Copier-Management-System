@@ -29,7 +29,7 @@ namespace iCopy.ExternalServices.Mail
                 // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
                 //client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
-                client.Connect(message.MailServer.Url, message.MailServer.Port, MailKit.Security.SecureSocketOptions.StartTls);
+                client.Connect(message.MailServer.Url, message.MailServer.Port, MailKit.Security.SecureSocketOptions.StartTlsWhenAvailable);
                 client.Authenticate(message.MailServer.Username, message.MailServer.Password, CancellationToken.None);
                 client.Send(mimeMessage);
                 client.Disconnect(true);
