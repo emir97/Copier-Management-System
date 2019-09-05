@@ -80,7 +80,11 @@
             }
             public static class Login
             {
-                public static string Index => "/auth/login/index";
+                public static string Index => "/auth/login/";
+            }
+            public static class Dashboard
+            {
+                public static string Index => "/administration/dashboard/";
             }
         }
         public static class Defaults

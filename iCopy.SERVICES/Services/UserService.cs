@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ApplicationUser = iCopy.Model.Response.ApplicationUser;
 using Enum = iCopy.Model.Enum.Enum;
@@ -43,9 +44,9 @@ namespace iCopy.SERVICES.Services
             this.ClaimsPrincipalFactory = ClaimsPrincipalFactory;
         }
 
-        public Task<LoginResult> Login(Login login)
+        public async Task<LoginResult> Login(Login login)
         {
-            Database.ApplicationUser user = context.Users.SingleOrDefault(x => x.UserName == login.Username || x.Email == login.Username);
+            Database.ApplicationUser user = await context.Users.SingleOrDefaultAsync(x => x.UserName == login.Username || x.Email == login.Username);
             if (user == null)
                 throw new ModelStateException(nameof(login), string.Format((IFormatProvider)CultureInfo.CurrentCulture, "User is not active"));
             if (!user.Active && user.LockoutEnd < DateTime.Now)
@@ -53,18 +54,17 @@ namespace iCopy.SERVICES.Services
             if (PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, login.Password) != PasswordVerificationResult.Success)
                 throw new ModelStateException(nameof(login), "Wrong password");
 
-            ClaimsPrincipalFactory.CreateAsync(user);
+            Database.Company c = await database.Companies.FirstOrDefaultAsync(x => x.ApplicationUserId == user.Id && x.Active);
 
 
-            return null;
-            //var claims = new List<Claim>
-            //{
-            //    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            //    new Claim(ClaimTypes.Email, user.Email),
-            //    new Claim(ClaimTypes.AuthenticationMethod, CookieAuthenticationDefaults.AuthenticationScheme),
-            //    new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
-            //    new Claim(ClaimTypes.UserData, )
-            //}
+            ClaimsPrincipal principal = await ClaimsPrincipalFactory.CreateAsync(user);
+
+
+            return new LoginResult()
+            {
+                Success = true,
+                ClaimsPrincipal = principal
+            };
         }
 
         public async Task<Model.Response.ApplicationUser> InsertAsync(Model.Request.ApplicationUserInsert user, params Enum.Roles[] roles)

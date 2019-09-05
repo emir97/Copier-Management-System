@@ -17,6 +17,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using iCopy.ExternalServices;
 using iCopy.Web.Options;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 using DBContext = iCopy.Database.Context.DBContext;
 
 namespace iCopy.Web
@@ -54,7 +56,10 @@ namespace iCopy.Web
             services.AddLocalization(o => o.ResourcesPath = "Resources");
             services.ConfigureLocalization();
             services.AddDbContext<DBContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DBContext")));
-            services.AddDbContext<AuthContext>(x => x.UseSqlServer(Configuration.GetConnectionString("AuthContext")));
+            services.AddDbContext<AuthContext>(x =>
+            {
+                x.UseLoggerFactory(new LoggerFactory(new[] { new ConsoleLoggerProvider((_, __) => true, true) })).UseSqlServer(Configuration.GetConnectionString("AuthContext"));
+            });
             services.AddSession();
             services.AddiCopyServices();
             services.AddExternalServices();
