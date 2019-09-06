@@ -1,15 +1,13 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using iCopy.Database;
-using iCopy.Database.Context;
-using iCopy.Model.Request;
+﻿using iCopy.Model.Request;
 using iCopy.Model.Response;
+using iCopy.SERVICES.Exceptions;
 using iCopy.SERVICES.IServices;
 using iCopy.Web.Helper;
+using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace iCopy.Web.Areas.Auth.Controllers
 {
@@ -18,13 +16,13 @@ namespace iCopy.Web.Areas.Auth.Controllers
     {
         private readonly IUserService UserService;
         private readonly IAuthenticationService AuthenticationService;
-        private DBContext context;
+        private readonly SharedResource _localizer;
 
-        public LoginController(IUserService userService, IAuthenticationService authenticationService, DBContext context)
+        public LoginController(IUserService userService, IAuthenticationService authenticationService, SharedResource _localizer)
         {
             this.UserService = userService;
-            this.context = context;
             this.AuthenticationService = authenticationService;
+            this._localizer = _localizer;
         }
 
         [HttpGet]
@@ -35,15 +33,20 @@ namespace iCopy.Web.Areas.Auth.Controllers
         {
             if (ModelState.IsValid)
             {
-                LoginResult result = await UserService.Login(login);
-                if (result.Success)
+                try
                 {
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, result.ClaimsPrincipal);
-                    return Redirect(Settings.Routes.Dashboard);
+                    LoginResult result = await UserService.Login(login);
+                    if (result.Success)
+                    {
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, result.ClaimsPrincipal);
+                        return Redirect(Settings.Routes.Dashboard.Index);
+                    }
+                } catch(ModelStateException e)
+                {
+                    TempData["error"] = _localizer.LocalizedString(e.Message);
                 }
-                ModelState.AddModelError("InvalidLogin", result.Error);
             }
-            return View(login);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
@@ -51,19 +54,6 @@ namespace iCopy.Web.Areas.Auth.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction(nameof(Index));
-        }
-
-        public async Task<string> Test()
-        {
-            Database.ApplicationUser user = new Database.ApplicationUser() {Id = 2};
-
-            var name = await context.Companies
-                .Select(x => x.Name)
-                .Union(await context.Copiers.Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.Name).ToListAsync())
-                .Union(await context.Clients.Include(x => x.Person).Select(x => x.Person.FirstName + " " + x.Person.LastName).ToListAsync())
-                .Union(await context.Employees.Include(x => x.Person).Select(x => x.Person.FirstName + " " + x.Person.LastName).ToListAsync())
-                .FirstOrDefaultAsync();
-            return name;
         }
     }
 }

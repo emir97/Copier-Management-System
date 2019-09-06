@@ -81,6 +81,7 @@
             public static class Login
             {
                 public static string Index => "/auth/login/";
+                public static string Logout => "/auth/login/logout";
             }
             public static class Dashboard
             {

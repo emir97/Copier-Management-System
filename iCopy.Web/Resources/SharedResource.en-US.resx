@@ -354,6 +354,9 @@
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
   <data name="MiddleName" xml:space="preserve">
     <value>Middlename</value>
   </data>
@@ -476,6 +479,9 @@
   </data>
   <data name="Url" xml:space="preserve">
     <value>Url</value>
+  </data>
+  <data name="User does not exists" xml:space="preserve">
+    <value>User does not exists</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>

@@ -47,18 +47,17 @@ namespace iCopy.SERVICES.Services
         public async Task<LoginResult> Login(Login login)
         {
             Database.ApplicationUser user = await context.Users.SingleOrDefaultAsync(x => x.UserName == login.Username || x.Email == login.Username);
+            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("bs-Latn-BA");
             if (user == null)
-                throw new ModelStateException(nameof(login), string.Format((IFormatProvider)CultureInfo.CurrentCulture, "User is not active"));
+                throw new ModelStateException(nameof(login), string.Format((IFormatProvider)CultureInfo.CurrentCulture, "User does not exists"));
             if (!user.Active && user.LockoutEnd < DateTime.Now)
-                throw new ModelStateException(nameof(login), "User is not active");
+                throw new ModelStateException(nameof(login), string.Format(CultureInfo.CurrentCulture, "User is not active"));
             if (PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, login.Password) != PasswordVerificationResult.Success)
-                throw new ModelStateException(nameof(login), "Wrong password");
+                throw new ModelStateException(nameof(login), string.Format(CultureInfo.CurrentCulture, "Wrong password"));
 
             Database.Company c = await database.Companies.FirstOrDefaultAsync(x => x.ApplicationUserId == user.Id && x.Active);
 
-
             ClaimsPrincipal principal = await ClaimsPrincipalFactory.CreateAsync(user);
-
 
             return new LoginResult()
             {

@@ -342,6 +342,9 @@
   <data name="Login" xml:space="preserve">
     <value>Prijavi se</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Odjavi se</value>
+  </data>
   <data name="MiddleName" xml:space="preserve">
     <value>Nadimak</value>
   </data>
@@ -461,6 +464,9 @@
   </data>
   <data name="Url" xml:space="preserve">
     <value>Link</value>
+  </data>
+  <data name="User does not exists" xml:space="preserve">
+    <value>Korisnik ne postoji</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Korisničko ime</value>
