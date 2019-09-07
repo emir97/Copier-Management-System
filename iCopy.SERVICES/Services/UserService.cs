@@ -44,29 +44,6 @@ namespace iCopy.SERVICES.Services
             this.ClaimsPrincipalFactory = ClaimsPrincipalFactory;
         }
 
-        public async Task<LoginResult> Login(Login login)
-        {
-            Database.ApplicationUser user = await context.Users.SingleOrDefaultAsync(x => x.UserName == login.Username || x.Email == login.Username);
-            if (user == null)
-                throw new ModelStateException(nameof(login), string.Format((IFormatProvider)CultureInfo.CurrentCulture, "User is not active"));
-            if (!user.Active && user.LockoutEnd < DateTime.Now)
-                throw new ModelStateException(nameof(login), "User is not active");
-            if (PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, login.Password) != PasswordVerificationResult.Success)
-                throw new ModelStateException(nameof(login), "Wrong password");
-
-            Database.Company c = await database.Companies.FirstOrDefaultAsync(x => x.ApplicationUserId == user.Id && x.Active);
-
-
-            ClaimsPrincipal principal = await ClaimsPrincipalFactory.CreateAsync(user);
-
-
-            return new LoginResult()
-            {
-                Success = true,
-                ClaimsPrincipal = principal
-            };
-        }
-
         public async Task<Model.Response.ApplicationUser> InsertAsync(Model.Request.ApplicationUserInsert user, params Enum.Roles[] roles)
         {
             Database.ApplicationUser model = mapper.Map<Database.ApplicationUser>(user);
