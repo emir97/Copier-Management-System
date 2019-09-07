@@ -1,12 +1,11 @@
-﻿using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using iCopy.Database;
+﻿using iCopy.Database;
 using iCopy.Database.Context;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace iCopy.SERVICES.Auth
 {
@@ -28,10 +27,12 @@ namespace iCopy.SERVICES.Auth
                 .Union(await context.Employees.Include(x => x.Person).Select(x => x.Person.FirstName + " " + x.Person.LastName).ToListAsync())
                 .FirstOrDefaultAsync();
 
+            var profileImagePath = await context.ApplicationUserProfilePhotos.Include(x => x.ProfilePhoto).FirstOrDefaultAsync(x => x.ApplicationUserId == user.Id && x.Active);
+
             ClaimsIdentity identity = await base.GenerateClaimsAsync(user);
-            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
-            identity.AddClaim(new Claim(ClaimTypes.Email, user.Email));
-            identity.AddClaim(new Claim(ClaimTypes.Name, name));
+            identity.AddClaim(new Claim(ClaimTypes.GivenName, name));
+            if (profileImagePath != null)
+                identity.AddClaim(new Claim(ApplicationUserClaimTypes.ProfilePhotoPath, profileImagePath.ProfilePhoto.Path));
             
             return identity;
         }

@@ -95,6 +95,7 @@ namespace iCopy.Web.Resources
         public string Back => localizer[nameof(Back)];
         public string CorrectTheErrors => localizer[nameof(CorrectTheErrors)];
         public string SuccRegister => localizer[nameof(SuccRegister)];
+        public string Logout => localizer[nameof(Logout)];
 
         #region SuccMessage
         public string SuccUpdate => localizer[nameof(SuccUpdate)];
