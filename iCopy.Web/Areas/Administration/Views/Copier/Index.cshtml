@@ -1,4 +1,5 @@
 ﻿@model iCopy.Web.Models.DataTable<iCopy.Model.Response.Copier>
+@using Enum = iCopy.Model.Enum.Enum
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = _sharedLocalizer.CopierSettings;
@@ -24,16 +25,19 @@
                 @_sharedLocalizer.CopierSettings
             </h3>
         </div>
-        <div class="kt-portlet__head-toolbar">
-            <div class="kt-portlet__head-wrapper">
-                <div class="kt-portlet__head-actions">
-                    <a href="@Settings.Routes.Copier.Insert" class="btn btn-brand btn-icon-sm">
-                        <i class="la la-plus"></i>
-                        @_sharedLocalizer.AddCopier
-                    </a>
+        @if (User.HasRole(Enum.Roles.Administrator))
+        {
+            <div class="kt-portlet__head-toolbar">
+                <div class="kt-portlet__head-wrapper">
+                    <div class="kt-portlet__head-actions">
+                        <a href="@Settings.Routes.Copier.Insert" class="btn btn-brand btn-icon-sm">
+                            <i class="la la-plus"></i>
+                            @_sharedLocalizer.AddCopier
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
     <div class="kt-portlet__body">
         <div class="row">

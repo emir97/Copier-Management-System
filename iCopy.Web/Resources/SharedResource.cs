@@ -180,5 +180,9 @@ namespace iCopy.Web.Resources
         public string Disabled => localizer[nameof(Disabled)];
 
         #endregion
+
+        #region Dashboard
+        public string Dashboard => localizer[nameof(Dashboard)];
+        #endregion
     }
 }

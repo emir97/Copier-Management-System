@@ -10,11 +10,12 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace iCopy.Web.Areas.Administration.Controllers
 {
 
-    [Area(Strings.Area.Administration)]
+    [Area(Strings.Area.Administration), Authorize(Roles = Strings.Roles.Administrator)]
     public class CompanyController : BaseDataTableCRUDController<Model.Request.Company, Model.Request.Company, Model.Response.Company, Model.Request.CompanySearch, int>
     {
         private readonly ICompanyService CrudService;

@@ -20,17 +20,17 @@ namespace iCopy.SERVICES.Auth
 
         protected override async Task<ClaimsIdentity> GenerateClaimsAsync(ApplicationUser user)
         {
+            ClaimsIdentity identity = await base.GenerateClaimsAsync(user);
+
             var name = await context.Companies
                 .Select(x => x.Name)
-                .Union(await context.Copiers.Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.Name).ToListAsync())
-                .Union(await context.Clients.Include(x => x.Person).Select(x => x.Person.FirstName + " " + x.Person.LastName).ToListAsync())
-                .Union(await context.Employees.Include(x => x.Person).Select(x => x.Person.FirstName + " " + x.Person.LastName).ToListAsync())
+                .Union(context.Copiers.Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.Name))
+                .Union(context.Clients.Include(x => x.Person).Select(x => x.Person.FirstName + " " + x.Person.LastName))
+                .Union(context.Employees.Include(x => x.Person).Select(x => x.Person.FirstName + " " + x.Person.LastName))
                 .FirstOrDefaultAsync();
+            identity.AddClaim(new Claim(ClaimTypes.GivenName, name));
 
             var profileImagePath = await context.ApplicationUserProfilePhotos.Include(x => x.ProfilePhoto).FirstOrDefaultAsync(x => x.ApplicationUserId == user.Id && x.Active);
-
-            ClaimsIdentity identity = await base.GenerateClaimsAsync(user);
-            identity.AddClaim(new Claim(ClaimTypes.GivenName, name));
             if (profileImagePath != null)
                 identity.AddClaim(new Claim(ApplicationUserClaimTypes.ProfilePhotoPath, profileImagePath.ProfilePhoto.Path));
             

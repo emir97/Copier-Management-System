@@ -10,10 +10,11 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace iCopy.Web.Areas.Administration.Controllers
 {
-    [Area(Strings.Area.Administration)]
+    [Area(Strings.Area.Administration), Authorize(Roles = Strings.Roles.AdministratorCompany)]
     public class CopierController : BaseDataTableCRUDController<Model.Request.Copier, Model.Request.Copier, Model.Response.Copier, Model.Request.CopierSearch, int>
     {
         private new readonly ICopierService crudService;
@@ -25,7 +26,7 @@ namespace iCopy.Web.Areas.Administration.Controllers
             this.crudService = CrudService;
         }
 
-        [HttpPost, Transaction, AutoValidateModelState]
+        [HttpPost, Transaction, AutoValidateModelState, Authorize(Roles = Strings.Roles.Administrator)]
         public override async Task<IActionResult> Insert(Copier model)
         {
             try
@@ -68,6 +69,18 @@ namespace iCopy.Web.Areas.Administration.Controllers
             }
 
             return View(await crudService.GetByIdAsync(id));
+        }
+
+        [HttpGet, Transaction, Authorize(Roles = Strings.Roles.Administrator)]
+        public override Task<IActionResult> Delete(int id)
+        {
+            return base.Delete(id);
+        }
+
+        [HttpPost, IgnoreAntiforgeryToken, Authorize(Roles = Strings.Roles.Administrator)]
+        public override Task<IActionResult> ChangeActiveStatus(int id)
+        {
+            return base.ChangeActiveStatus(id);
         }
     }
 }

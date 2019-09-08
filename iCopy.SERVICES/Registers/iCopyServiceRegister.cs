@@ -27,6 +27,7 @@ namespace iCopy.SERVICES.Registers
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IUserClaimsPrincipalFactory<Database.ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
             return services;
         }
     }

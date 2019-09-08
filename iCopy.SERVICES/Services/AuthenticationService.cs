@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using iCopy.Database.Context;
@@ -42,11 +43,18 @@ namespace iCopy.SERVICES.Services
                 if (PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, login.Password) != PasswordVerificationResult.Success)
                     throw new ModelStateException(nameof(login), "Wrong password");
 
-                Database.Company c = await dbContext.Companies.FirstOrDefaultAsync(x => x.ApplicationUserId == user.Id && x.Active);
-
+                if (!(await dbContext.Companies.Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.Active)
+                    .Union(await dbContext.Copiers.Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.Active).ToListAsync())
+                    .Union(await dbContext.Employees.Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.Active).ToListAsync())
+                    .Union(await dbContext.Clients.Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.Active).ToListAsync())
+                    .Union(await dbContext.Administrators.Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.Active).ToListAsync())
+                    .AnyAsync())
+                )
+                {
+                    throw  new ModelStateException(nameof(login), "User is deactivated");
+                }
 
                 ClaimsPrincipal principal = await ClaimsPrincipalFactory.CreateAsync(user);
-
 
                 return new LoginResult()
                 {

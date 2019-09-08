@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using iCopy.SERVICES.Exceptions;
+using iCopy.Web.Resources;
 using IAuthenticationService = iCopy.SERVICES.IServices.IAuthenticationService;
 
 namespace iCopy.Web.Areas.Auth.Controllers
@@ -13,29 +15,43 @@ namespace iCopy.Web.Areas.Auth.Controllers
     public class LoginController : Controller
     {
         private readonly IAuthenticationService AuthenticationService;
+        private readonly SharedResource _localizer;
 
-        public LoginController(IAuthenticationService AuthenticationService)
+        public LoginController(IAuthenticationService AuthenticationService, SharedResource _localizer)
         {
             this.AuthenticationService = AuthenticationService;
+            this._localizer = _localizer;
         }
 
         [HttpGet]
-        public IActionResult Index() => View();
+        public IActionResult Index()
+        {
+            if (User.Identity.IsAuthenticated)
+                Redirect(Settings.Routes.Dashboard.Index);
+            return View();
+        }
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(Login login)
         {
             if (ModelState.IsValid)
             {
-                LoginResult result = await AuthenticationService.Authenticate(login);
-                if (result.Success)
+                try
                 {
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, result.ClaimsPrincipal);
-                    return Redirect(Settings.Routes.Dashboard.Index);
+                    LoginResult result = await AuthenticationService.Authenticate(login);
+                    if (result.Success)
+                    {
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, result.ClaimsPrincipal);
+                        return Redirect(Settings.Routes.Dashboard.Index);
+                    }
                 }
-                ModelState.AddModelError("InvalidLogin", result.Error);
+                catch (ModelStateException e)
+                {
+                    TempData["error"] = _localizer.LocalizedString(e.Message);
+                }
             }
-            return View(login);
+
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]

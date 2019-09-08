@@ -10,5 +10,11 @@
             public const string User = "User";
             public const string Auth = "Auth";
         }
+        public class Roles
+        {
+            public const string Administrator = "Administrator";
+            public const string Company = "Company";
+            public const string AdministratorCompany = "Administrator,Company";
+        }
     }
 }
