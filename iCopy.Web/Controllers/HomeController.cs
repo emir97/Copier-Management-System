@@ -2,12 +2,10 @@
 using iCopy.ExternalServices.Model;
 using iCopy.Web.Models;
 using iCopy.Web.Options;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using iCopy.Web.Helper;
-using Microsoft.AspNetCore.DataProtection;
-using System;
 
 namespace iCopy.Web.Controllers
 {
