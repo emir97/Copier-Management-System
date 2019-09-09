@@ -56,10 +56,7 @@ namespace iCopy.Web
             services.AddLocalization(o => o.ResourcesPath = "Resources");
             services.ConfigureLocalization();
             services.AddDbContext<DBContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DBContext")));
-            services.AddDbContext<AuthContext>(x =>
-            {
-                x.UseLoggerFactory(new LoggerFactory(new[] { new ConsoleLoggerProvider((_, __) => true, true) })).UseSqlServer(Configuration.GetConnectionString("AuthContext"));
-            });
+            services.AddDbContext<AuthContext>(x => x.UseSqlServer(Configuration.GetConnectionString("AuthContext")));
             services.AddSession();
             services.AddiCopyServices();
             services.AddExternalServices();
@@ -72,6 +69,12 @@ namespace iCopy.Web
 
             services.AddAuthentication().AddCookie();
             services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<AuthContext>().AddDefaultTokenProviders();
+            services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.AddConfiguration(Configuration.GetSection("Logging"));
+                loggingBuilder.AddConsole();
+                loggingBuilder.AddDebug();
+            });
             services.Configure<AuthenticationOptions>(options =>
             {
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -147,7 +150,7 @@ namespace iCopy.Web
                     template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(
                     name: "default",
-                    template: "{area=auth}/{controller=login}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
