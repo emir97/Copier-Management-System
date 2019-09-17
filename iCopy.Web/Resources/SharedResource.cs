@@ -178,6 +178,8 @@ namespace iCopy.Web.Resources
         public string UserSettings => localizer[nameof(UserSettings)];
         public string Enabled => localizer[nameof(Enabled)];
         public string Disabled => localizer[nameof(Disabled)];
+        public string UserAccountActivated => localizer[nameof(UserAccountActivated)];
+        public string UserAccountNotActivated => localizer[nameof(UserAccountNotActivated)];
 
         #endregion
 

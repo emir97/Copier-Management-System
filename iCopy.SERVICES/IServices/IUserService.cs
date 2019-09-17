@@ -1,6 +1,4 @@
-﻿using iCopy.Model.Request;
-using iCopy.Model.Response;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace iCopy.SERVICES.IServices
 {
@@ -10,5 +8,6 @@ namespace iCopy.SERVICES.IServices
         Task<Model.Response.ApplicationUser> UpdatePassword(int applicationUserId, Model.Request.ChangePassword password);
         Task<string> GenerateAccountActivationToken(int applicationUserId);
         Task<Model.Response.ApplicationUser> ChangeActiveStatusAsync(int id);
+        Task<bool> ActivateUserAccount(int id, string token);
     }
 }

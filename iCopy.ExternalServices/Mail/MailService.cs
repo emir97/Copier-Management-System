@@ -1,14 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Gmail.v1;
-using Google.Apis.Util;
-using iCopy.ExternalServices.Model;
+﻿using iCopy.ExternalServices.Model;
 using MailKit.Net.Smtp;
-using MailKit.Security;
 using MimeKit;
 using MimeKit.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace iCopy.ExternalServices.Mail
 {

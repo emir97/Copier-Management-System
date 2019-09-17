@@ -76,12 +76,12 @@
             public static class SignUp
             {
                 public static string Index => "/auth/signup/index";
-                public static string ActivateAcount => "/auth/signup/activateaccount";
             }
             public static class Login
             {
                 public static string Index => "/auth/login/";
                 public static string Logout => "/auth/login/logout";
+                public static string ActivateAcount => "/auth/login/activate";
             }
             public static class Dashboard
             {

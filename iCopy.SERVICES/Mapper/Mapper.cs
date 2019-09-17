@@ -33,6 +33,7 @@ namespace iCopy.SERVICES.Mapper
             CreateMap<Model.Request.Person, Model.Response.Person>().ReverseMap();
 
             CreateMap<Database.Client, Model.Request.Client>().ReverseMap();
+            CreateMap<Database.Client, Model.Response.Client>().ReverseMap();
 
             CreateMap<Database.ProfilePhoto, Model.Response.ProfilePhoto>().ReverseMap();
             CreateMap<Database.ProfilePhoto, Model.Request.ProfilePhoto>().ReverseMap();

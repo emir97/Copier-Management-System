@@ -4,6 +4,7 @@ using AutoMapper;
 using iCopy.Database.Context;
 using iCopy.Model.Response;
 using iCopy.SERVICES.IServices;
+using Enum = iCopy.Model.Enum.Enum;
 
 namespace iCopy.SERVICES.Services
 {
@@ -18,12 +19,20 @@ namespace iCopy.SERVICES.Services
             this.PersonService = PersonService;
         }
 
+        public override async Task<Client> GetByIdAsync(int id)
+        {
+            Model.Response.Client client = await base.GetByIdAsync(id);
+            client.Person = await PersonService.GetByIdAsync(client.PersonId);
+            client.ApplicationUser = await UserService.GetByIdAsync(client.ApplicationUserId);
+            return client;
+        }
+
         public override async Task<Client> InsertAsync(Model.Request.Client entity)
         {
             Database.Client client = mapper.Map<Database.Client>(entity);
             try
             {
-                Model.Response.ApplicationUser user = await UserService.InsertAsync(entity.ApplicationUserInsert);
+                Model.Response.ApplicationUser user = await UserService.InsertAsync(entity.ApplicationUserInsert, Enum.Roles.User);
                 Model.Response.Person person = await PersonService.InsertAsync(entity.Person);
                 client.ApplicationUserId = user.ID;
                 client.PersonId = person.ID;

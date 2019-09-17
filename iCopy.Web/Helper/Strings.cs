@@ -16,5 +16,10 @@
             public const string Company = "Company";
             public const string AdministratorCompany = "Administrator,Company";
         }
+
+        public class Protection
+        {
+            public const string UrlEncription = "_url_protection_data_provider_";
+        }
     }
 }

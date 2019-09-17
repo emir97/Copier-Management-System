@@ -486,6 +486,12 @@
   <data name="User does not exists" xml:space="preserve">
     <value>User does not exists</value>
   </data>
+  <data name="UserAccountActivated" xml:space="preserve">
+    <value>User account successfully activated</value>
+  </data>
+  <data name="UserAccountNotActivated" xml:space="preserve">
+    <value>An error occured while trying to activate user account</value>
+  </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
   </data>

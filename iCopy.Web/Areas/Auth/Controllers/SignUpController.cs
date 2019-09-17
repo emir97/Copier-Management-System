@@ -7,8 +7,11 @@ using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using iCopy.Web.Helper;
+using Microsoft.AspNetCore.DataProtection;
+using Org.BouncyCastle.Crypto.Signers;
 
 namespace iCopy.Web.Areas.Auth.Controllers
 {
@@ -21,13 +24,15 @@ namespace iCopy.Web.Areas.Auth.Controllers
         private readonly EmailServerNoReplyOptions ServerNoReplyOptions;
         private readonly IUserService UserService;
         private readonly Constants Constants;
+        private readonly IDataProtector protector;
 
         public SignUpController(IClientService ClientService, 
             SharedResource _localizer, 
             IMailService MailService, 
             EmailServerNoReplyOptions ServerNoReplyOptions, 
             IUserService UserService,
-            Constants Constants)
+            Constants Constants,
+            IDataProtectionProvider protectionProvider)
         {
             this.ClientService = ClientService;
             this._localizer = _localizer;
@@ -35,21 +40,36 @@ namespace iCopy.Web.Areas.Auth.Controllers
             this.ServerNoReplyOptions = ServerNoReplyOptions;
             this.UserService = UserService;
             this.Constants = Constants;
+            this.protector = protectionProvider.CreateProtector(Strings.Protection.UrlEncription);
         }
+
         [HttpGet]
         public Task<ViewResult> Index() => Task.FromResult(View(new Model.Request.Client()));
+
         [HttpPost, Transaction, AutoValidateModelState]
         public async Task<IActionResult> Index([FromForm] Model.Request.Client client)
         {
             try
             {
                 Model.Response.Client addedClient = await ClientService.InsertAsync(client);
-                var token = UserService.GenerateAccountActivationToken(addedClient.ApplicationUserId);
+                addedClient = await ClientService.GetByIdAsync(addedClient.ID);
+                var token = await UserService.GenerateAccountActivationToken(addedClient.ApplicationUserId);
+                var encryptedToken = System.Web.HttpUtility.UrlEncode(protector.Protect(Encoding.UTF8.GetBytes(token)));
+                var encriptedUser = System.Web.HttpUtility.UrlEncode(protector.Protect(Encoding.UTF8.GetBytes(addedClient.ApplicationUserId.ToString())));
                 await MailService.SendMailAsync(new MailMessage
                 {
                     To = addedClient.ApplicationUser.Email,
                     Subject = Constants.EmailActivationAccountSubject(),
-                    Body = Constants.EmailActivationAccountBody($"{HttpContext.Request.Scheme}/{HttpContext.Request.Host}{Settings.Routes.SignUp.ActivateAcount}?ApplicationUserId={addedClient.ApplicationUserId}&ActivationEmailToken={token}"),
+                    MailServer = new MailServer
+                    {
+                        Email = ServerNoReplyOptions.Email,
+                        Name = ServerNoReplyOptions.Name,
+                        Password = ServerNoReplyOptions.Password,
+                        Username = ServerNoReplyOptions.Username,
+                        Port = ServerNoReplyOptions.Port,
+                        Url = ServerNoReplyOptions.Domain
+                    },
+                    Body = Constants.EmailActivationAccountBody($"{HttpContext.Request.Scheme}:/{HttpContext.Request.Host}{Settings.Routes.Login.ActivateAcount}?user={encriptedUser}&token={encryptedToken}"),
                 });
                 return Json(new {success = true, message = _localizer.SuccRegister});
             }
@@ -59,25 +79,30 @@ namespace iCopy.Web.Areas.Auth.Controllers
             }
         }
 
-        public async Task<string> ActivateAccount(int id)
+        public async Task<IActionResult> SendEmail()
         {
-            var token = UserService.GenerateAccountActivationToken(id);
+            Model.Response.Client addedClient = await ClientService.GetByIdAsync(15);
+            var token = await UserService.GenerateAccountActivationToken(addedClient.ApplicationUserId);
+            var encryptedToken = System.Web.HttpUtility.UrlEncode(protector.Protect(Encoding.UTF8.GetBytes(token)));
+            var encriptedUser = System.Web.HttpUtility.UrlEncode(protector.Protect(Encoding.UTF8.GetBytes(addedClient.ApplicationUserId.ToString())));
+
             await MailService.SendMailAsync(new MailMessage
             {
-                To = "emir.veledar@edu.fit.ba",
+                To = addedClient.ApplicationUser.Email,
                 Subject = Constants.EmailActivationAccountSubject(),
-                Body = Constants.EmailActivationAccountBody($"{HttpContext.Request.Scheme}/{HttpContext.Request.Host}{Settings.Routes.SignUp.ActivateAcount}?ApplicationUserId={id}&ActivationEmailToken={token}"),
-                MailServer = new MailServer()
+                MailServer = new MailServer
                 {
-                    Url =  ServerNoReplyOptions.Domain,
-                    Name = ServerNoReplyOptions.Name,
                     Email = ServerNoReplyOptions.Email,
-                    Username = ServerNoReplyOptions.Username,
+                    Name = ServerNoReplyOptions.Name,
                     Password = ServerNoReplyOptions.Password,
-                    Port = ServerNoReplyOptions.Port
-                }
+                    Username = ServerNoReplyOptions.Username,
+                    Port = ServerNoReplyOptions.Port,
+                    Url = ServerNoReplyOptions.Domain
+                },
+                Body = Constants.EmailActivationAccountBody($"{HttpContext.Request.Scheme}:/{HttpContext.Request.Host}{Settings.Routes.Login.ActivateAcount}?user={encriptedUser}&token={encryptedToken}"),
             });
-            return "Dobar";
+            return RedirectToAction(nameof(Index));
         }
+
     }
 }

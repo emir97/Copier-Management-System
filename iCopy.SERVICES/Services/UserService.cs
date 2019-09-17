@@ -12,8 +12,10 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using ApplicationUser = iCopy.Model.Response.ApplicationUser;
 using Enum = iCopy.Model.Enum.Enum;
 
@@ -92,7 +94,7 @@ namespace iCopy.SERVICES.Services
         {
             Database.ApplicationUser user = await context.Users.FindAsync(applicationUserId);
             string token = await UserManager.GenerateEmailConfirmationTokenAsync(user);
-            context.UserTokens.Add(new Database.ApplicationUserUserToken()
+            context.ApplicationUserTokens.Add(new Database.ApplicationUserToken()
             {
                 TokenType = TokenType.AccountActivation,
                 UserId = user.Id,
@@ -180,6 +182,25 @@ namespace iCopy.SERVICES.Services
                 throw e;
             }
             return mapper.Map<Model.Response.ApplicationUser>(model);
+        }
+
+        public async Task<bool> ActivateUserAccount(int id, string token)
+        {
+            Database.ApplicationUser user = await context.Users.FindAsync(id);
+            Database.ApplicationUserToken dbToken = await context.ApplicationUserTokens.FirstOrDefaultAsync(x => x.TokenType == TokenType.AccountActivation && x.Value == token && x.Active);
+            if (dbToken != null)
+            {
+                user.EmailConfirmed = true;
+                user.ModifiedDate = DateTime.Now;
+                dbToken.Active = false;
+                dbToken.ModifiedDate = DateTime.Now;
+                context.ApplicationUserTokens.Update(dbToken);
+                context.Users.Update(user);
+                await context.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
         }
     }
 
