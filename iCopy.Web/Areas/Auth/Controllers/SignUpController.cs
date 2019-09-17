@@ -78,31 +78,5 @@ namespace iCopy.Web.Areas.Auth.Controllers
                 return StatusCode((int) HttpStatusCode.InternalServerError);
             }
         }
-
-        public async Task<IActionResult> SendEmail()
-        {
-            Model.Response.Client addedClient = await ClientService.GetByIdAsync(15);
-            var token = await UserService.GenerateAccountActivationToken(addedClient.ApplicationUserId);
-            var encryptedToken = System.Web.HttpUtility.UrlEncode(protector.Protect(Encoding.UTF8.GetBytes(token)));
-            var encriptedUser = System.Web.HttpUtility.UrlEncode(protector.Protect(Encoding.UTF8.GetBytes(addedClient.ApplicationUserId.ToString())));
-
-            await MailService.SendMailAsync(new MailMessage
-            {
-                To = addedClient.ApplicationUser.Email,
-                Subject = Constants.EmailActivationAccountSubject(),
-                MailServer = new MailServer
-                {
-                    Email = ServerNoReplyOptions.Email,
-                    Name = ServerNoReplyOptions.Name,
-                    Password = ServerNoReplyOptions.Password,
-                    Username = ServerNoReplyOptions.Username,
-                    Port = ServerNoReplyOptions.Port,
-                    Url = ServerNoReplyOptions.Domain
-                },
-                Body = Constants.EmailActivationAccountBody($"{HttpContext.Request.Scheme}:/{HttpContext.Request.Host}{Settings.Routes.Login.ActivateAcount}?user={encriptedUser}&token={encryptedToken}"),
-            });
-            return RedirectToAction(nameof(Index));
-        }
-
     }
 }
