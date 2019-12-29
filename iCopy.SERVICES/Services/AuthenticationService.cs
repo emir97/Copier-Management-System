@@ -41,7 +41,7 @@ namespace iCopy.SERVICES.Services
             Database.ApplicationUser user = await authContext.Users.SingleOrDefaultAsync(x => x.UserName == login.Username || x.Email == login.Username);
             if (user == null)
                 throw new ModelStateException(nameof(login), string.Format((IFormatProvider)CultureInfo.CurrentCulture, "User is not active"));
-            if (!user.Active && user.EmailConfirmed && user.LockoutEnd < DateTime.Now)
+            if (!user.Active && user.EmailConfirmed && (user.LockoutEnd ?? DateTime.Now) < DateTime.Now)
                 throw new ModelStateException(nameof(login), "User is not active");
             if (PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, login.Password) != PasswordVerificationResult.Success)
                 throw new ModelStateException(nameof(login), "Wrong password");

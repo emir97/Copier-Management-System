@@ -83,15 +83,16 @@ namespace iCopy.Web
                 options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultSignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             });
-            services.Configure<CookieAuthenticationOptions>(options =>
+            services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefaults.AuthenticationScheme, options =>
             {
                 options.Cookie.IsEssential = true;
                 options.Cookie.SameSite = SameSiteMode.Strict;
                 options.Cookie.HttpOnly = true;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
-                options.AccessDeniedPath = "/Auth/AccessDeniedPath";
-                options.LoginPath = "/Auth/Login";
-                options.LogoutPath = "/Auth/Logout";
+
+                options.AccessDeniedPath = new PathString("/auth/errors/error401");
+                options.LoginPath = new PathString("/auth/login/index");
+                options.LogoutPath = new PathString("/auth/login/logout");
             });
             services.Configure<IdentityOptions>(options =>
             {
@@ -109,8 +110,6 @@ namespace iCopy.Web
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequiredLength = 8;    
 
-                options.Tokens.AuthenticatorIssuer = "";
-                options.Tokens.AuthenticatorTokenProvider = "";
             });
             services.Configure<SessionOptions>(options =>
             {
@@ -149,6 +148,9 @@ namespace iCopy.Web
                 routes.MapRoute(
                     name: "areas",
                     template: "{area:exists}/{controller=Login}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name: "withourareas",
+                    template: "{controller=Login}/{action=Index}/{id?}");
                 routes.MapRoute(
                     name: "default",
                     template: "{area=auth}/{controller=Login}/{action=Index}/{id?}");

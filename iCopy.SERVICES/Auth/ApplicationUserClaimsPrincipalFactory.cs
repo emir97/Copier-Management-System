@@ -26,8 +26,8 @@ namespace iCopy.SERVICES.Auth
             var name = await context.Companies
                 .Select(x => x.Name)
                 .Union(context.Copiers.Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.Name))
-                .Union(context.Clients.Include(x => x.Person).Select(x => x.Person.FirstName + " " + x.Person.LastName))
-                .Union(context.Employees.Include(x => x.Person).Select(x => x.Person.FirstName + " " + x.Person.LastName))
+                .Union(context.Clients.Include(x => x.Person).Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.Person.FirstName + " " + x.Person.LastName))
+                .Union(context.Employees.Include(x => x.Person).Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.Person.FirstName + " " + x.Person.LastName))
                 .FirstOrDefaultAsync();
             identity.AddClaim(new Claim(ClaimTypes.GivenName, name));
 

@@ -66,12 +66,15 @@
                         </a>
                     </li>
                 }
-                <li class="kt-menu__item" aria-haspopup="true">
-                    <a href="@Settings.Routes.Employee.Index" class="kt-menu__link ">
-                        <span class="kt-menu__link-icon"><i class="fa fa-people-carry"></i></span>
-                        <span class="kt-menu__link-text">@_sharedLocalizer.EmployeeSettings</span>
-                    </a>
-                </li>
+                @if (User.HasRoles(Enum.Roles.Administrator, Enum.Roles.Company, Enum.Roles.Copier))
+                {
+                    <li class="kt-menu__item" aria-haspopup="true">
+                        <a href="@Settings.Routes.Employee.Index" class="kt-menu__link ">
+                            <span class="kt-menu__link-icon"><i class="fa fa-people-carry"></i></span>
+                            <span class="kt-menu__link-text">@_sharedLocalizer.EmployeeSettings</span>
+                        </a>
+                    </li>   
+                }
                 <li class="kt-menu__item" aria-haspopup="true">
                     <a href="@Settings.Routes.User.Index" class="kt-menu__link ">
                         <span class="kt-menu__link-icon"><i class="fa fa-users-cog"></i></span>
