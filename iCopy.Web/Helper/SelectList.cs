@@ -1,15 +1,13 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
+using iCopy.Database;
 using iCopy.Database.Context;
 using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Converters;
-using static iCopy.Model.Enum.Enum;
-using iCopy.Database;
 
 namespace iCopy.Web.Helper
 {
