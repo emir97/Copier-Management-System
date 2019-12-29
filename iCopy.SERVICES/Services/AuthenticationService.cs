@@ -3,7 +3,6 @@ using iCopy.Model.Request;
 using iCopy.Model.Response;
 using iCopy.SERVICES.Exceptions;
 using iCopy.SERVICES.IServices;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,8 +10,7 @@ using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using ApplicationUser = iCopy.Database.ApplicationUser;
 
 namespace iCopy.SERVICES.Services

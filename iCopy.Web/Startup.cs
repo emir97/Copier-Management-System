@@ -54,6 +54,7 @@ namespace iCopy.Web
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddLocalization(o => o.ResourcesPath = "Resources");
+            services.AddRouting(x => x.LowercaseUrls = true);
             services.ConfigureLocalization();
             services.AddDbContext<DBContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DBContext")));
             services.AddDbContext<AuthContext>(x => x.UseSqlServer(Configuration.GetConnectionString("AuthContext")));
@@ -147,10 +148,10 @@ namespace iCopy.Web
             {
                 routes.MapRoute(
                     name: "areas",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                    template: "{area:exists}/{controller=Login}/{action=Index}/{id?}");
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{area=auth}/{controller=Login}/{action=Index}/{id?}");
             });
         }
     }

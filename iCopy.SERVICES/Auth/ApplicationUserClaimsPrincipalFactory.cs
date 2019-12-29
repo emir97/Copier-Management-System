@@ -22,6 +22,7 @@ namespace iCopy.SERVICES.Auth
         {
             ClaimsIdentity identity = await base.GenerateClaimsAsync(user);
 
+            // Given name
             var name = await context.Companies
                 .Select(x => x.Name)
                 .Union(context.Copiers.Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.Name))
@@ -30,6 +31,7 @@ namespace iCopy.SERVICES.Auth
                 .FirstOrDefaultAsync();
             identity.AddClaim(new Claim(ClaimTypes.GivenName, name));
 
+            // Profile photo
             var profileImagePath = await context.ApplicationUserProfilePhotos.Include(x => x.ProfilePhoto).FirstOrDefaultAsync(x => x.ApplicationUserId == user.Id && x.Active);
             if (profileImagePath != null)
                 identity.AddClaim(new Claim(ApplicationUserClaimTypes.ProfilePhotoPath, profileImagePath.ProfilePhoto.Path));

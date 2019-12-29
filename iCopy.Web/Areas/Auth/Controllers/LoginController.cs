@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using iCopy.SERVICES.IServices;
 using iCopy.SERVICES.Services;
 using IAuthenticationService = iCopy.SERVICES.IServices.IAuthenticationService;
+using static iCopy.Model.Enum.Enum;
 
 namespace iCopy.Web.Areas.Auth.Controllers
 {
@@ -44,7 +45,7 @@ namespace iCopy.Web.Areas.Auth.Controllers
             return View();
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken, ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public async Task<IActionResult> Index(Login login)
         {
             if (ModelState.IsValid)
@@ -64,7 +65,7 @@ namespace iCopy.Web.Areas.Auth.Controllers
                 }
             }
 
-            return RedirectToAction(nameof(Index));
+            return View(login);
         }
 
         [HttpGet, Authorize]
@@ -89,6 +90,19 @@ namespace iCopy.Web.Areas.Auth.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> CreateAdministrator()
+        {
+            await UserService.InsertAsync(new ApplicationUserInsert
+            {
+                Email = "test@test.com",
+                Password = "Demo1234*",
+                PasswordConfirm = "Demo1234*",
+                PhoneNumber = "000000",
+                Username = "test"
+            }, Roles.Administrator);
+            return Ok("Dobar");
         }
     }
 }

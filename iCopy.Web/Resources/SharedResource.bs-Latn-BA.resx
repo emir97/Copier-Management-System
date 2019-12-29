@@ -363,6 +363,9 @@
   <data name="No" xml:space="preserve">
     <value>Ne</value>
   </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>Obavijesti</value>
+  </data>
   <data name="OR" xml:space="preserve">
     <value>Ili</value>
   </data>

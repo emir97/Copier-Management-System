@@ -25,7 +25,7 @@
                     <!--begin: Head -->
                     <div class="kt-head kt-head--skin-dark kt-head--fit-x kt-head--fit-b" style="background-image: url(assets/media/misc/bg-1.jpg)">
                         <h3 class="kt-head__title">
-                            User Notifications
+                            @_sharedLocalizer.Notifications
                             &nbsp;
                             <span class="btn btn-success btn-sm btn-bold btn-font-md">23 new</span>
                         </h3>
@@ -150,7 +150,7 @@
                     <span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
                     <span class="kt-header__topbar-username kt-hidden-mobile">Sean</span>
                     <img class="kt-hidden" alt="Pic" src="assets/media/users/300_25.jpg" />
-                    <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">@(User.FindFirst(ClaimTypes.GivenName).Value[0])</span>
+                    <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">@(User.GivenName())</span>
                 </div>
             </div>
             <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
@@ -159,10 +159,10 @@
                 <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(assets/media/misc/bg-1.jpg)">
                     <div class="kt-user-card__avatar">
                         <img class="kt-hidden" alt="Pic" src="assets/media/users/300_25.jpg" />
-                        <span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">@(User.FindFirst(ClaimTypes.GivenName).Value[0])</span>
+                        <span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">@User.GivenName()</span>
                     </div>
                     <div class="kt-user-card__name">
-                        @User.FindFirst(ClaimTypes.GivenName).Value
+                        @User.GivenName()
                     </div>
                     <div class="kt-user-card__badge">
                         <span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
