@@ -92,13 +92,13 @@ namespace iCopy.Web.Helper
                 (s, s1) => new SelectListItem(s, s1))));
         }
 
-        public async Task<IEnumerable<SelectListItem>> PrintPagesOptions(bool includeChooseText = true)
+        public Task<IEnumerable<SelectListItem>> PrintPagesOptions(bool includeChooseText = true)
         {
-            return BaseSelectListItem(includeChooseText, SharedResource.ChoosePrintOptions, Enum.GetValues(typeof(PrintPagesOptions)).Cast<PrintPagesOptions>().Select(x => new SelectListItem
+            return Task.FromResult(BaseSelectListItem(includeChooseText, SharedResource.ChoosePrintOptions, Enum.GetValues(typeof(PrintPagesOptions)).Cast<PrintPagesOptions>().Select(x => new SelectListItem
             {
                 Text = SharedResource.LocalizedString(x.ToString()),
                 Value = ((int)x).ToString()
-            }));
+            })));
         }
     }
 }
