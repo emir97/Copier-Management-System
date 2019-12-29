@@ -92,7 +92,7 @@ namespace iCopy.Web.Helper
 
         public Task<IEnumerable<SelectListItem>> PrintPagesOptions(bool includeChooseText = true)
         {
-            return Task.FromResult(BaseSelectListItem(includeChooseText, SharedResource.ChoosePrintOptions, Enum.GetValues(typeof(PrintPagesOptions)).Cast<PrintPagesOptions>().Select(x => new SelectListItem
+            return Task.FromResult(BaseSelectListItem(includeChooseText, "asd"/*SharedResource.ChoosePrintOptions*/, Enum.GetValues(typeof(PrintPagesOptions)).Cast<PrintPagesOptions>().Select(x => new SelectListItem
             {
                 Text = SharedResource.LocalizedString(x.ToString()),
                 Value = ((int)x).ToString()
