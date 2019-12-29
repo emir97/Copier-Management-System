@@ -15,5 +15,6 @@ namespace iCopy.Web.Helper
         Task<IEnumerable<SelectListItem>> Companies(bool includeChooseText = true);
         Task<IEnumerable<SelectListItem>> Companies(int companyId, bool includeChooseText = true);
         Task<IEnumerable<SelectListItem>> Genders(bool includeChooseText = true);
+        Task<IEnumerable<SelectListItem>> PrintPagesOptions(bool includeChooseText = true);
     }
 }

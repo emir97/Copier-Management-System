@@ -187,5 +187,17 @@ namespace iCopy.Web.Resources
         #region Dashboard
         public string Dashboard => localizer[nameof(Dashboard)];
         #endregion
+
+        #region PrintRequest
+        public string PrintRequest => localizer[nameof(PrintRequest)];
+        public string PrintRequestSettings => localizer[nameof(PrintRequestSettings)];
+        public string AddPrintRequest => localizer[nameof(AddPrintRequest)];
+
+        #endregion
+
+        #region PrintPagesOptions
+        public string PrintPagesOptions => localizer[nameof(PrintPagesOptions)];
+
+        #endregion
     }
 }

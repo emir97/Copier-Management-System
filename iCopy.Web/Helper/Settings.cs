@@ -62,6 +62,16 @@
                 public static string UpdatePassword => "/administration/user/updatepassword";
                 public static string Details => "/administration/user/details";
             }
+            public static class PrintRequest
+            {
+                public static string Index => "/administration/printrequest/index";
+                public static string Insert => "/administration/printrequest/insert";
+                public static string Update => "/administration/printrequest/update";
+                public static string Delete => "/administration/printrequest/delete";
+                public static string GetData => "/administration/printrequest/getdata";
+                public static string ChangeActiveStatus => "/administration/printrequest/changeactivestatus";
+                public static string Details => "/administration/printrequest/details";
+            }
             public static class SelectList
             {
                 public static string Cities => "/selectlist/cities";

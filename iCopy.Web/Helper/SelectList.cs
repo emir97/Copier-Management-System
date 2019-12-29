@@ -89,5 +89,10 @@ namespace iCopy.Web.Helper
                 Enum.GetNames(typeof(Database.Gender)),
                 (s, s1) => new SelectListItem(s, s1))));
         }
+
+        public async Task<IEnumerable<SelectListItem>> PrintPagesOptions(bool includeChooseText = true)
+        {
+            return BaseSelectListItem(includeChooseText, SharedResource.ChooseCompany, mapper.Map<List<SelectListItem>>(await context.Companies.Where(x => x.Active && x.ID == companyId).ToListAsync()));
+        }
     }
 }
