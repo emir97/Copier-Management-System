@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="A1" xml:space="preserve">
+    <value>A1</value>
+  </data>
+  <data name="A2" xml:space="preserve">
+    <value>A2</value>
+  </data>
+  <data name="A3" xml:space="preserve">
+    <value>A3</value>
+  </data>
+  <data name="A4" xml:space="preserve">
+    <value>A4</value>
+  </data>
+  <data name="A5" xml:space="preserve">
+    <value>A5</value>
+  </data>
+  <data name="A6" xml:space="preserve">
+    <value>A6</value>
+  </data>
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
@@ -204,6 +222,9 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="Collated" xml:space="preserve">
+    <value>Collated</value>
+  </data>
   <data name="CompanyDetails" xml:space="preserve">
     <value>Company details</value>
   </data>
@@ -255,6 +276,9 @@
   <data name="CurrentPassword" xml:space="preserve">
     <value>Current password</value>
   </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
   </data>
@@ -275,6 +299,9 @@
   </data>
   <data name="EditCountry" xml:space="preserve">
     <value>Edit country</value>
+  </data>
+  <data name="EightPages" xml:space="preserve">
+    <value>Eight pages</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
@@ -324,11 +351,17 @@
   <data name="ErrUserUpdate" xml:space="preserve">
     <value>An error occured while trying to update user</value>
   </data>
+  <data name="Even" xml:space="preserve">
+    <value>Even</value>
+  </data>
   <data name="FirstName" xml:space="preserve">
     <value>Firstname</value>
   </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Forgot password</value>
+  </data>
+  <data name="FourPages" xml:space="preserve">
+    <value>Four pages</value>
   </data>
   <data name="Gender" xml:space="preserve">
     <value>Gender</value>
@@ -336,8 +369,14 @@
   <data name="Inactive" xml:space="preserve">
     <value>Inactive</value>
   </data>
+  <data name="InProgress" xml:space="preserve">
+    <value>In progress</value>
+  </data>
   <data name="JIB" xml:space="preserve">
     <value>JIB</value>
+  </data>
+  <data name="Landscape" xml:space="preserve">
+    <value>Landscape</value>
   </data>
   <data name="LanguageImagePath" xml:space="preserve">
     <value>assets/media/flags/020-flag.svg</value>
@@ -378,6 +417,15 @@
   <data name="Notifications" xml:space="preserve">
     <value>Notifications</value>
   </data>
+  <data name="Odd" xml:space="preserve">
+    <value>Odd</value>
+  </data>
+  <data name="OnePage" xml:space="preserve">
+    <value>One page</value>
+  </data>
+  <data name="OnHold" xml:space="preserve">
+    <value>On hold</value>
+  </data>
   <data name="OOPSSomethingWentWronghere" xml:space="preserve">
     <value>OOPS! Something went wrong here</value>
   </data>
@@ -405,11 +453,20 @@
   <data name="PhoneNumberRegex" xml:space="preserve">
     <value>Phone number regex</value>
   </data>
+  <data name="Portrait" xml:space="preserve">
+    <value>Portrait</value>
+  </data>
   <data name="PostalCode" xml:space="preserve">
     <value>Postal code</value>
   </data>
   <data name="Previous" xml:space="preserve">
     <value>Previous</value>
+  </data>
+  <data name="PrintBothSides" xml:space="preserve">
+    <value>Print both sides</value>
+  </data>
+  <data name="PrintOneSided" xml:space="preserve">
+    <value>Print one sided</value>
   </data>
   <data name="Privacy" xml:space="preserve">
     <value>Privacy</value>
@@ -419,6 +476,9 @@
   </data>
   <data name="Registration" xml:space="preserve">
     <value>Registration</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Rejected</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
@@ -437,6 +497,12 @@
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Sign Up</value>
+  </data>
+  <data name="SixPages" xml:space="preserve">
+    <value>Six pages</value>
+  </data>
+  <data name="SixteenPages" xml:space="preserve">
+    <value>Sixteen pages</value>
   </data>
   <data name="StartWorkingTime" xml:space="preserve">
     <value>Start working time</value>
@@ -476,6 +542,12 @@
   </data>
   <data name="TwoFactorEnabled" xml:space="preserve">
     <value>Two factor enabled</value>
+  </data>
+  <data name="TwoPages" xml:space="preserve">
+    <value>Two pages</value>
+  </data>
+  <data name="Uncollated" xml:space="preserve">
+    <value>Uncollated</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>
