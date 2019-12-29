@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Converters;
 using static iCopy.Model.Enum.Enum;
+using iCopy.Database;
 
 namespace iCopy.Web.Helper
 {
@@ -93,7 +94,11 @@ namespace iCopy.Web.Helper
 
         public async Task<IEnumerable<SelectListItem>> PrintPagesOptions(bool includeChooseText = true)
         {
-            return BaseSelectListItem(includeChooseText, SharedResource.ChooseCompany, mapper.Map<List<SelectListItem>>(await context.Companies.Where(x => x.Active && x.ID == companyId).ToListAsync()));
+            return BaseSelectListItem(includeChooseText, SharedResource.ChoosePrintOptions, Enum.GetValues(typeof(PrintPagesOptions)).Cast<PrintPagesOptions>().Select(x => new SelectListItem
+            {
+                Text = SharedResource.LocalizedString(x.ToString()),
+                Value = ((int)x).ToString()
+            }));
         }
     }
 }
