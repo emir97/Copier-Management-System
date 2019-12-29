@@ -48,6 +48,9 @@ namespace iCopy.Web.Areas.Auth.Controllers
         [HttpPost, ValidateAntiForgeryToken, ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public async Task<IActionResult> Index(Login login)
         {
+            if (User.Identity.IsAuthenticated)
+                return Redirect(Settings.Routes.Dashboard.Index);
+
             if (ModelState.IsValid)
             {
                 try

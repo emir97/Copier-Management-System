@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Converters;
+using static iCopy.Model.Enum.Enum;
 
 namespace iCopy.Web.Helper
 {
