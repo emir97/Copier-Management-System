@@ -98,5 +98,59 @@ namespace iCopy.Web.Helper
                 Value = ((int)x).ToString()
             })));
         }
+
+        public Task<IEnumerable<SelectListItem>> SidePrintOption(bool includeChooseText = true)
+        {
+            return Task.FromResult(BaseSelectListItem(includeChooseText, SharedResource.ChooseSidePrintOptions, Enum.GetValues(typeof(SidePrintOption)).Cast<SidePrintOption>().Select(x => new SelectListItem
+            {
+                Text = SharedResource.LocalizedString(x.ToString()),
+                Value = ((int)x).ToString()
+            })));
+        }
+
+        public Task<IEnumerable<SelectListItem>> Orientation(bool includeChooseText = true)
+        {
+            return Task.FromResult(BaseSelectListItem(includeChooseText, SharedResource.ChooseOrientation, Enum.GetValues(typeof(Orientation)).Cast<Orientation>().Select(x => new SelectListItem
+            {
+                Text = SharedResource.LocalizedString(x.ToString()),
+                Value = ((int)x).ToString()
+            })));
+        }
+
+        public Task<IEnumerable<SelectListItem>> Letter(bool includeChooseText = true)
+        {
+            return Task.FromResult(BaseSelectListItem(includeChooseText, SharedResource.ChooseLetter, Enum.GetValues(typeof(Letter)).Cast<Letter>().Select(x => new SelectListItem
+            {
+                Text = SharedResource.LocalizedString(x.ToString()),
+                Value = ((int)x).ToString()
+            })));
+        }
+
+        public Task<IEnumerable<SelectListItem>> PagePerSheet(bool includeChooseText = true)
+        {
+            return Task.FromResult(BaseSelectListItem(includeChooseText, SharedResource.ChoosePagePerSheet, Enum.GetValues(typeof(PagePerSheet)).Cast<PagePerSheet>().Select(x => new SelectListItem
+            {
+                Text = SharedResource.LocalizedString(x.ToString()),
+                Value = ((int)x).ToString()
+            })));
+        }
+
+        public Task<IEnumerable<SelectListItem>> CollatedPrintOptions(bool includeChooseText = true)
+        {
+            return Task.FromResult(BaseSelectListItem(includeChooseText, SharedResource.ChooseCollatedPrintOptions, Enum.GetValues(typeof(CollatedPrintOptions)).Cast<CollatedPrintOptions>().Select(x => new SelectListItem
+            {
+                Text = SharedResource.LocalizedString(x.ToString()),
+                Value = ((int)x).ToString()
+            })));
+        }
+
+        public Task<IEnumerable<SelectListItem>> Status(bool includeChooseText = true)
+        {
+            return Task.FromResult(BaseSelectListItem(includeChooseText, SharedResource.ChooseStatus, Enum.GetValues(typeof(Status)).Cast<Status>().Select(x => new SelectListItem
+            {
+                Text = SharedResource.LocalizedString(x.ToString()),
+                Value = ((int)x).ToString()
+            })));
+        }
     }
 }

@@ -16,5 +16,11 @@ namespace iCopy.Web.Helper
         Task<IEnumerable<SelectListItem>> Companies(int companyId, bool includeChooseText = true);
         Task<IEnumerable<SelectListItem>> Genders(bool includeChooseText = true);
         Task<IEnumerable<SelectListItem>> PrintPagesOptions(bool includeChooseText = true);
+        Task<IEnumerable<SelectListItem>> SidePrintOption(bool includeChooseText = true);
+        Task<IEnumerable<SelectListItem>> Orientation(bool includeChooseText = true);
+        Task<IEnumerable<SelectListItem>> Letter(bool includeChooseText = true);
+        Task<IEnumerable<SelectListItem>> PagePerSheet(bool includeChooseText = true);
+        Task<IEnumerable<SelectListItem>> CollatedPrintOptions(bool includeChooseText = true);
+        Task<IEnumerable<SelectListItem>> Status(bool includeChooseText = true);
     }
 }

@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="A1" xml:space="preserve">
+    <value>A1</value>
+  </data>
+  <data name="A2" xml:space="preserve">
+    <value>A2</value>
+  </data>
+  <data name="A3" xml:space="preserve">
+    <value>A3</value>
+  </data>
+  <data name="A4" xml:space="preserve">
+    <value>A4</value>
+  </data>
+  <data name="A5" xml:space="preserve">
+    <value>A5</value>
+  </data>
+  <data name="A6" xml:space="preserve">
+    <value>A6</value>
+  </data>
   <data name="About" xml:space="preserve">
     <value>O nama</value>
   </data>
@@ -204,6 +222,9 @@
   <data name="Close" xml:space="preserve">
     <value>Zatvori</value>
   </data>
+  <data name="Collated" xml:space="preserve">
+    <value>Raspoređen</value>
+  </data>
   <data name="CompanyDetails" xml:space="preserve">
     <value>Detalji kompanije</value>
   </data>
@@ -255,6 +276,9 @@
   <data name="CurrentPassword" xml:space="preserve">
     <value>Trenutna šifra</value>
   </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Prilagođeno</value>
+  </data>
   <data name="Dashboard" xml:space="preserve">
     <value>Kontrolna ploča</value>
   </data>
@@ -275,6 +299,9 @@
   </data>
   <data name="EditCountry" xml:space="preserve">
     <value>Izmijeni državu</value>
+  </data>
+  <data name="EightPages" xml:space="preserve">
+    <value>Osam stranica</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
@@ -312,11 +339,17 @@
   <data name="ErrUserUpdate" xml:space="preserve">
     <value>Došlo je do greške prilikom uređivanja podataka o korisniku</value>
   </data>
+  <data name="Even" xml:space="preserve">
+    <value>Parni</value>
+  </data>
   <data name="FirstName" xml:space="preserve">
     <value>Ime</value>
   </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Zaboravili ste šifru</value>
+  </data>
+  <data name="FourPages" xml:space="preserve">
+    <value>Četiri stranice</value>
   </data>
   <data name="Gender" xml:space="preserve">
     <value>Spol</value>
@@ -324,8 +357,14 @@
   <data name="Inactive" xml:space="preserve">
     <value>Neaktivan</value>
   </data>
+  <data name="InProgress" xml:space="preserve">
+    <value>U toku</value>
+  </data>
   <data name="JIB" xml:space="preserve">
     <value>JIB</value>
+  </data>
+  <data name="Landscape" xml:space="preserve">
+    <value>Vodoravno</value>
   </data>
   <data name="LanguageImagePath" xml:space="preserve">
     <value>assets/media/flags/021-bosnia-and-herzegovina.svg</value>
@@ -366,6 +405,15 @@
   <data name="Notifications" xml:space="preserve">
     <value>Obavijesti</value>
   </data>
+  <data name="Odd" xml:space="preserve">
+    <value>Neparni</value>
+  </data>
+  <data name="OnePage" xml:space="preserve">
+    <value>Jedna stranica</value>
+  </data>
+  <data name="OnHold" xml:space="preserve">
+    <value>Na čekanju</value>
+  </data>
   <data name="OOPSSomethingWentWronghere" xml:space="preserve">
     <value>OOPS! Došlo je do greške.</value>
   </data>
@@ -393,11 +441,20 @@
   <data name="PhoneNumberRegex" xml:space="preserve">
     <value>Regex broja telefona</value>
   </data>
+  <data name="Portrait" xml:space="preserve">
+    <value>Portret</value>
+  </data>
   <data name="PostalCode" xml:space="preserve">
     <value>Poštanski broj</value>
   </data>
   <data name="Previous" xml:space="preserve">
     <value>Nazad</value>
+  </data>
+  <data name="PrintBothSides" xml:space="preserve">
+    <value>Dvostruko</value>
+  </data>
+  <data name="PrintOneSided" xml:space="preserve">
+    <value>Jednostruko</value>
   </data>
   <data name="Privacy" xml:space="preserve">
     <value>Privatnost</value>
@@ -407,6 +464,9 @@
   </data>
   <data name="Registration" xml:space="preserve">
     <value>Registracija</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Odbijeno</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Poništi</value>
@@ -425,6 +485,12 @@
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Registruj se</value>
+  </data>
+  <data name="SixPages" xml:space="preserve">
+    <value>Šest stranica </value>
+  </data>
+  <data name="SixteenPages" xml:space="preserve">
+    <value>Šesnaest stranica</value>
   </data>
   <data name="StartWorkingTime" xml:space="preserve">
     <value>Početak radnog vremena</value>
@@ -461,6 +527,12 @@
   </data>
   <data name="TwoFactorEnabled" xml:space="preserve">
     <value>Uključena dvostruka autentifikacija</value>
+  </data>
+  <data name="TwoPages" xml:space="preserve">
+    <value>Dvije stranice</value>
+  </data>
+  <data name="Uncollated" xml:space="preserve">
+    <value>Neraspoređen</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Izmijeni</value>

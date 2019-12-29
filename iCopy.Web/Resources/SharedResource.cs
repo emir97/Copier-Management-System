@@ -198,7 +198,38 @@ namespace iCopy.Web.Resources
 
         #region PrintPagesOptions
         public string PrintPagesOptions => localizer[nameof(PrintPagesOptions)];
+        public string ChoosePrintOptions => localizer[nameof(ChoosePrintOptions)];
 
+        #endregion
+
+        #region SidePrintOption
+        public string SidePrintOption => localizer[nameof(SidePrintOption)];
+        public string ChooseSidePrintOptions => localizer[nameof(ChooseSidePrintOptions)];
+        #endregion
+
+        #region Orientation
+        public string Orientation => localizer[nameof(Orientation)];
+        public string ChooseOrientation => localizer[nameof(ChooseOrientation)];
+        #endregion
+
+        #region Letter
+        public string Letter => localizer[nameof(Letter)];
+        public string ChooseLetter => localizer[nameof(ChooseLetter)];
+        #endregion
+
+        #region PagePerSheet
+        public string PagePerSheet => localizer[nameof(PagePerSheet)];
+        public string ChoosePagePerSheet => localizer[nameof(ChoosePagePerSheet)];
+        #endregion
+
+        #region CollatedPrintOptions
+        public string CollatedPrintOptions => localizer[nameof(CollatedPrintOptions)];
+        public string ChooseCollatedPrintOptions => localizer[nameof(ChooseCollatedPrintOptions)];
+        #endregion
+
+        #region Status
+        public string Status => localizer[nameof(Status)];
+        public string ChooseStatus => localizer[nameof(ChooseStatus)];
         #endregion
     }
 }

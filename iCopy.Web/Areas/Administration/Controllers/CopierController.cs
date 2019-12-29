@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace iCopy.Web.Areas.Administration.Controllers
 {
-    [Area(Strings.Area.Administration), Authorize(Roles = Strings.Roles.AdministratorCompany)]
+    [Area(Strings.Area.Administration), AllowAnonymous()]
     public class CopierController : BaseDataTableCRUDController<Model.Request.Copier, Model.Request.Copier, Model.Response.Copier, Model.Request.CopierSearch, int>
     {
         private new readonly ICopierService crudService;

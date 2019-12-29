@@ -77,6 +77,6 @@ namespace iCopy.Database
     public enum CollatedPrintOptions
     {
         Collated = 1 ,
-        UnCollated = 2
+        Uncollated = 2
     }
 }
