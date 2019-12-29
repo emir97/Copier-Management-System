@@ -8,7 +8,7 @@ namespace iCopy.Web.Helper
         public static void SetCultureInfoCookie(this IResponseCookies cookies, RequestCulture culture)
         {
             cookies.Delete(Localization.CurrentCultureCookieName);
-            cookies.Append(Localization.CurrentCultureCookieName, CookieRequestCultureProvider.MakeCookieValue(culture));
+            cookies.Append(Localization.CurrentCultureCookieName, CookieRequestCultureProvider.MakeCookieValue(culture), new CookieOptions { IsEssential = true });
         }
     }
 }
