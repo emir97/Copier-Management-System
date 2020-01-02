@@ -198,6 +198,9 @@
   <data name="ChooseCity" xml:space="preserve">
     <value>Choose city</value>
   </data>
+  <data name="ChooseCollatedPrintOptions" xml:space="preserve">
+    <value>Choose collated print options</value>
+  </data>
   <data name="ChooseCompany" xml:space="preserve">
     <value>Choose company</value>
   </data>
@@ -209,6 +212,24 @@
   </data>
   <data name="ChooseGender" xml:space="preserve">
     <value>Choose gender</value>
+  </data>
+  <data name="ChooseLetter" xml:space="preserve">
+    <value>Choose letter</value>
+  </data>
+  <data name="ChooseOrientation" xml:space="preserve">
+    <value>Choose orientation</value>
+  </data>
+  <data name="ChoosePagePerSheet" xml:space="preserve">
+    <value>Choose page per sheet</value>
+  </data>
+  <data name="ChoosePrintOptions" xml:space="preserve">
+    <value>Choose print options</value>
+  </data>
+  <data name="ChooseSidePrintOptions" xml:space="preserve">
+    <value>Choose side print options</value>
+  </data>
+  <data name="ChooseStatus" xml:space="preserve">
+    <value>Choose status</value>
   </data>
   <data name="Cities" xml:space="preserve">
     <value>Cities</value>
@@ -224,6 +245,9 @@
   </data>
   <data name="Collated" xml:space="preserve">
     <value>Collated</value>
+  </data>
+  <data name="CollatedPrintOptions" xml:space="preserve">
+    <value>Collated print options</value>
   </data>
   <data name="CompanyDetails" xml:space="preserve">
     <value>Company details</value>
@@ -387,6 +411,9 @@
   <data name="Legal" xml:space="preserve">
     <value>Legal</value>
   </data>
+  <data name="Letter" xml:space="preserve">
+    <value>Letter</value>
+  </data>
   <data name="LocationSettings" xml:space="preserve">
     <value>Location settings</value>
   </data>
@@ -432,6 +459,12 @@
   <data name="OR" xml:space="preserve">
     <value>Or</value>
   </data>
+  <data name="Orientation" xml:space="preserve">
+    <value>Orientation</value>
+  </data>
+  <data name="PagePerSheet" xml:space="preserve">
+    <value>Page per sheet</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -468,6 +501,9 @@
   <data name="PrintOneSided" xml:space="preserve">
     <value>Print one sided</value>
   </data>
+  <data name="PrintPagesOptions" xml:space="preserve">
+    <value>Print pages options</value>
+  </data>
   <data name="Privacy" xml:space="preserve">
     <value>Privacy</value>
   </data>
@@ -494,6 +530,9 @@
   </data>
   <data name="ShortName" xml:space="preserve">
     <value>Short name</value>
+  </data>
+  <data name="SidePrintOption" xml:space="preserve">
+    <value>Side print option</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Sign Up</value>

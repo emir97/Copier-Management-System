@@ -39,7 +39,7 @@
         <div class="row">
             <div class="kt-form kt-form--fit kt-margin-b-20 col-md-12">
                 <div id="search-parameters">
-                    <div class="row kt-margin-b-20">                     
+                    <div class="row kt-margin-b-20">
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                             <label>@_sharedLocalizer.Status:</label>
                             <select name="status" asp-items="@(await _selectList.Status())" class="form-control kt-select2" id="status-list"></select>
@@ -48,12 +48,28 @@
                             <label>@_sharedLocalizer.PrintPagesOptions:</label>
                             <select name="options" asp-items="@(await _selectList.PrintPagesOptions())" class="form-control kt-select2" id="options-list"></select>
                         </div>
+                        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                            <label>@_sharedLocalizer.SidePrintOption:</label>
+                            <select name="sideprint" asp-items="@(await _selectList.SidePrintOption())" class="form-control kt-select2" id="side-print-list"></select>
+                        </div>
+                        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                            <label>@_sharedLocalizer.CollatedPrintOptions:</label>
+                            <select name="collatedprintoptions" asp-items="@(await _selectList.CollatedPrintOptions())" class="form-control kt-select2" id="collatedprintoptions-list"></select>
+                        </div>
                     </div>
                     <div class="row kt-margin-b-20">
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
-                            <label>@_sharedLocalizer.JIB:</label>
-                            <input name="contactagent" id="contact-agent" type="text" class="form-control kt-input" placeholder="@_sharedLocalizer.JIB">
+                            <label>@_sharedLocalizer.Orientation:</label>
+                            <select name="orientation" asp-items="@(await _selectList.Orientation())" class="form-control kt-select2" id="orientation-list"></select>
                         </div>
+                        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                            <label>@_sharedLocalizer.Letter:</label>
+                            <select name="letter" asp-items="@(await _selectList.Letter())" class="form-control kt-select2" id="letter-list"></select>
+                        </div>
+                        <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
+                            <label>@_sharedLocalizer.PagePerSheet:</label>
+                            <select name="pagepersheet" asp-items="@(await _selectList.PagePerSheet())" class="form-control kt-select2" id="pagepersheet-list"></select>
+                        </div>                       
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                             <label>&nbsp;</label>
                             <div class="btn-group btn-group-toggle col-md-12 p-0" data-toggle="buttons" data-col-index="3">
@@ -94,28 +110,28 @@
             <thead class="thead-dark">
                 <tr>
                     <th>#</th>
-                    <th>@_sharedLocalizer.Name  </th>
-                    <th>@_sharedLocalizer.City</th>
-                    <th>@_sharedLocalizer.ContactAgent</th>
-                    <th>@_sharedLocalizer.PhoneNumber</th>
-                    <th>@_sharedLocalizer.ContactEmail</th>
-                    <th>@_sharedLocalizer.Active</th>
-                    <th>@_sharedLocalizer.Actions</th>
+                    <th>@_sharedLocalizer.Status</th>
+                    <th>@_sharedLocalizer.PrintPagesOptions</th>
+                    <th>@_sharedLocalizer.SidePrintOption</th>
+                    <th>@_sharedLocalizer.CollatedPrintOptions</th>
+                    <th>@_sharedLocalizer.Orientation</th>
+                    <th>@_sharedLocalizer.Letter</th>
+                    <th>@_sharedLocalizer.PagePerSheet</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model.data)
                 {
-                    @*<tr>
-                        <td>@item.ID</td>
-                        <td>@item.Name</td>
-                        <td>@item.City.Name</td>
-                        <td>@item.ContactAgent</td>
-                        <td>@item.PhoneNumber</td>
-                        <td>@item.Email</td>
-                        <td>@item.Active</td>
+                    <tr>
+                        <td>@item.Status</td>
+                        <td>@item.Options</td>
+                        <td>@item.Side</td>
+                        <td>@item.Collate</td>
+                        <td>@item.Orientation</td>
+                        <td>@item.Letter</td>
+                        <td>@item.Pages</td>
                         <td></td>
-                    </tr>*@
+                    </tr>
                 }
             </tbody>
         </table>
@@ -142,7 +158,7 @@
                 dom: `<'row'<'col-sm-12'tr>>
 			<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>`,
                 ajax: {
-                    url: "@Settings.Routes.Company.GetData",
+                    url: "@Settings.Routes.PrintRequest.GetData",
                     dataType: 'json',
                     type: 'POST',
                     data: function (searchData) {
@@ -159,11 +175,13 @@
                 },
                 columns: [
                     { data: "id" },
-                    { data: "name" },
-                    { data: 'city.name' },
-                    { data: 'contactAgent' },
-                    { data: 'phoneNumber' },
-                    { data: 'email' },
+                    { data: "status" },
+                    { data: 'options' },
+                    { data: 'side' },
+                    { data: 'collate' },
+                    { data: 'orientation' },
+                    { data: 'letter' },
+                    { data: 'pages' },
                     { data: 'active' },
                     { data: 'actions' }
                 ],
@@ -175,27 +193,37 @@
                     },
                     {
                         targets: 1,
-                        name: '@nameof(iCopy.Model.Request.Company.Name)'
+                        name: '@nameof(iCopy.Model.Request.PrintRequest.Status)'
                     },
                     {
                         targets: 2,
-                        name: '@nameof(iCopy.Model.Request.Company.CityId)'
+                        name: '@nameof(iCopy.Model.Request.PrintRequest.Options)'
                     },
                     {
                         targets: 3,
-                        name: '@nameof(iCopy.Model.Request.Company.ContactAgent)'
+                        name: '@nameof(iCopy.Model.Request.PrintRequest.Side)'
                     },
                     {
                         targets: 4,
-                        name: '@nameof(iCopy.Model.Request.Company.PhoneNumber)'
+                        name: '@nameof(iCopy.Model.Request.PrintRequest.Collate)'
                     },
                     {
                         targets: 5,
-                        name: '@nameof(iCopy.Model.Request.Company.Email)',
+                        name: '@nameof(iCopy.Model.Request.PrintRequest.Orientation)',
                         orderable: false
                     },
                     {
                         targets: 6,
+                        name: '@nameof(iCopy.Model.Request.PrintRequest.Letter)',
+                        orderable: false
+                    },
+                     {
+                        targets: 7,
+                        name: '@nameof(iCopy.Model.Request.PrintRequest.Pages)',
+                        orderable: false
+                    },
+                    {
+                        targets: ,
                         orderable: false,
                         className: 'text-center align-middle',
                         render: function (data, type, full, meta) {
@@ -211,15 +239,15 @@
                         className: 'text-center align-middle',
                         render: function (data, type, full, meta) {
                             return `
-<a href="@Settings.Routes.Company.Details/${full.id}" ajax-add="modal-lg" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-info-circle"></i></a>
-<a href="@Settings.Routes.Company.Delete/${full.id}" ajax-delete="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
-<a href="@Settings.Routes.Company.ChangeActiveStatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
+<a href="@Settings.Routes.PrintRequest.Details/${full.id}" ajax-add="modal-lg" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-info-circle"></i></a>
+<a href="@Settings.Routes.PrintRequest.Delete/${full.id}" ajax-delete="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
+<a href="@Settings.Routes.PrintRequest.ChangeActiveStatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
 <span class="dropdown">
                             <a href="#" class="btn btn-sm btn-clean btn-icon btn-icon-md" data-toggle="dropdown" aria-expanded="true">
                               <i class="la la-ellipsis-h"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="@Settings.Routes.Company.Update/${full.id}"><i class="la la-edit"></i> @_sharedLocalizer.Update</a>
+                                <a class="dropdown-item" href="@Settings.Routes.PrintRequest.Update/${full.id}"><i class="la la-edit"></i> @_sharedLocalizer.Update</a>
                             </div>
                         </span>
 `;
@@ -231,7 +259,7 @@
         }
     }
 
-    var ChangeEvents = {
+    @*var ChangeEvents = {
         GetCities: function () {
             $("#countries-list").on('change', function (e) {
                 e.preventDefault();
@@ -255,7 +283,7 @@
         init: function () {
             this.GetCities();
         }
-    }
+    }*@
 
     $(document).ready(function () {
         DataTable.init();

@@ -198,6 +198,9 @@
   <data name="ChooseCity" xml:space="preserve">
     <value>Izaberite grad</value>
   </data>
+  <data name="ChooseCollatedPrintOptions" xml:space="preserve">
+    <value>Odaberite raspored printanja </value>
+  </data>
   <data name="ChooseCompany" xml:space="preserve">
     <value>Izaberite kompaniju</value>
   </data>
@@ -209,6 +212,24 @@
   </data>
   <data name="ChooseGender" xml:space="preserve">
     <value>Izaberite spol</value>
+  </data>
+  <data name="ChooseLetter" xml:space="preserve">
+    <value>Odaberite format</value>
+  </data>
+  <data name="ChooseOrientation" xml:space="preserve">
+    <value>Odaberite orijentaciju</value>
+  </data>
+  <data name="ChoosePagePerSheet" xml:space="preserve">
+    <value>Odaberite koliko stranica želite isprintat na jednu stranicu</value>
+  </data>
+  <data name="ChoosePrintOptions" xml:space="preserve">
+    <value>Odaberite opcije printanja</value>
+  </data>
+  <data name="ChooseSidePrintOptions" xml:space="preserve">
+    <value>Odaberite želite li jednostrano ili dvostrano printanje</value>
+  </data>
+  <data name="ChooseStatus" xml:space="preserve">
+    <value>Odaberite status</value>
   </data>
   <data name="Cities" xml:space="preserve">
     <value>Gradovi</value>
@@ -224,6 +245,9 @@
   </data>
   <data name="Collated" xml:space="preserve">
     <value>Raspoređen</value>
+  </data>
+  <data name="CollatedPrintOptions" xml:space="preserve">
+    <value>Način rasporeda </value>
   </data>
   <data name="CompanyDetails" xml:space="preserve">
     <value>Detalji kompanije</value>
@@ -375,6 +399,9 @@
   <data name="Legal" xml:space="preserve">
     <value>Legal</value>
   </data>
+  <data name="Letter" xml:space="preserve">
+    <value>Format</value>
+  </data>
   <data name="LocationSettings" xml:space="preserve">
     <value>Postavke lokacije</value>
   </data>
@@ -420,6 +447,12 @@
   <data name="OR" xml:space="preserve">
     <value>Ili</value>
   </data>
+  <data name="Orientation" xml:space="preserve">
+    <value>Orijentacija</value>
+  </data>
+  <data name="PagePerSheet" xml:space="preserve">
+    <value>Broj stranica po jednom papiru</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Šifa</value>
   </data>
@@ -456,6 +489,9 @@
   <data name="PrintOneSided" xml:space="preserve">
     <value>Jednostruko</value>
   </data>
+  <data name="PrintPagesOptions" xml:space="preserve">
+    <value>Opcije printanja</value>
+  </data>
   <data name="Privacy" xml:space="preserve">
     <value>Privatnost</value>
   </data>
@@ -482,6 +518,9 @@
   </data>
   <data name="ShortName" xml:space="preserve">
     <value>Skraćeni naziv</value>
+  </data>
+  <data name="SidePrintOption" xml:space="preserve">
+    <value>Jednostrano ili dvostrano printanje</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Registruj se</value>

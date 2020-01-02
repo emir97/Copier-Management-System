@@ -193,6 +193,7 @@ namespace iCopy.Web.Resources
         public string PrintRequest => localizer[nameof(PrintRequest)];
         public string PrintRequestSettings => localizer[nameof(PrintRequestSettings)];
         public string AddPrintRequest => localizer[nameof(AddPrintRequest)];
+        public string FilePath => localizer[nameof(FilePath)];
 
         #endregion
 
