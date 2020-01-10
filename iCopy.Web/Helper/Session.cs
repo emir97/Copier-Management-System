@@ -14,7 +14,9 @@ namespace iCopy.Web.Helper
             public static class Upload
             {
                 public static string ProfileImage => nameof(ProfileImage);
+                public static string PrintRequestFile => nameof(PrintRequestFile);
             }
+
         }
     }
 }

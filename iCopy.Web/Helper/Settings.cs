@@ -82,8 +82,8 @@
             {
                 public static string UploadProfileImage => "/upload/UploadProfileImage";
                 public static string RemoveUploadedProfileImage => "/upload/RemoveUploadedProfileImage";
-                public static string UploadFile => "/upload/UploadFile";
-
+                public static string UploadFile => "/upload/UploadPrintRequestFile";
+                public static string RemoveUploadedFile => "/upload/RemoveUploadedFile";
             }
             public static class SignUp
             {

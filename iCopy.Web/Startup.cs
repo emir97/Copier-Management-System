@@ -66,6 +66,7 @@ namespace iCopy.Web
             services.AddScoped<Constants>();
             services.AddScoped<ISelectList, SelectList>();
             services.AddSingleton<ProfilePhotoOptions>(Configuration.GetSection("Files:ProfilePhoto").Get<ProfilePhotoOptions>());
+            services.AddSingleton<PrintRequestFileOptions>(Configuration.GetSection("Files:PrintRequestFile").Get<PrintRequestFileOptions>());
             services.AddSingleton<EmailServerNoReplyOptions>(Configuration.GetSection("EmailServers:no-reply").Get<EmailServerNoReplyOptions>());
 
             services.AddAuthentication().AddCookie();

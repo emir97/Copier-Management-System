@@ -8,3 +8,5 @@ namespace iCopy.SERVICES.IServices
         Task<bool> DeleteByApplicationUserIdAsync(int applicationUserId);
     }
 }
+
+

@@ -29,6 +29,7 @@ namespace iCopy.SERVICES.Registers
             services.AddScoped<IUserClaimsPrincipalFactory<Database.ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IPrintRequestService, PrintRequestService>();
+            services.AddScoped<IPrintRequestFile, PrintRequestFileService>();
             return services;
         }
     }

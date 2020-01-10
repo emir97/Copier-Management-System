@@ -22,6 +22,9 @@ namespace iCopy.Database.Context
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Administrator> Administrators { get; set; }
         public virtual DbSet<PrintRequest> Requests { get; set; }
+        public virtual DbSet<PrintRequestFile> PrintRequestFiles { get; set; }
+        public virtual DbSet<ApplicationUserPrintRequestFile> ApplicationUserPrintRequestFile { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
