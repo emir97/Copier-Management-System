@@ -65,20 +65,28 @@
                                     <input type="text" class="form-control" asp-for="FilePath" placeholder="@_sharedLocalizer.FilePath" />
                                     <span asp-validation-for="FilePath" class="form-text text-danger"></span>
                                 </div>
+                                <div class="form-group">
+                                    <label>@_sharedLocalizer.File</label>
+                                    <div class="kt-dropzone m-dropzone--success" action="@Settings.Routes.Upload.UploadFile" id="dropzone">
+                                        <div class="kt-dropzone__msg dz-message needsclick">
+                                            <h5 class="kt-dropzone__msg-title">@_sharedLocalizer.DragFilesOrClickToUpload</h5>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <div class="form-group">
                                             <label asp-for="Options">@_sharedLocalizer.PrintPagesOptions</label>
-                                            <select asp-items="@(await _selectList.PrintPagesOptions())"  asp-for="Options" class="form-control kt-select2"></select>
+                                            <select asp-items="@(await _selectList.PrintPagesOptions())" asp-for="Options" class="form-control kt-select2"></select>
                                             <span asp-validation-for="Options" class="form-text text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="form-group">
-                                            <label asp-for="Side">@_sharedLocalizer.SidePrintOption</label>                                        
+                                            <label asp-for="Side">@_sharedLocalizer.SidePrintOption</label>
                                             <select asp-items="@(await _selectList.SidePrintOption())" class="form-control kt-select2" asp-for="Side"></select>
                                             <span asp-validation-for="Side" class="form-text text-danger"></span>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
