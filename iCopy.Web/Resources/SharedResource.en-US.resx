@@ -429,6 +429,9 @@
   <data name="MiddleName" xml:space="preserve">
     <value>Middlename</value>
   </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>My profile</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -503,6 +506,9 @@
   </data>
   <data name="PrintPagesOptions" xml:space="preserve">
     <value>Print pages options</value>
+  </data>
+  <data name="PrintSettings" xml:space="preserve">
+    <value>Print settings</value>
   </data>
   <data name="Privacy" xml:space="preserve">
     <value>Privacy</value>
@@ -596,6 +602,9 @@
   </data>
   <data name="UpdateCopierDetails" xml:space="preserve">
     <value>Update copier details</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>Upload file</value>
   </data>
   <data name="Url" xml:space="preserve">
     <value>Url</value>

@@ -8,5 +8,10 @@ namespace iCopy.SERVICES.Extensions
         {
             return claimsPrincipal.FindFirstValue(ClaimTypes.GivenName);
         }
+
+        public static int GetUserId(this ClaimsPrincipal claimsPrincipal)
+        {
+            return int.Parse(claimsPrincipal.FindFirstValue(ClaimTypes.NameIdentifier));
+        }
     }
 }

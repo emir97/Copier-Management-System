@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="kt-wizard-v2__nav-label">
                                     <div class="kt-wizard-v2__nav-label-title">
-                                        @_sharedLocalizer.PrintRequestSettings
+                                        @_sharedLocalizer.UploadFile
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="kt-wizard-v2__nav-label">
                                     <div class="kt-wizard-v2__nav-label-title">
-                                        @_sharedLocalizer.AccountSettings
+                                        @_sharedLocalizer.PrintSettings
                                     </div>
                                 </div>
                             </div>
@@ -52,19 +52,14 @@
                 <form asp-area="administration" asp-controller="printrequest" asp-action="insert" asp-antiforgery="true" class="kt-form" id="kt_form">
                     <!--begin: Form Wizard Step 1-->
                     <div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
-                        <div class="kt-heading kt-heading--md">@_sharedLocalizer.PrintRequestSettings</div>
+                        <div class="kt-heading kt-heading--md">@_sharedLocalizer.UploadFile</div>
+                        <div class="form-group">
+                            <label asp-for="CopierId">@_sharedLocalizer.Copier</label>
+                            <select asp-items="@(await _selectList.Copiers())" asp-for="CopierId" class="form-control kt-select2"></select>
+                            <span asp-validation-for="CopierId" class="form-text text-danger"></span>
+                        </div>
                         <div class="kt-form__section kt-form__section--first">
                             <div class="kt-wizard-v2__form">
-                                <div class="form-group">
-                                    <label asp-for="Status">@_sharedLocalizer.Status</label>
-                                    <select asp-items="@(await _selectList.Status())" asp-for="Status" class="form-control kt-select2"></select>
-                                    <span asp-validation-for="Status" class="form-text text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="FilePath">@_sharedLocalizer.FilePath</label>
-                                    <input type="text" class="form-control" asp-for="FilePath" placeholder="@_sharedLocalizer.FilePath" />
-                                    <span asp-validation-for="FilePath" class="form-text text-danger"></span>
-                                </div>
                                 <div class="form-group">
                                     <label>@_sharedLocalizer.File</label>
                                     <div class="kt-dropzone m-dropzone--success" action="@Settings.Routes.Upload.UploadFile" id="dropzone">
@@ -73,15 +68,24 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end: Form Wizard Step 1-->
+                    <!--begin: Form Wizard Step 2-->
+                    <div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
+                        <div class="kt-heading kt-heading--md">@_sharedLocalizer.PrintSettings</div>
+                        <div class="kt-form__section kt-form__section--first">
+                            <div class="kt-wizard-v2__form">
                                 <div class="row">
-                                    <div class="col-xl-6">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
                                             <label asp-for="Options">@_sharedLocalizer.PrintPagesOptions</label>
                                             <select asp-items="@(await _selectList.PrintPagesOptions())" asp-for="Options" class="form-control kt-select2"></select>
                                             <span asp-validation-for="Options" class="form-text text-danger"></span>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
                                             <label asp-for="Side">@_sharedLocalizer.SidePrintOption</label>
                                             <select asp-items="@(await _selectList.SidePrintOption())" class="form-control kt-select2" asp-for="Side"></select>
@@ -90,91 +94,49 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label asp-for="Orientation">@_sharedLocalizer.Orientation</label>
-                                    <select asp-items="@(await _selectList.Orientation())" class="form-control kt-select2" asp-for="Orientation"></select>
-                                    <span asp-validation-for="Orientation" class="form-text text-danger"></span>
-                                </div>
                                 <div class="row">
-                                    <div class="col-xl-6">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label asp-for="Orientation">@_sharedLocalizer.Orientation</label>
+                                            <select asp-items="@(await _selectList.Orientation())" class="form-control kt-select2" asp-for="Orientation"></select>
+                                            <span asp-validation-for="Orientation" class="form-text text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
                                             <label for="Letter">@_sharedLocalizer.Letter</label>
                                             <select asp-items="@(await _selectList.Letter())" asp-for="Letter" class="form-control kt-select2"></select>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
                                             <label asp-for="Pages">@_sharedLocalizer.PagePerSheet</label>
                                             <select asp-items="@(await _selectList.PagePerSheet())" asp-for="Pages" class="form-control kt-select2"></select>
                                             <span asp-validation-for="Pages" class="form-text text-danger"></span>
                                         </div>
                                     </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label asp-for="Collate">@_sharedLocalizer.CollatedPrintOptions</label>
+                                            <select asp-items="@(await _selectList.CollatedPrintOptions())" class="form-control kt-select2" asp-for="Collate"></select>
+                                            <span asp-validation-for="Collate" class="form-text text-danger"></span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label asp-for="Collate">@_sharedLocalizer.CollatedPrintOptions</label>
-                                    <select asp-items="@(await _selectList.CollatedPrintOptions())" class="form-control kt-select2" asp-for="Collate"></select>
-                                    <span asp-validation-for="Collate" class="form-text text-danger"></span>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="form-group">
-                                        <label asp-for="CopierId">@_sharedLocalizer.Copier</label>
-                                        <select asp-items="@(await _selectList.Copiers())" asp-for="CopierId" class="form-control kt-select2"></select>
-                                        <span asp-validation-for="CopierId" class="form-text text-danger"></span>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label asp-for="CopierId">@_sharedLocalizer.Copier</label>
+                                            <select asp-items="@(await _selectList.Copiers())" asp-for="CopierId" class="form-control kt-select2"></select>
+                                            <span asp-validation-for="CopierId" class="form-text text-danger"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--end: Form Wizard Step 1-->
-                    <!--begin: Form Wizard Step 2-->
-                    @*<div class="kt-wizard-v2__content" data-ktwizard-type="step-content">
-                        <div class="kt-heading kt-heading--md">@_sharedLocalizer.AccountSettings</div>
-                        <div class="kt-form__section kt-form__section--first">
-                            <div class="kt-wizard-v2__form">
-                                <div class="form-group">
-                                    <label>@_sharedLocalizer.ProfileImage</label>
-                                    <div class="kt-dropzone m-dropzone--success" action="@Settings.Routes.Upload.UploadProfileImage" id="dropzone">
-                                        <div class="kt-dropzone__msg dz-message needsclick">
-                                            <h5 class="kt-dropzone__msg-title">@_sharedLocalizer.DragFilesOrClickToUpload</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="User.Username">@_sharedLocalizer.Username</label>
-                                    <input type="text" class="form-control" asp-for="User.Username" placeholder="@_sharedLocalizer.Username" autocomplete="off">
-                                    <span class="form-text text-danger" asp-validation-for="User.Username"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="User.Email">@_sharedLocalizer.Email</label>
-                                    <input type="email" class="form-control" asp-for="User.Email" placeholder="@_sharedLocalizer.Email" autocomplete="off">
-                                    <span class="form-text text-danger" asp-validation-for="User.Email"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="User.PhoneNumber">@_sharedLocalizer.PhoneNumber</label>
-                                    <input type="number" class="form-control" asp-for="User.PhoneNumber" placeholder="@_sharedLocalizer.PhoneNumber" autocomplete="off">
-                                    <span class="form-text text-danger" asp-validation-for="User.PhoneNumber"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="User.Password">@_sharedLocalizer.Password</label>
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" asp-for="User.Password" placeholder="@_sharedLocalizer.Password" autocomplete="off">
-                                        <span class="form-text text-danger" asp-validation-for="User.Password"></span>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-brand btn-icon" type="button" id="generate-password"><i class="fa fa-key"></i></button>
-                                        </div>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-brand btn-icon" type="button" id="view-password"><i class="fa fa-eye"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label asp-for="User.PasswordConfirm">@_sharedLocalizer.PasswordConfirm</label>
-                                    <input type="password" class="form-control" asp-for="User.PasswordConfirm" placeholder="@_sharedLocalizer.PasswordConfirm" autocomplete="off">
-                                    <span class="form-text text-danger" asp-validation-for="User.PasswordConfirm"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
                     <!--end: Form Wizard Step 2-->
                     <!--begin: Form Actions -->
                     <div class="kt-form__actions">

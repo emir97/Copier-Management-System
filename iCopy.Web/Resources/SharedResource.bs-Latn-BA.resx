@@ -417,6 +417,9 @@
   <data name="MiddleName" xml:space="preserve">
     <value>Nadimak</value>
   </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>Moj profil</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Naziv</value>
   </data>
@@ -491,6 +494,9 @@
   </data>
   <data name="PrintPagesOptions" xml:space="preserve">
     <value>Opcije printanja</value>
+  </data>
+  <data name="PrintSettings" xml:space="preserve">
+    <value>Postavke printanja</value>
   </data>
   <data name="Privacy" xml:space="preserve">
     <value>Privatnost</value>
@@ -581,6 +587,9 @@
   </data>
   <data name="UpdateCopierDetails" xml:space="preserve">
     <value>Izmijeni detalje kopirnice</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>Učitavanje fajla</value>
   </data>
   <data name="Url" xml:space="preserve">
     <value>Link</value>

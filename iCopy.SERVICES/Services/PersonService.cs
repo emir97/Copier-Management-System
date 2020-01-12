@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using iCopy.Database.Context;
 using iCopy.SERVICES.IServices;
+using System;
 using System.Threading.Tasks;
 
 namespace iCopy.SERVICES.Services
@@ -14,14 +15,15 @@ namespace iCopy.SERVICES.Services
         {
             try
             {
-                Model.Response.Person person = await base.UpdateAsync(id, entity);
-                if (entity. != null)
-                {
-                    entity.ProfilePhoto.ApplicationUserId = copier.ApplicationUserId;
-                    await ProfilePhotoService.InsertAsync(entity.ProfilePhoto);
-                }
+                //Model.Response.Person person = await base.UpdateAsync(id, entity);
+                //if (entity != null)
+                //{
+                //    entity.ProfilePhoto.ApplicationUserId = copier.ApplicationUserId;
+                //    await ProfilePhotoService.InsertAsync(entity.ProfilePhoto);
+                //}
                 // TODO: Dodati Log
-                return copier;
+                // return copier;
+                return null;
             }
             catch (Exception e)
             {
@@ -31,3 +33,4 @@ namespace iCopy.SERVICES.Services
         }
     }
 }
+

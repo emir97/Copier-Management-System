@@ -98,6 +98,10 @@ namespace iCopy.Web.Resources
         public string Logout => localizer[nameof(Logout)];
         public string Notifications => localizer[nameof(Notifications)];
         public string OOPSSomethingWentWronghere => localizer[nameof(OOPSSomethingWentWronghere)];
+        public string MyProfile => localizer[nameof(MyProfile)];
+        public string PrintSettings => localizer[nameof(PrintSettings)];
+        public string UploadFile => localizer[nameof(UploadFile)];
+
 
         #region SuccMessage
         public string SuccUpdate => localizer[nameof(SuccUpdate)];

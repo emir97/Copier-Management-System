@@ -1,5 +1,4 @@
-﻿using iCopy.Database;
-using System;
+﻿using System;
 
 namespace iCopy.Model.Response
 {
