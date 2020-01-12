@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using iCopy.Model.Request;
 using iCopy.SERVICES.Attributes;
+using iCopy.SERVICES.Extensions;
 using iCopy.SERVICES.IServices;
 using iCopy.Web.Controllers;
 using iCopy.Web.Helper;
@@ -18,6 +19,7 @@ namespace iCopy.Web.Areas.Administration.Controllers
     public class PrintRequestController : BaseDataTableCRUDController<Model.Request.PrintRequest, Model.Request.PrintRequest, Model.Response.PrintRequest, Model.Request.PrintRequestSearch, int>
     {
         private new readonly IPrintRequestService crudService;
+        private Model.Request.PrintRequestFile PrintRequestFile => HttpContext.Session.Get<Model.Request.PrintRequestFile>(Session.Keys.Upload.PrintRequestFile);
 
         public PrintRequestController(IPrintRequestService CrudService, SharedResource _localizer, IMapper mapper) : base(CrudService, _localizer, mapper)
         {
@@ -29,7 +31,11 @@ namespace iCopy.Web.Areas.Administration.Controllers
         {
             try
             {
+                model.FilePath = PrintRequestFile.Path;
+                model.ClientId = User.GetId();
+
                 await crudService.InsertAsync(model);
+                
                 TempData["success"] = _localizer.SuccAdd;
                 return Ok();
             }

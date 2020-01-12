@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using iCopy.SERVICES.Auth;
+using System.Security.Claims;
 
 namespace iCopy.SERVICES.Extensions
 {
@@ -12,6 +13,11 @@ namespace iCopy.SERVICES.Extensions
         public static int GetUserId(this ClaimsPrincipal claimsPrincipal)
         {
             return int.Parse(claimsPrincipal.FindFirstValue(ClaimTypes.NameIdentifier));
+        }
+
+        public static int GetId(this ClaimsPrincipal claimsPrincipal)
+        {
+            return int.Parse(claimsPrincipal.FindFirstValue(ApplicationUserClaimTypes.Id));
         }
     }
 }

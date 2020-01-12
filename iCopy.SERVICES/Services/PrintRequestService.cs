@@ -71,24 +71,6 @@ namespace iCopy.SERVICES.Services
             return mapper.Map<Model.Response.PrintRequest>(printRequest);
         }
 
-        public override async Task<Model.Response.PrintRequest> InsertAsync(Model.Request.PrintRequest entity)
-        {
-            Database.PrintRequest model = mapper.Map<Database.PrintRequest>(entity);
-            try
-            {
-                ctx.Requests.Add(model);
-                await ctx.SaveChangesAsync();
-                // TODO: Dodati log operaciju
-            }
-            catch (Exception e)
-            {
-                //TODO: Dodati log operaciju
-                throw e;
-            }
-
-            return mapper.Map<Model.Response.PrintRequest>(model);
-        }
-
         public override async Task<Model.Response.PrintRequest> UpdateAsync(int id, Model.Request.PrintRequest entity)
         {
             try

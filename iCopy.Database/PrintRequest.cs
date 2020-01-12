@@ -13,16 +13,15 @@ namespace iCopy.Database
         public Letter Letter { get; set; }
         public PagePerSheet Pages { get; set; }
         public CollatedPrintOptions Collate { get; set; }
+
         [ForeignKey(nameof(Client))]
-
         public int ClientId { get; set; }
-
         public Client Client { get; set; }
+
         [ForeignKey(nameof(Copier))]
-
         public int CopierId { get; set; }
-
         public Copier Copier { get; set; }
+
         public DateTime RequestDate { get; set; }
     }
 

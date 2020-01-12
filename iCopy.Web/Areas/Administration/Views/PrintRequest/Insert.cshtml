@@ -125,15 +125,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6 col-lg-6">
-                                        <div class="form-group">
-                                            <label asp-for="CopierId">@_sharedLocalizer.Copier</label>
-                                            <select asp-items="@(await _selectList.Copiers())" asp-for="CopierId" class="form-control kt-select2"></select>
-                                            <span asp-validation-for="CopierId" class="form-text text-danger"></span>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -217,30 +208,6 @@
                     },
                     '@(nameof(iCopy.Model.Request.PrintRequest.CopierId))': {
                         required: true
-                    },
-                    //= Step 2
-                    'User.Username': {
-                        required: true,
-                        maxlength: 100
-                    },
-                    'User.Email': {
-                        required: true,
-                        email: true,
-                        maxlength: 100
-                    },
-                    'User.PhoneNumber': {
-                        required: true,
-                        number: true
-                    },
-                    'User.Password': {
-                        required: true,
-                        maxlength: 100,
-                        minlength: 8
-                    },
-                    'User.PasswordConfirm': {
-                        required: true,
-                        maxlength: 100,
-                        minlength: 8
                     }
                     },
 
@@ -324,42 +291,6 @@
             }
         };
     }();
-
-    var ChangeEvents = {
-        init: function () {
-            $("#countries-list").on('change', function () {
-                $.ajax({
-                    url: '@Settings.Routes.SelectList.CitiesByCountry',
-                    type: 'GET',
-                    data: {
-                        id: $("#countries-list").val()
-                    },
-                    success: function(result) {
-                        var options = "";
-                        $.each(result,
-                            (index, value) => {
-                                options += `<option value='${value.value}'>${value.text}</option>`;
-                            });
-                        $("#CityId").html(options);
-                    }
-                });
-            });
-            $('#view-password').on('click', function(e) {
-                e.preventDefault();
-                $(this).find("i").toggleClass("fa-eye fa-eye-slash");
-                $('input[name=\'User.Password\']').attr('type',
-                    $(this).is(function() { return $('input[name=\'User.Password\']').attr('type') == 'password' })
-                    ? 'text'
-                    : 'password');
-            });
-            $('#generate-password').on('click', function(e) {
-                e.preventDefault();
-                let generatedPassword = Password.Generate();
-                $('input[name=\'User.Password\']').val(generatedPassword);
-                $('input[name=\'User.PasswordConfirm\']').val(generatedPassword);
-            });
-        }
-    }
     var DropZone = {
         init: function (element) {
             var options = {
@@ -384,8 +315,6 @@
 
     jQuery(document).ready(function () {
         KTWizard2.init();
-        ChangeEvents.init();
-        $("#CityId, #countries-list").select2({ width: '100%' });
         DropZone.init($("#dropzone"));
     });
 

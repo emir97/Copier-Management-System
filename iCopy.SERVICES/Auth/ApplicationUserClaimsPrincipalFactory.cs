@@ -30,6 +30,16 @@ namespace iCopy.SERVICES.Auth
                 .Union(context.Employees.Include(x => x.Person).Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => string.Concat(x.Person.FirstName, " ", x.Person.LastName)))
                 .Union(context.Administrators.Include(x => x.Person).Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => string.Concat(x.Person.FirstName, " ", x.Person.LastName)))
                 .FirstOrDefaultAsync();
+
+            var id = await context.Companies
+                .Select(x => x.ID)
+                .Union(context.Copiers.Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.ID))
+                .Union(context.Clients.Include(x => x.Person).Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.ID))
+                .Union(context.Employees.Include(x => x.Person).Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.ID))
+                .Union(context.Administrators.Include(x => x.Person).Where(x => x.ApplicationUserId == user.Id && x.Active).Select(x => x.ID))
+                .FirstOrDefaultAsync();
+
+            identity.AddClaim(new Claim(ApplicationUserClaimTypes.Id, id.ToString()));
             identity.AddClaim(new Claim(ClaimTypes.GivenName, name));
 
             // Profile photo

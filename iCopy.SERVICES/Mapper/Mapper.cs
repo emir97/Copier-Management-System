@@ -50,6 +50,8 @@ namespace iCopy.SERVICES.Mapper
                 .ForMember(x => x.SecurityStamp, opt => Guid.NewGuid().ToString());
             CreateMap<Database.ApplicationUser, Model.Response.ApplicationUser>().ReverseMap();
 
+            CreateMap<Database.PrintRequest, Model.Request.PrintRequest>().ReverseMap();
+
             #region SELECT LISTS
             CreateMap<Database.Country, SelectListItem>()
                 .ForMember(x => x.Text, y => y.MapFrom(c => c.Name))

@@ -53,6 +53,14 @@ namespace iCopy.Database.Context
                 .Entity<Person>()
                 .Property(x => x.Gender)
                 .HasConversion(x => x.ToString(), x => (Gender) Enum.Parse(typeof(Gender), x));
+
+            modelBuilder.Entity<PrintRequest>().Property(x => x.Orientation).HasConversion(x => x.ToString(), x => (Orientation)Enum.Parse(typeof(Orientation), x));
+            modelBuilder.Entity<PrintRequest>().Property(x => x.Status).HasConversion(x => x.ToString(), x => (Status)Enum.Parse(typeof(Status), x));
+            modelBuilder.Entity<PrintRequest>().Property(x => x.Options).HasConversion(x => x.ToString(), x => (PrintPagesOptions)Enum.Parse(typeof(PrintPagesOptions), x));
+            modelBuilder.Entity<PrintRequest>().Property(x => x.Side).HasConversion(x => x.ToString(), x => (SidePrintOption)Enum.Parse(typeof(SidePrintOption), x));
+            modelBuilder.Entity<PrintRequest>().Property(x => x.Letter).HasConversion(x => x.ToString(), x => (Letter)Enum.Parse(typeof(Letter), x));
+            modelBuilder.Entity<PrintRequest>().Property(x => x.Pages).HasConversion(x => x.ToString(), x => (PagePerSheet)Enum.Parse(typeof(PagePerSheet), x));
+            modelBuilder.Entity<PrintRequest>().Property(x => x.Collate).HasConversion(x => x.ToString(), x => (CollatedPrintOptions)Enum.Parse(typeof(CollatedPrintOptions), x));
         }
 
     }
