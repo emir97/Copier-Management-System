@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using iCopy.Model.Request;
+using iCopy.Model.Response;
 using iCopy.SERVICES.Attributes;
 using iCopy.SERVICES.Extensions;
 using iCopy.SERVICES.IServices;
 using iCopy.Web.Controllers;
 using iCopy.Web.Helper;
+using iCopy.Web.Models;
 using iCopy.Web.Resources;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace iCopy.Web.Areas.Administration.Controllers
 {
@@ -27,7 +27,7 @@ namespace iCopy.Web.Areas.Administration.Controllers
         }
 
         [HttpPost, Transaction, AutoValidateModelState]
-        public override async Task<IActionResult> Insert(PrintRequest model)
+        public override async Task<IActionResult> Insert(Model.Request.PrintRequest model)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace iCopy.Web.Areas.Administration.Controllers
         }
 
         [HttpPost, Transaction]
-        public override async Task<IActionResult> Update(int id, [FromForm]PrintRequest model)
+        public override async Task<IActionResult> Update(int id, [FromForm]Model.Request.PrintRequest model)
         {
             if (ModelState.IsValid)
             {
