@@ -1,4 +1,4 @@
-namespace iCopy.Web.Models
+﻿namespace iCopy.Web.Models
 {
     public class ErrorViewModel
     {
