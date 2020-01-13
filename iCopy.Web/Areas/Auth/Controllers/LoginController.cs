@@ -15,6 +15,7 @@ using iCopy.SERVICES.IServices;
 using iCopy.SERVICES.Services;
 using IAuthenticationService = iCopy.SERVICES.IServices.IAuthenticationService;
 using static iCopy.Model.Enum.Enum;
+using iCopy.SERVICES.Attributes;
 
 namespace iCopy.Web.Areas.Auth.Controllers
 {
@@ -37,20 +38,13 @@ namespace iCopy.Web.Areas.Auth.Controllers
             this.UserService = UserService;
         }
 
-        [HttpGet]
-        public IActionResult Index()
-        {
-            if (User.Identity.IsAuthenticated)
-                Redirect(Settings.Routes.Dashboard.Index);
-            return View();
-        }
+        [HttpGet, LoggedInRedirectToAction(RedirectToAction = Settings.Routes.Dashboard.Index)]
+        public Task<IActionResult> Index() => Task.FromResult<IActionResult>(View());
 
         [HttpPost, ValidateAntiForgeryToken, ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [LoggedInRedirectToAction(RedirectToAction = Settings.Routes.Dashboard.Index)]
         public async Task<IActionResult> Index(Login login)
         {
-            if (User.Identity.IsAuthenticated)
-                return Redirect(Settings.Routes.Dashboard.Index);
-
             if (ModelState.IsValid)
             {
                 try

@@ -71,6 +71,24 @@
                         <div class="kt-form__body">
                             <div class="kt-section kt-section--first">
                                 <div class="kt-section__body">
+                                    @*<div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.ProfileImage</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <div class="kt-avatar kt-avatar--outline kt-avatar--circle-" id="kt_apps_user_add_avatar">
+                                                <div class="kt-avatar__holder" style="background-image: url(&quot;/@(Model?.ProfilePhoto?.Path?.Replace("\\", "/") ?? Settings.Defaults.Photo.ProfilePhoto)&quot;);"></div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.ChangeProfileImage</label>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <div class="kt-dropzone m-dropzone--success" action="@Settings.Routes.Upload.UploadProfileImage" id="dropzone">
+                                                <div class="kt-dropzone__msg dz-message needsclick">
+                                                    <h5 class="kt-dropzone__msg-title">@_sharedLocalizer.DragFilesOrClickToUpload</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group row">
                                         <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.Username</label>
                                         <div class="col-lg-9 col-xl-6">

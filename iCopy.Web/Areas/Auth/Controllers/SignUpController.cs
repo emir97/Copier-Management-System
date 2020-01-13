@@ -44,6 +44,7 @@ namespace iCopy.Web.Areas.Auth.Controllers
         }
 
         [HttpGet]
+        [LoggedInRedirectToAction(RedirectToAction = Settings.Routes.Dashboard.Index)]
         public Task<ViewResult> Index() => Task.FromResult(View(new Model.Request.Client()));
 
         [HttpPost, Transaction, AutoValidateModelState]
