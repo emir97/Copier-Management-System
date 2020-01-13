@@ -1,5 +1,3 @@
-using System;
-
 namespace iCopy.Web.Models
 {
     public class ErrorViewModel
