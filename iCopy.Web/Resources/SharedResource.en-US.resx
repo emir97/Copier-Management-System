@@ -165,6 +165,9 @@
   <data name="AddEmployee" xml:space="preserve">
     <value>Add employee</value>
   </data>
+  <data name="AddPrintRequest" xml:space="preserve">
+    <value>Add print request</value>
+  </data>
   <data name="Address" xml:space="preserve">
     <value>Address</value>
   </data>
@@ -506,6 +509,9 @@
   </data>
   <data name="PrintPagesOptions" xml:space="preserve">
     <value>Print pages options</value>
+  </data>
+  <data name="PrintRequestSettings" xml:space="preserve">
+    <value>Print request settings</value>
   </data>
   <data name="PrintSettings" xml:space="preserve">
     <value>Print settings</value>
