@@ -510,6 +510,9 @@
   <data name="PrintPagesOptions" xml:space="preserve">
     <value>Print pages options</value>
   </data>
+  <data name="PrintRequest" xml:space="preserve">
+    <value>Print request</value>
+  </data>
   <data name="PrintRequestSettings" xml:space="preserve">
     <value>Print request settings</value>
   </data>
