@@ -5,14 +5,14 @@
 }
 @if (TempData["success"] != null)
 {
-    <div class="alert alert-solid-success alert-bold" role="alert">
-        <div class="alert-text">@TempData["success"]</div>
-        <div class="alert-close">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"><i class="la la-close"></i></span>
-            </button>
-        </div>
+<div class="alert alert-solid-success alert-bold" role="alert">
+    <div class="alert-text">@TempData["success"]</div>
+    <div class="alert-close">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="la la-close"></i></span>
+        </button>
     </div>
+</div>
 }
 <div class="kt-portlet kt-portlet--mobile">
     <div class="kt-portlet__head kt-portlet__head--lg">
@@ -56,8 +56,8 @@
                             <label>@_sharedLocalizer.CollatedPrintOptions:</label>
                             <select name="collatedprintoptions" asp-items="@(await _selectList.CollatedPrintOptions())" class="form-control kt-select2" id="collatedprintoptions-list"></select>
                         </div>
-                        </div>
-                        <div class="row kt-margin-b-20">
+                    </div>
+                    <div class="row kt-margin-b-20">
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                             <label>@_sharedLocalizer.Orientation:</label>
                             <select name="orientation" asp-items="@(await _selectList.Orientation())" class="form-control kt-select2" id="orientation-list"></select>
@@ -69,7 +69,7 @@
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                             <label>@_sharedLocalizer.PagePerSheet:</label>
                             <select name="pagepersheet" asp-items="@(await _selectList.PagePerSheet())" class="form-control kt-select2" id="pagepersheet-list"></select>
-                        </div>                       
+                        </div>
                         <div class="col-lg-3 kt-margin-b-10-tablet-and-mobile">
                             <label>&nbsp;</label>
                             <div class="btn-group btn-group-toggle col-md-12 p-0" data-toggle="buttons" data-col-index="3">
@@ -120,18 +120,21 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.data)
+                @if (Model.data?.Any() ?? false)
                 {
-                <tr>
-                    <td>@item.ID</td>
-                    <td>@item.Status</td>
-                    <td>@item.Options</td>
-                    <td>@item.Side</td>
-                    <td>@item.Collate</td>
-                    <td>@item.Orientation</td>
-                    <td>@item.Letter</td>
-                    <td>@item.Pages</td>
-                </tr>
+                    foreach (var item in Model.data)
+                    {
+                        <tr>
+                            <td>@item.ID</td>
+                            <td>@item.Status</td>
+                            <td>@item.Options</td>
+                            <td>@item.Side</td>
+                            <td>@item.Collate</td>
+                            <td>@item.Orientation</td>
+                            <td>@item.Letter</td>
+                            <td>@item.Pages</td>
+                        </tr>
+                    }
                 }
             </tbody>
         </table>

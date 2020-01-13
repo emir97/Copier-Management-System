@@ -85,5 +85,11 @@ namespace iCopy.SERVICES.Services
                 throw e;
             }
         }
+
+        public override Task<Model.Response.PrintRequest> InsertAsync(Model.Request.PrintRequest entity)
+        {
+            entity.Status = Database.Status.OnHold;
+            return base.InsertAsync(entity);
+        }
     }
 }
