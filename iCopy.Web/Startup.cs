@@ -20,6 +20,7 @@ using iCopy.Web.Options;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 using DBContext = iCopy.Database.Context.DBContext;
+using iCopy.Web.Hubs;
 
 namespace iCopy.Web
 {
@@ -68,7 +69,7 @@ namespace iCopy.Web
             services.AddSingleton<ProfilePhotoOptions>(Configuration.GetSection("Files:ProfilePhoto").Get<ProfilePhotoOptions>());
             services.AddSingleton<PrintRequestFileOptions>(Configuration.GetSection("Files:PrintRequestFile").Get<PrintRequestFileOptions>());
             services.AddSingleton<EmailServerNoReplyOptions>(Configuration.GetSection("EmailServers:no-reply").Get<EmailServerNoReplyOptions>());
-
+            services.AddSignalR();
             services.AddAuthentication().AddCookie();
             services.AddIdentity<ApplicationUser, ApplicationRole>().AddEntityFrameworkStores<AuthContext>().AddDefaultTokenProviders();
             services.AddLogging(loggingBuilder =>
@@ -144,6 +145,7 @@ namespace iCopy.Web
             app.UseRequestLocalization();
             app.UseSession();
             app.UseAuthentication();
+            app.UseSignalR(router => router.MapHub<NotificationsHub>("/notificationshub"));
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
