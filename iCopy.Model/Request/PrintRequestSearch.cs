@@ -1,7 +1,4 @@
 ﻿using iCopy.Database;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace iCopy.Model.Request
 {
