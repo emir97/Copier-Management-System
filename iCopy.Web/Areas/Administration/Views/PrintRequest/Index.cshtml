@@ -243,7 +243,7 @@
                         <a href="@Settings.Routes.PrintRequest.Details/${full.id}" ajax-add="modal-lg" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-info-circle"></i></a>
                         <a href="@Settings.Routes.PrintRequest.Delete/${full.id}" ajax-delete="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-trash"></i></a>
                         <a href="@Settings.Routes.PrintRequest.ChangeActiveStatus/${full.id}" ajax-activate="true" class="btn btn-sm btn-clean btn-icon btn-icon-md p-0 m-0"><i class="la la-toggle-on"></i></a>
-                                <a href="${full.filePath}"><i class="la la-download"></i></a>`;
+                                <a href="\\${full.filePath}"><i class="la la-download"></i></a>`;
                            
                         }
                     }
@@ -267,7 +267,6 @@
             $("#datatable-search").trigger('click');
         });
         $('.kt-select2').select2({ width: '100%' });
-        ChangeEvents.init();
     });
 </script>
 

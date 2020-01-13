@@ -1,4 +1,5 @@
 ﻿@model iCopy.Web.Models.DataTable<iCopy.Model.Response.Employee>
+@using Enum = iCopy.Model.Enum.Enum
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = _sharedLocalizer.EmployeeSettings;
@@ -24,7 +25,7 @@
                 @_sharedLocalizer.EmployeeSettings
             </h3>
         </div>
-        <div class="kt-portlet__head-toolbar">
+        <div is-visible="User.HasRoles(Enum.Roles.Administrator, Enum.Roles.Company, Enum.Roles.Copier)" class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-wrapper">
                 <div class="kt-portlet__head-actions">
                     <a href="@Settings.Routes.Employee.Insert" class="btn btn-brand btn-icon-sm">
