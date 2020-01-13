@@ -165,6 +165,9 @@
   <data name="AddEmployee" xml:space="preserve">
     <value>Dodaj zaposlenika</value>
   </data>
+  <data name="AddPrintRequest" xml:space="preserve">
+    <value>Dodaj zahtjev za printanje</value>
+  </data>
   <data name="Address" xml:space="preserve">
     <value>Adresa</value>
   </data>
@@ -494,6 +497,9 @@
   </data>
   <data name="PrintPagesOptions" xml:space="preserve">
     <value>Opcije printanja</value>
+  </data>
+  <data name="PrintRequestSettings" xml:space="preserve">
+    <value>Zahtjevi za printanje</value>
   </data>
   <data name="PrintSettings" xml:space="preserve">
     <value>Postavke printanja</value>

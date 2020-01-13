@@ -122,16 +122,16 @@
             <tbody>
                 @foreach (var item in Model.data)
                 {
-                    <tr>
-                        <td>@item.Status</td>
-                        <td>@item.Options</td>
-                        <td>@item.Side</td>
-                        <td>@item.Collate</td>
-                        <td>@item.Orientation</td>
-                        <td>@item.Letter</td>
-                        <td>@item.Pages</td>
-                        <td></td>
-                    </tr>
+                <tr>
+                    <td>@item.ID</td>
+                    <td>@item.Status</td>
+                    <td>@item.Options</td>
+                    <td>@item.Side</td>
+                    <td>@item.Collate</td>
+                    <td>@item.Orientation</td>
+                    <td>@item.Letter</td>
+                    <td>@item.Pages</td>
+                </tr>
                 }
             </tbody>
         </table>
@@ -175,7 +175,7 @@
                 },
                 columns: [
                     { data: "id" },
-                    { data: "status" },
+                    { data: 'status' },
                     { data: 'options' },
                     { data: 'side' },
                     { data: 'collate' },
