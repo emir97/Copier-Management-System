@@ -5,6 +5,7 @@ using iCopy.SERVICES.IServices;
 using iCopy.Web.Controllers;
 using iCopy.Web.Helper;
 using iCopy.Web.Resources;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 namespace iCopy.Web.Areas.Administration.Controllers
 {
     [Area(Strings.Area.Administration)]
+    [Authorize(Roles = Strings.Roles.AdministratorCompanyCopier)]
     public class EmployeeController : BaseDataTableCRUDController<Model.Request.Employee, Model.Request.Employee, Model.Response.Employee, Model.Request.EmployeeSearch, int>
     {
         private new readonly IEmployeeService crudService;

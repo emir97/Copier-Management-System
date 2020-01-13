@@ -4,6 +4,7 @@ using iCopy.SERVICES.Extensions;
 using iCopy.SERVICES.IServices;
 using iCopy.Web.Helper;
 using iCopy.Web.Resources;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 namespace iCopy.Web.Areas.User.Controllers
 {
     [Area(Strings.Area.User)]
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly IUserService UserService;

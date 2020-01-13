@@ -8,6 +8,7 @@ using iCopy.Web.Controllers;
 using iCopy.Web.Helper;
 using iCopy.Web.Models;
 using iCopy.Web.Resources;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net;
@@ -16,6 +17,7 @@ using System.Threading.Tasks;
 namespace iCopy.Web.Areas.Administration.Controllers
 {
     [Area(Strings.Area.Administration)]
+    [Authorize]
     public class PrintRequestController : BaseDataTableCRUDController<Model.Request.PrintRequest, Model.Request.PrintRequest, Model.Response.PrintRequest, Model.Request.PrintRequestSearch, int>
     {
         private new readonly IPrintRequestService crudService;

@@ -15,6 +15,7 @@
             public const string Administrator = "Administrator";
             public const string Company = "Company";
             public const string AdministratorCompany = "Administrator,Company";
+            public const string AdministratorCompanyCopier = "Administrator,Company,Copier";
         }
 
         public class Protection

@@ -3,18 +3,19 @@ using iCopy.SERVICES.Attributes;
 using iCopy.SERVICES.Exceptions;
 using iCopy.SERVICES.IServices;
 using iCopy.Web.Helper;
+using iCopy.Web.Models;
 using iCopy.Web.Resources;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using iCopy.Web.Models;
-using Microsoft.Extensions.Localization;
 
 namespace iCopy.Web.Areas.Administration.Controllers
 {
     [Area(Strings.Area.Administration)]
+    [Authorize(Roles = Strings.Roles.Administrator)]
     public class UserController : Controller
     {
         private readonly SharedResource _localizer;
