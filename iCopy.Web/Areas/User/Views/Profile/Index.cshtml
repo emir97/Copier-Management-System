@@ -55,7 +55,7 @@
         </div>
         <div class="kt-portlet__head-toolbar">
             <div class="kt-portlet__head-wrapper">
-                <a href="@Settings.Routes.Copier.Index" class="btn btn-clean btn-icon-sm">
+                <a href="@Context.Request.Headers["Referer"]" class="btn btn-clean btn-icon-sm">
                     <i class="la la-long-arrow-left"></i>
                     @_sharedLocalizer.Back
                 </a>
@@ -153,7 +153,7 @@
             </div>
             <div class="tab-pane" id="change_password" role="tabpanel">
                 <div class="kt-form kt-form--label-right">
-                    <form asp-area="Administration" asp-controller="User" asp-action="UpdatePassword" asp-route-id="@Model.ID" asp-antiforgery="true" id="update-password-form">
+                    <form asp-area="User" asp-controller="Profile" asp-action="UpdatePassword" asp-antiforgery="true" id="update-password-form">
                         <div class="kt-form__body">
                             <div class="kt-section kt-section--first">
                                 <div class="kt-section__body">
@@ -280,7 +280,7 @@
             this.SubmitUpdateUserForm();
         }
     }
-    
+
     $(document).ready(function() {
         $('.kt-select').select2();
         Events.init();
