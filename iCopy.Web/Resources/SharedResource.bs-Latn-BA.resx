@@ -498,6 +498,9 @@
   <data name="PrintPagesOptions" xml:space="preserve">
     <value>Opcije printanja</value>
   </data>
+  <data name="PrintRequest" xml:space="preserve">
+    <value>Zahtjev za printanje</value>
+  </data>
   <data name="PrintRequestSettings" xml:space="preserve">
     <value>Zahtjevi za printanje</value>
   </data>
