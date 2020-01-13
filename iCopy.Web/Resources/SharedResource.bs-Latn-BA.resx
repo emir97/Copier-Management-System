@@ -339,6 +339,9 @@
   <data name="EmailNotConfirmed" xml:space="preserve">
     <value>Email nije verifikovan</value>
   </data>
+  <data name="EmployeeSettings" xml:space="preserve">
+    <value>Postavke zaposlenika</value>
+  </data>
   <data name="Enabled" xml:space="preserve">
     <value>Uključeno</value>
   </data>
