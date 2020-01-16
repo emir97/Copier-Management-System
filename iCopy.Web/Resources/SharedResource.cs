@@ -101,7 +101,9 @@ namespace iCopy.Web.Resources
         public string MyProfile => localizer[nameof(MyProfile)];
         public string PrintSettings => localizer[nameof(PrintSettings)];
         public string UploadFile => localizer[nameof(UploadFile)];
-
+        public string VerifyPhoneNumber => localizer[nameof(VerifyPhoneNumber)];
+        public string VerifyPhoneNumberFormat => localizer[nameof(VerifyPhoneNumberFormat)];
+        public string Code => localizer[nameof(Code)];
 
         #region SuccMessage
         public string SuccUpdate => localizer[nameof(SuccUpdate)];

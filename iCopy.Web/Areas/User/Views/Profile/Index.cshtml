@@ -72,13 +72,13 @@
                             <div class="kt-section kt-section--first">
                                 <div class="kt-section__body">
                                     @*<div class="form-group row">
-                                        <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.ProfileImage</label>
-                                        <div class="col-lg-9 col-xl-6">
-                                            <div class="kt-avatar kt-avatar--outline kt-avatar--circle-" id="kt_apps_user_add_avatar">
-                                                <div class="kt-avatar__holder" style="background-image: url(&quot;/@(Model?.ProfilePhoto?.Path?.Replace("\\", "/") ?? Settings.Defaults.Photo.ProfilePhoto)&quot;);"></div>
-                                            </div>
-                                        </div>
-                                    </div>*@
+            <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.ProfileImage</label>
+            <div class="col-lg-9 col-xl-6">
+                <div class="kt-avatar kt-avatar--outline kt-avatar--circle-" id="kt_apps_user_add_avatar">
+                    <div class="kt-avatar__holder" style="background-image: url(&quot;/@(Model?.ProfilePhoto?.Path?.Replace("\\", "/") ?? Settings.Defaults.Photo.ProfilePhoto)&quot;);"></div>
+                </div>
+            </div>
+        </div>*@
                                     <div class="form-group row">
                                         <label class="col-xl-3 col-lg-3 col-form-label">@_sharedLocalizer.ChangeProfileImage</label>
                                         <div class="col-lg-9 col-xl-6">
@@ -108,6 +108,14 @@
                                         <div class="col-lg-9 col-xl-6">
                                             <div class="input-group">
                                                 <input type="number" class="form-control" placeholder="@_sharedLocalizer.PhoneNumber" asp-for="PhoneNumber">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-xl-3 col-lg-3"></div>
+                                        <div class="col-lg-9 col-xl-6">
+                                            <div class="input-group">
+                                                <a class="btn btn-label-primary" id="verify-phone" asp-area="User" asp-controller="Profile" asp-action="VerifyPhoneNumber">@_sharedLocalizer.VerifyPhoneNumber</a>
                                             </div>
                                         </div>
                                     </div>
@@ -341,4 +349,18 @@
             }
         });
     }
+
+    $("#verify-phone").on('click',
+        function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var a = $(this);
+            $.ajax({
+                url: a.attr('href'),
+                type: "POST",
+                success: function(result) {
+
+                }
+            });
+        });
 </script>

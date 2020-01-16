@@ -123,6 +123,11 @@ namespace iCopy.Web
                 options.CompatibilityMode = PasswordHasherCompatibilityMode.IdentityV3;
                 options.IterationCount = 100000;
             });
+            services.Configure<TwillioClientOptions>(opt =>
+            {
+                opt.AuthToken = Configuration.GetValue<string>("SMSGateway:AuthToken");
+                opt.Sid = Configuration.GetValue<string>("SMSGateway:Sid");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

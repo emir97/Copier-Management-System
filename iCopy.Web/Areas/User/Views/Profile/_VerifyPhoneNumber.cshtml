@@ -1,0 +1,21 @@
+﻿@model iCopy.Model.Request.Country
+@{
+    Layout = null;
+}
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">@_sharedLocalizer.AddCountry</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+</div>
+<form asp-area="User" asp-controller="Profile" asp-action="VerifyPhoneNumber" method="post" ajax-modal-form="true" asp-antiforgery="true">
+    <div class="modal-body">
+        <div class="form-group">
+            <label>@_sharedLocalizer.Code:</label>
+            <input asp-for="Code" type="text" class="form-control" placeholder="@_sharedLocalizer.Code">
+            <span asp-validation-for="Code" class="form-text text-danger"></span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">@_sharedLocalizer.Close</button>
+        <button type="submit" class="btn btn-primary">@_sharedLocalizer.SaveChanges</button>
+    </div>
+</form>

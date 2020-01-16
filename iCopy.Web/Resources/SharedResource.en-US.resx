@@ -246,6 +246,9 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
   <data name="Collated" xml:space="preserve">
     <value>Collated</value>
   </data>
@@ -635,6 +638,12 @@
   </data>
   <data name="UserSettings" xml:space="preserve">
     <value>User settings</value>
+  </data>
+  <data name="VerifyPhoneNumber" xml:space="preserve">
+    <value>Verify phone number</value>
+  </data>
+  <data name="VerifyPhoneNumberFormat" xml:space="preserve">
+    <value>Your verification code is {0}.</value>
   </data>
   <data name="WelcomeToCopierManagementSystem" xml:space="preserve">
     <value>Welcome to the copier management system</value>

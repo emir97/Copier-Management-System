@@ -246,6 +246,9 @@
   <data name="Close" xml:space="preserve">
     <value>Zatvori</value>
   </data>
+  <data name="Code" xml:space="preserve">
+    <value>Kod</value>
+  </data>
   <data name="Collated" xml:space="preserve">
     <value>Raspoređen</value>
   </data>
@@ -623,6 +626,12 @@
   </data>
   <data name="UserSettings" xml:space="preserve">
     <value>Postavke korisnika</value>
+  </data>
+  <data name="VerifyPhoneNumber" xml:space="preserve">
+    <value>Verifikuj broj telefona</value>
+  </data>
+  <data name="VerifyPhoneNumberFormat" xml:space="preserve">
+    <value>Vaš verifikacijski kod je {0}.</value>
   </data>
   <data name="WelcomeToCopierManagementSystem" xml:space="preserve">
     <value>Dobrodošli u softver za upravljanje kopirnicama</value>
