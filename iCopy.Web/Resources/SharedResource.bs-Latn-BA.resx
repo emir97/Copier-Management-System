@@ -639,4 +639,13 @@
   <data name="Yes" xml:space="preserve">
     <value>Da</value>
   </data>
+  <data name="ErrorVerifyPhoneNumberCodeSent" xml:space="preserve">
+    <value>Došlo je do greške prilikom slanja koda za verifikaciju telefona.</value>
+  </data>
+  <data name="SendVerificationCode" xml:space="preserve">
+    <value>Pošalji verifikacijski kod</value>
+  </data>
+  <data name="VerifyPhoneNumberCodeSent" xml:space="preserve">
+    <value>Kod za verifikaciju telefona poslan.</value>
+  </data>
 </root>

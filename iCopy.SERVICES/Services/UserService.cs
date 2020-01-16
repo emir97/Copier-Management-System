@@ -2,7 +2,6 @@
 using iCopy.Database;
 using iCopy.Database.Context;
 using iCopy.Model.Request;
-using iCopy.Model.Response;
 using iCopy.SERVICES.Exceptions;
 using iCopy.SERVICES.Extensions;
 using iCopy.SERVICES.IServices;
@@ -10,12 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Net;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using ApplicationUser = iCopy.Model.Response.ApplicationUser;
 using Enum = iCopy.Model.Enum.Enum;
 
@@ -201,6 +196,21 @@ namespace iCopy.SERVICES.Services
             }
 
             return false;
+        }
+
+        public async Task DisableUserPhoneNumberVerificationTokens(int userId)
+        {
+            var userTokens = await context.ApplicationUserTokens.Where(x => x.TokenType == TokenType.VerifyPhoneNumber).ToListAsync();
+            userTokens.ForEach(x => x.Active = false);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<string> GenerateNewPhoneNumberVerificationToken(int userId)
+        {
+            var token = new Random().Next(100000, 1000000).ToString();
+            context.ApplicationUserTokens.Add(new ApplicationUserToken { Active = true, TokenType = TokenType.VerifyPhoneNumber, UserId = userId, Value = token });
+            await context.SaveChangesAsync();
+            return token;
         }
     }
 

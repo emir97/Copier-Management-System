@@ -651,4 +651,13 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="ErrorVerifyPhoneNumberCodeSent" xml:space="preserve">
+    <value>Error occured while sending phone number verification code.</value>
+  </data>
+  <data name="SendVerificationCode" xml:space="preserve">
+    <value>Send verification code</value>
+  </data>
+  <data name="VerifyPhoneNumberCodeSent" xml:space="preserve">
+    <value>Verification number code sent.</value>
+  </data>
 </root>

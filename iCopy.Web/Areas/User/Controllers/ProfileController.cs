@@ -85,13 +85,23 @@ namespace iCopy.Web.Areas.User.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> VerifyPhoneNumber()
+        public Task<IActionResult> VerifyPhoneNumber() => Task.FromResult<IActionResult>(View("_VerifyPhoneNumber"));
+
+        public async Task<IActionResult> SendVerificationCode()
         {
-            var phoneNumber = await UserService.GetByIdAsync(User.GetUserId());
-            var verificationCode = new Random().Next(100000, 1000000);
-            TwilioClient.Init(_twillioClient.CurrentValue.Sid, _twillioClient.CurrentValue.AuthToken);
-            var message = await MessageResource.CreateAsync(body: string.Format(_localizer.VerifyPhoneNumberFormat, verificationCode), from: new PhoneNumber("+13343264225"), to: new PhoneNumber("+38761589885"));
-            
+            try
+            {
+                var user = await UserService.GetByIdAsync(User.GetUserId());
+                await UserService.DisableUserPhoneNumberVerificationTokens(User.GetUserId());
+                var verificationCode = UserService.GenerateNewPhoneNumberVerificationToken(User.GetUserId());
+                TwilioClient.Init(_twillioClient.CurrentValue.Sid, _twillioClient.CurrentValue.AuthToken);
+                var message = await MessageResource.CreateAsync(body: string.Format(_localizer.VerifyPhoneNumberFormat, verificationCode), from: new PhoneNumber("+13343264225"), to: new PhoneNumber(user.PhoneNumber));
+                ViewData["success"] = _localizer.VerifyPhoneNumberCodeSent;
+            }
+            catch (Exception e)
+            {
+                ViewData["error"] = _localizer.ErrorVerifyPhoneNumberCodeSent;
+            }
             return View("_VerifyPhoneNumber");
         }
     }

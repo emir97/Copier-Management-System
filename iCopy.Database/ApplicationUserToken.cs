@@ -15,6 +15,7 @@ namespace iCopy.Database
     public enum TokenType
     {
         AccountActivation,
-        PasswordReset
+        PasswordReset,
+        VerifyPhoneNumber
     }
 }

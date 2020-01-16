@@ -104,6 +104,9 @@ namespace iCopy.Web.Resources
         public string VerifyPhoneNumber => localizer[nameof(VerifyPhoneNumber)];
         public string VerifyPhoneNumberFormat => localizer[nameof(VerifyPhoneNumberFormat)];
         public string Code => localizer[nameof(Code)];
+        public string SendVerificationCode => localizer[nameof(SendVerificationCode)];
+        public string VerifyPhoneNumberCodeSent => localizer[nameof(VerifyPhoneNumberCodeSent)];
+        public string ErrorVerifyPhoneNumberCodeSent => localizer[nameof(ErrorVerifyPhoneNumberCodeSent)];
 
         #region SuccMessage
         public string SuccUpdate => localizer[nameof(SuccUpdate)];

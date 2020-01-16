@@ -9,5 +9,7 @@ namespace iCopy.SERVICES.IServices
         Task<string> GenerateAccountActivationToken(int applicationUserId);
         Task<Model.Response.ApplicationUser> ChangeActiveStatusAsync(int id);
         Task<bool> ActivateUserAccount(int id, string token);
+        Task DisableUserPhoneNumberVerificationTokens(int userId);
+        Task<string> GenerateNewPhoneNumberVerificationToken(int userId);
     }
 }
